@@ -68,14 +68,30 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\8585-mur-africa-met.jpg" />
+    <Content Include="Content\arrow-left.png" />
+    <Content Include="Content\arrow-right.png" />
     <Content Include="Content\artwork-4.jpg" />
+    <Content Include="Content\autumn-countryside.jpg" />
+    <Content Include="Content\boat.jpg" />
+    <Content Include="Content\colorful-street.jpg" />
     <Content Include="Content\css\blank.css" />
+    <Content Include="Content\css\OrderArtCss.css" />
+    <Content Include="Content\css\OrderHistoryCss.css" />
     <Content Include="Content\il_570xN.1343115773_kxun.jpg" />
+    <Content Include="Content\love-wishlist-red.png" />
+    <Content Include="Content\love-wishlist-white.png" />
+    <Content Include="Content\monalisa.jpg" />
+    <Content Include="Content\panda.jpg" />
     <Content Include="Content\scripts\blank.js" />
+    <Content Include="Content\sea.jpg" />
+    <Content Include="Content\soldOut.png" />
+    <Content Include="Content\swing.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Sites\client\OrderHistory.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\general\Display.aspx" />
     <Content Include="Sites\general\HomePage2.aspx" />
+    <Content Include="Sites\general\OrderArt.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -87,6 +103,13 @@
       <DependentUpon>General.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sites\client\OrderHistory.aspx.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\client\OrderHistory.aspx.designer.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sites\client\Wishlist.aspx.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -107,6 +130,13 @@
     </Compile>
     <Compile Include="Sites\general\HomePage2.aspx.designer.cs">
       <DependentUpon>HomePage2.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\general\OrderArt.aspx.cs">
+      <DependentUpon>OrderArt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\general\OrderArt.aspx.designer.cs">
+      <DependentUpon>OrderArt.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
