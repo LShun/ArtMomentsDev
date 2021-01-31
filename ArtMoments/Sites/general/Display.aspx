@@ -187,7 +187,6 @@
              </td>
              <td class="auto-style10">
                  <div id="circle" class="auto-style2">
-                    <form id="searchForm" runat="server" class="auto-style1" style="margin-left:110px;margin-top:250px" >
                         <h3 style="color:black">Price Range</h3>
                         <div class="slider" id="slider-distance">
                           <div>
@@ -254,10 +253,7 @@
                         <br />
                         <asp:Button ID="btnFilter" runat="server" Height="23px" Text="Filter" Width="59px" />
                         <asp:Button ID="btnAll" runat="server" Height="27px" Text="Select All" Width="104px" />
-                        
-
-                    </form>
-                </div>
+                 </div>
              </td>
         </tr>
    </table>
