@@ -67,12 +67,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\14019785_00-129-spheroide-noire-01.jpg" />
     <Content Include="Content\8585-mur-africa-met.jpg" />
     <Content Include="Content\artwork-4.jpg" />
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\il_570xN.1343115773_kxun.jpg" />
+    <Content Include="Content\nancy-tillman-my-elephant-friend_u-l-q1awkyfo1zln.jpg" />
     <Content Include="Content\scripts\blank.js" />
+    <Content Include="Content\search--v2.png" />
+    <Content Include="Content\tetons-and-the-snake-river-grand-teton-national-park-c-1942_u-l-f3p8uj0.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Sites\artist\AddProduct.aspx" />
+    <Content Include="Sites\artist\OrderList.aspx" />
+    <Content Include="Sites\artist\ProductList.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\general\Display.aspx" />
     <Content Include="Sites\general\HomePage2.aspx" />
@@ -87,6 +94,27 @@
       <DependentUpon>General.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sites\artist\AddProduct.aspx.cs">
+      <DependentUpon>AddProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\artist\AddProduct.aspx.designer.cs">
+      <DependentUpon>AddProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\artist\OrderList.aspx.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\artist\OrderList.aspx.designer.cs">
+      <DependentUpon>OrderList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\artist\ProductList.aspx.cs">
+      <DependentUpon>ProductList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\artist\ProductList.aspx.designer.cs">
+      <DependentUpon>ProductList.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sites\client\Wishlist.aspx.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -127,7 +155,6 @@
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="App_Themes\Theme1\" />
-    <Folder Include="Sites\artist\" />
     <Folder Include="Sites\usermgmt\" />
   </ItemGroup>
   <PropertyGroup>
