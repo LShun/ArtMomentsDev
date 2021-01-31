@@ -70,8 +70,10 @@
     <Content Include="Content\8585-mur-africa-met.jpg" />
     <Content Include="Content\artwork-4.jpg" />
     <Content Include="Content\css\blank.css" />
+    <Content Include="Content\css\DisplayArt.css" />
     <Content Include="Content\il_570xN.1343115773_kxun.jpg" />
     <Content Include="Content\scripts\blank.js" />
+    <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\general\Display.aspx" />
