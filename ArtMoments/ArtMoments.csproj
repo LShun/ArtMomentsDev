@@ -71,11 +71,13 @@
     <Content Include="Content\8585-mur-africa-met.jpg" />
     <Content Include="Content\artwork-4.jpg" />
     <Content Include="Content\css\blank.css" />
+    <Content Include="Content\css\DisplayArt.css" />
     <Content Include="Content\il_570xN.1343115773_kxun.jpg" />
     <Content Include="Content\nancy-tillman-my-elephant-friend_u-l-q1awkyfo1zln.jpg" />
     <Content Include="Content\scripts\blank.js" />
     <Content Include="Content\search--v2.png" />
     <Content Include="Content\tetons-and-the-snake-river-grand-teton-national-park-c-1942_u-l-f3p8uj0.jpg" />
+    <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Sites\artist\AddProduct.aspx" />
     <Content Include="Sites\artist\OrderList.aspx" />
