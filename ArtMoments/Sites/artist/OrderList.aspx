@@ -94,7 +94,7 @@
         .auto-style25 {
             width: 132px;
         }
-        #searchinput {
+        #searchInput {
         background-image: url('../../Content/search--v2.png'); /* Add a search icon to input */
         background-position: 10px 10px; /* position the search icon */
         background-repeat: no-repeat; /* do not repeat the icon image */
