@@ -1,5 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="Display.aspx.cs" Inherits="ArtMoments.Sites.general.Display" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link href="../../Content/css/DisplayArt.css" rel="stylesheet" />
     <style type="text/css">
         #Text1 {
             width: 40px;
@@ -13,15 +14,11 @@
         #maxPrice {
             width: 36px;
         }
-        .auto-style1 {
-            width: 178px;
-            height: 490px;
-        }
         .auto-style2 {
             margin-left: 428px;
             margin-right: 0px;
-            width: 311px;
-            height: 544px;
+            width: 243px;
+            height: 422px;
         }
         .auto-style3 {
             width: 709px;
@@ -64,7 +61,8 @@
         }
      
     </style>
-    </asp:Content>
+
+</asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h2>Artwork Display</h2>
     <table class="auto-style9">
@@ -187,6 +185,7 @@
              </td>
              <td class="auto-style10">
                  <div id="circle" class="auto-style2">
+                      <div id="searchForm" runat="server" class="auto-style1" style="margin-left:110px;margin-top:250px" >
                         <h3 style="color:black">Price Range</h3>
                         <div class="slider" id="slider-distance">
                           <div>
@@ -196,10 +195,10 @@
                             <span class="thumb"  style="left:30%;" id="LHSthumb" runat="server"></span>
                             <span  class="thumb" style="left:60%;" id="RHSthumb" runat="server"></span>
                             <div class="sign" style="left:30%;">
-                              <span id="value">30</span>
+                              <span class="value">30</span>
                             </div>
                             <div class="sign" style="left:60%;">
-                              <span id="value">60</span>
+                              <span class="value">60</span>
                             </div>
                             
                           </div>
@@ -253,6 +252,8 @@
                         <br />
                         <asp:Button ID="btnFilter" runat="server" Height="23px" Text="Filter" Width="59px" />
                         <asp:Button ID="btnAll" runat="server" Height="27px" Text="Select All" Width="104px" />
+                    </div>
+
                  </div>
              </td>
         </tr>
