@@ -77,6 +77,7 @@
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\OrderArtCss.css" />
     <Content Include="Content\css\OrderHistoryCss.css" />
+    <Content Include="Content\css\DisplayArt.css" />
     <Content Include="Content\il_570xN.1343115773_kxun.jpg" />
     <Content Include="Content\love-wishlist-red.png" />
     <Content Include="Content\love-wishlist-white.png" />
@@ -86,6 +87,7 @@
     <Content Include="Content\sea.jpg" />
     <Content Include="Content\soldOut.png" />
     <Content Include="Content\swing.jpg" />
+    <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Sites\client\OrderHistory.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
