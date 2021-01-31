@@ -146,9 +146,11 @@
     border: 0 none;
 }
 
-.slider input[type=range]::-ms-tooltip {
-    display: none;
-}
+    .slider input[type=range]::-ms-tooltip {
+        display: none;
+        background-image: url('../8585-mur-africa-met.jpg');
+    }
+
 
     .slider > div > .sign {
         opacity: 0;
@@ -192,7 +194,7 @@
     }
 
 
-   #Image1:hover{
+   #ContentPlaceHolder1_Image1:hover{
        visibility:hidden;
    }
 

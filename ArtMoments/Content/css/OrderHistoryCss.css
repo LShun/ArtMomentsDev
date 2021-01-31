@@ -1,0 +1,123 @@
+﻿body {
+}
+
+.extra-info h1 {
+    background-color: yellow;
+    font-size: 80px;
+}
+
+#orderNum {
+    font-size: 38px;
+    margin-bottom: -5px;
+}
+
+#history-content-left, #history-content-right {
+    background-color: aqua
+}
+
+#history-content-center {
+    background-color: cadetblue;
+}
+
+#history-art-box {
+    background-color: chartreuse;
+}
+
+#orderNum-n-art {
+    background-color: darkgreen;
+}
+
+#detail-history-info {
+    background-color: forestgreen;
+}
+
+#history-title {
+    text-align: center;
+}
+
+#history-middle-box li {
+    margin-left: 300px;
+    border-radius: 12px;
+    border: 2px solid black;
+    margin-right: 300px;
+    margin-bottom: 20px;
+}
+
+.history-art-pic {
+    object-fit: cover;
+    max-width: 400px;
+    max-height: 250px;
+    margin: 5px;
+}
+
+#history-art-name {
+    display: inline-block;
+}
+
+span #history-art-year {
+    display: inline-block;
+}
+
+#history-art-size, #history-art-material, #history-art-author, #history-name-year {
+    display: inline-block;
+}
+
+.history-art-info span {
+    display: block;
+}
+
+#history-name-year #history-art-name {
+    font-size: 46px;
+    margin-top: 15px;
+}
+
+#history-name-year #history-art-year {
+    font-size: 23px;
+    margin-top: -4px;
+    margin-left: 2px;
+}
+
+#history-delivery-status #delivery-status-text {
+    font-size: 19px;
+    border-radius: 12px;
+    border: 2px solid black;
+}
+
+#history-delivery-status {
+    text-align: right;
+    margin-right: 20px;
+}
+
+.artDetail {
+    font-size: 22px;
+}
+
+.artDetail-text {
+    font-size: 30px;
+}
+
+#history-art-size {
+    margin-right: 150px;
+}
+
+#view-moreNbtn {
+    text-align: right;
+    margin-right: 20px;
+}
+
+#view-more-details, #btn buy-again {
+    display: block;
+}
+
+#purchase-date {
+    margin-right: 55px;
+    font-size: 15px;
+}
+
+#history-size-material {
+    margin-top: -25px;
+}
+
+#history-art-author {
+    margin-top: 10px;
+}
