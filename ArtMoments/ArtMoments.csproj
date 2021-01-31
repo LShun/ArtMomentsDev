@@ -70,12 +70,24 @@
     <Content Include="Content\8585-mur-africa-met.jpg" />
     <Content Include="Content\artwork-4.jpg" />
     <Content Include="Content\css\blank.css" />
+    <Content Include="Content\css\PreLogin.css" />
     <Content Include="Content\il_570xN.1343115773_kxun.jpg" />
     <Content Include="Content\scripts\blank.js" />
+    <Content Include="Content\scripts\PreLogin.js" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\general\Display.aspx" />
     <Content Include="Sites\general\HomePage2.aspx" />
+    <Content Include="Sites\usermgmt\BuyerAccount.aspx" />
+    <Content Include="Sites\usermgmt\BuyerPresentation.aspx" />
+    <Content Include="Sites\usermgmt\BuyerPresentationEdit.aspx" />
+    <Content Include="Sites\usermgmt\BuyerSetting.aspx" />
+    <Content Include="Sites\usermgmt\BuyerSettingEdit.aspx" />
+    <Content Include="Sites\usermgmt\ChangePassword.aspx" />
+    <Content Include="Sites\usermgmt\ConfirmedRegMsg.aspx" />
+    <Content Include="Sites\usermgmt\LoginUser.aspx" />
+    <Content Include="Sites\usermgmt\PreLogin.aspx" />
+    <Content Include="Sites\usermgmt\SignUp.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -108,6 +120,76 @@
     <Compile Include="Sites\general\HomePage2.aspx.designer.cs">
       <DependentUpon>HomePage2.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Sites\usermgmt\BuyerAccount.aspx.cs">
+      <DependentUpon>BuyerAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\usermgmt\BuyerAccount.aspx.designer.cs">
+      <DependentUpon>BuyerAccount.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\usermgmt\BuyerPresentation.aspx.cs">
+      <DependentUpon>BuyerPresentation.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\usermgmt\BuyerPresentation.aspx.designer.cs">
+      <DependentUpon>BuyerPresentation.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\usermgmt\BuyerPresentationEdit.aspx.cs">
+      <DependentUpon>BuyerPresentationEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\usermgmt\BuyerPresentationEdit.aspx.designer.cs">
+      <DependentUpon>BuyerPresentationEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\usermgmt\BuyerSetting.aspx.cs">
+      <DependentUpon>BuyerSetting.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\usermgmt\BuyerSetting.aspx.designer.cs">
+      <DependentUpon>BuyerSetting.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\usermgmt\BuyerSettingEdit.aspx.cs">
+      <DependentUpon>BuyerSettingEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\usermgmt\BuyerSettingEdit.aspx.designer.cs">
+      <DependentUpon>BuyerSettingEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\usermgmt\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\usermgmt\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\usermgmt\ConfirmedRegMsg.aspx.cs">
+      <DependentUpon>ConfirmedRegMsg.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\usermgmt\ConfirmedRegMsg.aspx.designer.cs">
+      <DependentUpon>ConfirmedRegMsg.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\usermgmt\LoginUser.aspx.cs">
+      <DependentUpon>LoginUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\usermgmt\LoginUser.aspx.designer.cs">
+      <DependentUpon>LoginUser.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\usermgmt\PreLogin.aspx.cs">
+      <DependentUpon>PreLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\usermgmt\PreLogin.aspx.designer.cs">
+      <DependentUpon>PreLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\usermgmt\SignUp.aspx.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\usermgmt\SignUp.aspx.designer.cs">
+      <DependentUpon>SignUp.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fonts\glyphicons-halflings-regular.eot" />
@@ -128,7 +210,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="App_Themes\Theme1\" />
     <Folder Include="Sites\artist\" />
-    <Folder Include="Sites\usermgmt\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
