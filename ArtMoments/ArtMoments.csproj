@@ -67,8 +67,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\8585-mur-africa-met.jpg" />
+    <Content Include="Content\artwork-4.jpg" />
+    <Content Include="Content\css\blank.css" />
+    <Content Include="Content\il_570xN.1343115773_kxun.jpg" />
+    <Content Include="Content\scripts\blank.js" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Sites\client\Wishlist.aspx" />
+    <Content Include="Sites\general\Display.aspx" />
     <Content Include="Sites\general\HomePage2.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -87,6 +93,13 @@
     </Compile>
     <Compile Include="Sites\client\Wishlist.aspx.designer.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\general\Display.aspx.cs">
+      <DependentUpon>Display.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\general\Display.aspx.designer.cs">
+      <DependentUpon>Display.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\general\HomePage2.aspx.cs">
       <DependentUpon>HomePage2.aspx</DependentUpon>
@@ -114,7 +127,6 @@
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="App_Themes\Theme1\" />
-    <Folder Include="Content\" />
     <Folder Include="Sites\artist\" />
     <Folder Include="Sites\usermgmt\" />
   </ItemGroup>
