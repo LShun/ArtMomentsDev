@@ -76,6 +76,7 @@
     <Content Include="Content\boat.jpg" />
     <Content Include="Content\colorful-street.jpg" />
     <Content Include="Content\css\blank.css" />
+    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\PreLogin.css" />
     <Content Include="Content\css\OrderArtCss.css" />
     <Content Include="Content\css\OrderHistoryCss.css" />
@@ -83,6 +84,8 @@
     <Content Include="Content\il_570xN.1343115773_kxun.jpg" />
     <Content Include="Content\nancy-tillman-my-elephant-friend_u-l-q1awkyfo1zln.jpg" />
     <Content Include="Content\scripts\blank.js" />
+    <Content Include="Content\scripts\bootstrap.bundle.min.js" />
+    <Content Include="Content\scripts\jquery-3.0.0.slim.min.js" />
     <Content Include="Content\search--v2.png" />
     <Content Include="Content\tetons-and-the-snake-river-grand-teton-national-park-c-1942_u-l-f3p8uj0.jpg" />
     <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
@@ -260,6 +263,8 @@
     <Content Include="Fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Masters\General.Master" />
+    <Content Include="Content\css\bootstrap.min.css.map" />
+    <Content Include="Content\scripts\bootstrap.bundle.min.js.map" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -272,8 +277,6 @@
     <Folder Include="App_Code\" />
     <Folder Include="App_Data\" />
     <Folder Include="App_Themes\Theme1\" />
-    <Folder Include="Sites\artist\" />
-    <Folder Include="Sites\usermgmt\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
