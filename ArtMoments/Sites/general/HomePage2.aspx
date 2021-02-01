@@ -11,7 +11,7 @@
                         Etc...
                     </asp:Panel>
                 </td>
-                <td class="auto-style1">
+                <td class="table">
                     <table style="width: 100%;">
                         <tr>
                             <td>
