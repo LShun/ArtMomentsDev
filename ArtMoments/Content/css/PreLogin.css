@@ -46,8 +46,8 @@ h1 {
     position: absolute;
     left: 50%;
     top: 60%;
-    height: 2.5rem;
-    padding-top: 1.3rem;
+    height: 3.0rem; 
+    padding-top:0px;
     width: 15rem;
     text-align: center;
     color: #fff;
