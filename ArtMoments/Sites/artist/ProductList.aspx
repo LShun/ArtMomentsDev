@@ -108,6 +108,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="auto-style28">
+        <div class="container">
         <table>
                 <tr><td class="auto-style22"><h1>Artwork List</h1></td>
                     <td class="auto-style23">
@@ -209,6 +210,7 @@
             </tbody>
 
             </table>
+        </div>
         </div>
     <script>
         function sortProdTable(n) {
