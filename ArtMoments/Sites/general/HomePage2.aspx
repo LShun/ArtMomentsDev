@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    
+
     <div class="container">
         <!-- Welcome -->
         <div class="table">
@@ -110,24 +110,49 @@
             </div>
         </div>
         <!-- Sign up & Login Buttons -->
-        <h2>Interested? Sign-up / Login Now!</h2>
-        <button type="button" class="btn btn-primary">Sign up!</button>
-        <button type="button" class="btn btn-info">Login!</button>
+        <div class="alert alert-primary" role="alert">
+            <h2>Interested?
+             <button type="button" class="btn btn-primary">Sign up!</button>
+                <button type="button" class="btn btn-outline-primary">Login!</button>
+            </h2>
+        </div>
+
+        <h2>Categories</h2>
+        <div class="table">
+            <div class="row">
+                <div class="col">
+                    <div class="card" style="width: auto;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Category 1</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: auto;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Category 2</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card" style="width: auto;">
+                        <img src="..." class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">Category 3</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
-        <div>
-            <h2>Categories</h2>
-            <div style="width: 50%;">
-                <asp:Image ID="Image2" runat="server" />
-                <br />
-                <asp:Button ID="Button1" runat="server" Text="Button" />
-            </div>
-            <div style="width: 50%;">
-                <asp:Image ID="Image3" runat="server" />
-                <br />
-                <asp:Button ID="Button2" runat="server" Text="Button" />
-            </div>
         </div>
     </div>
-
 </asp:Content>
