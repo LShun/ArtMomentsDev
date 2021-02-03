@@ -37,23 +37,27 @@
     
     <div class="container" id="artOrder">
         <div class="row">
-            <div class="col-6">
+            <div class="col-xl-6 col-sm-12">
                <!-- ArtWork Image -->
                 <div class="justify-content-center align-self-center col-12">
                     <div class="artwork-image-division col-12">
-                        <asp:Image ID="artworkImage" runat="server" src="../../Content/14019785_00-129-spheroide-noire-01.jpg" class="img-thumbnail col-12" Height="450"/>
+                        <asp:Image ID="artworkImage" runat="server" src="../../Content/14019785_00-129-spheroide-noire-01.jpg" class="img-thumbnail" Height="450"/>
                     </div>
                 </div>
             </div>
        
-            <div class="col-6">
+            <div class="col-xl-6">
                 <!-- wishlist icon img -->
-                <div class="row col-12" id="wishlistImgDivision">
-                    <!--<asp:Image ID="imgwishlist" runat="server" src="../../Content/love-wishlist-white.png" />-->
+                <div class="row" id="wishlistImgDivision">
+                    <div class="col-12">
+                        <!--<asp:Image ID="imgwishlist" runat="server" src="../../Content/love-wishlist-white.png" />-->
+                    </div>
                 </div>
                 <!-- Artwork Name-->
-                <div class="row col-12" id="artworkNameDivision">
-                    <h1><asp:Label ID="artworkName" runat="server" Text="artworkName"></asp:Label></h1>
+                <div class="row" id="artworkNameDivision">
+                    <div class="col-12">
+                        <h1><asp:Label ID="artworkName" runat="server" Text="artworkName"></asp:Label></h1>
+                    </div>
                 </div>
 
                 <!-- artwork display label -->
