@@ -35,7 +35,7 @@ label {
     font-size: 16px;
 }
 
-input[type=button] {
+/*input[type=button] {
     border: none;
     background-color: #871414;
     color: white;
@@ -46,7 +46,7 @@ input[type=button] {
     border-radius: 4px;
     cursor: pointer;
     float: right;
-}
+}*/
 
 input[type=submit] {
     border: none;
@@ -64,22 +64,11 @@ input[type=submit] {
         opacity: 1;
     }
 
-.addArtwork .container {
+/*.addArtwork .container {
     border-radius: 5px;
     padding: 10px;
-}
+}*/
 
-.addArtwork .col-25 {
-    float: left;
-    width: 15%;
-    margin-top: 6px;
-}
-
-.addArtwork .col-75 {
-    float: left;
-    width: 85%;
-    margin-top: 6px;
-}
 
 input[type='file'] {
     border: 3px dashed #999;
