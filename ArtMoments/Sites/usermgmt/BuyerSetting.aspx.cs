@@ -12,50 +12,45 @@ namespace ArtMoments.Sites.usermgmt
     public partial class BuyerSetting : System.Web.UI.Page
     {
         String connectionString = @"Data Source =(local)\SQLEXPRESSFJE;
-                    initial Catalog=artMomentDB; Integrated Security = True;";
+                    initial Catalog=ArtMomentsDB; Integrated Security = True;";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                if (Session["UserName"] == null)
+                if (!IsPostBack)
                 {
-                    Response.Redirect("PreLogin.html");
-                }
-
-                tbUserName.Text = Session["UserName"].ToString();
-
-                using (SqlConnection sqlCon = new SqlConnection(connectionString))
-                {
-                    sqlCon.Open();
-                    String query = "SELECT * FROM dboAMUserData WHERE UserName = @UserName";
-                    SqlCommand cmd = new SqlCommand(query, sqlCon);
-
-                    cmd.Parameters.AddWithValue("@UserName", tbUserName.Text.Trim());
-                    SqlDataReader dr = cmd.ExecuteReader();
-
-                    if (dr.HasRows)
+                    if (Session["UserName"] == null)
                     {
-                        while (dr.Read())
+                        Response.Redirect("PreLogin.aspx");
+                    }
+
+                    txtUserName.Text = Session["UserName"].ToString();
+
+                    using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                    {
+                        sqlCon.Open();
+                        String query = "SELECT * FROM dboAMUserData WHERE UserName = @UserName";
+                        SqlCommand cmd = new SqlCommand(query, sqlCon);
+
+                        cmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
+                        SqlDataReader dr = cmd.ExecuteReader();
+
+                        if (dr.HasRows)
                         {
-                            tbEmail.Text = dr.GetValue(4).ToString();
-
-                            tbContactNo.Text = dr.GetValue(5).ToString();
-                            if (tbContactNo.Text == "")
+                            while (dr.Read())
                             {
-                                tbContactNo.Text = "Click edit to insert your contact number";
-                            }
+                                txtEmail.Text = dr.GetValue(4).ToString();
 
-                            tbAddress.Text = dr.GetValue(6).ToString();
-                            if (tbAddress.Text == "")
-                            {
-                                tbAddress.Text = "Click edit to insert your address";
+                                txtContactNo.Text = dr.GetValue(5).ToString();
+                                if (txtContactNo.Text == "")
+                                {
+                                    txtContactNo.Text = "Click edit to insert your contact number";
+                                }
                             }
                         }
+                        //sqlCon.Close();
                     }
-                    //sqlCon.Close();
                 }
-            }
+
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
@@ -73,29 +68,25 @@ namespace ArtMoments.Sites.usermgmt
             Response.Redirect("BuyerPresentation.aspx");
         }
 
-        protected void tbUserName_TextChanged(object sender, EventArgs e)
-        {
-            tbUserName.Text = tbUserName.Text;
-        }
-
-        protected void tbEmail_TextChanged(object sender, EventArgs e)
-        {
-            tbEmail.Text = tbEmail.Text;
-        }
-
-        protected void tbContactNo_TextChanged(object sender, EventArgs e)
-        {
-            tbContactNo.Text = tbContactNo.Text;
-        }
-
-        protected void tbAddress_TextChanged(object sender, EventArgs e)
-        {
-            tbAddress.Text = tbAddress.Text;
-        }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("BuyerSettingEdit.aspx");
+
+        }
+
+        protected void txtUserName_TextChanged(object sender, EventArgs e)
+        {
+            txtUserName.Text = txtUserName.Text;
+        }
+
+        protected void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+            txtEmail.Text = txtEmail.Text;
+        }
+
+        protected void txtContactNo_TextChanged(object sender, EventArgs e)
+        {
+            txtContactNo.Text = txtContactNo.Text;
         }
     }
 }

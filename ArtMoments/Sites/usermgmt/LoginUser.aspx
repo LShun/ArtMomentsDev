@@ -1,54 +1,47 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="LoginUser.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.LoginUser" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title></title>
-
-    <style>
-        body{
-            background-image:url(Images/5cbf9dc0bb9e6.jpg)
-        }
-        .Auto-style1{
-            margin-top:10px;
-            margin-left: 130px;
-        }
-    </style>
+    <title>Login Form Design</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../Content/css/SignUp.css" rel="stylesheet" />
+    <link href="https://mdbootstrap.com/docs/b4/jquery/content/icons-list/" rel="stylesheet"/>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <div id="form1" runat="server">
-        <div>
-            <h1 style="text-align:center">Login In</h1>
-            <table style="margin:auto; border:5px solid white; padding:50px">
-                <%--username--%>
-                <tr>
-                    <td>
-                        <asp:Label ID="lblUsername" runat="server" Text="Username"></asp:Label></td>
-                    <td>
-                        <asp:TextBox ID="txtUsername" runat="server"></asp:TextBox></td>
-                </tr>
-                <%--password--%>
-                <tr>
-                    <td>
-                        <asp:Label ID="lblPassword" runat="server" Text="Password"></asp:Label></td>
-                    <td>
-                        <asp:TextBox ID="txtPassword" runat="server" TextMode="Password"></asp:TextBox></td>
-                </tr>
-                <%--login button--%>
-                <tr>
-                    <td></td>
-                    <td>
-                        <asp:Button CssClass="Auto-style1" ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" /></td>
-                </tr>
-                <%--eror message--%>
-                <tr>
-                    <td></td>
-                    <td>
-                        <asp:Label ID="lblErrorLoginMsg" runat="server" Text="Incorrect username or password!" ForeColor="Red"></asp:Label></td>
-                </tr>
-                <tr>
-                    <td></td>
-                    <td>
-                        <a href="SignUp.aspx">No account yet? SignUp</a></td>
-                </tr>
-            </table>
+    <div ID="Content4">
+    <div class="container" ID="Content5">
+        
+        <div class="myCard">
+            <div class="row">
+                <div class="col-md-10">
+                    <i class="fas fa-times"></i>
+                    <div class="myLeftCtn"> 
+                        <form class="myForm text-center">
+                            <header style="text-align:center; margin-left:30px">Login your Account</header>
+                            <div class="form-group">
+                                <i class="far fa-user"></i>                                
+                                <asp:TextBox class="myInput" placeholder="Username" ID="txtUserName" runat="server"></asp:TextBox>
+                            </div>
+
+                            <div class="form-group">
+                                <i class="fas fa-lock"></i>
+                                <asp:TextBox class="myInput" placeholder="Password" ID="txtUserPassword" runat="server"></asp:TextBox>
+                            </div>
+
+                            <asp:Button class="butt" ID="Button1" OnClick="Button1_Click" runat="server" Text="LOGIN"></asp:Button>  
+                            
+                            <br />
+                            <br />                            
+                        </form>
+                        <div>
+                        <asp:Label ID="lblErrorLoginMsg" runat="server"></asp:Label>
+                        <br />
+                        <asp:HyperLink ID="noAccMsg" runat="server" NavigateUrl="~/Sites/usermgmt/SignUp.aspx" style="text-align:center;">No account yet? SignUp</asp:HyperLink>
+                        <br />
+                        <asp:HyperLink ID="forgetPassword" runat="server" style="text-align:center;">Forget you password?</asp:HyperLink>
+                        </div>
+                    </div>
+                </div> 
+            </div>
         </div>
     </div>
+</div> 
 </asp:Content>

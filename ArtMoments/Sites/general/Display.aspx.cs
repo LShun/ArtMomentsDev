@@ -4,11 +4,14 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace ArtMoments.Sites.general
 {
     public partial class Display : System.Web.UI.Page
     {
+        public string conString = "Data Source=DESKTOP-T1B999F\\SQLEXPRESS;Initial Catalog=ArtMomentsDb;User ID=sa;Password=***********";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -16,13 +19,7 @@ namespace ArtMoments.Sites.general
 
         protected void txtMin_TextChanged(object sender, EventArgs e)
         {
-            //rangeMin.Value = txtMin.Text;
-            //LHSrange.Style.Remove("width");
-            //LHSthumb.Style.Remove("left");
-            //Pricerange.Style.Remove("left");
-            //LHSrange.Style.Add("width", rangeMin.Value + "%");
-            //LHSthumb.Style.Add("left", rangeMin.Value + "%");
-            //Pricerange.Style.Add("left", rangeMin.Value + "%");
+            SqlConnection con = new SqlConnection(conString);
 
         }
 

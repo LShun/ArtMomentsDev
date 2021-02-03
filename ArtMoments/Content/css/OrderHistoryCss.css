@@ -1,4 +1,9 @@
-﻿body {
+﻿img#ContentPlaceHolder1_imgdbArtwork {
+    max-width: 300px;
+    max-height: 500px;
+    background-image: url('../sea.jpg');
+}
+/*body {
 }
 
 .extra-info h1 {
@@ -121,3 +126,4 @@ span #history-art-year {
 #history-art-author {
     margin-top: 10px;
 }
+*/

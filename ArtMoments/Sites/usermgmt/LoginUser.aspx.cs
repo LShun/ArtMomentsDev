@@ -16,10 +16,10 @@ namespace ArtMoments.Sites.usermgmt
             lblErrorLoginMsg.Visible = false;
         }
 
-        protected void btnLogin_Click(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
             using (SqlConnection sqlCon = new SqlConnection(@"Data Source =(local)\SQLEXPRESSFJE;
-                    initial Catalog=artMomentDB; Integrated Security = True;"))
+                    initial Catalog=ArtMomentsDB; Integrated Security = True;"))
             {
                 sqlCon.Open();
                 String query = "SELECT COUNT(1) FROM dboAMUserData WHERE UserName =@UserName AND UserPassword =@UserPassword";
@@ -27,8 +27,8 @@ namespace ArtMoments.Sites.usermgmt
 
 
 
-                sqlCmd.Parameters.AddWithValue("@UserName", txtUsername.Text.Trim());
-                sqlCmd.Parameters.AddWithValue("@UserPassword", txtPassword.Text.Trim());
+                sqlCmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
+                sqlCmd.Parameters.AddWithValue("@UserPassword", txtUserPassword.Text.Trim());
                 int count = 0;
                 count = Convert.ToInt16(sqlCmd.ExecuteScalar());
                 //var result = sqlCmd.ExecuteScalar();
@@ -36,7 +36,7 @@ namespace ArtMoments.Sites.usermgmt
 
                 if (count == 1)
                 {
-                    Session["UserName"] = txtUsername.Text.Trim();  //session is created for each user
+                    Session["UserName"] = txtUserName.Text.Trim();  //session is created for each user
                     Response.Redirect("BuyerSetting.aspx");
                 }
                 else
