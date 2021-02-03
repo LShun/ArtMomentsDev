@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="HomePage2.aspx.cs" Inherits="ArtMoments.Sites.general.HomePage2" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="ArtMoments.Sites.general.HomePage2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -12,6 +12,9 @@
                     <div class="jumbotron">
                         <h1 class="display-5">Welcome to ArtMoments Art Gallery</h1>
                         <p class="lead">We specialize in selling &quot;interesting arts&quot;</p>
+                        <hr />
+                        <a class="btn btn-primary btn-lg" href="./Display.aspx" role="button">Browse Arts...</a>
+
                     </div>
                 </div>
                 <div class="col-sm">
@@ -112,8 +115,8 @@
         <!-- Sign up & Login Buttons -->
         <div class="alert alert-primary" role="alert">
             <h2>Interested?
-             <button type="button" class="btn btn-primary">Sign up!</button>
-                <button type="button" class="btn btn-outline-primary">Login!</button>
+             <a href="../usermgmt/SignUp.aspx" type="button" class="btn btn-primary">Sign up!</a>
+                <a href="../usermgmt/PreLogin.aspx" type="button" class="btn btn-outline-primary">Login!</a>
             </h2>
         </div>
 
