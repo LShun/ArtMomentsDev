@@ -11,7 +11,7 @@ body {
 .container {
     position: absolute;
     max-width: 800px;
-    height: 500px;
+    height: 550px;
     margin: auto;
     top: 50%;
     left: 50%;
@@ -161,4 +161,43 @@ body {
     margin-top:10px;
     width: 400px;
     height: 200px;
+}
+
+#Content6 {
+    width: 350px;
+    height: 500px;
+}
+
+.buttonEditStyle{
+    margin-left: 200px;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.hpNoTxtBox{
+   
+    flex-wrap:wrap;
+}
+
+#Content7 {
+    margin-top:10px;
+    margin-left: 50px;
+    width: 500px;
+    height: 100px;
+}
+
+#Content8 {
+    margin-top: 10px;
+    width: 400px;
+    height: 100px;
+}
+
+#Content8 {
+
+    height: 400px;
+}
+
+#textRemoveMargin {
+    margin-bottom: 0.5rem;
 }

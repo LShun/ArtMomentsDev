@@ -16,24 +16,27 @@
             border-color: black;
             border-width: 1px;
         }
+        makecenter{
+            width:200px;
+            align-content:center;
+            text-align:center; 
+            margin-left:20px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div ID="Content5">
-    <div class="container" >
-        
-        <div class="myCard" id="Content5">
-            <div class="row">
+    <div id ="Content8">
+    <div class="container" id="Content7" >  
                 <div class="col-md-10">
                     <i class="fas fa-times"></i>
                     <div class="myLeftCtn"> 
                         <form class="myForm text-center">
                             <div class="form-group">
-                                <asp:Label ID="Label1" runat="server" Text="Registration successful!" style="text-align:center; margin-left:20px"></asp:Label>
+                                <asp:Label ID="Label1" runat="server" Text="Registration successful!" CssClass="makecenter"></asp:Label>
                                </div>
 
                             <div class="form-group">
-                                <asp:Label ID="Label2" runat="server" Text="Take a tour?" style="text-align:center; margin-left:20px"></asp:Label> 
+                                <asp:Label ID="Label2" runat="server" Text="Take a tour?" CssClass="makecenter"></asp:Label> 
                             </div>
                             <asp:Button class="butt" ID="Button2" OnClick="Button1_Click" runat="server" Text="Go to Login"></asp:Button>  
                             
@@ -42,8 +45,7 @@
                         </form>
                     </div>
                 </div> 
-            </div>
-        </div>
-    </div>
+            </div>     
+
 </div> 
 </asp:Content>

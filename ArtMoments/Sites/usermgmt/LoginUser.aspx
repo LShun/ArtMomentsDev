@@ -4,10 +4,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
     <link href="https://mdbootstrap.com/docs/b4/jquery/content/icons-list/" rel="stylesheet"/>
+    <style>
+        .errorMsg{
+            color:red;
+            font-style:italic;
+            font-size:15px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div ID="Content4">
-    <div class="container" ID="Content5">
+    <div class="container" ID="Content6">
         
         <div class="myCard">
             <div class="row">
@@ -18,21 +25,20 @@
                             <header style="text-align:center; margin-left:30px">Login your Account</header>
                             <div class="form-group">
                                 <i class="far fa-user"></i>                                
-                                <asp:TextBox class="myInput" placeholder="Username" ID="txtUserName" runat="server"></asp:TextBox>
+                                <asp:TextBox class="myInput" placeholder="Username" ID="txtUserName" runat="server" OnTextChanged="txtUserName_TextChanged"></asp:TextBox>
                             </div>
 
                             <div class="form-group">
                                 <i class="fas fa-lock"></i>
-                                <asp:TextBox class="myInput" placeholder="Password" ID="txtUserPassword" runat="server"></asp:TextBox>
+                                <asp:TextBox class="myInput" placeholder="Password" ID="txtUserPassword" runat="server" OnTextChanged="txtUserPassword_TextChanged"></asp:TextBox>
                             </div>
 
                             <asp:Button class="butt" ID="Button1" OnClick="Button1_Click" runat="server" Text="LOGIN"></asp:Button>  
-                            
-                            <br />
-                            <br />                            
+                            <br /> 
+                            <br />                          
                         </form>
                         <div>
-                        <asp:Label ID="lblErrorLoginMsg" runat="server"></asp:Label>
+                        <asp:Label ID="lblErrorLoginMsg" runat="server" CssClass="errorMsg">Wrong User Name or Password!</asp:Label>
                         <br />
                         <asp:HyperLink ID="noAccMsg" runat="server" NavigateUrl="~/Sites/usermgmt/SignUp.aspx" style="text-align:center;">No account yet? SignUp</asp:HyperLink>
                         <br />
