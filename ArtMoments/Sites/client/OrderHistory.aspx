@@ -3,10 +3,6 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../../Content/css/OrderHistoryCss.css" />
     <style type="text/css">
-        span#ContentPlaceHolder1_lbltransacId {
-            margin-left: 90px;
-        }
-
         div#orderHistoryDetail {
             margin-top: 20px;
         }
@@ -19,10 +15,9 @@
             <h1><asp:Label ID="lbltransacId" runat="server" Text="Transaction ID"></asp:Label></h1>
         </div>
         <!-- Order Histories -->
-        <div class="container-fluid" id="orderHistoryContainer">
+        <div class="container" id="orderHistoryContainer">
             <div class="row">
-                <div class="col-md-1 col-sm-1"></div>
-                <div class="col-md-3 col-sm-4" id="orderHistoryRowDiv">
+                <div class="col-4" id="orderHistoryRowDiv">
                     <!-- Ordernum N Artwork -->
                     <div class="col justify-content-center" id="orderNumnArt">
                         <!-- Ordernum -->
@@ -38,9 +33,9 @@
                     </div>
                 </div>
                 <!-- Orderhistory Details -->
-                <div class="col-md-7 col-sm-8" id="orderHistoryDetail">
+                <div class="col-8" id="orderHistoryDetail">
                     <!-- Delivery Status -->
-                    <div class="row float-right">
+                    <div class="row  float-right">
                         <asp:Label ID="lbladorderStatus" runat="server" Text="Delivered"></asp:Label>
                     </div>
                     <!-- Artname -->
@@ -50,58 +45,57 @@
 
                     <!-- Size, Category, Author label -->
                     <div class="row">
-                        <div class="col-md-2 col-sm-3" id="sizeDivision">
+                        <div class="col-3" id="sizeDivision">
                             <label id="sizeTxt">Size</label>
                         </div>
-                        <div class="col-md-2 col-sm-3" id="categoryDivision">
+                        <div class="col-3" id="categoryDivision">
                             <label id="categoryTxt">Category</label>
                         </div>
-                        <div class="col-md-3 col-sm-4" id="authorDivision">
+                        <div class="col-6" id="authorDivision">
                             <label id="authorTxt">Author</label>
                         </div>
                     </div>
 
                     <!-- Size, Category, Author from db -->
                     <div class="row">
-                        <div class="col-md-2 col-sm-3" id="lblsizeDivision">
+                        <div class="col-3" id="lblsizeDivision">
                             <asp:Label ID="lblartworkSize" runat="server" Text="M"></asp:Label>
                         </div>
-                        <div class="col-md-2 col-sm-3" id="lblcategorryDivision">
+                        <div class="col-3" id="lblcategorryDivision">
                             <asp:Label ID="lblartworkCategory" runat="server" Text="category"></asp:Label>
                         </div>
-                        <div class="col-md-3 col-sm-4" id="lblauthorDivision">
+                        <div class="col-6" id="lblauthorDivision">
                             <asp:Label ID="lblauthor" runat="server" Text="author"></asp:Label>
                         </div>
                     </div>   
 
                     <!-- Size, Category, Author label -->
                     <div class="row">
-                        <div class="col-md-2 col-sm-3" id="qtyDivision">
+                        <div class="col-3" id="qtyDivision">
                             <label id="qtyTxt">Quantity</label>
                         </div>
-                        <div class="col-md-2 col-sm-3" id="priceDivision">
+                        <div class="col-3" id="priceDivision">
                             <label id="priceTxt">RM </label>
                         </div>
-                        <div class="col-md-3 col-sm-4" id="modeDetailsRow">
+                        <div class="col-6" id="modeDetailsRow">
                             <a href="#"><asp:Label ID="lblMoreDetail" runat="server" Text="View more details"></asp:Label></a>
                         </div>
                     </div>
 
                     <!-- Size, Category, Author from db -->
                     <div class="row">
-                        <div class="col-md-2 col-sm-3" id="lblqtyDivision">
+                        <div class="col-3" id="lblqtyDivision">
                             <asp:Label ID="Label1" runat="server" Text="5"></asp:Label>
                         </div>
-                        <div class="col-md-2 col-sm-3" id="lblpriceDivision">
+                        <div class="col-3" id="lblpriceDivision">
                             <asp:Label ID="Label2" runat="server" Text="20.00"></asp:Label>
                         </div>
-                        <div class="col-md-3 col-sm-4" id="btnBuyAgainDivision">
+                        <div class="col-6" id="btnBuyAgainDivision">
                             <asp:Button ID="btnBuyAgain" runat="server" Text="BUY AGAIN" />
                         </div>
                     </div>  
                 </div>
             </div>
-            <div class="col-md-1 col-sm-1"></div>
         </div>
     </div>
 </asp:Content>
