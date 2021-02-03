@@ -77,8 +77,8 @@
 					</div>
 				</div>
 				<div class="row">		
-					<asp:Button ID="submitAddProdBtn" class="btn btn-primary" runat="server" Text="Save & Create"/>
-					<asp:Button ID="resetAddProdBtn" class="btn btn-primary" runat="server" Text="Reset" OnClick="resetProdBtn_Click"/>
+					<asp:Button ID="submitAddProdBtn" class="button button1" runat="server" Text="Save & Create" OnClick="saveProdBtn_Click"/>
+					<asp:Button ID="resetAddProdBtn" class="button button1" runat="server" Text="Reset" OnClick="resetProdBtn_Click"/>
 	
 				</div>
 
