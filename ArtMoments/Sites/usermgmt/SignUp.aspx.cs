@@ -11,8 +11,8 @@ namespace ArtMoments.Sites.usermgmt
 {
     public partial class SignUp : System.Web.UI.Page
     {
-        String connectionString = @"Data Source =(local)\SQLEXPRESSFJE;
-                    initial Catalog=ArtMomentsDB; Integrated Security = True;";
+        string connectionString = "Data Source=LAPTOP-RF7VE486\\SQLEXPRESSFJE;Initial Catalog=ArtMomentsDb; Integrated Security=True; User ID=sa;Password=***********";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -22,7 +22,7 @@ namespace ArtMoments.Sites.usermgmt
                 if (!String.IsNullOrEmpty(Request.QueryString["id"]))
                 {
                     int userID = Convert.ToInt32(Request.QueryString["id"]);
-
+                    
                     using (SqlConnection sqlCon = new SqlConnection(connectionString))
                     {
                         sqlCon.Open();
@@ -45,11 +45,11 @@ namespace ArtMoments.Sites.usermgmt
         {
             if (txtUserName.Text == "" || txtUserPassword.Text == "")
             {
-                lblErrorMessage.Text = "Please Fill Mandatory Fields";
+                lblMessage.Text = "Please Fill Mandatory Fields";
             }
             else if (txtUserPassword.Text != txtConfirmedPassword.Text)
             {
-                lblErrorMessage.Text = "Password do not match";
+                lblMessage.Text = "Password do not match";
             }
             else
             {
@@ -57,19 +57,30 @@ namespace ArtMoments.Sites.usermgmt
                 {
                     sqlCon.Open();
                     //int tempID = GenerateAutoID();
-                    String query1 = "INSERT INTO [User] (user_name, user_password, user_email)"
-                        + "VALUES (@UserName, @UserPassword, @UserEmail)";
+                    int userType = 0;
+                    if (rbGender.SelectedValue.Equals("Buyer"))
+                    {
+                        userType = 0;
+                    }
+                    else
+                    {
+                        userType = 1;
+                    }
+
+                    
+                    String query1 = "INSERT INTO [User] (user_name, user_password, user_email, user_type)"
+                        + "VALUES (@UserName, @UserPassword, @UserEmail, @UserType)";
 
                     SqlCommand sqlCmd = new SqlCommand(query1, sqlCon);
                     //sqlCmd.CommandType = CommandType.StoredProcedure;
                     sqlCmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@UserEmail", txtUserEmail.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@UserPassword", txtUserPassword.Text.Trim());
-                    //sqlCmd.Parameters.AddWithValue("@UserConfirmedPassword", txtConfirmPassword.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@UserType", userType);
 
                     sqlCmd.ExecuteNonQuery();
                     Clear();
-                    lblSuccessMessage.Text = "Submitted Successfully";
+                    lblMessage.Text = "Submitted Successfully";
                     Response.Redirect("ConfirmedRegMsg.aspx");
                 }
             }
@@ -78,7 +89,12 @@ namespace ArtMoments.Sites.usermgmt
         void Clear()
         {
             txtUserEmail.Text = txtUserName.Text = txtUserPassword.Text = txtConfirmedPassword.Text = "";
-            lblSuccessMessage.Text = lblErrorMessage.Text = "";
+            lblMessage.Text = lblMessage.Text = "";
+        }
+
+        protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }    
 }
