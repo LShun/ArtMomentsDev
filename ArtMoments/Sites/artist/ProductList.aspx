@@ -109,7 +109,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="auto-style28">
         <div class="container">
-        <table>
+            <table>
                 <tr><td class="auto-style22"><h1>Artwork List</h1></td>
                     <td class="auto-style23">
                         <asp:Button ID="addProdBtn" class="button button1" runat="server" Text="Add a New Artwork" Height="43px" OnClick="addProdBtn_Click"/>
@@ -134,7 +134,7 @@
                  <a class="page-link" href="#">Next</a>
                 </li>
                 </ul>
-            </nav>--%>           
+            </nav>--%>         
             
             <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for Product names.." class="auto-style28"/>
 
@@ -152,11 +152,11 @@
                     <th class="auto-style29">Action</th>
                 </tr>
             </thead>
- 
             <tbody>
                 <tr>
                     <td  class="auto-style16">P000001</td>
                     <td class="auto-style26"><img src="../../Content/nancy-tillman-my-elephant-friend_u-l-q1awkyfo1zln.jpg" alt="" border="3" class="auto-style18"/>
+
                     </br> <strong>My Elephant Friend</strong> 
                      </br> Our canvas is professionally hand-stretched and layered with protective ink for a superior museum-grade finish. Its mirrored edges give it a reflection-like appearance.
                     </br></br> Size: 141cm x 141 cm  </br>
@@ -198,7 +198,7 @@
 
                           <p>"Sculpture / Nature: Marc Mugnier is an artist of the material imagination, this recent conquest of Non-figuration. He nevertheless relies on archetypal forms, those which are deeply inscribed in the human psyche." Text by Jean- Clarence Lambert, art critic</p>
                     </br></br> Size: 25x25x25 cm  </br>
-                    </td>
+                   </td>
                     <td  class="auto-style17">Sculpture</td>
                     <td  class="auto-style14">9028.29</td>
                     <td  class="auto-style30">10</td>
@@ -208,10 +208,25 @@
                     </td>
                 </tr>
             </tbody>
+            
+            <nav aria-label="...">
+                <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">2 </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+</nav>
+            </div>
+            </div>
 
-            </table>
-        </div>
-        </div>
     <script>
         function sortProdTable(n) {
             var table, rows, swap, i, x, y, shouldSwap, dir, switchcount = 0;
