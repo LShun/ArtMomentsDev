@@ -10,81 +10,77 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="addArtwork">
-            <h1>Add a New Artwork</h1>
-				<div class="container">
-					<div class="row">
-						<div class="col-25">
-							<label for="artworkName">Artwork Title*:</label> </div>
-						<div class="col-75">
-							<asp:TextBox ID="artworkName" runat="server" required="required"></asp:TextBox>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="artworkSize">Artwork Size*:</label> </div>
-						<div class="col-75">
-							<asp:TextBox ID="artworkSize" placeholder="122cm x 91cm" required="required" runat="server"></asp:TextBox>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="artworkDesc">Artwork Description*:</label> </div>
-						<div class="col-75">
-							<asp:TextBox id="artworkDesc" mode="multiline" style="height: 200px" runat="server"></asp:TextBox>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="ArtworkCategory">Artwork Category*</label>
-						</div>
-						<div class="col-75">
-							<asp:DropDownList ID="ArtworkCategory" runat="server">
-							<asp:ListItem>Photography</asp:ListItem>
-                                <asp:ListItem>Drawings</asp:ListItem>
-                                <asp:ListItem>Sculptures</asp:ListItem>
-                                <asp:ListItem>Paintings</asp:ListItem>
-                                <asp:ListItem>Prints</asp:ListItem>
+    <div class="addArtwork">  
+		<div class="container">
+			<h1>Add a New Artwork</h1>
+			<div class="row">
+				<div class="col-25">
+					<label for="artworkName">Artwork Title*:</label> </div>
+				<div class="col-75">
+					<asp:TextBox ID="artworkName" runat="server" required="required"></asp:TextBox>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="artworkSize">Artwork Size*:</label> </div>
+				<div class="col-75">
+					<asp:TextBox ID="artworkSize" placeholder="122cm x 91cm" required="required" runat="server"></asp:TextBox>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="artworkDesc">Artwork Description*:</label> </div>
+				<div class="col-75">
+					<asp:TextBox id="artworkDesc" mode="multiline" style="height: 200px" runat="server"></asp:TextBox>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-25">
+					<label for="ArtworkCategory">Artwork Category*</label>
+				</div>
+				<div class="col-75">
+					<asp:DropDownList ID="ArtworkCategory" runat="server">
+						<asp:ListItem>Photography</asp:ListItem>
+                        <asp:ListItem>Drawings</asp:ListItem>
+                        <asp:ListItem>Sculptures</asp:ListItem>
+                        <asp:ListItem>Paintings</asp:ListItem>
+                        <asp:ListItem>Prints</asp:ListItem>
 						</asp:DropDownList>
-						</div>
+					</div>
 				    
+				</div>
+				<div class="row">
+					<div class="col-25">
+						<label for="artworkImage">Artwork Image*:</label> 
 					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="artworkImage">Artwork Image*:</label> 
-						</div>
-						<div class="col-75">						
-								
-									<label for="fileUpload" class="custom-file-upload">
-										<asp:FileUpload ID="fileUpload" style="display:none;" accept="image/*" onchange="previewFile()" runat="server" />
-										<img class="img1" src="../../Content/187803-200.png" height="300" width="300" alt="image preview...">
-										</label>
-							
-								
-						
-						</div>
+					<div class="col-75">									
+						<label for="fileUpload" class="custom-file-upload">
+						<asp:FileUpload ID="fileUpload" style="display:none;" accept="image/*" onchange="previewFile()" runat="server" />
+						<img class="img1" src="../../Content/187803-200.png" height="300" width="300" alt="image preview...">
+						</label>		
+					</div>
 					
+				</div>
+				<div class="row">
+					<div class="col-25">
+						<label for="artworkPrice">Artwork Price (RM)*:</label> </div>
+					<div class="col-75">
+						<input id="artworkPrice" name="artworkPrice" required="required" type="text"/>
 					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="artworkPrice">Artwork Price (RM)*:</label> </div>
-						<div class="col-75">
-							<input id="artworkPrice" name="artworkPrice" required="required" type="text"/>
-						</div>
 
+				</div>
+				<div class="row">
+					<div class="col-25">
+						<label for="artworkStock">Artwork Stock*:</label> </div>
+					<div class="col-75">
+						<input id="artworkStock" name="artworkStock" required="required" type="text" onkeypress="return onlyNumberKey(event)"/>
 					</div>
-					<div class="row">
-						<div class="col-25">
-							<label for="artworkStock">Artwork Stock*:</label> </div>
-						<div class="col-75">
-							<input id="artworkStock" name="artworkStock" required="required" type="text" onkeypress="return onlyNumberKey(event)"/>
-						</div>
-					</div>
-					<div class="row">
-					
-						<input type="button" value="Cancel"/>
-						<input type="submit" value="Save & Create"/> 
-					</div>
+				</div>
+				<div class="row">		
+					<asp:Button ID="submitAddProdBtn" class="button button1" runat="server" Text="Save & Create"/>
+					<asp:Button ID="resetAddProdBtn" class="button button1" runat="server" Text="Reset" OnClick="resetProdBtn_Click"/>
+	
+				</div>
 
             </div>
         </div>
