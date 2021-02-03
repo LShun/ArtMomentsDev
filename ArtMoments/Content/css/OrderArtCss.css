@@ -1,159 +1,27 @@
-﻿body {
+﻿#artOrder{
+    margin-top:50px;
 }
 
-#featured-box {
+.artwork-image-division img {
+    max-width: 450px;
+    max-height: 450px;
+    object-fit: cover;
+    cursor: pointer;
+    border: 2px solid black;
     text-align: center;
+    align-items: center;
 }
 
-#featured {
-    max-width: 96%;
-    max-height: 700px;
-    min-height: 800px;
+h2 #authorInfoHeading{
+    padding-top:50px;
+    text-align: center;
+    align-items: center;
+}
+img#ContentPlaceHolder1_authorImage {
+    max-width: 200px;
+    max-height:200px;
     object-fit: cover;
     cursor: pointer;
     border: 2px solid black;
 }
 
-.thumbnail {
-    object-fit: cover;
-    max-width: 250px;
-    max-height: 135px;
-    cursor: pointer;
-    opacity: 0.5;
-    margin: 5px;
-    border: 2px solid black;
-}
-
-    .thumbnail:hover {
-        opacity: 1;
-    }
-
-.active {
-    opacity: 1;
-}
-
-#artWork-slide-wrapper {
-    margin-left: 28px;
-    max-width: 94%;
-    display: flex;
-    min-height: 100px;
-    align-items: center;
-}
-
-#order-slider {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow: hidden;
-}
-
-.arrow {
-    width: 30px;
-    height: 30px;
-    cursor: pointer;
-    transition: .3s;
-    margin-left: 1px;
-    margin-right: 1px;
-}
-
-    .arrow:hover {
-        opacity: .5;
-        width: 35px;
-        height: 35px;
-    }
-
-#order-image-slider {
-    background-color: green;
-}
-
-#order-information {
-    background-color: chartreuse;
-    margin-left: 35px;
-    border-radius: 12px;
-    margin-top: 100px;
-}
-
-#name-year {
-    margin-top: -50px;
-}
-
-    #name-year h1 {
-        display: inline-block;
-        font-size: 100px;
-    }
-
-    #name-year #year {
-        font-size: 40px;
-        margin-left: 10px;
-    }
-
-#year {
-    display: inline-block;
-}
-
-#artDetail-size {
-    margin-top: -50px;
-}
-
-.artDetail {
-    font-size: 23px;
-}
-
-#artDetail-size, #artDetail-material, #artDetail-author {
-    font-size: 40px;
-}
-
-span {
-    display: block;
-}
-
-#view-more-product {
-    font-size: 20px;
-}
-
-#order-buy {
-    display: block;
-    font-size: 50px;
-}
-
-.order-info-section {
-    margin-left: 80px;
-}
-
-.extra-info {
-    text-align: center;
-}
-
-    .extra-info h1 {
-        background-color: yellow;
-        font-size: 80px;
-    }
-
-    .extra-info p {
-        background-color: beige;
-        font-size: 25px;
-        display: inline-block;
-    }
-
-#artist-profilePic {
-    display: inline-block;
-    text-align: right;
-    background-color: aquamarine;
-}
-
-#author-profile-pic {
-    max-height: 300px;
-    max-width: 400px;
-    min-height: 300px;
-}
-
-#author-info, #artist-profilePic {
-    width: 48%;
-    float: left;
-}
-
-#author-info {
-    text-align: left;
-    background-color: chartreuse;
-    font-size: 25px;
-    align-items: center;
-}

@@ -84,24 +84,62 @@
         .auto-style33 {
             width: 2167px;
         }
+        .button {
+            background-color: gray; /* Green */
+            border: none;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+        .button1 {
+            background-color: white; 
+            color: black; 
+            border: 2px solid gray;
+}
+
+        .button1:hover {
+            background-color: gray;
+            color: white;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="auto-style28">
-            <table>
+        <div class="container">
+        <table>
                 <tr><td class="auto-style22"><h1>Artwork List</h1></td>
                     <td class="auto-style23">
-                        <asp:Button ID="addProdBtn" runat="server" Text="Add a New Artwork" Height="43px" />
+                        <asp:Button ID="addProdBtn" class="button button1" runat="server" Text="Add a New Artwork" Height="43px" OnClick="addProdBtn_Click"/>
                     </td>
-
-                </tr>
+                    </tr>
                 <tr><td class="auto-style33"></td><td class="auto-style32"></td></tr>
-            </table>
+         </table>
+        <%--<nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item disabled">
+                   <span class="page-link">Previous</span>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active">
+                 <span class="page-link">
+                       2
+                       <span class="sr-only">(current)</span>
+                 </span>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                 <a class="page-link" href="#">Next</a>
+                </li>
+                </ul>
+            </nav>--%>           
             
             <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for Product names.." class="auto-style28"/>
 
-            <table id="prodTable" class="productListTable" style="border:1px solid black">
-            <thead>
+            <table id="prodTable" class="table table-bordered">
+            <thead class="thead-dark">
                 <tr>
                     <th class="auto-style16" onclick="sortProdTable(0)">Product ID</th>
                     <th class="auto-style1">Product Name</th>
@@ -128,13 +166,13 @@
                     <td  class="auto-style30">80</td>
                     <td  class="auto-style31">8</td>
                     <td  class="auto-style27">
-                        <asp:Button ID="editBtn1" runat="server" Text="Edit" Width="67px" />
+                        <asp:Button ID="editBtn1" class="button button1" runat="server" Text="Edit" Width="67px" />
                     </td>
                 </tr>
                 
                 <tr>
                     <td  class="auto-style16">P000002</td>
-                    <td class="auto-style26"><<img src="../../Content/tetons-and-the-snake-river-grand-teton-national-park-c-1942_u-l-f3p8uj0.jpg" alt="" border="3" class="auto-style18"/>
+                    <td class="auto-style26"><img src="../../Content/tetons-and-the-snake-river-grand-teton-national-park-c-1942_u-l-f3p8uj0.jpg" alt="" border="3" class="auto-style18"/>
                     </br> <strong>Tetons and The Snake River, Grand Teton National Park</strong> 
                      </br> Tetons and The Snake River by Ansel Adams is a black and white photograph of Snake River taken at Grand Teton National Park, Wyoming in 1942.
                     </br></br> Size: 135cm x 135 cm  </br>
@@ -144,7 +182,7 @@
                     <td  class="auto-style30">170</td>
                     <td  class="auto-style31">5</td>
                     <td  class="auto-style27">
-                        <asp:Button ID="editBtn2" runat="server" Text="Edit" Width="67px" />
+                        <asp:Button ID="editBtn2" class="button button1" runat="server" Text="Edit" Width="67px" />
                     </td>
                 </tr>
 
@@ -166,12 +204,13 @@
                     <td  class="auto-style30">10</td>
                     <td  class="auto-style31">1</td>
                     <td  class="auto-style27">
-                        <asp:Button ID="Button1" runat="server" Text="Edit" Width="63px" />
+                        <asp:Button ID="Button1" class="button button1" runat="server" Text="Edit" Width="63px" />
                     </td>
                 </tr>
             </tbody>
 
             </table>
+        </div>
         </div>
     <script>
         function sortProdTable(n) {

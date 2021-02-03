@@ -13,5 +13,10 @@ namespace ArtMoments.Sites.artist
         {
 
         }
+
+        protected void addProdBtn_Click(Object sender, EventArgs e)
+        {
+            Response.Redirect("AddProduct.aspx");
+        }
     }
 }

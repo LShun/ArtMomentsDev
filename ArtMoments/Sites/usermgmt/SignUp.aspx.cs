@@ -12,7 +12,7 @@ namespace ArtMoments.Sites.usermgmt
     public partial class SignUp : System.Web.UI.Page
     {
         String connectionString = @"Data Source =(local)\SQLEXPRESSFJE;
-                    initial Catalog=artMomentDB; Integrated Security = True;";
+                    initial Catalog=ArtMomentsDB; Integrated Security = True;";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -32,25 +32,22 @@ namespace ArtMoments.Sites.usermgmt
                         DataTable dtbl = new DataTable();
                         sqlDa.Fill(dtbl);
 
-                        hfUserID.Value = userID.ToString();
                         txtUserName.Text = dtbl.Rows[0][1].ToString();
-                        txtPassword.Text = dtbl.Rows[0][2].ToString();
-                        txtPassword.Attributes.Add("value", dtbl.Rows[0][2].ToString());
-                        txtConfirmPassword.Text = dtbl.Rows[0][3].ToString();
-                        txtConfirmPassword.Attributes.Add("value", dtbl.Rows[0][3].ToString());
-                        txtEmail.Text = dtbl.Rows[0][4].ToString();
+                        txtUserPassword.Text = dtbl.Rows[0][2].ToString();
+                        txtConfirmedPassword.Attributes.Add("value", dtbl.Rows[0][2].ToString());
+                        txtUserEmail.Text = dtbl.Rows[0][3].ToString();
                     }
                 }
             }
-        }
+        }          
 
-        protected void btnSubmit_Click(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)
         {
-            if (txtUserName.Text == "" || txtPassword.Text == "")
+            if (txtUserName.Text == "" || txtUserPassword.Text == "")
             {
                 lblErrorMessage.Text = "Please Fill Mandatory Fields";
             }
-            else if (txtPassword.Text != txtConfirmPassword.Text)
+            else if (txtUserPassword.Text != txtConfirmedPassword.Text)
             {
                 lblErrorMessage.Text = "Password do not match";
             }
@@ -60,13 +57,15 @@ namespace ArtMoments.Sites.usermgmt
                 {
                     sqlCon.Open();
                     //int tempID = GenerateAutoID();
+                    String query1 = "INSERT INTO [User] (user_name, user_password, user_email)"
+                        + "VALUES (@UserName, @UserPassword, @UserEmail)";
 
-                    SqlCommand sqlCmd = new SqlCommand("UserAdd", sqlCon);
-                    sqlCmd.CommandType = CommandType.StoredProcedure;
+                    SqlCommand sqlCmd = new SqlCommand(query1, sqlCon);
+                    //sqlCmd.CommandType = CommandType.StoredProcedure;
                     sqlCmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@UserEmail", txtEmail.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@UserPassword", txtPassword.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@UserConfirmedPassword", txtConfirmPassword.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@UserEmail", txtUserEmail.Text.Trim());
+                    sqlCmd.Parameters.AddWithValue("@UserPassword", txtUserPassword.Text.Trim());
+                    //sqlCmd.Parameters.AddWithValue("@UserConfirmedPassword", txtConfirmPassword.Text.Trim());
 
                     sqlCmd.ExecuteNonQuery();
                     Clear();
@@ -75,13 +74,11 @@ namespace ArtMoments.Sites.usermgmt
                 }
             }
         }
-
         //clear function
         void Clear()
         {
-            txtEmail.Text = txtUserName.Text = txtPassword.Text = txtConfirmPassword.Text = "";
-            hfUserID.Value = "";
+            txtUserEmail.Text = txtUserName.Text = txtUserPassword.Text = txtConfirmedPassword.Text = "";
             lblSuccessMessage.Text = lblErrorMessage.Text = "";
         }
-    }
+    }    
 }
