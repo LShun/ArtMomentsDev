@@ -3,12 +3,17 @@
     <title>Login Form Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
+    <style>
+        .radioButtonStyle{
+            padding:100px;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <div class="myCard">
             <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-6" id="Content9">
                     <div class="myLeftCtn"> 
                         <form class="myForm text-center">
                             <header>Create new account</header>
@@ -33,6 +38,13 @@
                             </div>
 
                             <div class="form-group">
+                                <asp:RadioButtonList ID="rbGender" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" CellPadding="0" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" Width="212px">
+                                    <asp:ListItem>   Buyer</asp:ListItem>
+                                    <asp:ListItem>   Seller</asp:ListItem>
+                                </asp:RadioButtonList>
+                            </div>
+
+                            <div class="form-group" id="textRemoveMargin">
                                 <label>
                                     <input id="check_1" name="check_1"  type="checkbox" required><small> I read and agree to Terms & Conditions</small></input> 
                                     <div class="invalid-feedback">You must check the box.</div>
@@ -40,13 +52,10 @@
                             </div>
                             <asp:Button class="butt" ID="Button1" OnClick="Button1_Click" runat="server" Text="CREATE ACCOUNT"></asp:Button>  
                             
-                            <br />
-                            <br />
-                            
+                            <br />                            
                         </form>
-                        <asp:Label ID="lblErrorMessage" runat="server"></asp:Label>
+                        <asp:Label ID="lblMessage" runat="server"></asp:Label>
                         <br />
-                        <asp:Label ID="lblSuccessMessage" runat="server"></asp:Label>
                     </div>
                 </div> 
                 <div class="col-md-6" id="loginDesc">
@@ -56,10 +65,8 @@
                             <p style="color:floralwhite; padding:10px">“Go and make interesting mistakes, 
                                 make amazing mistakes, make glorious and fantastic mistakes. 
                                 Break rules. Leave the world more interesting for your being here. 
-                                Make. Good. Art.” – Neil Gaiman</p>
-                               
-                            </div>
-                                
+                                Make. Good. Art.” – Neil Gaiman</p>                               
+                            </div>                                
                     </div>
                 </div>
             </div>
