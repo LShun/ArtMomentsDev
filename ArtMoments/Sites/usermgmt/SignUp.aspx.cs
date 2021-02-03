@@ -76,7 +76,7 @@ namespace ArtMoments.Sites.usermgmt
                     sqlCmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@UserEmail", txtUserEmail.Text.Trim());
                     sqlCmd.Parameters.AddWithValue("@UserPassword", txtUserPassword.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@UserType", userType);
+                    sqlCmd.Parameters.AddWithValue("@UserType", userType.ToString());
 
                     sqlCmd.ExecuteNonQuery();
                     Clear();
