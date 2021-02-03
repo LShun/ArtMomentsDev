@@ -38,13 +38,13 @@ namespace ArtMoments.Sites.usermgmt
                     {
                         while (dr.Read())
                         {
-                            tbBibliography.Text = dr.GetValue(7).ToString();
+                            tbBibliography.Text = dr.GetValue(5).ToString();
                             if (tbBibliography.Text == "")
                             {
                                 tbBibliography.Text = "Enter your bibliography to let others know you better";
                             }
 
-                            tbProfilePic.Text = dr.GetValue(8).ToString();
+                            tbProfilePic.Text = dr.GetValue(6).ToString();
 
                             if (tbProfilePic.Text == "")
                             {
