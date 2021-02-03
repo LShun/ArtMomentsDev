@@ -128,8 +128,8 @@
                         <img src="..." class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Category 1</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <p class="card-text">Category 1 Text</p>
+                            <a href="#" class="btn btn-primary">Link to first Category</a>
                         </div>
                     </div>
                 </div>
@@ -138,8 +138,8 @@
                         <img src="..." class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Category 2</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <p class="card-text">Category 2 Text</p>
+                            <a href="#" class="btn btn-primary">Link to second category</a>
                         </div>
                     </div>
                 </div>
@@ -148,8 +148,8 @@
                         <img src="..." class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Category 3</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                            <p class="card-text">Category 3 Description</p>
+                            <a href="#" class="btn btn-primary">Link to 3rd category</a>
                         </div>
                     </div>
                 </div>
