@@ -4,96 +4,6 @@
         th,td{
             border: 1px solid black;
         }
-        .auto-style1 {
-            height: 24px;
-            width: 132px;
-        }
-        .auto-style2 {
-            height: 25px;
-            width: 229px;         
-        }
-        .auto-style3 {
-            width: 229px;
-        }
-        .auto-style4 {
-            height: 24px;
-            width: 229px;
-        }
-        .auto-style5 {
-            width: 1469px;
-        }
-        .auto-style6 {
-            height: 25px;
-            width: 218px;
-        }
-        .auto-style7 {
-            width: 218px;
-        }
-        .auto-style8 {
-            height: 24px;
-            width: 218px;
-        }
-        .auto-style9 {
-            height: 25px;
-            width: 107px;
-        }
-        .auto-style10 {
-            width: 107px;
-        }
-        .auto-style11 {
-            height: 24px;
-            width: 107px;
-        }
-        .auto-style12 {
-            height: 25px;
-            width: 669px;
-        }
-        .auto-style13 {
-            width: 669px;
-        }
-        .auto-style14 {
-            height: 24px;
-        }
-        .auto-style15 {
-            height: 25px;
-            width: 181px;
-        }
-        .auto-style16 {
-            width: 181px;
-        }
-        .auto-style17 {
-            height: 24px;
-            width: 181px;
-        }
-        .auto-style18 {
-            height: 25px;
-            width: 135px;
-        }
-        .auto-style19 {
-            width: 135px;
-        }
-        .auto-style20 {
-            height: 24px;
-            width: 135px;
-        }
-        .auto-style21 {
-            height: 25px;
-            width: 251px;
-        }
-        .auto-style22 {
-            width: 251px;
-        }
-        .auto-style23 {
-            height: 24px;
-            width: 251px;
-        }
-        .auto-style24 {
-            height: 25px;
-            width: 132px;
-        }
-        .auto-style25 {
-            width: 132px;
-        }
         #searchInput {
         background-image: url('../../Content/search--v2.png'); /* Add a search icon to input */
         background-position: 10px 10px; /* position the search icon */
@@ -113,8 +23,37 @@
         th {
             cursor: pointer;
         }
-        .auto-style26 {
-            margin-left: 0px;
+        .auto-style27 {
+            height: 25px;
+            width: 166px;
+        }
+        .auto-style28 {
+            width: 166px;
+        }
+        .auto-style29 {
+            height: 24px;
+            width: 166px;
+        }
+        .auto-style31 {
+            width: 140px;
+        }
+        .auto-style32 {
+            width: 94px;
+        }
+        .auto-style33 {
+            width: 509px;
+        }
+        .auto-style34 {
+            width: 133px;
+        }
+        .auto-style35 {
+            width: 118px;
+        }
+        .auto-style36 {
+            width: 254px;
+        }
+        .auto-style37 {
+            width: 146px;
         }
     </style>
 </asp:Content>
@@ -124,15 +63,15 @@
 			</br>
 
 			<input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for Artwork names.."/>
-            <table id="orderTable" class="orderListTable" style="border:1px solid black">
-				<thead>
+            <table id="orderTable" class="table table-bordered" style="border:1px solid black">
+				<thead class="thead-dark">
 					<tr>
-						<th class="auto-style9" onclick="sortOrderTable(0)">Order ID</th>
-						<th class="auto-style12" onclick="sortOrderTable(1)">Artwork Name</th>
-						<th class="auto-style15" onclick="sortOrderTable(2)">Category</th>
-						<th class="auto-style18" onclick="sortOrderTableNum(3)">Order Total</th>
-                        <th class="auto-style18" onclick="sortOrderTableNum(4)">Subtotal(RM)</th>
-						<th class="auto-style21" onclick="sortOrderTable(5)">Customer</th>
+						<th class="auto-style32" onclick="sortOrderTable(0)">Order ID</th>
+						<th class="auto-style33" onclick="sortOrderTable(1)">Artwork Name</th>
+						<th class="auto-style34" onclick="sortOrderTable(2)">Category</th>
+						<th class="auto-style35" onclick="sortOrderTableNum(3)">Order Total</th>
+                        <th class="auto-style31" onclick="sortOrderTableNum(4)">Subtotal(RM)</th>
+						<th class="auto-style36" onclick="sortOrderTable(5)">Customer</th>
 						<th class="auto-style24">
                             <asp:DropDownList ID="ddlStatus" runat="server" Font-Bold="True" CssClass="auto-style26" Height="34px" Width="132px" onchange = "filterStatusFunction()">
                                 <asp:ListItem>Status</asp:ListItem>
@@ -142,7 +81,7 @@
                                 <asp:ListItem>Canceled</asp:ListItem>
                             </asp:DropDownList>
                         </th>
-						<th class="auto-style6"><asp:DropDownList ID="ddlDelivery" runat="server" Font-Bold="True" Height="34px" Width="218px" onchange = "filterDeliveryFunction()">
+						<th class="auto-style37"><asp:DropDownList ID="ddlDelivery" runat="server" Font-Bold="True" Height="34px" Width="200px" onchange = "filterDeliveryFunction()" CssClass="auto-style26">
                             <asp:ListItem>Delivery Channels</asp:ListItem>
                             <asp:ListItem>Ninja Van</asp:ListItem>
                             <asp:ListItem>Pos Laju</asp:ListItem>
@@ -153,42 +92,42 @@
                             <asp:ListItem>DHL</asp:ListItem>
                             </asp:DropDownList>
                         </th>
-						<th class="auto-style2">Date Order</th>
+						<th class="auto-style27">Date Order</th>
 					</tr>
 				</thead>
 				<tbody>
 				<tr>
-					<td class="auto-style10">S100007</td>
-					<td class="auto-style13">My Elephant Friend</td>
-					<td class="auto-style16">Prints</td>
-					<td class="auto-style19">1</td>
-                    <td class="auto-style19">540.00</td>
-					<td class="auto-style22">Loong Yi Ren</td>
+					<td class="auto-style32">S100007</td>
+					<td class="auto-style33">My Elephant Friend</td>
+					<td class="auto-style34">Prints</td>
+					<td class="auto-style35">1</td>
+                    <td class="auto-style31">540.00</td>
+					<td class="auto-style36">Loong Yi Ren</td>
 					<td class="auto-style25">Completed</td>
-					<td class="auto-style7">Ninja Van</td>
-					<td class="auto-style3">2/1/2021</td>
+					<td class="auto-style37">Ninja Van</td>
+					<td class="auto-style28">2/1/2021</td>
 			</tr>
 			<tr>
-					<td class="auto-style11">S100002</td>
-					<td class="auto-style14">Tetons and The Snake River, Grand Teton National Park</td>
-					<td class="auto-style17">Photography</td>
-					<td class="auto-style20">2</td>
-                    <td class="auto-style19">178.00</td>
-					<td class="auto-style23">Tan Xue Ern</td>
+					<td class="auto-style32">S100002</td>
+					<td class="auto-style33">Tetons and The Snake River, Grand Teton National Park</td>
+					<td class="auto-style34">Photography</td>
+					<td class="auto-style35">2</td>
+                    <td class="auto-style31">178.00</td>
+					<td class="auto-style36">Tan Xue Ern</td>
 					<td class="auto-style1">Delivering</td>
-					<td class="auto-style8">Pos Laju</td>
-					<td class="auto-style4">21/1/2021</td>
+					<td class="auto-style37">Pos Laju</td>
+					<td class="auto-style29">21/1/2021</td>
 			</tr>
 			<tr>
-					<td class="auto-style10">S100001</td>
-					<td class="auto-style13">SPHÉROÏDE ARDOISÉE</td>
-					<td class="auto-style16">Sculpture</td>
-					<td class="auto-style19">1</td>
-                    <td class="auto-style19">9028.29</td>
-					<td class="auto-style22">Ang Chun Kit</td>
+					<td class="auto-style32">S100001</td>
+					<td class="auto-style33">SPHÉROÏDE ARDOISÉE</td>
+					<td class="auto-style34">Sculpture</td>
+					<td class="auto-style35">1</td>
+                    <td class="auto-style31">9028.29</td>
+					<td class="auto-style36">Ang Chun Kit</td>
 					<td class="auto-style25">Pending</td>
-					<td class="auto-style7">Ninja Van</td>
-					<td class="auto-style3">31/1/2021</td>
+					<td class="auto-style37">Ninja Van</td>
+					<td class="auto-style28">31/1/2021</td>
 			</tr>
 		</tbody>
 		
