@@ -3,15 +3,10 @@
     <title></title>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-     <style type="text/css">
-         .auto-style1 {
-             left: 0px;
-             top: 0px;
-         }
-     </style>
+    <link href="../../Content/css/SignUp.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  <div class="container">
+    <div class="container">
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
@@ -45,7 +40,7 @@
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <label for="website" class="auto-style1">Contact No</label> 
+                                <label for="website" class="col-4 col-form-label">Contact No</label> 
                                 <div class="col-8">
                                     <asp:TextBox ID="txtContactNo" runat="server" placeholder="contact" OnTextChanged="txtContactNo_TextChanged" BorderColor="#999999" BorderStyle="Solid"></asp:TextBox>
                                 </div>
@@ -56,7 +51,7 @@
                              
                               <div class="form-group row">
                                 <div class="offset-4 col-8">
-                                  <asp:Button class="btn btn-primary" ID="btnSave" runat="server" Text="Save" OnClick="Button1_Click" CssClass="buttonEditStyle"/>
+                                  <asp:Button class="btn btn-primary" ID="btnSave" runat="server" Text="Save" CssClass="buttonEditStyle" OnClick="btnSave_Click"/>
                                   <asp:Label ID="lblSuccessMessage" runat="server" Text=""></asp:Label>
                                 </div>
                               </div>

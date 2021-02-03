@@ -1,7 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="BuyerAccount.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerAccount" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <title></title>
-
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="../../Content/css/SignUp.css" rel="stylesheet" />
     <style type="text/css">
         .auto-style2 {
             height: 6px;
@@ -38,49 +40,61 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
-        <div>
-            <table>
-                <tr>
-                    <td class="auto-style2">
-                        <label style="margin-top:0px">ART_MOMENT</label>
-                        <label style="margin-left: 50px">My Account</label>
-                    </td>                    
-                    <td class="auto-style1"><label>Welcome</label></td>
-                </tr>
-                <tr>
-                    <td class="auto-style5">
-                        
-                        <div class="auto-style3">
-                            <asp:Button runat="server" class="auto-style7" id="btnHome" Text="Home" OnClick="btnHome_Click"></asp:Button>                                
-                            <br /><br />
-                            <asp:Button runat="server" class="auto-style8" id="btnSetting" onclick="btnOnClickSetting" Text="Setting"></asp:Button>                                
-                            <br /><br />
-                            <asp:Button runat="server" ID="Button1" Text="Presentation" CssClass="auto-style8" OnClick="btnPresentation_Click"></asp:Button>
-                        
-                        </div>
-                    </td>
-                    <td class="auto-style4" style="padding:0px">
-                        <div style="margin-top: 0px">
-                            <table style="margin:10px; width:60%">
-                                <tr>
-                                    <td class="auto-style6">
-                                        <asp:Label runat="server" Text="Followed Artist"></asp:Label>
-                                        <br/>
-                                        <asp:Label runat="server" Text="Start following your favourite artist"></asp:Label>
-                                    </td>
-                                    <td style="width:1%"></td>
-                                    <td class="auto-style6">
-                                        <asp:Label runat="server" Text="My favourite"></asp:Label>
-                                        <br/>
-                                        <asp:Label runat="server" Text="Start collecting art"></asp:Label>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+<div class="container">
+	<div class="row">
+		<div class="col-md-3 ">
+		     <div class="list-group ">
+              <a href="BuyerAccount.aspx"  class="list-group-item list-group-item-action active">My Account</a>
+              <a href="BuyerSetting.aspx" class="list-group-item list-group-item-action">Setting</a>
+              <a href="BuyerPresentation.aspx"  class="list-group-item list-group-item-action">Presentation</a>              
+              
+            </div> 
+		</div>
+        <div class="col-md-9">
+		    <div class="card">
+		        <div class="card-body">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <hr>
+		                </div>
+		            </div>
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <div>
+                              <table>
+                                    <tr>
+                                        <td class="auto-style5">
+                                        </td>
+                                        <td class="auto-style4" style="padding:0px">
+                                            <div style="margin-top: 0px">
+                                                <table style="margin:10px; width:60%">
+                                                    <tr>
+                                                        <td class="auto-style6">
+                                                            <asp:Label runat="server" Text="Followed Artist"></asp:Label>
+                                                            <br/>
+                                                            <asp:Label runat="server" Text="Start following your favourite artist"></asp:Label>
+                                                        </td>
+                                                        <td style="width:1%"></td>
+                                                        <td class="auto-style6">
+                                                            <asp:Label runat="server" Text="My favourite"></asp:Label>
+                                                            <br/>
+                                                            <asp:Label runat="server" Text="Start collecting art"></asp:Label>
+                                                        </td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+		                </div>
+		            </div>
+		            
+		        </div>
+		    </div>
+		</div>       
         </div>
-    </form>
+    </div>
 </asp:Content>
+
+

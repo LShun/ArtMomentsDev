@@ -64,13 +64,13 @@
                               <div class="form-group row">
                                 <asp:Label CssClass="auto-style9" ID="Label8" runat="server" Text="Bibliography"></asp:Label>
                                 <div class="col-8">
-                                  <asp:TextBox CssClass="auto-style9" ID="tbBibliography" runat="server" OnTextChanged="tbBibliography_TextChanged" ReadOnly="True"></asp:TextBox>
+                                  <asp:TextBox CssClass="auto-style9" ID="tbBibliography" runat="server" ReadOnly="False" OnTextChanged="tbBibliography_TextChanged"></asp:TextBox>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <asp:Label CssClass="auto-style9" ID="Label9" runat="server" Text="Profile Picture"></asp:Label>
                                 <div class="col-8">
-                                  <asp:TextBox CssClass="auto-style9" ID="tbProfilePic" runat="server" OnTextChanged="tbProfilePic_TextChanged1" ReadOnly="True"></asp:TextBox>
+                                  <asp:TextBox CssClass="auto-style9" ID="tbProfilePic" runat="server" ReadOnly="False" OnTextChanged="tbProfilePic_TextChanged1"></asp:TextBox>
                                   <br /><br />
                                     <asp:Image CssClass="auto-style9" ID="Image1" runat="server" Height="199px" Width="199px" />
                                     <br />
