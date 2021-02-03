@@ -13,5 +13,18 @@ namespace ArtMoments.Sites.artist
         {
 
         }
+        protected void resetProdBtn_Click(object sender, EventArgs e)
+        {
+            ClearInputs(Page.Controls);
+        }
+        void ClearInputs(ControlCollection ctrls)
+        {
+            foreach (Control ctrl in ctrls)
+            {
+                if (ctrl is TextBox)
+                    ((TextBox)ctrl).Text = string.Empty;
+                ClearInputs(ctrl.Controls);
+            }
+        }
     }
 }
