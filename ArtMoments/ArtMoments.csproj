@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\14019785_00-129-spheroide-noire-01.jpg" />
+    <Content Include="Content\187803-200.png" />
     <Content Include="Content\8585-mur-africa-met.jpg" />
     <Content Include="Content\arrow-left.png" />
     <Content Include="Content\arrow-right.png" />
@@ -77,6 +78,7 @@
     <Content Include="Content\blue-man-waves.jpg" />
     <Content Include="Content\boat.jpg" />
     <Content Include="Content\colorful-street.jpg" />
+    <Content Include="Content\css\addArtwork.css" />
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\PreLogin.css" />

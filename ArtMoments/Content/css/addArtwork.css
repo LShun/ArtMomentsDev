@@ -1,0 +1,153 @@
+﻿/*.addArtwork h1 {
+    text-align: center;
+    text-decoration: underline;
+    color: #871414;
+    font-size: 30px;
+    padding-bottom: 10px;
+}
+
+.addArtwork p {
+    font-size: large;
+    font-weight: bold;
+    font-size: 16px;
+}
+*/
+.addArtwork input[type=text], input[type=email], input[type=tel], select, textarea{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    background-color: #EEEEEE;
+    outline: none;
+}
+
+.addArtwork input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, select:focus, textarea:focus {
+        border: 1px solid #871414;
+        background-color: #ddd;
+    }
+
+label {
+    padding: 12px 12px 12px 0;
+    display: inline-block;
+    font-size: 16px;
+}
+
+input[type=button] {
+    border: none;
+    background-color: #871414;
+    color: white;
+    opacity: 0.8;
+    font-size: 17px;
+    padding: 12px 20px;
+    margin-left: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit] {
+    border: none;
+    background-color: #871414;
+    color: white;
+    opacity: 0.8;
+    font-size: 17px;
+    padding: 12px 20px;
+    margin-right: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+}
+    input[type=submit]:hover {
+        opacity: 1;
+    }
+
+.addArtwork .container {
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.addArtwork .col-25 {
+    float: left;
+    width: 15%;
+    margin-top: 6px;
+}
+
+.addArtwork .col-75 {
+    float: left;
+    width: 85%;
+    margin-top: 6px;
+}
+
+input[type='file'] {
+    border: 3px dashed #999;
+    cursor: move;
+    display: block;
+    font-size: 0px;
+    filter: alpha(opacity=0);
+    min-height: 160px;
+    min-width: 300px;
+    opacity: 1;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+    background: transparent;
+    z-index: -99999999999999;
+}
+.rowImgTable {
+    height: 365px;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    /*padding: 75px 75px 75px 75px;*/
+    width: 300px;
+    height: 300px;
+    cursor: pointer;
+    //position: absolute;
+    /*top: 83px;
+    left: 50%;*/
+    z-index: 9999;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.custom-file-upload::after {
+    display: none;
+}
+
+/*.imageLabel {
+    align-self: flex-end;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}*/
+
+#imgTable {
+    position: relative;
+    width: 1050px;
+    float: left;
+    height: 800px;
+    display: flex;
+}
+.imgLabel {
+    text-align:center;
+    
+}
+
+/* Clear floats after the columns */
+.addArtwork .row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+    .col-25, .col-75, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+}

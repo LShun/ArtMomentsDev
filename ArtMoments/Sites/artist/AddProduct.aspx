@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="AddProduct.aspx.cs" Inherits="ArtMoments.Sites.artist.AddProduct" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="addArtwork.css" rel="stylesheet" type="text/css"/>
+    <link href="../../Content/css/addArtwork.css" rel="stylesheet" />
 	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <style type="text/css">
         .auto-style1 {
@@ -53,87 +53,17 @@
 						<div class="col-25">
 							<label for="artworkImage">Artwork Image*:</label> 
 						</div>
-						<div class="col-75">
-							<table id="imgTable">
-								<tr class="rowImgTable">
-									<td class="auto-style1"><label for="fileUpload" class="custom-file-upload">
+						<div class="col-75">						
+								
+									<label for="fileUpload" class="custom-file-upload">
 										<asp:FileUpload ID="fileUpload" style="display:none;" accept="image/*" onchange="previewFile()" runat="server" />
-										<img class="img1" src="187803-200.png" height="300" width="300" alt="image preview...">
+										<img class="img1" src="../../Content/187803-200.png" height="300" width="300" alt="image preview...">
 										</label>
-									</td>
-									<td class="auto-style1"><label for="fileupload1" class="custom-file-upload">
-										<asp:fileupload id="fileupload1" style="display:none;" accept="image/*" onchange="previewfile()" runat="server" />
-										<img class="img2" src="187803-200.png" height="300" width="300" alt="image preview..."/>
-										</label>
-
-									</td>
-									<td class="auto-style1"><label for="fileupload2" class="custom-file-upload">
-										<asp:fileupload id="fileupload2" style="display:none;" accept="image/*" onchange="previewfile()" runat="server" />
-										<img class="img3" src="187803-200.png" height="300" width="300" alt="image preview..."/>
-										</label>
-
-									</td>
-								</tr>
-								<tr>
-									<td class="imgLabel">Image 1</td>
-									<td class="imgLabel">Image 2</td>
-									<td class="imgLabel">Image 3</td>
-								</tr>
-								<tr class="rowImgTable">
-									<td class="auto-style1"><label for="fileUpload3" class="custom-file-upload">
-										<asp:FileUpload ID="fileUpload3" style="display:none;" accept="image/*" onchange="previewFile()" runat="server" />
-										<img class="img4" src="187803-200.png" height="300" width="300" alt="image preview..."/>
-										</label>
-									</td>
-									<td class="auto-style1"><label for="fileUpload4" class="custom-file-upload">
-										<asp:FileUpload ID="fileUpload4" style="display:none;" accept="image/*" onchange="previewFile()" runat="server" />
-										<img class="img5" src="187803-200.png" height="300" width="300" alt="image preview..."/>
-										</label>
-
-									</td>
-									<td class="auto-style1"><label for="fileUpload5" class="custom-file-upload">
-										<asp:FileUpload ID="fileUpload5" style="display:none;" accept="image/*" onchange="previewFile()" runat="server" />
-										<img class="img6" src="187803-200.png" height="300" width="300" alt="image preview..."/>
-										</label>
-
-									</td>
-								</tr>
-								<tr>
-									<td class="imgLabel">Image 4</td>
-									<td class="imgLabel">Image 5</td>
-									<td class="imgLabel">Image 6</td>
-								</tr>
-							</table>
-						</div>
-						<%--<div class="imageclass">
 							
-
-							<div class="imagelabel">image 1</div>
+								
 						
-						</div>  --%>
-							
-					<%--<div class="imagelabel">
-						
-					</div>--%>
-						<%--<div class="imageIcon">
-							<label for="imgInp" class="custom-file-upload">  <i class="fas fa-camera"></i></label>
-							<input type='file' id="imgInp2" style="display:none;"/>
-							<label for="artImage2">Image 2</label>
-						</div>  
-						<div class="imageIcon">
-							<label for="imgInp" class="custom-file-upload">  <i class="fas fa-camera"></i></label>
-							<input type='file' id="imgInp3" style="display:none;"/>
-							<label for="artImage3">Image 3</label>
-						</div>  --%>
-							<%--<i class="fas fa-camera" style="font-size:24px;"></i>
-							<input type="file" id="img" name="img" accept="image/*" class="imageUpload"/>--%>
-						<%--<div class="imageIcon">
-							<i class="fas fa-camera" style="font-size:24px;"></i>
 						</div>
-						<div class="imageIcon">
-							<i class="fas fa-camera" style="font-size:24px;"></i>
-						</div>--%>
-					<!--</form>-->
+					
 					</div>
 					<div class="row">
 						<div class="col-25">
