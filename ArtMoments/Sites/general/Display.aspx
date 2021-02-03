@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="DisplayArtwork.aspx.cs" Inherits="ArtMoments.Sites.general.Display" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="Display.aspx.cs" Inherits="ArtMoments.Sites.general.Display" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../Content/css/DisplayArt.css" rel="stylesheet" />
     <style type="text/css">
@@ -85,7 +85,8 @@
                               <asp:Label ID="Label1" runat="server" Text="Category 1" ></asp:Label>
                           </div>
                           <div class="col-4"> 
-                              <asp:Image ID="Image2" runat="server"  style="display:flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
+                              <asp:ImageButton ID="Image2" runat="server" style="display:flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" PostBackUrl="~/Sites/general/OrderArt.aspx"/>
+                             
                               <br />
                               <asp:Label class="ImgLabel" ID="Label2" runat="server" Text="Category 2"></asp:Label>
                           </div>
