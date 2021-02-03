@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="ConfirmedRegMsg.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.ConfirmedRegMsg" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../Content/css/SignUp.css" rel="stylesheet" />
+    <link href="https://mdbootstrap.com/docs/b4/jquery/content/icons-list/" rel="stylesheet"/>
 
     <style>
         body{
@@ -16,19 +19,31 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
-        <div style="margin:auto; text-align:center">
-            <table style="text-align:center; align-content:center">
-                <tr>
-                    <td class="auto-style1">
-                        <asp:Label runat="server" Text="Registration successful!"></asp:Label>
-                        <br /><br />
-                        <asp:Label runat="server" Text="Take a tour?"></asp:Label>
-                        <br />
-                        <asp:Button ID="Button1" runat="server" Text="Go to Login" OnClick="Button1_Click"/>
-                    </td>
-                </tr>                
-            </table>            
+    <div ID="Content5">
+    <div class="container" >
+        
+        <div class="myCard" id="Content5">
+            <div class="row">
+                <div class="col-md-10">
+                    <i class="fas fa-times"></i>
+                    <div class="myLeftCtn"> 
+                        <form class="myForm text-center">
+                            <div class="form-group">
+                                <asp:Label ID="Label1" runat="server" Text="Registration successful!" style="text-align:center; margin-left:20px"></asp:Label>
+                               </div>
+
+                            <div class="form-group">
+                                <asp:Label ID="Label2" runat="server" Text="Take a tour?" style="text-align:center; margin-left:20px"></asp:Label> 
+                            </div>
+                            <asp:Button class="butt" ID="Button2" OnClick="Button1_Click" runat="server" Text="Go to Login"></asp:Button>  
+                            
+                            <br />
+                            <br />                            
+                        </form>
+                    </div>
+                </div> 
+            </div>
         </div>
-    </form>
+    </div>
+</div> 
 </asp:Content>
