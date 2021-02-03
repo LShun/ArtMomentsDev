@@ -3,8 +3,8 @@
 }
 
 .artwork-image-division img {
-    max-width: 450px;
-    max-height: 450px;
+    max-width: 400px;
+    max-height: 400px;
     object-fit: cover;
     cursor: pointer;
     border: 2px solid black;

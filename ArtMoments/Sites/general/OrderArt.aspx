@@ -21,71 +21,81 @@
         div#artworkNameDivision {
             margin-top: 20px;
         }
+
+        .artwork-image-division img {
+            max-width: 400px;
+            max-height: 400px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid black;
+            text-align: center;
+            align-items: center;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
     <div class="container" id="artOrder">
         <div class="row">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-6">
                <!-- ArtWork Image -->
-                <div class="row justify-content-center align-self-center">
-                    <div class="artwork-image-division">
-                        <asp:Image ID="artworkImage" runat="server" src="../../Content/14019785_00-129-spheroide-noire-01.jpg" class="img-thumbnail" Height="500"/>
+                <div class="justify-content-center align-self-center col-12">
+                    <div class="artwork-image-division col-12">
+                        <asp:Image ID="artworkImage" runat="server" src="../../Content/14019785_00-129-spheroide-noire-01.jpg" class="img-thumbnail col-12" Height="450"/>
                     </div>
                 </div>
             </div>
        
-            <div class="col-md-6">
+            <div class="col-6">
                 <!-- wishlist icon img -->
-                <div class="row" id="wishlistImgDivision">
+                <div class="row col-12" id="wishlistImgDivision">
                     <!--<asp:Image ID="imgwishlist" runat="server" src="../../Content/love-wishlist-white.png" />-->
                 </div>
                 <!-- Artwork Name-->
-                <div class="row" id="artworkNameDivision">
+                <div class="row col-12" id="artworkNameDivision">
                     <h1><asp:Label ID="artworkName" runat="server" Text="artworkName"></asp:Label></h1>
                 </div>
 
                 <!-- artwork display label -->
                 <div class="row">
-                    <div class="col" id="sizeDivision">
+                    <div class="col-4" id="sizeDivision">
                         <label id="sizeTxt">Size</label>
                     </div>
-                    <div class="col" id="categoryDivision">
+                    <div class="col-4" id="categoryDivision">
                         <label id="categoryTxt">Category</label>
                     </div>
-                    <div class="col" id="authorDivision">
+                    <div class="col-4" id="authorDivision">
                         <label id="authorTxt">Author</label>
                     </div>
                 </div>
 
                 <!-- artwork detail from db -->
                 <div class="row">
-                    <div class="col" id="lblsizeDivision">
+                    <div class="col-4" id="lblsizeDivision">
                         <asp:Label ID="lblartworkSize" runat="server" Text="M"></asp:Label>
                     </div>
-                    <div class="col" id="lblcategorryDivision">
+                    <div class="col-4" id="lblcategorryDivision">
                         <asp:Label ID="lblartworkCategory" runat="server" Text="category"></asp:Label>
                     </div>
-                    <div class="col" id="lblauthorDivision">
+                    <div class="col-4" id="lblauthorDivision">
                         <asp:Label ID="lblauthor" runat="server" Text="author"></asp:Label>
                     </div>
                 </div>                
                 
                 <div class="row">
-                    <div class="col" id="descriptionDevision">
+                    <div class="col-12" id="descriptionDevision">
                         <label id="lbldescripTxt">Description</label>
                     </div>
                 </div>
 
                 <div class="row">
-                    <div class="col" id="lbldescriptionDivision">
+                    <div class="col-12" id="lbldescriptionDivision">
                         <asp:Label ID="lblartworkDescription" runat="server" Text="Description"></asp:Label>
                     </div>
                 </div>
                 <!-- quantity & price -->
                 <div class="row">
-                    <div class="col" id="quantityDivision">
+                    <div class="col-6" id="quantityDivision">
                         <div class="quantity">
                             <asp:Button ID="btnMinus" runat="server" Text="-" OnClick="btnMinus_Click" />
                             <asp:TextBox ID="qtyTxtBox" runat="server" Width="55px">1</asp:TextBox>
@@ -93,15 +103,15 @@
                         </div>
                     </div>
 
-                    <div class="col" id="priceDivision">
+                    <div class="col-6" id="priceDivision">
                         <asp:Label ID="lblartworkPrice" runat="server" Text="Price: RM "></asp:Label>
                     </div>
                 </div>
 
                 <!-- Buy now button -->
                 <div class="row">
-                    <div class="col" id="btnBuyNowDivision">
-                        <asp:Button ID="btnBuyNow" runat="server" Text="BUY NOW" />
+                    <div class="col-12" id="btnBuyNowDivision">
+                        <asp:LinkButton ID="btnBuyNow" runat="server" OnClick="btnBuyNow_Click" PostBackUrl="../client/OrderHistory.aspx">BUY NOW</asp:LinkButton>
                     </div>
                 </div>
             </div>
@@ -126,6 +136,7 @@
             </div>
         </div>
     </div>
+
 
 
         <script type="text/javascript">

@@ -32,5 +32,10 @@ namespace ArtMoments.Sites.general
             qtyValue++;
             qtyTxtBox.Text = qtyValue.ToString();
         }
+
+        protected void btnBuyNow_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
