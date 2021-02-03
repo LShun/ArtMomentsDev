@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
 
 namespace ArtMoments.Sites.artist
 {
@@ -13,6 +14,13 @@ namespace ArtMoments.Sites.artist
         {
 
         }
+        public string conString = "Data Source=DESKTOP-RT2Q9PA\\SQLEXPRESS;Initial Catalog=ArtMomentsDb;User ID=sa;Password=***********";
+
+        protected void saveProdBtn_Click(object sender, EventArgs e)
+        {
+            
+        }
+
         protected void resetProdBtn_Click(object sender, EventArgs e)
         {
             ClearInputs(Page.Controls);
