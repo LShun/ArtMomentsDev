@@ -75,11 +75,11 @@
     <Content Include="Content\art-paint-brush.jpg" />
     <Content Include="Content\artwork-4.jpg" />
     <Content Include="Content\autumn-countryside.jpg" />
-<<<<<<< Updated upstream
+
     <Content Include="Content\blue-man-waves.jpg" />
-=======
+
     <Content Include="Content\Black Deer2.png" />
->>>>>>> Stashed changes
+
     <Content Include="Content\boat.jpg" />
     <Content Include="Content\colorful-street.jpg" />
     <Content Include="Content\css\addArtwork.css" />
