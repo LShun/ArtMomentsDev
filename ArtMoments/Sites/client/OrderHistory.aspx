@@ -3,24 +3,37 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="../../Content/css/OrderHistoryCss.css" />
     <style type="text/css">
-        div#orderHistoryDetail {
+        div.orderHistoryDetail {
             margin-top: 20px;
         }
 
+        div.orderHistoryContainer{
+            background-color: #f9f9f9;
+            padding-bottom: 12px;
+            border-radius: 7px;
+        }
+
+        span.ContentPlaceHolder1_lbladorderStatus {
+            font-size: 10px;
+            border-radius: 15px;
+            padding-left: 5px;
+            padding-right: 5px;
+            margin-right: 8px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Transaction -->
-    <div class="container" id="transactionHistoryContainer">
+    <div class="container transactionHistoryContainer" id="transactionHistoryContainer">
         <div class="row">
             <h1><asp:Label ID="lbltransacId" runat="server" Text="Transaction ID"></asp:Label></h1>
         </div>
         <!-- Order Histories -->
-        <div class="container align-content-sm-center" id="orderHistoryContainer">
+        <div class="container align-content-sm-center orderHistoryContainer" id="orderHistoryContainer">
             <div class="row">
-                <div class="col-lg-4 col-md-12 col-sm-12" id="orderHistoryRowDiv">
+                <div class="col-lg-4 col-md-12 col-sm-12 orderHistoryRowDiv" id="orderHistoryRowDiv">
                     <!-- Ordernum N Artwork -->
-                    <div class="col justify-content-center" id="orderNumnArt">
+                    <div class="col justify-content-center orderNumnArt" id="orderNumnArt">
                         <!-- Ordernum -->
                         <div class="row">
                             <h3><asp:Label ID="lbladorderNum" runat="server" Text="#orderNum"></asp:Label></h3>
@@ -31,18 +44,18 @@
                     </div>
                 </div>
                 <!-- Orderhistory Details -->
-                <div class="col-lg-8" id="orderHistoryDetail">
+                <div class="col-lg-8 orderHistoryDetail" id="orderHistoryDetail">
                     <!-- Delivery Status -->
-                    <div class="row  float-right">
-                        <asp:Label ID="lbladorderStatus" runat="server" Text="Delivered"></asp:Label>
+                    <div class="row  float-right deliveryStatus">
+                        <asp:Label ID="lbladorderStatus" runat="server" Text="Delivered" CssClass="btn-success"></asp:Label>
                     </div>
                     <!-- Artname -->
-                    <div class="row">
+                    <div class="row artNameRow">
                         <asp:Label ID="lbladartName" runat="server" Text="ArtName" CssClass="h2"></asp:Label>
                     </div>
 
                     <!-- Size, Category, Author label -->
-                    <div class="row">
+                    <div class="row sizeCategoryAuthor">
                         <div class="col" id="sizeDivision">
                             <label id="sizeTxt">Size</label>
                         </div>
@@ -55,7 +68,7 @@
                     </div>
 
                     <!-- Size, Category, Author from db -->
-                    <div class="row">
+                    <div class="row sizeCategoryAuthorDB">
                         <div class="col" id="lblsizeDivision">
                             <asp:Label ID="lblartworkSize" runat="server" Text="M"></asp:Label>
                         </div>
@@ -67,8 +80,8 @@
                         </div>
                     </div>   
 
-                    <!-- Size, Category, Author label -->
-                    <div class="row">
+                    <!-- Qty, Price, view more details label -->
+                    <div class="row qtyPriceMore">
                         <div class="col" id="qtyDivision">
                             <label id="qtyTxt">Quantity</label>
                         </div>
@@ -80,8 +93,8 @@
                         </div>
                     </div>
 
-                    <!-- Size, Category, Author from db -->
-                    <div class="row">
+                    <!-- Qty, Price, view more details label from db-->
+                    <div class="row qtyPriceMoreDB">
                         <div class="col" id="lblqtyDivision">
                             <asp:Label ID="Label1" runat="server" Text="5"></asp:Label>
                         </div>
@@ -98,37 +111,37 @@
     </div>
 
     <!-- Transaction -->
-    <div class="container" id="transactionHistoryContainer2">
+    <div class="container transactionHistoryContainer" id="transactionHistoryContainer2">
         <div class="row">
             <h1><asp:Label ID="Label3" runat="server" Text="Transaction ID"></asp:Label></h1>
         </div>
         <!-- Order Histories -->
-        <div class="container" id="orderHistoryContainer2">
+        <div class="container orderHistoryContainer" id="orderHistoryContainer2">
             <div class="row">
-                <div class="col-lg-4 col-md-12 col-sm-12" id="orderHistoryRowDiv2">
+                <div class="col-lg-4 col-md-12 col-sm-12 orderHistoryRowDiv" id="orderHistoryRowDiv2">
                     <!-- Ordernum N Artwork -->
-                    <div class="col justify-content-center" id="orderNumnArt2">
+                    <div class="col justify-content-center orderNumnArt" id="orderNumnArt2">
                         <!-- Ordernum -->
                         <div class="row">
                             <h3><asp:Label ID="Label4" runat="server" Text="#orderNum"></asp:Label></h3>
                         </div>
                         <!-- Artwork -->
-                                <asp:Image ID="Image1" runat="server" src="../../Content/swing.jpg" height="200"/>
+                            <asp:Image ID="Image1" runat="server" src="../../Content/swing.jpg" height="200"/>
                     </div>
                 </div>
                 <!-- Orderhistory Details -->
-                <div class="col-lg-8" id="orderHistoryDetail2">
+                <div class="col-lg-8 orderHistoryDetail" id="orderHistoryDetail2">
                     <!-- Delivery Status -->
-                    <div class="row  float-right">
+                    <div class="row  float-right deliveryStatus">
                         <asp:Label ID="Label5" runat="server" Text="Delivered"></asp:Label>
                     </div>
                     <!-- Artname -->
-                    <div class="row">
+                    <div class="row artNameRow">
                         <asp:Label ID="Label6" runat="server" Text="ArtName" CssClass="h2"></asp:Label>
                     </div>
 
                     <!-- Size, Category, Author label -->
-                    <div class="row">
+                    <div class="row sizeCategoryAuthor">
                         <div class="col" id="sizeDivision2">
                             <label id="sizeTxt2">Size</label>
                         </div>
@@ -141,7 +154,7 @@
                     </div>
 
                     <!-- Size, Category, Author from db -->
-                    <div class="row">
+                    <div class="row sizeCategoryAuthorDB">
                         <div class="col" id="lblsizeDivision2">
                             <asp:Label ID="Label7" runat="server" Text="M"></asp:Label>
                         </div>
@@ -153,8 +166,8 @@
                         </div>
                     </div>   
 
-                    <!-- Size, Category, Author label -->
-                    <div class="row">
+                    <!-- Qty, Price, view more details label -->
+                    <div class="row qtyPriceMore">
                         <div class="col" id="qtyDivision2">
                             <label id="qtyTxt2">Quantity</label>
                         </div>
@@ -166,8 +179,8 @@
                         </div>
                     </div>
 
-                    <!-- Size, Category, Author from db -->
-                    <div class="row">
+                    <!-- Qty, Price, view more details from db -->
+                    <div class="row qtyPriceMoreDB">
                         <div class="col" id="lblqtyDivision2">
                             <asp:Label ID="Label11" runat="server" Text="5"></asp:Label>
                         </div>
