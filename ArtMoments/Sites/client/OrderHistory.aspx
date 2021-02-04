@@ -13,27 +13,86 @@
             border-radius: 7px;
         }
 
-        span.ContentPlaceHolder1_lbladorderStatus {
+        span#ContentPlaceHolder1_lbladorderStatus {
             font-size: 10px;
             border-radius: 15px;
             padding-left: 5px;
             padding-right: 5px;
             margin-right: 8px;
         }
+
+        .row.sizeCategoryAuthor {
+            font-size: 13px;
+            color: darkgray;
+            padding-top: 8px;
+        }
+
+        .row.sizeCategoryAuthorDB {
+            margin-top: -5px;
+            font-size: 18px;
+        }
+
+        .row.qtyPriceMore {
+            padding-top: 17px;
+            color: darkgray;
+            font-size: 13px;
+        }
+
+        .row.qtyPriceMoreDB {
+            margin-top: -5px;
+            font-size: 18px;
+        }
+
+        div.orderHistoryDetail {
+            margin-top: 32px;
+        }
+
+        .row.float-right.deliveryStatus {
+            border-radius: 10px;
+            margin-top: -20px;
+            margin-right: -5px;
+        }
+
+        span#ContentPlaceHolder1_lbladorderStatus {
+            padding-left: 7px;
+            padding-right: 7px;
+            font-size: 13px;
+            border-radius: 10px;
+            padding-bottom: 1px;
+            padding-top: 1px;
+        }
+
+        .row.justify-content-center {
+            margin-top: 40px;
+            margin-bottom: 30px;
+            background-color: paleturquoise;
+            color: white;
+            text-shadow: 1px 1px black;
+        }
+
+        .container.transactionHistoryContainer {
+            margin-top: 60px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!-- Heading -->
+    <header>
+        <div class="row justify-content-center">
+            <h1 class="orderHistoryHeader">Order History</h1>
+        </div>
+    </header>
     <!-- Transaction -->
-    <div class="container transactionHistoryContainer" id="transactionHistoryContainer">
+    <div class="container transactionHistoryContainer">
         <div class="row">
-            <h1><asp:Label ID="lbltransacId" runat="server" Text="Transaction ID"></asp:Label></h1>
+            <h2><asp:Label ID="lbltransacId" runat="server" Text="Transaction ID"></asp:Label></h2>
         </div>
         <!-- Order Histories -->
-        <div class="container align-content-sm-center orderHistoryContainer" id="orderHistoryContainer">
+        <div class="container align-content-sm-center orderHistoryContainer">
             <div class="row">
-                <div class="col-lg-4 col-md-12 col-sm-12 orderHistoryRowDiv" id="orderHistoryRowDiv">
+                <div class="col-lg-4 col-md-12 col-sm-12 orderHistoryRowDiv">
                     <!-- Ordernum N Artwork -->
-                    <div class="col justify-content-center orderNumnArt" id="orderNumnArt">
+                    <div class="col justify-content-center orderNumnArt">
                         <!-- Ordernum -->
                         <div class="row">
                             <h3><asp:Label ID="lbladorderNum" runat="server" Text="#orderNum"></asp:Label></h3>
@@ -44,7 +103,7 @@
                     </div>
                 </div>
                 <!-- Orderhistory Details -->
-                <div class="col-lg-8 orderHistoryDetail" id="orderHistoryDetail">
+                <div class="col-lg-8 orderHistoryDetail">
                     <!-- Delivery Status -->
                     <div class="row  float-right deliveryStatus">
                         <asp:Label ID="lbladorderStatus" runat="server" Text="Delivered" CssClass="btn-success"></asp:Label>
@@ -102,7 +161,7 @@
                             <asp:Label ID="Label2" runat="server" Text="20.00"></asp:Label>
                         </div>
                         <div class="col" id="btnBuyAgainDivision">
-                            <asp:Button ID="btnBuyAgain" runat="server" Text="BUY AGAIN" />
+                            <asp:Button ID="btnBuyAgain" runat="server" Text="BUY AGAIN" class="btn-primary rounded"/>
                         </div>
                     </div>  
                 </div>
@@ -113,7 +172,7 @@
     <!-- Transaction -->
     <div class="container transactionHistoryContainer" id="transactionHistoryContainer2">
         <div class="row">
-            <h1><asp:Label ID="Label3" runat="server" Text="Transaction ID"></asp:Label></h1>
+            <h2><asp:Label ID="Label3" runat="server" Text="Transaction ID"></asp:Label></h2>
         </div>
         <!-- Order Histories -->
         <div class="container orderHistoryContainer" id="orderHistoryContainer2">
@@ -188,7 +247,7 @@
                             <asp:Label ID="Label12" runat="server" Text="20.00"></asp:Label>
                         </div>
                         <div class="col" id="btnBuyAgainDivision2">
-                            <asp:Button ID="Button1" runat="server" Text="BUY AGAIN" />
+                            <asp:Button ID="Button1" runat="server" Text="BUY AGAIN" class="btn-primary rounded" />
                         </div>
                     </div>  
                 </div>
