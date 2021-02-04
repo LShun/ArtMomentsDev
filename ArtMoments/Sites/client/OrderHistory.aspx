@@ -18,7 +18,7 @@
         <!-- Order Histories -->
         <div class="container align-content-sm-center" id="orderHistoryContainer">
             <div class="row">
-                <div class="col-md-6 col-sm-12" id="orderHistoryRowDiv">
+                <div class="col-lg-4 col-md-12 col-sm-12" id="orderHistoryRowDiv">
                     <!-- Ordernum N Artwork -->
                     <div class="col justify-content-center" id="orderNumnArt">
                         <!-- Ordernum -->
@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <!-- Orderhistory Details -->
-                <div class="col" id="orderHistoryDetail">
+                <div class="col-lg-8" id="orderHistoryDetail">
                     <!-- Delivery Status -->
                     <div class="row  float-right">
                         <asp:Label ID="lbladorderStatus" runat="server" Text="Delivered"></asp:Label>
@@ -105,7 +105,7 @@
         <!-- Order Histories -->
         <div class="container" id="orderHistoryContainer2">
             <div class="row">
-                <div class="col-md-6 col-sm-12" id="orderHistoryRowDiv2">
+                <div class="col-lg-4 col-md-12 col-sm-12" id="orderHistoryRowDiv2">
                     <!-- Ordernum N Artwork -->
                     <div class="col justify-content-center" id="orderNumnArt2">
                         <!-- Ordernum -->
@@ -117,7 +117,7 @@
                     </div>
                 </div>
                 <!-- Orderhistory Details -->
-                <div class="col" id="orderHistoryDetail2">
+                <div class="col-lg-8" id="orderHistoryDetail2">
                     <!-- Delivery Status -->
                     <div class="row  float-right">
                         <asp:Label ID="Label5" runat="server" Text="Delivered"></asp:Label>
