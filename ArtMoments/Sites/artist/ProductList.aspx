@@ -81,21 +81,6 @@
         .auto-style33 {
             width: 2167px;
         }
-        .button {
-            background-color: gray; /* Green */
-            border: none;
-            color: white;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            transition-duration: 0.4s;
-            cursor: pointer;
-        }
-        .button1 {
-            background-color: white; 
-            color: black; 
-            border: 2px solid gray;
-}
 
         .button1:hover {
             background-color: gray;
@@ -155,7 +140,7 @@
                     <td  class="auto-style30">80</td>
                     <td  class="auto-style31">8</td>
                     <td  class="auto-style27">
-                        <asp:Button ID="editBtn1" class="button button1" runat="server" Text="Edit" Width="67px" />
+                        <asp:Button ID="editBtn1" class="btn btn-primary" runat="server" Text="Edit" Width="67px" />
                     </td>
                 </tr>
                 
@@ -171,7 +156,7 @@
                     <td  class="auto-style30">170</td>
                     <td  class="auto-style31">5</td>
                     <td  class="auto-style27">
-                        <asp:Button ID="editBtn2" class="button button1" runat="server" Text="Edit" Width="67px" />
+                        <asp:Button ID="editBtn2" class="btn btn-primary" runat="server" Text="Edit" Width="67px" />
                     </td>
                 </tr>
 
@@ -193,7 +178,7 @@
                     <td  class="auto-style30">10</td>
                     <td  class="auto-style31">1</td>
                     <td  class="auto-style27">
-                        <asp:Button ID="Button1" class="button button1" runat="server" Text="Edit" Width="63px" />
+                        <asp:Button ID="Button1" class="btn btn-primary" runat="server" Text="Edit" Width="63px" />
                     </td>
                 </tr>
             </tbody>
