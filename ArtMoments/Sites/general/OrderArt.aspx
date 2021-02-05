@@ -33,29 +33,6 @@
             align-items: center;
         }
 
-        /*div#wishlistImgDivision{
-            position:relative;
-        }
-
-        div#wishLoveOnDiv, div#wishLoveOffDiv{
-            position: absolute;
-            right:0;
-            top:0;
-            font-size: 20px;
-        }
-
-        i#wishlistLoveOn {
-            display:none;
-        }
-
-        div#wishLoveOnDiv:hover + i#wishlistLoveOn{
-            display:block;
-        }
-
-        div#wishLoveOffDiv:hover + i#wishlistLoveOff{
-            display:none;
-        }*/
-
          div#wishlistBtnDivision                                                                                                                                                     {
             float: right;
             position: relative;
@@ -71,13 +48,62 @@
             margin-top:10px;
         }
 
+        .heading {
+            margin-top: 40px;
+            margin-bottom: 30px;
+            background-color: paleturquoise;
+            color: white;
+            text-shadow: 1px 1px black;
+        }
+
+        .row.sizeCategoryAuthor, .row.descriptionDevision {
+            font-size: 13px;
+            color: darkgray;
+            padding-top: 8px;
+        }
+
+        .row.sizeCategoryAuthorDB, .row.lbldescriptionDivision {
+           margin-top: -5px;
+            font-size: 18px;
+        }
+
+        input#ContentPlaceHolder1_qtyTxtBox {
+            text-align: center;
+        }
+
+        div#qtynPriceDiv {
+            font-size: 18px;
+            margin-top: 30px;
+        }
+
+        div#btnBuyNowDivision {
+            margin-top: 20px;
+        }
+
+        .row.justify-content-center.align-self-center {
+            margin-bottom: 30px;
+            background-color: gainsboro;
+            text-shadow: 1px 1px black;
+            color: white;
+            margin-top: 30px;
+        }
+        
+        div#authorName {
+            font-size: 20px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!-- Heading -->
+    <header>
+        <div class="row justify-content-center heading">
+            <h1 class="orderHistoryHeader">Order History</h1>
+        </div>
+    </header>
     
     <div class="container" id="artOrder">
         <div class="row">
-            <div class="col-xl-6 col-sm-12">
+            <div class="col-xl-6 col-sm-12 artImgDiv">
                <!-- ArtWork Image -->
                 <div class="justify-content-center align-self-center col-12">
                     <div class="artwork-image-division col-12">
@@ -88,7 +114,7 @@
        
             <div class="col-xl-6">
                 <!-- wishlist icon img -->
-                <div class="row" id="wishlistBtnDivision">
+                <div class="row wishlistBtnDivision" id="wishlistBtnDivision">
                     <div id="wishlistOff">
                         <asp:Button ID="btnwishlistOff" runat="server" Text="&#9825;" style="color:red; font-size:55px;background-color:transparent; border:none;" OnClick="btnwishlistOff_Click" CssClass="btnTry" />
                     </div>
@@ -97,14 +123,14 @@
                     </div>
                 </div>
                 <!-- Artwork Name-->
-                <div class="row" id="artworkNameDivision">
+                <div class="row artworkNameDivision" id="artworkNameDivision">
                     <div class="col-12">
                         <h1><asp:Label ID="artworkName" runat="server" Text="artworkName"></asp:Label></h1>
                     </div>
                 </div>
 
-                <!-- artwork display label -->
-                <div class="row">
+                <!-- Size, Category, Author label -->
+                <div class="row sizeCategoryAuthor">
                     <div class="col-4" id="sizeDivision">
                         <label id="sizeTxt">Size</label>
                     </div>
@@ -116,8 +142,8 @@
                     </div>
                 </div>
 
-                <!-- artwork detail from db -->
-                <div class="row">
+                <!-- Size, Category, Author label from db -->
+                <div class="row sizeCategoryAuthorDB">
                     <div class="col-4" id="lblsizeDivision">
                         <asp:Label ID="lblartworkSize" runat="server" Text="M"></asp:Label>
                     </div>
@@ -129,13 +155,14 @@
                     </div>
                 </div>                
                 
-                <div class="row">
+                <!-- artwork description-->
+                <div class="row descriptionDevision">
                     <div class="col-12" id="descriptionDevision">
                         <label id="lbldescripTxt">Description</label>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row lbldescriptionDivision">
                     <div class="col-12" id="lbldescriptionDivision">
                         <asp:Label ID="lblartworkDescription" runat="server" Text="Description"></asp:Label>
                     </div>
@@ -157,27 +184,29 @@
 
                 <!-- Buy now button -->
                 <div class="row">
-                    <div class="col-12" id="btnBuyNowDivision">
+                    <div class="col-12 btnBuyNowDivision" id="btnBuyNowDivision">
                         <asp:LinkButton ID="btnBuyNow" runat="server" OnClick="btnBuyNow_Click" PostBackUrl="../client/OrderHistory.aspx" CssClass="btn btn-primary btn-block">BUY NOW</asp:LinkButton>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
         <!-- Author Information -->
+    <div class="container authorInfoContainer">
         <div class="row justify-content-center align-self-center">
-            <h2 id="authorInfoHeading" style="padding-top:50px;">Author Information</h2>
+            <h2 class="authorInfoHeading" id="authorInfoHeading" style="padding-top:50px;">Author Information</h2>
         </div>
 
         <div class="container justify-content-center">       
-            <div class="row" id="authorInfoDivision"> 
+            <div class="row authorInfoDivision" id="authorInfoDivision"> 
                 <div class="col-5 float-right">
                     <div class="author-pic-image" id="authorpicDivision">
                         <asp:Image ID="authorImage" runat="server" src="../../Content/panda.jpg" alt="Author Profile Pic" />
                     </div>
                 </div>
 
-                <div class="col-7" id="authorName">
+                <div class="col-7 authorName" id="authorName">
                     <asp:Label ID="authorInfoName" runat="server" Text="authorName"></asp:Label>
                 </div>
             </div>
