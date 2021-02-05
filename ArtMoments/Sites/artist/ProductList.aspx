@@ -3,8 +3,8 @@
     <style type="text/css">
         .auto-style1 {
             width: 1138px;
-            border:1px solid black;
             cursor: default;
+            text-align: center;
         }
         .auto-style14 {
             width: 211px;
@@ -61,9 +61,6 @@
         border: 1px solid #ddd; /* Add a grey border */
         margin-bottom: 12px; /* Add some space below the input */
         }
-        .auto-style28 {
-            margin-right: 1px;
-        }
         .auto-style29 {
             width: 70px;
             border: 1px solid black;
@@ -104,42 +101,35 @@
             background-color: gray;
             color: white;
         }
+        div.artworkListHeader{
+            margin-top:10px;
+            margin-bottom:10px;
+            margin-right:0px;
+        }
+        .table-responsive.productListTable{
+            margin-bottom:10px;
+            border: 1px solid #dee2e6;
+        }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="auto-style28">
-        <div class="container">
-            <table>
-                <tr><td class="auto-style22"><h1>Artwork List</h1></td>
-                    <td class="auto-style23">
-                        <asp:Button ID="addProdBtn" class="button button1" runat="server" Text="Add a New Artwork" Height="43px" OnClick="addProdBtn_Click"/>
-                    </td>
-                    </tr>
-                <tr><td class="auto-style33"></td><td class="auto-style32"></td></tr>
-         </table>
-        <%--<nav aria-label="...">
-            <ul class="pagination">
-                <li class="page-item disabled">
-                   <span class="page-link">Previous</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active">
-                 <span class="page-link">
-                       2
-                       <span class="sr-only">(current)</span>
-                 </span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                 <a class="page-link" href="#">Next</a>
-                </li>
-                </ul>
-            </nav>--%>         
+    <div class="container">
+        <div class="row justify-content-md-between artworkListHeader">
+            <div class="col-lg-10 col-md-9 col-sm-8">
+                <h1>Artwork List</h1>
+            </div>
+            <div class="col-lg-2 col-md-3 col-sm-4">
+                <asp:Button ID="Button2" class="btn btn-primary" runat="server" Text="Add a New Artwork" Height="43px" OnClick="addProdBtn_Click"/>
+                
+            </div>
+         </div>          
             
-            <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for Product names.." class="auto-style28"/>
-
-            <table id="prodTable" class="table table-bordered">
-            <thead class="thead-dark">
+        <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for Product names.." class="auto-style28"/>
+        
+        <div class="table-responsive productListTable"> 
+            <table id="prodTable" class="table table-striped table-bordered">
+                <thead class="thead-dark">
                 <tr>
                     <th class="auto-style16" onclick="sortProdTable(0)">Product ID</th>
                     <th class="auto-style1">Product Name</th>
@@ -151,12 +141,11 @@
                     <th class="auto-style31" onclick="sortProdTableNum(5)">Sales</th>
                     <th class="auto-style29">Action</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr>
                     <td  class="auto-style16">P000001</td>
                     <td class="auto-style26"><img src="../../Content/nancy-tillman-my-elephant-friend_u-l-q1awkyfo1zln.jpg" alt="" border="3" class="auto-style18"/>
-
                     </br> <strong>My Elephant Friend</strong> 
                      </br> Our canvas is professionally hand-stretched and layered with protective ink for a superior museum-grade finish. Its mirrored edges give it a reflection-like appearance.
                     </br></br> Size: 141cm x 141 cm  </br>
@@ -170,7 +159,7 @@
                     </td>
                 </tr>
                 
-                <tr>
+                  <tr>
                     <td  class="auto-style16">P000002</td>
                     <td class="auto-style26"><img src="../../Content/tetons-and-the-snake-river-grand-teton-national-park-c-1942_u-l-f3p8uj0.jpg" alt="" border="3" class="auto-style18"/>
                     </br> <strong>Tetons and The Snake River, Grand Teton National Park</strong> 
@@ -208,7 +197,8 @@
                     </td>
                 </tr>
             </tbody>
-            
+            </table>
+        </div>
             <nav aria-label="...">
                 <ul class="pagination">
                 <li class="page-item disabled">
@@ -224,7 +214,6 @@
                 </li>
             </ul>
 </nav>
-            </div>
             </div>
 
     <script>
@@ -340,5 +329,8 @@
                 }
             }
         }
+
+        
     </script>
+   
 </asp:Content>
