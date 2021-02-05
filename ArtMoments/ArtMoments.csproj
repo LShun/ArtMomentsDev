@@ -79,7 +79,6 @@
     <Content Include="Content\Black Deer2.png" />
     <Content Include="Content\boat.jpg" />
     <Content Include="Content\colorful-street.jpg" />
-    <Content Include="Content\css\addArtwork.css" />
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\DisplayImageHover.css" />
@@ -1751,6 +1750,7 @@
     <Content Include="Content\waterfall-blue-petal.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Sites\artist\AddProduct.aspx" />
+    <Content Include="Sites\artist\EditProduct.aspx" />
     <Content Include="Sites\artist\OrderList.aspx" />
     <Content Include="Sites\artist\ProductList.aspx" />
     <Content Include="Content\love-wishlist-red.png" />
@@ -1797,6 +1797,13 @@
     </Compile>
     <Compile Include="Sites\artist\AddProduct.aspx.designer.cs">
       <DependentUpon>AddProduct.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\artist\EditProduct.aspx.cs">
+      <DependentUpon>EditProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\artist\EditProduct.aspx.designer.cs">
+      <DependentUpon>EditProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\artist\OrderList.aspx.cs">
       <DependentUpon>OrderList.aspx</DependentUpon>
