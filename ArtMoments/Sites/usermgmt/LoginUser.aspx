@@ -17,19 +17,17 @@
     <div class="container" ID="Content6">
         
         <div class="myCard">
-            <div class="row">
+            
                 <div class="col-md-10">
                     <i class="fas fa-times"></i>
-                    <div class="myLeftCtn"> 
+                        <div class="myLeftCtn" style="height:0px"> 
                         <form class="myForm text-center">
                             <header style="text-align:center; margin-left:30px">Login your Account</header>
-                            <div class="form-group">
-                                <i class="far fa-user"></i>                                
+                            <div class="form-group">                                                               
                                 <asp:TextBox class="myInput" placeholder="Username" ID="txtUserName" runat="server" OnTextChanged="txtUserName_TextChanged"></asp:TextBox>
                             </div>
 
-                            <div class="form-group">
-                                <i class="fas fa-lock"></i>
+                            <div class="form-group">                                
                                 <asp:TextBox class="myInput" placeholder="Password" ID="txtUserPassword" runat="server" OnTextChanged="txtUserPassword_TextChanged"></asp:TextBox>
                             </div>
 
@@ -45,9 +43,9 @@
                         <asp:HyperLink ID="forgetPassword" runat="server" style="text-align:center;">Forget you password?</asp:HyperLink>
                         </div>
                     </div>
-                </div> 
+                 </div>
             </div>
-        </div>
+       
     </div>
-</div> 
+</div>
 </asp:Content>
