@@ -36,35 +36,51 @@
         }
         .auto-style31 {
             width: 140px;
+            text-align: center;
         }
         .auto-style32 {
             width: 94px;
+            text-align: center;
         }
         .auto-style33 {
             width: 509px;
+            text-align: center;
         }
         .auto-style34 {
             width: 133px;
+            text-align: center;
         }
         .auto-style35 {
             width: 118px;
+            text-align: center;
         }
         .auto-style36 {
             width: 254px;
+            text-align: center;
         }
-        .auto-style37 {
-            width: 146px;
+        .auto-style27 {
+            text-align: center;
+        }
+        div.orderListHeader{
+            margin-top:10px;
+            margin-bottom:10px;
+            margin-left:5px;
+        }
+        .table-responsive.orderListTable{
+            margin-bottom:10px;
+            border: 1px solid #dee2e6;
         }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="auto-style5">
-        <div class="container">
+    <div class="container">
+        <div class="row justify-content-md-between orderListHeader">
 			<h1>Artwork Order</h1>
-			</br>
+	    </div>
 
-			<input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for Artwork names.."/>
-            <table id="orderTable" class="table table-bordered" style="border:1px solid black">
+	    <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for Artwork names.."/>
+        <div class="table-responsive orderListTable"> 
+            <table id="orderTable" class="table table-striped table-bordered" style="border:1px solid black">
 				<thead class="thead-dark">
 					<tr>
 						<th class="auto-style32" onclick="sortOrderTable(0)">Order ID</th>
@@ -74,7 +90,7 @@
                         <th class="auto-style31" onclick="sortOrderTableNum(4)">Subtotal(RM)</th>
 						<th class="auto-style36" onclick="sortOrderTable(5)">Customer</th>
 						<th class="auto-style24">
-                            <asp:DropDownList ID="ddlStatus" runat="server" Font-Bold="True" CssClass="auto-style26" Height="34px" Width="132px" onchange = "filterStatusFunction()">
+                            <asp:DropDownList ID="ddlStatus" runat="server" Font-Bold="True" CssClass="auto-style26" Height="34px" onchange = "filterStatusFunction()">
                                 <asp:ListItem>Status</asp:ListItem>
                                 <asp:ListItem>Pending</asp:ListItem>
                                 <asp:ListItem>Delivering</asp:ListItem>
@@ -82,7 +98,7 @@
                                 <asp:ListItem>Canceled</asp:ListItem>
                             </asp:DropDownList>
                         </th>
-						<th class="auto-style37"><asp:DropDownList ID="ddlDelivery" runat="server" Font-Bold="True" Height="34px" Width="200px" onchange = "filterDeliveryFunction()" CssClass="auto-style26">
+						<th class="auto-style37"><asp:DropDownList ID="ddlDelivery" runat="server" Font-Bold="True" Height="34px" onchange = "filterDeliveryFunction()" CssClass="auto-style26">
                             <asp:ListItem>Delivery Channels</asp:ListItem>
                             <asp:ListItem>Ninja Van</asp:ListItem>
                             <asp:ListItem>Pos Laju</asp:ListItem>
@@ -107,8 +123,8 @@
 					<td class="auto-style25">Completed</td>
 					<td class="auto-style37">Ninja Van</td>
 					<td class="auto-style28">2/1/2021</td>
-			</tr>
-			<tr>
+			    </tr>
+			    <tr>
 					<td class="auto-style32">S100002</td>
 					<td class="auto-style33">Tetons and The Snake River, Grand Teton National Park</td>
 					<td class="auto-style34">Photography</td>
@@ -118,8 +134,8 @@
 					<td class="auto-style1">Delivering</td>
 					<td class="auto-style37">Pos Laju</td>
 					<td class="auto-style29">21/1/2021</td>
-			</tr>
-			<tr>
+			    </tr>
+			    <tr>
 					<td class="auto-style32">S100001</td>
 					<td class="auto-style33">SPHÉROÏDE ARDOISÉE</td>
 					<td class="auto-style34">Sculpture</td>
@@ -129,9 +145,11 @@
 					<td class="auto-style25">Pending</td>
 					<td class="auto-style37">Ninja Van</td>
 					<td class="auto-style28">31/1/2021</td>
-			</tr>
-		</tbody>
-		<nav aria-label="...">
+			    </tr>
+		    </tbody>		
+	    </table>
+        </div>
+        <nav aria-label="...">
                 <ul class="pagination">
                 <li class="page-item disabled">
                     <a class="page-link" href="#" tabindex="-1">Previous</a>
@@ -146,9 +164,7 @@
                 </li>
             </ul>
         </nav>
-	</table>
-        </div>
-        </div>
+    </div>
     <script>
         function sortOrderTable(n) {
             var table, rows, swap, i, x, y, shouldSwap, dir, switchcount = 0;
@@ -265,11 +281,11 @@
         function filterDeliveryFunction() {
             var filterValue, table, tr, td, i, textValue;
             var originalText = "Delivery Channels";
-            filterValue = document.getElementById("ddlDelivery").value;
+            filterValue = document.getElementById("ContentPlaceHolder1_ddlDelivery").value;
             table = document.getElementById("orderTable");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[6];
+                td = tr[i].getElementsByTagName("td")[7];
                 if (td) {
                     textValue = td.innerText;
                     if (originalText.localeCompare(filterValue) == 0) {
@@ -287,11 +303,11 @@
         function filterStatusFunction() {
             var filterValue, table, tr, td, i, textValue;
             var originalText = "Status";
-            filterValue = document.getElementById("ddlStatus").value;
+            filterValue = document.getElementById("ContentPlaceHolder1_ddlStatus").value;
             table = document.getElementById("orderTable");
             tr = table.getElementsByTagName("tr");
             for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[5];
+                td = tr[i].getElementsByTagName("td")[6];
                 if (td) {
                     textValue = td.innerText;
                     if (originalText.localeCompare(filterValue) == 0) {
