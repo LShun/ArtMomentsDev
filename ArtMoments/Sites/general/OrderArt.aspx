@@ -2,6 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Order Artwork</title>
     <link rel="stylesheet" type="text/css" href="../../Content/css/OrderArtCss.css" />
+    <link href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
     <style>
         div#authorpicDivision {
             float: right;
@@ -21,71 +22,154 @@
         div#artworkNameDivision {
             margin-top: 20px;
         }
+
+        .artwork-image-division img {
+            max-width: 400px;
+            max-height: 400px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid black;
+            text-align: center;
+            align-items: center;
+        }
+
+         div#wishlistBtnDivision                                                                                                                                                     {
+            float: right;
+            position: relative;
+         }
+
+        div#wishlistOff,  div#wishlistOn{
+            position: absolute;
+            top: 0;
+            right: 0;
+        } 
+
+        #qtynPriceDiv, #btnBuyNowDivision{
+            margin-top:10px;
+        }
+
+        .heading {
+            margin-top: 40px;
+            margin-bottom: 30px;
+            background-color: paleturquoise;
+            color: white;
+            text-shadow: 1px 1px black;
+        }
+
+        .row.sizeCategoryAuthor, .row.descriptionDevision {
+            font-size: 13px;
+            color: darkgray;
+            padding-top: 8px;
+        }
+
+        .row.sizeCategoryAuthorDB, .row.lbldescriptionDivision {
+           margin-top: -5px;
+            font-size: 18px;
+        }
+
+        input#ContentPlaceHolder1_qtyTxtBox {
+            text-align: center;
+        }
+
+        div#qtynPriceDiv {
+            font-size: 18px;
+            margin-top: 30px;
+        }
+
+        div#btnBuyNowDivision {
+            margin-top: 20px;
+        }
+
+        .row.justify-content-center.align-self-center {
+            margin-bottom: 30px;
+            background-color: gainsboro;
+            text-shadow: 1px 1px black;
+            color: white;
+            margin-top: 30px;
+        }
+        
+        div#authorName {
+            font-size: 20px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!-- Heading -->
+    <header>
+        <div class="row justify-content-center heading">
+            <h1 class="orderHistoryHeader">Order History</h1>
+        </div>
+    </header>
     
     <div class="container" id="artOrder">
         <div class="row">
-            <div class="col-md-6 col-sm-12">
+            <div class="col-xl-6 col-sm-12 artImgDiv">
                <!-- ArtWork Image -->
-                <div class="row justify-content-center align-self-center">
-                    <div class="artwork-image-division">
-                        <asp:Image ID="artworkImage" runat="server" src="../../Content/14019785_00-129-spheroide-noire-01.jpg" class="img-thumbnail" Height="500"/>
+                <div class="justify-content-center align-self-center col-12">
+                    <div class="artwork-image-division col-12">
+                        <asp:Image ID="artworkImage" runat="server" src="../../Content/14019785_00-129-spheroide-noire-01.jpg" class="img-thumbnail" Height="450"/>
                     </div>
                 </div>
             </div>
        
-            <div class="col-md-6">
+            <div class="col-xl-6">
                 <!-- wishlist icon img -->
-                <div class="row" id="wishlistImgDivision">
-                    <!--<asp:Image ID="imgwishlist" runat="server" src="../../Content/love-wishlist-white.png" />-->
+                <div class="row wishlistBtnDivision" id="wishlistBtnDivision">
+                    <div id="wishlistOff">
+                        <asp:Button ID="btnwishlistOff" runat="server" Text="&#9825;" style="color:red; font-size:55px;background-color:transparent; border:none;" OnClick="btnwishlistOff_Click" CssClass="btnTry" />
+                    </div>
+                    <div id="wishlistOn">
+                        <asp:Button ID="btnwishlistOn" runat="server" Text="&#9829;" style="color:red; font-size:55px;background-color:transparent; border:none;" OnClick="btnwishlistOn_Click" visible="false"/>
+                    </div>
                 </div>
                 <!-- Artwork Name-->
-                <div class="row" id="artworkNameDivision">
-                    <h1><asp:Label ID="artworkName" runat="server" Text="artworkName"></asp:Label></h1>
+                <div class="row artworkNameDivision" id="artworkNameDivision">
+                    <div class="col-12">
+                        <h1><asp:Label ID="artworkName" runat="server" Text="artworkName"></asp:Label></h1>
+                    </div>
                 </div>
 
-                <!-- artwork display label -->
-                <div class="row">
-                    <div class="col" id="sizeDivision">
+                <!-- Size, Category, Author label -->
+                <div class="row sizeCategoryAuthor">
+                    <div class="col-4" id="sizeDivision">
                         <label id="sizeTxt">Size</label>
                     </div>
-                    <div class="col" id="categoryDivision">
+                    <div class="col-4" id="categoryDivision">
                         <label id="categoryTxt">Category</label>
                     </div>
-                    <div class="col" id="authorDivision">
+                    <div class="col-4" id="authorDivision">
                         <label id="authorTxt">Author</label>
                     </div>
                 </div>
 
-                <!-- artwork detail from db -->
-                <div class="row">
-                    <div class="col" id="lblsizeDivision">
+                <!-- Size, Category, Author label from db -->
+                <div class="row sizeCategoryAuthorDB">
+                    <div class="col-4" id="lblsizeDivision">
                         <asp:Label ID="lblartworkSize" runat="server" Text="M"></asp:Label>
                     </div>
-                    <div class="col" id="lblcategorryDivision">
+                    <div class="col-4" id="lblcategorryDivision">
                         <asp:Label ID="lblartworkCategory" runat="server" Text="category"></asp:Label>
                     </div>
-                    <div class="col" id="lblauthorDivision">
+                    <div class="col-4" id="lblauthorDivision">
                         <asp:Label ID="lblauthor" runat="server" Text="author"></asp:Label>
                     </div>
                 </div>                
                 
-                <div class="row">
-                    <div class="col" id="descriptionDevision">
+                <!-- artwork description-->
+                <div class="row descriptionDevision">
+                    <div class="col-12" id="descriptionDevision">
                         <label id="lbldescripTxt">Description</label>
                     </div>
                 </div>
 
-                <div class="row">
-                    <div class="col" id="lbldescriptionDivision">
+                <div class="row lbldescriptionDivision">
+                    <div class="col-12" id="lbldescriptionDivision">
                         <asp:Label ID="lblartworkDescription" runat="server" Text="Description"></asp:Label>
                     </div>
                 </div>
                 <!-- quantity & price -->
-                <div class="row">
-                    <div class="col" id="quantityDivision">
+                <div class="row" id="qtynPriceDiv">
+                    <div class="col-6" id="quantityDivision">
                         <div class="quantity">
                             <asp:Button ID="btnMinus" runat="server" Text="-" OnClick="btnMinus_Click" />
                             <asp:TextBox ID="qtyTxtBox" runat="server" Width="55px">1</asp:TextBox>
@@ -93,34 +177,36 @@
                         </div>
                     </div>
 
-                    <div class="col" id="priceDivision">
+                    <div class="auto-style1" id="priceDivision">
                         <asp:Label ID="lblartworkPrice" runat="server" Text="Price: RM "></asp:Label>
                     </div>
                 </div>
 
                 <!-- Buy now button -->
                 <div class="row">
-                    <div class="col" id="btnBuyNowDivision">
-                        <asp:Button ID="btnBuyNow" runat="server" Text="BUY NOW" />
+                    <div class="col-12 btnBuyNowDivision" id="btnBuyNowDivision">
+                        <asp:LinkButton ID="btnBuyNow" runat="server" OnClick="btnBuyNow_Click" PostBackUrl="../client/OrderHistory.aspx" CssClass="btn btn-primary btn-block">BUY NOW</asp:LinkButton>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
         <!-- Author Information -->
+    <div class="container authorInfoContainer">
         <div class="row justify-content-center align-self-center">
-            <h2 id="authorInfoHeading" style="padding-top:50px;">Author Information</h2>
+            <h2 class="authorInfoHeading" id="authorInfoHeading" style="padding-top:50px;">Author Information</h2>
         </div>
 
         <div class="container justify-content-center">       
-            <div class="row" id="authorInfoDivision"> 
+            <div class="row authorInfoDivision" id="authorInfoDivision"> 
                 <div class="col-5 float-right">
                     <div class="author-pic-image" id="authorpicDivision">
                         <asp:Image ID="authorImage" runat="server" src="../../Content/panda.jpg" alt="Author Profile Pic" />
                     </div>
                 </div>
 
-                <div class="col-7" id="authorName">
+                <div class="col-7 authorName" id="authorName">
                     <asp:Label ID="authorInfoName" runat="server" Text="authorName"></asp:Label>
                 </div>
             </div>
@@ -128,35 +214,61 @@
     </div>
 
 
+
         <script type="text/javascript">
-           
+            // ADD & REMOVE WISHLIST
+            //function chgWishlistIcon(){
+            //    var wishlist = document.getElementById("iwishlistLove");
+
+            //    if (wishlist.classList.contains("fa-heart-o")) {
+            //        wishlist.className.replace("fa fa-heart")
+            //    }
+            //}
+            
+            
             // ADD & REMOVE WISHLIST
             var clickRed = 0;
 
-            let wishLove = document.getElementById("love-img");
-            wishLove.addEventListener('click', function () {
-                if (document.getElementById("love-img").src.includes("white")) {
-                    document.getElementById("love-img").src = "../../Content/love-wishlist-red.png";
-                    clickRed = 1;
+            //let onwishlist = document.getElementById("wishlistLoveOn");
+            //let offwishlist = document.getElementById("wishlistLoveOff");
+            let onwishlist= document.getElementById("btnwishlist");
+
+            onwishlist.addEventListener('mouseenter', function () {
+                if (clickRed == 0) {
+                    onwishlist.textContent="&#9829;"
                 }
-                else {
-                    document.getElementById("love-img").src = "../../Content/love-wishlist-white.png";
-                    clickRed = 0;
-                }  
             })
 
-            wishLove.addEventListener('mouseenter', function () {
-                document.getElementById("love-img").src = "../../Content/love-wishlist-red.png";
-            })
+            //wishLove.addEventListener('click', function () {
+            //    if (wishLove.classList.contains('fa fa-heart-o')) {
+            //        wishLove.classList.remove('fa fa-heart-o');
+            //        wishLove.classList.add('fa fa-heart');
+            //        clickRed = 1;
+            //    }
+            //    else {
+            //        wishLove.classList.remove('fa fa-heart');
+            //        wishLove.classList.add('fa fa-heart-o');
+            //        clickRed = 0;
+            //    }  
+            //})
 
-            wishLove.addEventListener('mouseleave', function () {
-                if (clickRed == 1) {
-                    document.getElementById("love-img").src = "../../Content/love-wishlist-red.png";
-                }
-                else {
-                    document.getElementById("love-img").src = "../../Content/love-wishlist-white.png";
-                }
-            })
+            //wishLove.addEventListener('mouseenter', function () {
+            //    if (clickRed == 0) {
+            //        wishLove.classList.removeClass('fa fa-heart-o');
+            //        wishLove.classList.addClass('fa fa-heart');
+            //    }
+            //})
+
+            //wishLove.addEventListener('mouseleave', function () {
+            //    if (clickRed == 1) {
+            //        wishLove.classList.removeClass('fa fa-heart');
+            //        wishLove.classList.addClass('fa fa-heart-o');
+            //    }
+            //    else {
+            //        wishLove.classList.removeClass('fa fa-heart-o');
+            //        wishLove.classList.addClass('fa fa-heart');
+            //    }
+            //})
         </script>
 
 </asp:Content>

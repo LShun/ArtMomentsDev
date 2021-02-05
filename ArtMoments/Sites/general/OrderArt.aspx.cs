@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Data.SqlClient;
 
 namespace ArtMoments.Sites.general
 {
@@ -13,6 +14,8 @@ namespace ArtMoments.Sites.general
         {
            
         }
+
+        public string conString = "Data Source=DESKTOP-8O9S4PC\\SQLEXPRESS;Initial Catalog=ArtMomentsDb;Integrated Security=True";
 
         private int qtyValue;
         protected void btnMinus_Click(object sender, EventArgs e)
@@ -32,5 +35,39 @@ namespace ArtMoments.Sites.general
             qtyValue++;
             qtyTxtBox.Text = qtyValue.ToString();
         }
+
+        protected void btnBuyNow_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        protected void btnwishlistOff_Click(object sender, EventArgs e)
+        {
+           // btnwishlistOn.Enabled = true;
+            btnwishlistOn.Visible = true;
+           //btnwishlistOff.Enabled = false;
+            btnwishlistOff.Visible = false;
+        }
+
+        protected void btnwishlistOn_Click(object sender, EventArgs e)
+        {
+            //btnwishlistOn.Enabled = false;
+            btnwishlistOn.Visible = false;
+            //btnwishlistOff.Enabled = true;
+            btnwishlistOff.Visible = true;
+
+        }
+
+        /*
+         SqlConection con = new SqlConnection (conString);
+        con.Open()
+        if(con.State == System.Data.ConnectionState.Open)
+        {
+            string q = "insert into Test('"+txtID.Text.toString()+ "','" + txtName.Text.ToString()+"')"
+            SqlCommand cmd = new SqlCommand(q,con);
+            cmd.ExecuteNonQuery();
+            MasageBox.Show("Connection made Successfully..!")
+        }
+         */
     }
 }

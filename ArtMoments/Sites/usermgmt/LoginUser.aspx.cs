@@ -6,6 +6,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace ArtMoments.Sites.usermgmt
 {
@@ -18,14 +20,13 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            using (SqlConnection sqlCon = new SqlConnection(@"Data Source =(local)\SQLEXPRESSFJE;
-                    initial Catalog=ArtMomentsDB; Integrated Security = True;"))
+            string connectionString = "Data Source=LAPTOP-RF7VE486\\SQLEXPRESSFJE;Initial Catalog=ArtMomentsDb; Integrated Security=True; User ID=sa;Password=***********";
+            
+            using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
-                String query = "SELECT COUNT(1) FROM dboAMUserData WHERE UserName =@UserName AND UserPassword =@UserPassword";
+                String query = "SELECT COUNT(1) FROM [User] WHERE user_name =@UserName AND user_password =@UserPassword";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
-
-
 
                 sqlCmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
                 sqlCmd.Parameters.AddWithValue("@UserPassword", txtUserPassword.Text.Trim());
@@ -44,6 +45,16 @@ namespace ArtMoments.Sites.usermgmt
                     lblErrorLoginMsg.Visible = true;
                 }
             }
+        }
+
+        protected void txtUserName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void txtUserPassword_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

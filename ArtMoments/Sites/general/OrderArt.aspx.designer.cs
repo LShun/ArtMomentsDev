@@ -24,13 +24,22 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.Image artworkImage;
 
         /// <summary>
-        /// imgwishlist control.
+        /// btnwishlistOff control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image imgwishlist;
+        protected global::System.Web.UI.WebControls.Button btnwishlistOff;
+
+        /// <summary>
+        /// btnwishlistOn control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnwishlistOn;
 
         /// <summary>
         /// artworkName control.
@@ -120,7 +129,7 @@ namespace ArtMoments.Sites.general
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuyNow;
+        protected global::System.Web.UI.WebControls.LinkButton btnBuyNow;
 
         /// <summary>
         /// authorImage control.

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="DisplayArtwork.aspx.cs" Inherits="ArtMoments.Sites.general.Display" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="Display.aspx.cs" Inherits="ArtMoments.Sites.general.Display" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="../../Content/css/DisplayArt.css" rel="stylesheet" />
@@ -61,47 +61,44 @@
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="container">
-        <h2>Artwork Display</h2>
-
-        <div class="table">
-            <div class="row">
-                <div class="col-8" style="text-align: center">
-                    <div class="row">
-                        <div class="col-4">
-                            <asp:Image ID="Image1" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Style="display: flex;" CssClass="auto-style13" />
-                            <div class="table ImgInlineTable" id="Image1Table" style="width: 264px; height: 204px">
-                                <div class="row">
-                                    <div class="col-6">
-                                        <asp:Image ID="Image17" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Height="94px" Width="119px" />
-                                    </div>
-                                    <div class="col-6">
-                                        <asp:Image ID="Image18" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Height="94px" Width="119px" />
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <asp:Image ID="Image19" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Height="94px" Width="119px" />
-                                    </div>
-                                    <div class="col-6">
-                                        <asp:Image ID="Image20" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Height="94px" Width="119px" />
-                                    </div>
-                                </div>
-                            </div>
-                            <br />
-                            <asp:Label ID="Label1" runat="server" Text="Category 1"></asp:Label>
-                        </div>
-                        <div class="col-4">
-                            <asp:Image ID="Image2" runat="server" Style="display: flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
-                            <br />
-                            <asp:Label class="ImgLabel" ID="Label2" runat="server" Text="Category 2"></asp:Label>
-                        </div>
-                        <div class="col-4">
-                            <asp:Image ID="Image3" runat="server" Style="display: flex;" CssClass="auto-style13" ImageUrl="~/Content/artwork-4.jpg" />
-                            <br />
-                            <asp:Label class="ImgLabel" ID="Label3" runat="server" Text="Category 3"></asp:Label>
-                        </div>
-                        <%--                          <div class="col-3">
+  <div class="container">
+    <h2>Artwork Display</h2>
+    
+    <div class="table">
+        <div class="row">
+             <div class="col-10" style="text-align:center">
+                     <div class="row">
+                          <div class="col-4">
+                              <asp:Image ID="Image1" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg"  style="display:flex;" CssClass="auto-style13"/>
+                              <div class="table ImgInlineTable" id="Image1Table" style="width:264px; height:204px">
+                                  <div class="row">
+                                      <div class="col-6"><asp:Image ID="Image17" class="img" runat="server"  ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Height="94px" Width="119px"/>
+                                        </div>
+                                       <div class="col-6"><asp:Image ID="Image18" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Height="94px" Width="119px"/>
+                                        </div>
+                                  </div>
+                                  <div class="row">
+                                      <div class="col-6"><asp:Image ID="Image19" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Height="94px" Width="119px"/>
+                                        </div>
+                                       <div class="col-6"><asp:Image ID="Image20" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Height="94px" Width="119px"/>
+                                        </div>
+                                  </div>
+                              </div>
+                              <br />
+                              <asp:Label ID="Label1" runat="server" Text="Category 1" ></asp:Label>
+                          </div>
+                          <div class="col-4"> 
+                              <asp:ImageButton ID="Image2" runat="server" style="display:flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" PostBackUrl="~/Sites/general/OrderArt.aspx"/>
+                             
+                              <br />
+                              <asp:Label class="ImgLabel" ID="Label2" runat="server" Text="Category 2"></asp:Label>
+                          </div>
+                          <div class="col-4">  
+                              <asp:Image ID="Image3" runat="server"  style="display:flex;" CssClass="auto-style13" ImageUrl="~/Content/artwork-4.jpg" />
+                              <br />
+                              <asp:Label class="ImgLabel" ID="Label3" runat="server" Text="Category 3"></asp:Label>
+                          </div>
+<%--                          <div class="col-3">
                                <asp:Image ID="Image4" runat="server"  style="display:flex;" CssClass="auto-style13" ImageUrl="~/Content/il_570xN.1343115773_kxun.jpg" />
                                <br />
                                <asp:Label class="ImgLabel" ID="Label4" runat="server" Text="Category 4"></asp:Label>

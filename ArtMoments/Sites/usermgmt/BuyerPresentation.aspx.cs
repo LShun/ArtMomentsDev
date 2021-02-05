@@ -11,15 +11,15 @@ namespace ArtMoments.Sites.usermgmt
 {
     public partial class BuyerPresentation : System.Web.UI.Page
     {
-        String connectionString = @"Data Source =(local)\SQLEXPRESSFJE;
-                    initial Catalog=artMomentDB; Integrated Security = True;";
+        string connectionString = "Data Source=LAPTOP-RF7VE486\\SQLEXPRESSFJE;Initial Catalog=ArtMomentsDb; Integrated Security=True; User ID=sa;Password=***********";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
                 if (Session["UserName"] == null)
                 {
-                    Response.Redirect("PreLogin.html");
+                    Response.Redirect("PreLogin.aspx");
                 }
 
                 String tbUserName = Session["UserName"].ToString();
@@ -28,7 +28,7 @@ namespace ArtMoments.Sites.usermgmt
                 {
                     sqlCon.Open();
                     //@UserID, @UserName, @UserPassword, @UserConfirmedPassword, @UserEmail, @Bibliography, @UserContactNo, @UserAddress
-                    String query = "SELECT * FROM dboAMUserData WHERE UserName = @UserName";
+                    String query = "SELECT * FROM [User] WHERE user_name = @UserName";
                     SqlCommand cmd = new SqlCommand(query, sqlCon);
 
                     cmd.Parameters.AddWithValue("@UserName", tbUserName);
@@ -38,13 +38,13 @@ namespace ArtMoments.Sites.usermgmt
                     {
                         while (dr.Read())
                         {
-                            tbBibliography.Text = dr.GetValue(7).ToString();
+                            tbBibliography.Text = dr.GetValue(5).ToString();
                             if (tbBibliography.Text == "")
                             {
                                 tbBibliography.Text = "Enter your bibliography to let others know you better";
                             }
 
-                            tbProfilePic.Text = dr.GetValue(8).ToString();
+                            tbProfilePic.Text = dr.GetValue(6).ToString();
 
                             if (tbProfilePic.Text == "")
                             {
