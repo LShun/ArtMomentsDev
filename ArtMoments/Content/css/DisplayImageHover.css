@@ -1,0 +1,182 @@
+﻿* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.containerRow1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+@media (max-width: 968px) {
+    containerRow1 {
+        flex-wrap: wrap;
+    }
+}
+
+.containerRow1 .imgItem {
+    position: relative;
+    width: 240px;
+    height: 240px;
+    cursor: pointer;
+    z-index: 0;
+    margin: 5%;
+}
+
+@media (max-width: 968px) {
+    .containerRow1 .imgItem {
+        width: 100%;
+    }
+}
+
+.containerRow1 .imgItem .imgLabel {
+    height: 100%;
+    width: 100%;
+    border: 0.2em solid #e8e8ee;
+    display: flex;
+    align-items: flex-end;
+    padding: 0.2em 1em;
+    border-radius: 5%;
+    transform: rotate(0) scale(1);
+    transition: all 0.2s cubic-bezier(0.28, 0.05, 0.65, 0.97);
+    box-shadow: 0 0 0 0 rgb(0 0 0 30%);
+    background-image: url('../art-paint-brush.jpg');
+}
+
+    .containerRow1 .imgItem .imgLabel h2 {
+        font-weight: 600;
+        color: #5a5863;
+        transition: all 0.3s cubic-bezier(0.28, 0.05, 0.65, 0.97);
+    }
+
+    .containerRow1 .imgItem .imgLabel:after {
+        position: absolute;
+        bottom: -0.2em;
+        right: -0.1em;
+        content: "";
+        width: calc(100% + 4px);
+        height: 0.05em;
+        background:#5a5863;
+        border-radius: 0 0 5em 5em;
+        transition: all 0.3s cubic-bezier(0.28, 0.05, 0.65, 0.97);
+    }
+
+.containerRow1 .imgItem .imgPreviews {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+}
+
+    .containerRow1 .imgItem .imgPreviews:nth-child(2) .preview-image {
+        right: 0;
+    }
+
+    .containerRow1 .imgItem .imgPreviews .preview-image {
+        width: 50%;
+        height: 8em;
+        transition: all 0.2s cubic-bezier(0.28, 0.05, 0.65, 0.97);
+        position: absolute;
+        bottom: 1em;
+        left: 0;
+        overflow: hidden;
+        border-radius: 2%;
+        box-shadow: 0 0 0 0 rgb(0 0 0 30%);
+    }
+
+        .containerRow1 .imgItem .imgPreviews .preview-image img {
+            width: 140%;
+        }
+
+.containerRow1 .imgItem:hover {
+    z-index: 5;
+}
+
+
+.containerRow1 .imgItem:hover{
+    z-index: 5;
+}
+
+
+
+    .containerRow1 .imgItem:hover .imgLabel {
+        background: #5a5863;
+        border: 2px solid #5a5863;
+        transform: rotate(0) scale(1.2);
+        animation: shake 0.4s 1;
+        animation-delay: 0.4s;
+        box-shadow: -27px 18px 80px 0 rgba(0, 0, 0, 0.3);
+        transition: all 0.3s cubic-bezier(0.28, 0.05, 0.65, 0.97);
+    }
+
+        .containerRow1 .imgItem:hover .imgLabel:after {
+            width: 0;
+            transition: all 0.3s cubic-bezier(0.28, 0.05, 0.65, 0.97);
+        }
+
+        .containerRow1 .imgItem:hover .imgLabel h2 {
+            color: #e8e8ee;
+            transition: all 0.3s cubic-bezier(0.28, 0.05, 0.65, 0.97);
+        }
+
+    .containerRow1 .imgItem:hover .imgPreviews .preview-image {
+        transition: all 0.2s cubic-bezier(0.28, 0.05, 0.65, 0.97);
+        box-shadow: -8px 5px 30px 0 rgba(0, 0, 0, 0.2);
+    }
+
+        .containerRow1 .imgItem:hover .imgPreviews .preview-image:nth-child(1) {
+            transform: rotate(26712518291deg) translate(-120px,120px);
+            transition-delay: 0.4s;
+        }
+
+        .containerRow1 .imgItem:hover .imgPreviews .preview-image:nth-child(2) {
+            transform: rotate(42556957979deg) translate(-120px, 0);
+            transition-delay: 0.45s;
+        }
+
+        .containerRow1 .imgItem:hover .imgPreviews .preview-image:nth-child(3) {
+            transform: rotate(21832035593deg) translate(-40px, 100px);
+            transition-delay: 0.55s;
+        }
+
+        .containerRow1 .imgItem:hover .imgPreviews .preview-image:nth-child(4) {
+            transform: rotate(36585971027deg) translate(-170px, 90px);
+            transition-delay: 0.5s;
+        }
+
+        .containerRow1 .imgItem:hover .imgPreviews .preview-image:nth-child(5) {
+            transform: rotate(44966596763deg) translate(-70px, -200px);
+            transition-delay: 0.6s;
+        }
+
+@keyframes shake {
+    0% {
+        transform: rotate(3deg) scale(1.2);
+    }
+
+    20% {
+        transform: rotate(-3deg) scale(1.2);
+    }
+
+    40% {
+        transform: rotate(3deg) scale(1.2);
+    }
+
+    60% {
+        transform: rotate(-3deg) scale(1.2);
+    }
+
+    80% {
+        transform: rotate(3deg) scale(1.2);
+    }
+
+    100% {
+        transform: rotate(0) scale(1.2);
+    }
+}
+
