@@ -3,41 +3,8 @@
      <title></title>
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <style type="text/css">
-        .auto-style1 {
-            margin-left:40px;
-            margin-top:90px;
-                height: 6px;
-            }
-        .auto-style2 {
-            height: 6px;
-            width: 320px;
-        }
-        .auto-style4 {
-            height: 27px;
-            width: 100%;
-        }
-        .auto-style5 {
-            height: 27px;
-            width: 320px;
-        }
-        .auto-style7 {
-            width:130px;
-            height: 40px;
-        }
-        .auto-style8 {
-            width:130px;
-            height: 40px;
-            background-color: #FFFFFF; 
-            border-color: #FFFFFF;
-        }
-        .auto-style9 {
-            margin-left: 40px;
-        }
-        .auto-style10 {
-            margin-left: 160px;
-        }
-            </style>
+    <link href="../../Content/css/SignUp.css" rel="stylesheet" />
+
 </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -62,27 +29,46 @@
 		                <div class="col-md-12">
 		                    <div>
                               <div class="form-group row">
-                                <asp:Label CssClass="auto-style9" ID="Label8" runat="server" Text="Bibliography"></asp:Label>
+                                <label for="website" class="col-4 col-form-label">Bibliography</label> 
                                 <div class="col-8">
-                                  <asp:TextBox CssClass="auto-style9" ID="tbBibliography" runat="server" ReadOnly="False" OnTextChanged="tbBibliography_TextChanged"></asp:TextBox>
+                                  <asp:TextBox ID="tbBibliography" runat="server" ReadOnly="False" OnTextChanged="tbBibliography_TextChanged"></asp:TextBox>
                                 </div>
                               </div>
                               <div class="form-group row">
-                                <asp:Label CssClass="auto-style9" ID="Label9" runat="server" Text="Profile Picture"></asp:Label>
+                                <label for="website" class="col-4 col-form-label">Profile Picture</label> 
                                 <div class="col-8">
-                                  <asp:TextBox CssClass="auto-style9" ID="tbProfilePic" runat="server" ReadOnly="False" OnTextChanged="tbProfilePic_TextChanged1"></asp:TextBox>
-                                  <br /><br />
-                                    <asp:Image CssClass="auto-style9" ID="Image1" runat="server" Height="199px" Width="199px" />
-                                    <br />
-                                    <br />
-                                    <asp:Label ID="lblSuccessMessage" runat="server" Text=""></asp:Label>
+                                  <asp:FileUpload ID="FileUpload1" runat="server" />
+
+                                    <hr />
+        <asp:GridView ID="gvImages" runat="server" AutoGenerateColumns="False" OnRowDataBound="OnRowDataBound" BackColor="#DEBA84" BorderColor="#DEBA84" BorderStyle="None" BorderWidth="1px" CellPadding="3" CellSpacing="2" DataKeyNames="id" DataSourceID="SqlDataSource1" OnSelectedIndexChanged="Upload">
+        <Columns>
+            <asp:BoundField DataField="profile_pic" HeaderText="Profile Pic" />
+        </Columns>
+            <FooterStyle BackColor="#F7DFB5" ForeColor="#8C4510" />
+            <HeaderStyle BackColor="#A55129" Font-Bold="True" ForeColor="White" />
+            <PagerStyle ForeColor="#8C4510" HorizontalAlign="Center" />
+            <RowStyle BackColor="#FFF7E7" ForeColor="#8C4510" />
+            <SelectedRowStyle BackColor="#738A9C" Font-Bold="True" ForeColor="White" />
+            <SortedAscendingCellStyle BackColor="#FFF1D4" />
+            <SortedAscendingHeaderStyle BackColor="#B95C30" />
+            <SortedDescendingCellStyle BackColor="#F1E5CE" />
+            <SortedDescendingHeaderStyle BackColor="#93451F" />
+    </asp:GridView>
+                                    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT * FROM [User] WHERE ([user_name] = @user_name)">
+                                        <SelectParameters>
+                                            <asp:SessionParameter Name="user_name" SessionField="UserName" Type="String" />
+                                        </SelectParameters>
+                                    </asp:SqlDataSource>
+<div id="dialog" style="display: none">
+</div>
+
                                 </div>
                               </div>                            
                              
                               <div class="form-group row">
                                 <div class="offset-4 col-8">
-                                  <asp:Button class="btn btn-primary" ID="btnEdit" runat="server" Text="Edit" OnClick="Button1_Click" CssClass="buttonEditStyle"/>
-                                </div>
+                                    <asp:Button ID="btnUpload" runat="server" Text="Save" OnClick="Upload" CssClass="buttonEditStyle" />
+                                  </div>
                               </div>
                             </div>
 		                </div>
@@ -91,6 +77,27 @@
 		        </div>
 		    </div>
         </div>
-    </div>
+    </div>       
 </div>
+
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#dialog").dialog({
+                autoOpen: false,
+                modal: true,
+                height: 600,
+                width: 600,
+                title: "Zoomed Image"
+            });
+            $("[id*=gvImages] img").click(function () {
+                $('#dialog').html('');
+                $('#dialog').append($(this).clone());
+                $('#dialog').dialog('open');
+            });
+        });
+    </script>
+
+
 </asp:Content>
