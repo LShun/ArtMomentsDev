@@ -1,13 +1,112 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="AddProduct.aspx.cs" Inherits="ArtMoments.Sites.artist.AddProduct" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="../../Content/css/addArtwork.css" rel="stylesheet" />
-	<script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <style type="text/css">
-        .auto-style1 {
-            width: 500px;
-			
-        }
-    </style>
+<style type="text/css">
+    .auto-style1 {
+        width: 500px;
+
+    }
+    .addArtwork input[type=text], input[type=email], input[type=tel], select, textarea{
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-size: 16px;
+        background-color: #EEEEEE;
+        outline: none;
+    }
+
+    .addArtwork input[type=text]:focus, input[type=email]:focus, input[type=tel]:focus, select:focus, textarea:focus {
+        border: 1px solid #871414;
+        background-color: #ddd;
+    }
+
+    label {
+        padding: 12px 12px 12px 0;
+        display: inline-block;
+        font-size: 16px;
+    }
+
+
+    input[type=submit] {
+        border: none;
+        color: white;
+        opacity: 0.8;
+        font-size: 17px;
+        padding: 12px 20px;
+        margin-right: 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        float: right;
+    }
+    input[type=submit]:hover {
+        opacity: 1;
+    }
+
+    input[type='file'] {
+        border: 3px dashed #999;
+        cursor: move;
+        display: block;
+        font-size: 0px;
+        filter: alpha(opacity=0);
+        min-height: 160px;
+        min-width: 300px;
+        opacity: 1;
+        position: absolute;
+        right: 0;
+        text-align: right;
+        top: 0;
+        background: transparent;
+        z-index: -99999999999999;
+    }
+    .rowImgTable {
+        height: 365px;
+    }
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        /*padding: 75px 75px 75px 75px;*/
+        width: 300px;
+        height: 300px;
+        cursor: pointer;
+        /*position: absolute;*/
+        /*top: 83px;
+        left: 50%;*/
+        z-index: 9999;
+        margin-top: 15px;
+        margin-bottom: 15px;
+    }
+    .custom-file-upload::after {
+        display: none;
+    }
+
+/*.imageLabel {
+    align-self: flex-end;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}*/
+
+    #imgTable {
+        position: relative;
+        width: 1050px;
+        float: left;
+        height: 800px;
+        display: flex;
+    }
+    .imgLabel {
+        text-align:center;
+    
+    }
+
+    /* Clear floats after the columns */
+    .addArtwork .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="addArtwork">  
@@ -17,14 +116,14 @@
 				<div class="col-2">
 					<label for="artworkName">Artwork Title*:</label> </div>
 				<div class="col-10">
-					<asp:TextBox ID="artworkName" runat="server" required="required"></asp:TextBox>
+					<asp:TextBox ID="artworkName" runat="server" ></asp:TextBox>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-2">
 					<label for="artworkSize">Artwork Size*:</label> </div>
 				<div class="col-10">
-					<asp:TextBox ID="artworkSize" placeholder="122cm x 91cm" required="required" runat="server"></asp:TextBox>
+					<asp:TextBox ID="artworkSize" placeholder="122cm x 91cm" runat="server"></asp:TextBox>
 				</div>
 			</div>
 			<div class="row">
@@ -65,7 +164,7 @@
 					<div class="col-2">
 						<label for="artworkPrice">Artwork Price (RM)*:</label> </div>
 					<div class="col-10">
-						<input id="artworkPrice" name="artworkPrice" required="required" type="text"/>
+						<input id="artworkPrice" name="artworkPrice" type="text"/>
 					</div>
 
 				</div>
@@ -73,13 +172,12 @@
 					<div class="col-2">
 						<label for="artworkStock">Artwork Stock*:</label> </div>
 					<div class="col-10">
-						<input id="artworkStock" name="artworkStock" required="required" type="text" onkeypress="return onlyNumberKey(event)"/>
+						<input id="artworkStock" name="artworkStock" type="text" onkeypress="return onlyNumberKey(event)"/>
 					</div>
 				</div>
 				<div class="row">		
-					<asp:Button ID="submitAddProdBtn" class="button button1" runat="server" Text="Save & Create" OnClick="saveProdBtn_Click"/>
-					<asp:Button ID="resetAddProdBtn" class="button button1" runat="server" Text="Reset" OnClick="resetProdBtn_Click"/>
-	
+					<asp:Button ID="submitAddProdBtn" class="btn btn-primary" runat="server" Text="Save & Create" OnClick="saveProdBtn_Click"/>
+					<asp:Button ID="resetAddProdBtn" class="btn btn-primary" runat="server" Text="Reset" OnClick="resetProdBtn_Click"/>
 				</div>
 
             </div>
