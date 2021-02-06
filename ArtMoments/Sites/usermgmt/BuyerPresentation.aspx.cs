@@ -43,18 +43,21 @@ namespace ArtMoments.Sites.usermgmt
                             {
                                 tbBibliography.Text = "Enter your bibliography to let others know you better";
                             }
-
-                            tbProfilePic.Text = dr.GetValue(6).ToString();
-
-                            if (tbProfilePic.Text == "")
-                            {
-                                tbProfilePic.Text = "Click edit to insert your image url";
-                            }
-                            else
-                            {
-                                Image1.ImageUrl = tbProfilePic.Text;
-                            }
                         }
+                    }
+                }
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string UserName = Session["UserName"].ToString();
+
+                    using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM [User] WHERE user_name = @UserName", conn))
+                    {
+                        //sqlDa.SelectCommand.Parameters.AddWithValue("@UserID", userID);
+                        sda.SelectCommand.Parameters.AddWithValue("@UserName", UserName);
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        gvImages.DataSource = dt;
+                        gvImages.DataBind();
                     }
                 }
             }
@@ -88,6 +91,20 @@ namespace ArtMoments.Sites.usermgmt
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("BuyerPresentationEdit.aspx");
+        }
+
+        protected void gvImages_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                DataRowView dr = (DataRowView)e.Row.DataItem;
+                string imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])dr["profile_pic"]);
+                (e.Row.FindControl("Image1") as Image).ImageUrl = imageUrl;
+            }
         }
     }
 }
