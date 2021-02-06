@@ -20,12 +20,27 @@ namespace ArtMoments.Sites.usermgmt
             {
                 if (Session["UserName"] == null)
                 {
-                    Response.Redirect("PreLogin.html");
+                    Response.Redirect("PreLogin.aspx");
                 }
             }
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void TextBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void TextBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void TextBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void btnSave_Click(object sender, EventArgs e)
         {
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
@@ -66,26 +81,11 @@ namespace ArtMoments.Sites.usermgmt
                 sqlCmd.Parameters.AddWithValue("@NewConPassword", tbNewConPassword.Text);
 
                 sqlCmd.ExecuteNonQuery();
-                lblSuccessMessage.Text = "Changed to new password successfully";
+                //lblSuccessMessage.Text = "Changed to new password successfully";
                 //RedirectAfterDelayFn();
                 sqlCon.Close();
                 Response.Redirect("BuyerSetting.aspx");
             }
-        }
-
-        protected void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void TextBox2_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void TextBox3_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }
