@@ -18,12 +18,12 @@
                         <form class="myForm text-center">
                             <header>Create new account</header>
                             <div class="form-group">
-                                <i class="far fa-user"></i>                                
+                                <i class="fas fa-user"></i>                                
                                 <asp:TextBox class="myInput" placeholder="Username" ID="txtUserName" runat="server"></asp:TextBox>
                             </div>
 
                             <div class="form-group">
-                                <i class="far fa-envelope"></i>
+                                <i class="fas fa-envelope"></i>
                                 <asp:TextBox class="myInput" placeholder="Email" ID="txtUserEmail" runat="server"></asp:TextBox>
                             </div>
 
