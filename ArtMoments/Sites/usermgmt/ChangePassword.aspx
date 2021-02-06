@@ -1,72 +1,63 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="ChangePassword.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.ChangePassword" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 309px;
-        }
-        .auto-style2 {
-            width: 309px;
-            height: 29px;
-        }
-        .auto-style3 {
-            height: 29px;
-        }
-        .auto-style4 {
-            margin-left: 400px;
-            width: 90px;
-            height: 40px;
-        }
-        .auto-style5 {
-            width: 490px;
-        }
-    </style>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="../../Content/css/SignUp.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <form id="form1" runat="server">
-        <div>
-            <table>
-                <tr>
-                    <td class="auto-style5">
-                        <asp:Label ID="Label1" runat="server" Text="Change Password"></asp:Label>
-                        <table>
-                            <tr>
-                                <td class="auto-style1">
-                                    <asp:Label ID="Label2" runat="server" Text="Enter current password: "></asp:Label>
+    <div class="container">
+	<div class="row">
+		<div class="col-md-3 ">
+		     <div class="list-group ">
+              <a href="BuyerAccount.aspx"  class="list-group-item list-group-item-action">My Account</a>
+              <a href="BuyerSetting.aspx" class="list-group-item list-group-item-action active">Setting</a>
+              <a href="BuyerPresentation.aspx"  class="list-group-item list-group-item-action">Presentation</a>              
+              
+            </div> 
+		</div>
+		<div class="col-md-9">
+		    <div class="card">
+		        <div class="card-body">
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <hr>
+		                </div>
+		            </div>
+		            <div class="row">
+		                <div class="col-md-12">
+		                    <div>                         
+                              <div class="form-group row">   
+                                  <label for="currentPw" class="col-4 col-form-label">Current password: </label>                                               
+                                <div class="col-8">
+                                     <asp:TextBox ID="tbPassword" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+                                 </div>
+                              </div>
+                              <div class="form-group row"> 
+                                  <label for="newPw" class="col-4 col-form-label">New password: </label> 
+                                  <div class="col-8">
+                                     <asp:TextBox ID="tbNewPassword" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+                              </div>
+                              </div>
+                              <div class="form-group row">   
+                                  <label for="conNewPw" class="col-4 col-form-label">Confirmed password: </label>         
+                              <div class="col-8">
+                                  <asp:TextBox ID="tbNewConPassword" runat="server" OnTextChanged="TextBox3_TextChanged"></asp:TextBox>
+                              </div>
+                              </div>
 
-                                </td>
-                                <td>
-                                    <asp:TextBox ID="tbPassword" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="auto-style1">
-                                    <asp:Label ID="Label3" runat="server" Text="Enter new password: "></asp:Label>
-
-                                </td>
-                                <td>
-                                    <asp:TextBox ID="tbNewPassword" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
-
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="auto-style2"> 
-                                    <asp:Label ID="Label4" runat="server" Text="Confirmed new password: "></asp:Label>
-                                </td>
-                                <td class="auto-style3">
-                                    <asp:TextBox ID="tbNewConPassword" runat="server" OnTextChanged="TextBox3_TextChanged"></asp:TextBox>
-
-                                </td>
-                            </tr>
-                        </table>
-                        <br />
-                        <asp:Label ID="lblSuccessMessage" runat="server"></asp:Label>
-                        <br />
-                        <asp:Button class="auto-style4" ID="Button1" runat="server" Text="Save" OnClick="Button1_Click" />
-                    </td>
-                </tr>
-            </table>
-        </div>
-    </form>
+                              <div class="form-group row">
+                                <div class="offset-4 col-8">
+                                  <asp:Button class="btn btn-primary" ID="btnSave" runat="server" Text="Save" CssClass="buttonEditStyle" OnClick="btnSave_Click"/>
+                                </div>
+                              </div>
+                            </div>
+		                </div>
+		            </div>
+		            
+		        </div>
+		    </div>
+		</div>
+	</div>
+</div>
 </asp:Content>
