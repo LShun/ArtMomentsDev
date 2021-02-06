@@ -27,9 +27,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id ="Content8">
     <div class="container" id="Content7" >  
-                <div class="col-md-10">
-                    <i class="fas fa-times"></i>
-                    <div class="myLeftCtn"> 
+                    <div class="myLeftCtn" style="padding-left: 25px; text-align: center;"> 
                         <form class="myForm text-center">
                             <div class="form-group">
                                 <asp:Label ID="Label1" runat="server" Text="Registration successful!" CssClass="makecenter"></asp:Label>
