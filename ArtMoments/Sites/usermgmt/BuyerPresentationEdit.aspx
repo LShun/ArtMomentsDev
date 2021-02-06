@@ -5,6 +5,14 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
+    <link href="../../Content/css/SignUp.css" rel="stylesheet" />
+    
+    <style type="text/css">
+        .auto-style1 {
+            left: 0px;
+            top: 0px;
+        }
+    </style>
     
 </asp:Content>
 
@@ -35,23 +43,27 @@
                                   <asp:TextBox ID="tbBibliography" runat="server" OnTextChanged="tbBibliography_TextChanged" ReadOnly="True" BorderStyle="None"></asp:TextBox>
                                 </div>
                               </div>
-                                <asp:FileUpload ID="FileUpload1" runat="server" />                                
-                                <hr />
-                                <asp:GridView ID="gvImages" runat="server" AutoGenerateColumns="false" OnRowDataBound="OnRowDataBound">
-                                    <Columns>            
-                                        <asp:TemplateField HeaderText="Image">
-                                            <ItemTemplate>
-                                                <asp:Image ID="Image1" runat="server" />
-                                            </ItemTemplate>
-                                        </asp:TemplateField>
-                                    </Columns>
-                                </asp:GridView>
-                                <br />
-                                <asp:Button ID="btnUpload" runat="server" OnClick="Upload" Text="Upload" />
-                                <div id="dialog" style="display: none">
+                                <div class="form-group row">
+                                <label for="website" class="col-4 col-form-label">Profile Picture</label> 
+                                <div class="col-8">
+                                    <asp:FileUpload ID="FileUpload1" runat="server"/>                                
+                                    <hr />
+                                    <asp:GridView ID="gvImages" runat="server" AutoGenerateColumns="false" OnRowDataBound="OnRowDataBound">
+                                        <Columns>            
+                                            <asp:TemplateField HeaderText="Image">
+                                                <ItemTemplate>
+                                                    <asp:Image ID="Image1" runat="server" />
+                                                </ItemTemplate>
+                                            </asp:TemplateField>
+                                        </Columns>
+                                    </asp:GridView>
+                                    <br />
+                                    <asp:Button ID="btnUpload" runat="server" OnClick="Upload" Text="Save" />
+                                    <div id="dialog" style="display: none">
+                                    </div>
+                                    </div>
                                 </div>
                             </div>
-
 		                </div>
 		            </div>
 		            
