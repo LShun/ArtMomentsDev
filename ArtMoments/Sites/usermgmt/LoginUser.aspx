@@ -19,7 +19,7 @@
         <div class="myCard">
             
                 <div class="col-md-10">
-                    <i class="fas fa-times"></i>
+                    
                         <div class="myLeftCtn" style="height:0px"> 
                         <form class="myForm text-center">
                             <header style="text-align:center; margin-left:30px">Login your Account</header>
