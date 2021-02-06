@@ -35,9 +35,15 @@
                               <div class="form-group row">
                                   <label for="website" class="col-4 col-form-label">Profile Picture</label> 
                                 <div class="col-8">
-                                  <asp:TextBox ID="tbProfilePic" runat="server" OnTextChanged="tbProfilePic_TextChanged1" ReadOnly="True" BorderStyle="None"></asp:TextBox>
-                                  <br /><br />
-                                    <asp:Image ID="Image1" runat="server" Height="199px" Width="199px" />
+                                  <asp:GridView ID="gvImages" runat="server" AutoGenerateColumns="false" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="gvImages_SelectedIndexChanged">
+                                    <Columns>            
+                                        <asp:TemplateField HeaderText="Image">
+                                            <ItemTemplate>
+                                                <asp:Image ID="Image1" runat="server" />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                    </Columns>
+                                </asp:GridView>
                                 </div>
                               </div>                            
                              
