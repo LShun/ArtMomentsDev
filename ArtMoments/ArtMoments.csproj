@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\ArtMomentsDb.mdf" />
     <Content Include="Content\14019785_00-129-spheroide-noire-01.jpg" />
     <Content Include="Content\187803-200.png" />
     <Content Include="Content\8585-mur-africa-met.jpg" />
@@ -2004,7 +2005,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
-    <Folder Include="App_Data\" />
     <Folder Include="App_Themes\Theme1\" />
   </ItemGroup>
   <PropertyGroup>
