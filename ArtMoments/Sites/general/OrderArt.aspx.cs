@@ -15,7 +15,7 @@ namespace ArtMoments.Sites.general
            
         }
 
-        public string conString = "Data Source=DESKTOP-8O9S4PC\\SQLEXPRESS;Initial Catalog=ArtMomentsDb;Integrated Security=True";
+        public string conString = "Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=True";
 
         private int qtyValue;
         protected void btnMinus_Click(object sender, EventArgs e)
@@ -43,17 +43,13 @@ namespace ArtMoments.Sites.general
 
         protected void btnwishlistOff_Click(object sender, EventArgs e)
         {
-           // btnwishlistOn.Enabled = true;
             btnwishlistOn.Visible = true;
-           //btnwishlistOff.Enabled = false;
             btnwishlistOff.Visible = false;
         }
 
         protected void btnwishlistOn_Click(object sender, EventArgs e)
         {
-            //btnwishlistOn.Enabled = false;
             btnwishlistOn.Visible = false;
-            //btnwishlistOff.Enabled = true;
             btnwishlistOff.Visible = true;
 
         }

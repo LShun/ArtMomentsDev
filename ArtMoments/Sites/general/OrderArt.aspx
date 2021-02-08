@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Order Artwork</title>
     <link rel="stylesheet" type="text/css" href="../../Content/css/OrderArtCss.css" />
-    <link href='http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
     <style>
         div#authorpicDivision {
             float: right;
@@ -85,6 +85,77 @@
         
         div#authorName {
             font-size: 20px;
+        }
+
+       .col-xl-6, .col-sm-12, .col-md-12, col-12,col-4, col-5, col-7, col-6{
+            position:relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+       div{
+           display:block;
+       }
+
+        @media (min-width: 1200px).col-xl-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+        }
+
+        @media (min-width: 768px)
+        .container, .container-md, .container-sm {
+            max-width: 720px;
+        }
+
+        @media (min-width: 768px)
+        .col-md-12 {
+            -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        .btn-primary{
+            color:#fff;
+            background-color:#007bff;
+            border-color:#007bff
+        }
+
+        .btn-block{
+            display:block;
+            width:100%;
+        }
+
+        .float-right{
+            float:right!important;
+        }
+
+        .row {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .rounded {
+            border-radius: .25rem!important;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .justify-content-center {
+            justify-content: center!important;
+        }
+
+        @media (min-width: 576px)
+        .align-content-sm-center {
+            align-content: center!important;
         }
     </style>
 </asp:Content>
@@ -212,20 +283,6 @@
 
 
         <script type="text/javascript">
-           
-            
-            
-            //// ADD & REMOVE WISHLIST
-            //var clickRed = 0;
-
-            ////let onwishlist = document.getElementById("wishlistLoveOn");
-            ////let offwishlist = document.getElementById("wishlistLoveOff");
-            //let wishlistCover = document.getElementsByClassName("btnOff");
-
-            //wishlistCover.addEventListener('mouseenter', function () {
-            //    this.textContent = "\2665";
-            //})
-
 
         </script>
 

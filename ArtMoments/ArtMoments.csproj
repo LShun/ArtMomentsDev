@@ -67,7 +67,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\ArtMomentsDb.mdf" />
     <Content Include="Content\14019785_00-129-spheroide-noire-01.jpg" />
     <Content Include="Content\187803-200.png" />
     <Content Include="Content\8585-mur-africa-met.jpg" />
@@ -1995,6 +1994,7 @@
     <Content Include="Content\fontawesome\webfonts\fa-solid-900.ttf" />
     <Content Include="Content\fontawesome\webfonts\fa-solid-900.woff" />
     <Content Include="Content\fontawesome\webfonts\fa-solid-900.woff2" />
+    <Content Include="App_Data\ArtMomentsDb.mdf-RENAME" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
