@@ -33,19 +33,14 @@
             align-items: center;
         }
 
-         div#wishlistBtnDivision                                                                                                                                                     {
-            float: right;
-            position: relative;
-         }
-
         div#wishlistOff,  div#wishlistOn{
             position: absolute;
-            top: 0;
+            top: -20px;
             right: 0;
         } 
 
-        #qtynPriceDiv, #btnBuyNowDivision{
-            margin-top:10px;
+        input#ContentPlaceHolder1_btnwishlistOff:hover {
+            -webkit-text-fill-color:red;
         }
 
         .heading {
@@ -113,20 +108,21 @@
             </div>
        
             <div class="col-xl-6">
-                <!-- wishlist icon img -->
-                <div class="row wishlistBtnDivision" id="wishlistBtnDivision">
-                    <div id="wishlistOff">
-                        <asp:Button ID="btnwishlistOff" runat="server" Text="&#9825;" style="color:red; font-size:55px;background-color:transparent; border:none;" OnClick="btnwishlistOff_Click" CssClass="btnTry" />
-                    </div>
-                    <div id="wishlistOn">
-                        <asp:Button ID="btnwishlistOn" runat="server" Text="&#9829;" style="color:red; font-size:55px;background-color:transparent; border:none;" OnClick="btnwishlistOn_Click" visible="false"/>
-                    </div>
-                </div>
                 <!-- Artwork Name-->
                 <div class="row artworkNameDivision" id="artworkNameDivision">
                     <div class="col-12">
                         <h1><asp:Label ID="artworkName" runat="server" Text="artworkName"></asp:Label></h1>
                     </div>
+
+                     <!-- wishlist icon img -->
+                <div class="row wishlistBtnDivision" id="wishlistBtnDivision">
+                    <div id="wishlistOff">
+                        <asp:Button ID="btnwishlistOff" runat="server" Text="&#9829;" style="color:darkgrey; font-size:55px;background-color:transparent; border:none; background-size:55px" OnClick="btnwishlistOff_Click" CssClass="btnOff" ToolTip="add to wishlist" />
+                    </div>
+                    <div id="wishlistOn">
+                        <asp:Button ID="btnwishlistOn" runat="server" Text="&#9829;" style="color:red; font-size:55px;background-color:transparent; border:none;background-size:55px" OnClick="btnwishlistOn_Click" visible="false" ToolTip="remove from wishlist"/>
+                    </div>
+                </div>
                 </div>
 
                 <!-- Size, Category, Author label -->
@@ -216,59 +212,21 @@
 
 
         <script type="text/javascript">
-            // ADD & REMOVE WISHLIST
-            //function chgWishlistIcon(){
-            //    var wishlist = document.getElementById("iwishlistLove");
-
-            //    if (wishlist.classList.contains("fa-heart-o")) {
-            //        wishlist.className.replace("fa fa-heart")
-            //    }
-            //}
+           
             
             
-            // ADD & REMOVE WISHLIST
-            var clickRed = 0;
+            //// ADD & REMOVE WISHLIST
+            //var clickRed = 0;
 
-            //let onwishlist = document.getElementById("wishlistLoveOn");
-            //let offwishlist = document.getElementById("wishlistLoveOff");
-            let onwishlist= document.getElementById("btnwishlist");
+            ////let onwishlist = document.getElementById("wishlistLoveOn");
+            ////let offwishlist = document.getElementById("wishlistLoveOff");
+            //let wishlistCover = document.getElementsByClassName("btnOff");
 
-            onwishlist.addEventListener('mouseenter', function () {
-                if (clickRed == 0) {
-                    onwishlist.textContent="&#9829;"
-                }
-            })
-
-            //wishLove.addEventListener('click', function () {
-            //    if (wishLove.classList.contains('fa fa-heart-o')) {
-            //        wishLove.classList.remove('fa fa-heart-o');
-            //        wishLove.classList.add('fa fa-heart');
-            //        clickRed = 1;
-            //    }
-            //    else {
-            //        wishLove.classList.remove('fa fa-heart');
-            //        wishLove.classList.add('fa fa-heart-o');
-            //        clickRed = 0;
-            //    }  
+            //wishlistCover.addEventListener('mouseenter', function () {
+            //    this.textContent = "\2665";
             //})
 
-            //wishLove.addEventListener('mouseenter', function () {
-            //    if (clickRed == 0) {
-            //        wishLove.classList.removeClass('fa fa-heart-o');
-            //        wishLove.classList.addClass('fa fa-heart');
-            //    }
-            //})
 
-            //wishLove.addEventListener('mouseleave', function () {
-            //    if (clickRed == 1) {
-            //        wishLove.classList.removeClass('fa fa-heart');
-            //        wishLove.classList.addClass('fa fa-heart-o');
-            //    }
-            //    else {
-            //        wishLove.classList.removeClass('fa fa-heart-o');
-            //        wishLove.classList.addClass('fa fa-heart');
-            //    }
-            //})
         </script>
 
 </asp:Content>
