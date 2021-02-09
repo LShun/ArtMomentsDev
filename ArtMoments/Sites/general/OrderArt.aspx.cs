@@ -29,16 +29,11 @@ namespace ArtMoments.Sites.general
 
         }
 
-        protected void btnPlus_Click1(object sender, EventArgs e)
+        protected void btnPlus_Click(object sender, EventArgs e)
         {
             qtyValue = Convert.ToInt32(txtboxQty.Text);
             qtyValue++;
             txtboxQty.Text = qtyValue.ToString();
-        }
-
-        protected void btnBuyNow_Click(object sender, EventArgs e)
-        {
-            
         }
 
         protected void btnwishlistOff_Click(object sender, EventArgs e)

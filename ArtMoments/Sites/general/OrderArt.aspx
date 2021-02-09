@@ -260,13 +260,12 @@
                     <div class="col-4" id="quantityDivision">
                         <div class="quantity">
                             <asp:Button ID="btnMinus" runat="server" Text="-" OnClick="btnMinus_Click" />
-                            <asp:TextBox ID="txtboxQty" runat="server" Width="55px" onkeypress="numValid(event)">1</asp:TextBox>
-                            <asp:Button ID="btnPlus" runat="server" Text="+" OnClick="btnPlus_Click1" />
-                            <asp:RangeValidator ID="availableQty" runat="server" ErrorMessage="Invalid Input" MaximumValue="20" MinimumValue="1" ControlToValidate="txtboxQty" Type="Integer"></asp:RangeValidator>
+                            <asp:TextBox ID="txtboxQty" runat="server" Width="55px" onkeypress="numValid(event);" onfocusout="qtyValid();" class="txtboxQtyClass">1</asp:TextBox>
+                            <asp:Button ID="btnPlus" runat="server" Text="+" OnClick="btnPlus_Click" />
                         </div>
                     </div>
 
-                    <div class="auto-style1" id="priceDivision">
+                    <div class="col-4" id="priceDivision">
                         <asp:Label ID="lblartworkPrice" runat="server" Text="RM "></asp:Label>
                     </div>
 
@@ -289,7 +288,6 @@
                 </div>
             </div>
         </div>
-    </div>
 
         <!-- Author Information -->
     <div class="container authorInfoContainer">
@@ -317,11 +315,27 @@
         <script type="text/javascript">
             function numValid(evt) {
                 var ch = String.fromCharCode(evt.which);
-
                 if (!(/[0-9]/.test(ch))) {
                     evt.preventDefault();
-                }
+                } 
+            }
 
+            function qtyValid() {
+                var qtyElement = document.getElementsByClassName("txtboxQtyClass")[0];
+                    var qtyInput = parseInt(qtyElement.value);
+                    var maxQty = 20;
+                    if (qtyInput > 1) {
+                        if (qtyInput > maxQty) {
+                            qtyInput = maxQty;
+                            //qtyElement.value = inputQty.toString();
+                            alert("fail");
+                        }
+                    }
+                    else{
+                        qtyInput = 1;
+                        qtyElement.value = qtyInput.toString();
+                        alert("fail");
+                    }
             }
 
             //function chkQtyValid(evt) {

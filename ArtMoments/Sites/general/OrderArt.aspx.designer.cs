@@ -123,15 +123,6 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.Button btnPlus;
 
         /// <summary>
-        /// availableQty control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RangeValidator availableQty;
-
-        /// <summary>
         /// lblartworkPrice control.
         /// </summary>
         /// <remarks>
