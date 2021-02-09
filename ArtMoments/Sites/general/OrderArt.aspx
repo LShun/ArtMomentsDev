@@ -163,6 +163,22 @@
             padding-left: 15px;
             padding-right: 15px;
         }
+
+        .col-4{-ms-flex:0 0 33.333333%;flex:0 0 33.333333%;max-width:33.333333%}
+
+        .col-xl-6{-ms-flex:0 0 50%;flex:0 0 50%;max-width:50%}
+
+        .col-sm-12{-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%}
+
+        .col-md-12{-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%}
+
+        .col-12{-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%}
+
+        .col-5{-ms-flex:0 0 41.666667%;flex:0 0 41.666667%;max-width:41.666667%}
+
+        .col-6{-ms-flex:0 0 50%;flex:0 0 50%;max-width:50%}
+
+        .col-7{-ms-flex:0 0 58.333333%;flex:0 0 58.333333%;max-width:58.333333%}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -327,35 +343,14 @@
                     if (qtyInput > 1) {
                         if (qtyInput > maxQty) {
                             qtyInput = maxQty;
-                            //qtyElement.value = inputQty.toString();
-                            alert("fail");
+                            alert("The current available stock of this artwork is only 20 pieces.");
                         }
                     }
                     else{
                         qtyInput = 1;
                         qtyElement.value = qtyInput.toString();
-                        alert("fail");
                     }
             }
-
-            //function chkQtyValid(evt) {
-            //    let qtyElement = document.getElementById("txtboxQty");
-
-            //    if (qtyElement.nodeValue.Length != 0) {
-            //        var orderQty = parseInt(qtyElement.nodeValue);
-            //        var maxQty = 20;
-
-            //        if (orderQty < 1) {
-            //            orderQty = 1;
-            //        } else if (orderQty > maxQty) {
-            //            orderQty = maxQty;
-            //        }
-            //        qtyElement.nodeValue = orderQty.toString();
-            //    }
-            //    else {
-            //        qtyElement.nodeValue = "1";
-                
-            //}
 
         </script>
 
