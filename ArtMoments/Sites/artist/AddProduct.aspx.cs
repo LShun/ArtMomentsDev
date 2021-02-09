@@ -13,7 +13,7 @@ namespace ArtMoments.Sites.artist
 {
     public partial class AddProduct : System.Web.UI.Page
     {
-        string connectionString = "Data Source=DESKTOP-RT2Q9PA\\SQLEXPRESS;Initial Catalog=ArtMomentsDb;User ID=sa;Password=1234";
+        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
         string userId;
         protected void Page_Load(object sender, EventArgs e)
         {
