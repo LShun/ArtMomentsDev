@@ -51,7 +51,7 @@
             text-shadow: 1px 1px black;
         }
 
-        .row.sizeCategoryAuthor, .row.descriptionDevision {
+        .row.sizeCategoryAuthor, .row.descriptionDevision, .row.sizeCategoryAuthor {
             font-size: 13px;
             color: darkgray;
             padding-top: 8px;
@@ -62,13 +62,8 @@
             font-size: 18px;
         }
 
-        input#ContentPlaceHolder1_qtyTxtBox {
+        input#ContentPlaceHolder1_txtboxQty {
             text-align: center;
-        }
-
-        div#qtynPriceDiv {
-            font-size: 18px;
-            margin-top: 30px;
         }
 
         div#btnBuyNowDivision {
@@ -157,6 +152,17 @@
         .align-content-sm-center {
             align-content: center!important;
         }
+        .auto-style1 {
+            position: relative;
+            width: 100%;
+            -ms-flex: 0 0 33.333333%;
+            flex: 0 0 33.333333%;
+            max-width: 33.333333%;
+            left: 0px;
+            top: 0px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -182,7 +188,8 @@
                 <!-- Artwork Name-->
                 <div class="row artworkNameDivision" id="artworkNameDivision">
                     <div class="col-12">
-                        <h1><asp:Label ID="artworkName" runat="server" Text="artworkName"></asp:Label></h1>
+                        <h1><asp:Label ID="lblartworkName" runat="server" Text="artworkName"></asp:Label></h1>
+                        <asp:Label ID="lblartworkID" runat="server" Text="" Visible="false"></asp:Label>
                     </div>
 
                      <!-- wishlist icon img -->
@@ -234,25 +241,50 @@
                         <asp:Label ID="lblartworkDescription" runat="server" Text="Description"></asp:Label>
                     </div>
                 </div>
-                <!-- quantity & price -->
+
+                <!-- quantity, price, delivery method label -->
+                <div class="row sizeCategoryAuthor">
+                    <div class="col-4" id="orderQty">
+                        <label id="orderQtyTxt">Quantity</label>
+                    </div>
+                    <div class="col-4" id="totalPrice">
+                        <label id="priceTxt">Price</label>
+                    </div>
+                    <div class="col-4" id="Delivery Channel">
+                        <label id="deliveryChannelTxt">Delivery Channel</label>
+                    </div>
+                </div>
+
+                <!-- quantity & price & delivery method -->
                 <div class="row" id="qtynPriceDiv">
-                    <div class="col-6" id="quantityDivision">
+                    <div class="col-4" id="quantityDivision">
                         <div class="quantity">
                             <asp:Button ID="btnMinus" runat="server" Text="-" OnClick="btnMinus_Click" />
-                            <asp:TextBox ID="qtyTxtBox" runat="server" Width="55px">1</asp:TextBox>
+                            <asp:TextBox ID="txtboxQty" runat="server" Width="55px" onkeypress="numValid(event)">1</asp:TextBox>
                             <asp:Button ID="btnPlus" runat="server" Text="+" OnClick="btnPlus_Click1" />
+                            <asp:RangeValidator ID="availableQty" runat="server" ErrorMessage="Invalid Input" MaximumValue="20" MinimumValue="1" ControlToValidate="txtboxQty" Type="Integer"></asp:RangeValidator>
                         </div>
                     </div>
 
                     <div class="auto-style1" id="priceDivision">
-                        <asp:Label ID="lblartworkPrice" runat="server" Text="Price: RM "></asp:Label>
+                        <asp:Label ID="lblartworkPrice" runat="server" Text="RM "></asp:Label>
+                    </div>
+
+                    <div class="col-4" id="deliveryDivision">
+                        <asp:DropDownList ID="ddlDeliveyMethod" runat="server">
+                            <asp:ListItem>Pos Laju</asp:ListItem>
+                            <asp:ListItem>Citylink</asp:ListItem>
+                            <asp:ListItem>Gdex</asp:ListItem>
+                            <asp:ListItem>ABX</asp:ListItem>
+                            <asp:ListItem>Ninja Van</asp:ListItem>
+                        </asp:DropDownList>
                     </div>
                 </div>
 
                 <!-- Buy now button -->
                 <div class="row">
                     <div class="col-12 btnBuyNowDivision" id="btnBuyNowDivision">
-                        <asp:LinkButton ID="btnBuyNow" runat="server" OnClick="btnBuyNow_Click" PostBackUrl="../client/OrderHistory.aspx" CssClass="btn btn-primary btn-block">BUY NOW</asp:LinkButton>
+                        <asp:LinkButton ID="btnBuyNow" runat="server" PostBackUrl="../client/OrderHistory.aspx" CssClass="btn btn-primary btn-block">BUY NOW</asp:LinkButton>
                     </div>
                 </div>
             </div>
@@ -283,6 +315,33 @@
 
 
         <script type="text/javascript">
+            function numValid(evt) {
+                var ch = String.fromCharCode(evt.which);
+
+                if (!(/[0-9]/.test(ch))) {
+                    evt.preventDefault();
+                }
+
+            }
+
+            //function chkQtyValid(evt) {
+            //    let qtyElement = document.getElementById("txtboxQty");
+
+            //    if (qtyElement.nodeValue.Length != 0) {
+            //        var orderQty = parseInt(qtyElement.nodeValue);
+            //        var maxQty = 20;
+
+            //        if (orderQty < 1) {
+            //            orderQty = 1;
+            //        } else if (orderQty > maxQty) {
+            //            orderQty = maxQty;
+            //        }
+            //        qtyElement.nodeValue = orderQty.toString();
+            //    }
+            //    else {
+            //        qtyElement.nodeValue = "1";
+                
+            //}
 
         </script>
 

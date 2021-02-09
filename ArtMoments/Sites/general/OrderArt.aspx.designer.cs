@@ -24,13 +24,22 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.Image artworkImage;
 
         /// <summary>
-        /// artworkName control.
+        /// lblartworkName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label artworkName;
+        protected global::System.Web.UI.WebControls.Label lblartworkName;
+
+        /// <summary>
+        /// lblartworkID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblartworkID;
 
         /// <summary>
         /// btnwishlistOff control.
@@ -96,13 +105,13 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.Button btnMinus;
 
         /// <summary>
-        /// qtyTxtBox control.
+        /// txtboxQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox qtyTxtBox;
+        protected global::System.Web.UI.WebControls.TextBox txtboxQty;
 
         /// <summary>
         /// btnPlus control.
@@ -114,6 +123,15 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.Button btnPlus;
 
         /// <summary>
+        /// availableQty control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RangeValidator availableQty;
+
+        /// <summary>
         /// lblartworkPrice control.
         /// </summary>
         /// <remarks>
@@ -121,6 +139,15 @@ namespace ArtMoments.Sites.general
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Label lblartworkPrice;
+
+        /// <summary>
+        /// ddlDeliveyMethod control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeliveyMethod;
 
         /// <summary>
         /// btnBuyNow control.
