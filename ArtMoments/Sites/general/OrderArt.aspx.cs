@@ -15,25 +15,25 @@ namespace ArtMoments.Sites.general
            
         }
 
-        public string conString = "Data Source=(localdb)\\MSSQLLocalDB;Integrated Security=True";
+        public string conString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
 
         private int qtyValue;
         protected void btnMinus_Click(object sender, EventArgs e)
         {
-            qtyValue = Convert.ToInt32(qtyTxtBox.Text);
+            qtyValue = Convert.ToInt32(txtboxQty.Text);
             if(qtyValue > 1)
             {
                 qtyValue--;
-                qtyTxtBox.Text = qtyValue.ToString();
+                txtboxQty.Text = qtyValue.ToString();
             }
 
         }
 
         protected void btnPlus_Click1(object sender, EventArgs e)
         {
-            qtyValue = Convert.ToInt32(qtyTxtBox.Text);
+            qtyValue = Convert.ToInt32(txtboxQty.Text);
             qtyValue++;
-            qtyTxtBox.Text = qtyValue.ToString();
+            txtboxQty.Text = qtyValue.ToString();
         }
 
         protected void btnBuyNow_Click(object sender, EventArgs e)
