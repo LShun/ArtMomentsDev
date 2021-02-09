@@ -53,6 +53,32 @@
         display: table;
         clear: both;
     }
+    .col-2{
+        position:relative;
+        width:100%;
+        padding-right:15px;
+        padding-left:15px;
+        -ms-flex:0 0 16.666667%;
+        flex:0 0 16.666667%;
+        max-width:16.666667%
+    }
+    .col-10{
+        position:relative;
+        width:100%;
+        padding-right:15px;
+        padding-left:15px;
+        -ms-flex:0 0 83.333333%;
+        flex:0 0 83.333333%;
+        max-width:83.333333%
+    }
+    .row{
+        display: -ms-flexbox;
+        display: flex;
+        -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
