@@ -11,24 +11,21 @@ namespace ArtMoments.Sites.usermgmt
 {
     public partial class SignUp : System.Web.UI.Page
     {
-        string connectionString = "Data Source=LAPTOP-RF7VE486\\SQLEXPRESSFJE;Initial Catalog=ArtMomentsDb; Integrated Security=True; User ID=sa;Password=***********";
-
+        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
             if (!IsPostBack)
             {
                 Clear();
 
                 if (!String.IsNullOrEmpty(Request.QueryString["id"]))
-                {
-                    int userID = Convert.ToInt32(Request.QueryString["id"]);
-                    
+                {                    
                     using (SqlConnection sqlCon = new SqlConnection(connectionString))
                     {
                         sqlCon.Open();
                         SqlDataAdapter sqlDa = new SqlDataAdapter("UserViewByID", sqlCon);
                         sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-                        sqlDa.SelectCommand.Parameters.AddWithValue("@UserID", userID);
                         DataTable dtbl = new DataTable();
                         sqlDa.Fill(dtbl);
 
@@ -53,36 +50,60 @@ namespace ArtMoments.Sites.usermgmt
             }
             else
             {
-                using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    sqlCon.Open();
-                    //int tempID = GenerateAutoID();
-                    int userType = 0;
-                    if (rbGender.SelectedValue.Equals("Buyer"))
+                    //make sure no replicated username
+                    String query = "SELECT COUNT(*) FROM [USER] WHERE user_name = @username";
+                    conn.Open();
+
+                    SqlCommand sqlCmd = new SqlCommand(query, conn);
+                    sqlCmd.Connection = conn;
+
+                    sqlCmd.CommandText = query;
+                    sqlCmd.Parameters.Clear();
+                    sqlCmd.Parameters.AddWithValue("@username", txtUserName.Text);
+                    int numRecords = (int)sqlCmd.ExecuteScalar();
+                    conn.Close();
+
+                    if (numRecords == 0)
                     {
-                        userType = 0;
+                        using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                        {
+                            sqlCon.Open();
+                            //int tempID = GenerateAutoID();
+
+                            int userType = 0;
+                            if (rbGender.SelectedValue.Equals("Buyer"))
+                            {
+                                userType = 1;
+                            }
+                            else
+                            {
+                                userType = 2;
+                            }
+
+
+                            String query1 = "INSERT INTO [User] (user_name, user_password, user_email, user_type)"
+                                + "VALUES (@UserName, @UserPassword, @UserEmail, @UserType)";
+
+                            SqlCommand sqlCmd2 = new SqlCommand(query1, sqlCon);
+                            sqlCmd2.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
+                            sqlCmd2.Parameters.AddWithValue("@UserEmail", txtUserEmail.Text.Trim());
+                            sqlCmd2.Parameters.AddWithValue("@UserPassword", txtUserPassword.Text.Trim());
+                            sqlCmd2.Parameters.AddWithValue("@UserType", userType.ToString());
+
+                            sqlCmd2.ExecuteNonQuery();
+                            Clear();
+                            lblMessage.Text = "Submitted Successfully";
+                            Response.Redirect("ConfirmedRegMsg.aspx");
+                        }
                     }
                     else
                     {
-                        userType = 1;
+                        lblMessage.Text = "This user name already exists";
                     }
-
-                    
-                    String query1 = "INSERT INTO [User] (user_name, user_password, user_email, user_type)"
-                        + "VALUES (@UserName, @UserPassword, @UserEmail, @UserType)";
-
-                    SqlCommand sqlCmd = new SqlCommand(query1, sqlCon);
-                    //sqlCmd.CommandType = CommandType.StoredProcedure;
-                    sqlCmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@UserEmail", txtUserEmail.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@UserPassword", txtUserPassword.Text.Trim());
-                    sqlCmd.Parameters.AddWithValue("@UserType", userType.ToString());
-
-                    sqlCmd.ExecuteNonQuery();
-                    Clear();
-                    lblMessage.Text = "Submitted Successfully";
-                    Response.Redirect("ConfirmedRegMsg.aspx");
                 }
+                
             }
         }
         //clear function
