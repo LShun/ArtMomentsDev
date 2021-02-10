@@ -4,17 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.Data.SqlClient;
+
+using System.IO;
 using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
+
 
 namespace ArtMoments.Sites.usermgmt
 {
-    public partial class BuyerPresentation : System.Web.UI.Page
+
+    public partial class BuyerPresentationEdit : System.Web.UI.Page
     {
         string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (!this.IsPostBack)
             {
                 if (Session["UserName"] == null)
                 {
@@ -44,12 +50,14 @@ namespace ArtMoments.Sites.usermgmt
                         }
                     }
                 }
+
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     string UserName = Session["UserName"].ToString();
 
                     using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM [User] WHERE user_name = @UserName", conn))
                     {
+                        //sqlDa.SelectCommand.Parameters.AddWithValue("@UserID", userID);
                         sda.SelectCommand.Parameters.AddWithValue("@UserName", UserName);
                         DataTable dt = new DataTable();
                         sda.Fill(dt);
@@ -60,19 +68,53 @@ namespace ArtMoments.Sites.usermgmt
             }
         }
 
-        protected void btnHome_Click(object sender, EventArgs e)
+        protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
-            Response.Redirect("BuyerAccount.aspx");
+            string imageUrl = "";
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                DataRowView dr = (DataRowView)e.Row.DataItem;
+                if (!DBNull.Value.Equals(dr["profile_pic"]))
+                    imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])dr["profile_pic"]);
+                else
+                    imageUrl = String.Empty;
+
+                (e.Row.FindControl("Image1") as Image).ImageUrl = imageUrl;
+                (e.Row.FindControl("Image1") as Image).ImageUrl = imageUrl;
+            }
         }
 
-        protected void btnSetting_Click(object sender, EventArgs e)
+        protected void Upload(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerSetting.aspx");
-        }
+            if (FileUpload1.PostedFile != null)
+            {
+                byte[] bytes;
+                using (BinaryReader br = new BinaryReader(FileUpload1.PostedFile.InputStream))
+                {
+                    bytes = br.ReadBytes(FileUpload1.PostedFile.ContentLength);
+                }
 
-        protected void Button2_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("BuyerPresentation.aspx");
+
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string UserName = Session["UserName"].ToString();
+                    string sql = "UPDATE [User] SET profile_pic = @Data WHERE user_name = @UserName";
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@UserName", UserName);
+                        //cmd.Parameters.AddWithValue("@Name", Path.GetFileName(FileUpload1.PostedFile.FileName));
+                        //cmd.Parameters.AddWithValue("@ContentType", FileUpload1.PostedFile.ContentType);
+                        cmd.Parameters.AddWithValue("@Data", bytes);
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+
+                Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect("BuyerPresentation.aspx");
+            }
         }
 
         protected void tbBibliography_TextChanged(object sender, EventArgs e)
@@ -80,35 +122,22 @@ namespace ArtMoments.Sites.usermgmt
 
         }
 
-        protected void tbProfilePic_TextChanged1(object sender, EventArgs e)
+        protected void btnSave_Click(object sender, EventArgs e)
         {
-
-        }
-
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("BuyerPresentationEdit.aspx");
-        }
-
-        protected void gvImages_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
-        {
-            if (e.Row.RowType == DataControlRowType.DataRow)
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                string imageUrl = "";
-
-                DataRowView dr = (DataRowView)e.Row.DataItem;
-
-                if (!DBNull.Value.Equals(dr["profile_pic"]))
-                    imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])dr["profile_pic"]); 
-                else
-                    imageUrl = String.Empty;
-
-                (e.Row.FindControl("Image1") as Image).ImageUrl = imageUrl;            
-                
+                string UserName = Session["UserName"].ToString();
+                string sql = "UPDATE [User] SET bibliography = @Bibliography WHERE user_name = @UserName";
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserName", UserName);
+                    //cmd.Parameters.AddWithValue("@Name", Path.GetFileName(FileUpload1.PostedFile.FileName));
+                    //cmd.Parameters.AddWithValue("@ContentType", FileUpload1.PostedFile.ContentType);
+                    cmd.Parameters.AddWithValue("@Bibliography", tbBibliography.Text.ToString());
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
+                }
             }
         }
     }
