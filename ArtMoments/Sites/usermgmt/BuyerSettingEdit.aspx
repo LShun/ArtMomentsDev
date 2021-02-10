@@ -31,12 +31,19 @@
                                 <label for="username" class="col-4 col-form-label">User Name*</label> 
                                 <div class="col-8">
                                   <asp:TextBox ID="txtUserName" runat="server" placeholder="username" OnTextChanged="txtUserName_TextChanged" BorderColor="#999999" BorderStyle="Solid"></asp:TextBox>
+                                  <asp:Label ID="errorMsg" runat="server" Text=""></asp:Label>
                                 </div>
                               </div>
                               <div class="form-group row">
                                 <label for="email" class="col-4 col-form-label">Email*</label> 
                                 <div class="col-8">
                                   <asp:TextBox ID="txtEmail" runat="server" placeholder="Email" OnTextChanged="txtEmail_TextChanged" BorderColor="#999999" BorderStyle="Solid"></asp:TextBox>
+                                  <br />
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtEmail"
+                                ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                                Display="Dynamic" ErrorMessage="Invalid email address" CssClass="invalidMsgMargin"/>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtEmail"
+                                ForeColor="Red" Display="Dynamic" ErrorMessage="Required" CssClass="invalidMsgMargin"/>
                                 </div>
                               </div>
                               <div class="form-group row">
