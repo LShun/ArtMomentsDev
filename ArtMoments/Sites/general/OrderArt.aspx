@@ -299,7 +299,7 @@
                 <!-- Buy now button -->
                 <div class="row">
                     <div class="col-12 btnBuyNowDivision" id="btnBuyNowDivision">
-                        <asp:LinkButton ID="btnBuyNow" runat="server" PostBackUrl="../client/OrderHistory.aspx" CssClass="btn btn-primary btn-block">BUY NOW</asp:LinkButton>
+                        <asp:LinkButton ID="btnBuyNow" runat="server" PostBackUrl="../client/OrderHistory.aspx" CssClass="btn btn-primary btn-block" OnClick="btnBuyNow_Click">BUY NOW</asp:LinkButton>
                     </div>
                 </div>
             </div>
