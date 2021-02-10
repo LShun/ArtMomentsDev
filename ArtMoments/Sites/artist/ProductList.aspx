@@ -115,7 +115,45 @@
             line-height: 1.5;
             border-radius: .25rem;
             transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+            float:right;
         }
+        /*@media (min-width: 992px) {
+            .col-lg-10 {
+                flex: 0 0 83.333333%;
+                max-width: 83.333333%;
+            }
+
+            .col-lg-2 {
+                flex: 0 0 16.666667%;
+                max-width: 16.666667%;
+                padding-right:0;
+
+            }
+        }
+
+        @media (min-width: 768px){
+            .col-md-9 {
+                flex: 0 0 75%;
+                max-width: 75%;
+            }
+            .col-md-3 {
+                flex: 0 0 25%;
+                max-width: 25%;
+                padding-right:0;
+            }
+        }
+        @media (min-width: 576px){
+            .col-sm-8 {
+                flex: 0 0 66.666667%;
+                max-width: 66.666667%;
+            }
+            .col-sm-4 {
+                flex: 0 0 33.333333%;
+                max-width: 33.333333%;
+                padding-right:0;
+            }
+        }*/
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -125,14 +163,14 @@
                 <h1>Artwork List</h1>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-4">
-                <asp:Button ID="Button2" class="button btn-artworkList" runat="server" Text="Add a New Artwork" Height="43px" OnClick="addProdBtn_Click"/>
+                <asp:Button ID="addNetworkBtn" class="button btn-artworkList" runat="server" Text="Add a New Artwork" Height="43px" OnClick="addProdBtn_Click"/>
                 
             </div>
          </div>          
             
         <asp:TextBox ID="txtSearch" class="auto-style28" OnTextChanged="Search" AutoPostBack="true" placeholder="Search for Product names.." runat="server"></asp:TextBox>
         <div class="productListTable"> 
-            <asp:GridView ID="productList" runat="server" AutoGenerateColumns="false" AllowPaging="true" AllowSorting="true" OnSorting="OnSorting" OnPageIndexChanging="OnPageIndexChanging" PageSize="5" OnRowDataBound="OnRowDataBound">
+            <asp:GridView ID="productList" runat="server" AutoGenerateColumns="false" AllowPaging="true" AllowSorting="true" OnSorting="OnSorting" OnPageIndexChanging="OnPageIndexChanging" PageSize="5" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged = "OnSelectedIndexChanged">
             <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" FirstPageText="First" LastPageText="Last"/>       
         <pagerstyle horizontalalign="Left" CssClass="pagination"/>
                 <Columns>
@@ -147,7 +185,7 @@
                     <ItemTemplate>
                         <asp:Image ID="prodImage" runat="server" width="200px" Height="200px"/>
                         <br />
-                        <asp:Label ID="prodName" runat="server" Text='<%# Eval("Name") %>'></asp:Label> 
+                        <asp:Label ID="prodName" runat="server" Text='<%# Eval("Name") %>' style="font-weight:bold"></asp:Label> 
                         <br />
                         <asp:Label ID="prodDesc" runat="server" Text='<%# Eval("Description") %>'></asp:Label> 
                         <br />
@@ -160,7 +198,7 @@
                     <HeaderStyle HorizontalAlign="Center" />
                 </asp:boundfield>
 
-                <asp:BoundField DataField="Price" HeaderText="Price" SortExpression="Price" HeaderStyle-ForeColor="White" >
+                <asp:BoundField DataField="Price" HeaderText="Price" DataFormatString="{0:n}" SortExpression="Price" HeaderStyle-ForeColor="White" >
                     <ItemStyle Width="140" HorizontalAlign="Center" />
                     <HeaderStyle HorizontalAlign="Center" />
                 </asp:boundfield>
@@ -179,7 +217,7 @@
                     <ItemStyle Width="70" HorizontalAlign="Center" />
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemTemplate>
-                        <asp:Button ID="editBtn1" class="btn btn-artworkList" runat="server" Text="Edit" Width="67px"/>
+                        <asp:Button ID="editBtn1" class="button btn-artworkList" runat="server" Text="Edit" CommandName="Select" Width="67px"/>
                     </ItemTemplate>
                 </asp:TemplateField> 
             </Columns>
