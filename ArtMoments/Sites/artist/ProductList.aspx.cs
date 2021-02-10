@@ -26,40 +26,12 @@ namespace ArtMoments.Sites.artist
         {
             if (!this.IsPostBack)
             {
+                if (Session["UserName"] == null)
+                {
+                    Response.Redirect("../usermgmt/PreLogin.aspx");
+                }
 
                 this.BindGrid();
-                
-
-                //if (Session["UserName"] == null)
-                //{
-                //    Response.Redirect("usermgmt/PreLogin.aspx");
-                //}
-
-
-                //using (SqlConnection sqlcon = new SqlConnection(connectionString))
-                // {
-                //string username = session["username"].tostring();
-
-
-                //    list<int> useridlist = new list<int>();
-                //    string sql = "select id from [user] where user_name = @username";
-
-                //    using (sqlcommand cmd = new sqlcommand(sql, sqlcon))
-                //    {
-                //        cmd.parameters.addwithvalue("@username", username);
-                //        sqlcon.open();
-                //        sqldatareader reader = cmd.executereader();
-                //        while (reader.read())
-                //        {
-                //            userid = reader[0].tostring();
-                //            //useridlist.add(reader.getint32(0));
-                //        }
-                //        reader.close();
-                //        sqlcon.close();
-                //    }
-
-                //}
-
 
             }
         }
@@ -68,9 +40,10 @@ namespace ArtMoments.Sites.artist
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlDataAdapter sda = new SqlDataAdapter("select P.id as [ID], P.prod_name as [Name], P.prod_size [Size], P.prod_description as [Description], C.category_name as [CategoryName], P.prod_image as [Image], P.prod_price as [Price] " +
-                    ", P.prod_stock as [Stock], P.prod_sales as [Sales] from Product P , Product_Category C where P.category_id = C.id", conn))
+                using (SqlDataAdapter sda = new SqlDataAdapter("SELECT P.id as [ID], P.prod_name as [Name], P.prod_size [Size], P.prod_description as [Description], C.category_name as [CategoryName], P.prod_image as [Image], P.prod_price as [Price] " +
+                    ", P.prod_stock as [Stock], P.prod_sales as [Sales] from Product P , Product_Category C, [User] U WHERE U.id = P.user_id AND U.user_name = @name AND P.category_id = C.id", conn))
                 {
+                    sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
                     using (DataTable dt = new DataTable())
                     {
                         sda.Fill(dt);
@@ -147,6 +120,13 @@ namespace ArtMoments.Sites.artist
         protected void Search(object sender, EventArgs e)
         {
             this.SearchProduct();
+        }
+
+        protected void OnSelectedIndexChanged(Object sender, EventArgs e)
+        {
+            string prodID = productList.SelectedRow.Cells[0].Text;
+            Application["prodID"] = prodID;
+            Response.Redirect("EditProduct.aspx");
         }
     }
 }
