@@ -99,7 +99,7 @@
         }
 
         @media (min-width: 768px)
-        .container, .container-md, .container-sm {
+        .container {
             max-width: 720px;
         }
 
@@ -148,10 +148,11 @@
             justify-content: center!important;
         }
 
-        @media (min-width: 576px)
         .align-content-sm-center {
             align-content: center!important;
+            min-width: 576px;
         }
+
         .auto-style1 {
             position: relative;
             width: 100%;
