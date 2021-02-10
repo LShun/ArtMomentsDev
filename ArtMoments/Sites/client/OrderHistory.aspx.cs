@@ -13,7 +13,7 @@ namespace ArtMoments.Sites.client
     public partial class OrderHistory : System.Web.UI.Page
     {
         string conString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
-        
+
         //protected void Page_Load(object sender, EventArgs e)
         //{
         //    if (IsPostBack)
@@ -148,7 +148,7 @@ namespace ArtMoments.Sites.client
         //        DateTime dbdeliveredDT = orderTable.Rows[rowCount].Field<DateTime>(4);
         //        DateTime dbdispatchDT = orderTable.Rows[rowCount].Field<DateTime>(6);
 
-        //        if(dbdeliveredDT == null)
+        //        if (dbdeliveredDT == null)
         //        {
         //            SqlConnection conn = new SqlConnection(conString);
         //            conn.Open();
@@ -172,19 +172,107 @@ namespace ArtMoments.Sites.client
         //            cmd = new SqlCommand(updateDeliverStatQuery, conn);
         //            conn.Close();
         //        }
-        //       rowCount++;
+        //        if(dbdeliveredDT != null && dbdispatchDT != null)
+        //        {
+        //            break;
+        //        }
+        //        rowCount++;
         //    }
         //    //if date > 8 days : update to delivered
 
 
-        //        // if date > 5 days : update to dispatched 
+        //    // if date > 5 days : update to dispatched 
 
         //}
-
-        //protected void displayInHTML(DataTable transacTable, DataTable orderTable)
+        //protected void displayInHTML(DataTable transacTable)
         //{
         //    StringBuilder html = new StringBuilder();
         //    html.Append("<table border = '1'>");
+
+        //    int rowCount = 0;
+        //    foreach (DataRow row in transacTable.Rows)
+        //    {
+        //        html.Append("<div class='container transactionHistoryContainer'>");
+        //        html.Append("<div class='row'>");
+        //        // Transaction
+        //        html.Append("<h2><asp:Label ID='lbltransacId' runat='server' Text='");
+        //        // transactionID
+        //        //html.Append();
+        //        html.Append("'></asp:Label></h2></div>");
+        //        // ORDERS
+        //        int transacId = transacTable.Rows[rowCount].Field<int>(0);
+        //        DataTable orderTable = getOrderTable(transacId);
+        //        foreach (DataRow rows in orderTable.Rows)
+        //        {
+        //            html.Append("<div class='container align-content-sm-center orderHistoryContainer'>");
+        //            html.Append("<div class='row'>");
+        //            html.Append("<div class='col-lg-4 col-md-12 col-sm-12 orderHistoryRowDiv'>");
+        //            html.Append("<div class='col justify-content-center orderNumnArt'>");
+        //            html.Append("<div class='row'>"); 
+        //            html.Append("<h3><asp:Label ID='lbladorderNum' runat='server' Text='");
+        //            // orderNum
+        //            //html.Append("");
+        //            html.Append("'></ asp:Label ></h3>");
+        //            // ORDER IMG
+        //            html.Append("</div><asp:Image ID='imgdbArtwork' runat='server' src='");
+        //            // img src
+        //            html.Append("");
+        //            html.Append("' height = '200' /></div></div>");
+        //            // ORDER DETAIL
+        //            html.Append("<div class='col-lg-8 orderHistoryDetail'>");
+        //            // DELIVERY STATUS
+        //            html.Append("<div class='row  float-right deliveryStatus'>");
+        //            html.Append("<asp:Label ID='lbladorderStatus' runat='server' Text='");
+        //            // delivery status
+        //            //html.Append("");
+        //            html.Append("' CssClass='btn-success' ></asp:Label></div>");
+        //            // ART NAME
+        //            html.Append("<div class='row artNameRow'>< asp:Label ID='lbladartName' runat = 'server' Text ='");
+        //            // art name
+        //            //html.Append("");
+        //            html.Append("' CssClass ='h2'></asp:Label></div>");
+        //            // Size, Category, Author label
+        //            html.Append("<div class='row sizeCategoryAuthor'><div class='col' id='sizeDivision'><label id ='sizeTxt'>");
+        //            // Size
+        //            html.Append("Size");
+        //            html.Append("</label ></div ><div class='col' id='categoryDivision'><label id ='categoryTxt'>");
+        //            // Category
+        //            html.Append("Category");
+        //            html.Append("</label></div><div class='col' id='authorDivision'><label id='authorTxt'>");
+        //            //Author
+        //            html.Append("Author");
+        //            html.Append("</label></div></div>");
+        //            // Size, Category, Author from db
+        //            html.Append("<div class='row sizeCategoryAuthorDB'><div class='col' id='lblsizeDivision'><asp:Label ID ='lblartworkSize' runat='server' Text='");
+        //            // Size
+        //            //html.Append("");
+        //            html.Append("'></asp:Label></div><div class='col' id='lblcategorryDivision'><asp:Label ID = 'lblartworkCategory' runat='server' Text='");
+        //            // Category
+        //            //html.Append("");
+        //            html.Append("'></asp:Label></div><div class='col' id='lblauthorDivision'><asp:Label ID = 'lblauthor' runat='server' Text='");
+        //            //Author
+        //            html.Append("'></asp:Label></div></div>");
+        //            // Qty, Price, view more details label
+        //            html.Append("<div class='row qtyPriceMore'><div class='col' id='qtyDivision'><label id = 'qtyTxt' > Quantity </label></div><div class='col' id='priceDivision'>"
+        //                        + "<label id = 'priceTxt'> RM </label></div><div class='col' id='modeDetailsRow'><a href = '");
+        //            //more details -> src
+        //            html.Append("' >< asp:Label ID = 'lblMoreDetail' runat='server' Text='View more details'></asp:Label></a></div></div>");
+
+        //            //-Qty, Price, view more details label from db
+        //            html.Append("<div class='row qtyPriceMoreDB'>");
+        //            html.Append("<div class='col' id='lblqtyDivision'>");    
+        //            html.Append("<asp:Label ID = 'lblQty' runat='server' Text='");
+        //            // Qty
+        //            //html.Append("")
+        //            html.Append("'></asp:Label></div><div class='col' id='lblpriceDivision'><asp:Label ID = 'lblTotalPrice' runat='server' Text='");
+        //            // Total Price
+        //            //html.Append("");
+        //            html.Append("'></asp:Label></div><div class='col' id='btnBuyAgainDivision'><asp:Button ID = 'btnBuyAgain' runat='server' Text='BUY AGAIN' class='btn-primary rounded'/>"
+        //                        + "</div></div></div></div></div></div>");                    
+        //        }
+                
+        //        rowCount++;
+        //    }
         //}
 
     }
