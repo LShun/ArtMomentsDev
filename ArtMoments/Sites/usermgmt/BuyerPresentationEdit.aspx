@@ -40,7 +40,7 @@
                                 <div class="form-group row">
                                 <label for="website" class="col-4 col-form-label">Bibliography</label> 
                                 <div class="col-8">
-                                  <asp:TextBox ID="tbBibliography" runat="server" OnTextChanged="tbBibliography_TextChanged" ReadOnly="True" BorderStyle="None"></asp:TextBox>
+                                  <asp:TextBox ID="tbBibliography" runat="server" OnTextChanged="tbBibliography_TextChanged" BorderStyle="Solid"></asp:TextBox>
                                 </div>
                               </div>
                                 <div class="form-group row">
@@ -58,7 +58,7 @@
                                         </Columns>
                                     </asp:GridView>
                                     <br />
-                                    <asp:Button ID="btnUpload" runat="server" OnClick="Upload" Text="Save" />
+                                    <asp:Button ID="btnUpload" class="btn btn-primary" runat="server" OnClick="Upload" Text="Save" />
                                     <div id="dialog" style="display: none">
                                     </div>
                                     </div>
