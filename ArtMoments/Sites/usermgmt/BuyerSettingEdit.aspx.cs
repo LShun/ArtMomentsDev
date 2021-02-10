@@ -12,10 +12,12 @@ namespace ArtMoments.Sites.usermgmt
 {
     public partial class BuyerSettingEdit : System.Web.UI.Page
     {
-        string connectionString = "Data Source=LAPTOP-RF7VE486\\SQLEXPRESSFJE;Initial Catalog=ArtMomentsDb; Integrated Security=True; User ID=sa;Password=***********";
+        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
             if (!IsPostBack)
             {
                 if (Session["UserName"] == null)
@@ -26,29 +28,29 @@ namespace ArtMoments.Sites.usermgmt
                 txtUserName.Text = Session["UserName"].ToString();
 
                 using (SqlConnection sqlCon = new SqlConnection(connectionString))
-                {
-                    sqlCon.Open();
-                    String query = "SELECT * FROM [User] WHERE user_name = @UserName";
-                    SqlCommand cmd = new SqlCommand(query, sqlCon);
+                 {
+                       sqlCon.Open();
+                       String query1 = "SELECT * FROM [User] WHERE user_name = @UserName";
+                       SqlCommand cmd = new SqlCommand(query1, sqlCon);
 
-                    cmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
-                    SqlDataReader dr = cmd.ExecuteReader();
+                       cmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
+                       SqlDataReader dr = cmd.ExecuteReader();
 
-                    if (dr.HasRows)
-                    {
-                        while (dr.Read())
-                        {
-                            txtEmail.Text = dr.GetValue(3).ToString();
-
-                            txtContactNo.Text = dr.GetValue(4).ToString();
-                            if (txtContactNo.Text == "")
+                       if (dr.HasRows)
+                       {
+                            while (dr.Read())
                             {
-                                //tbContactNo.ToolTip = "Click edit to insert your contact number";
-                                txtContactNo.Text = "Edit your contact no.";
+                                txtEmail.Text = dr.GetValue(3).ToString();
+
+                                txtContactNo.Text = dr.GetValue(4).ToString();
+                                if (txtContactNo.Text == "")
+                                {
+                                    //tbContactNo.ToolTip = "Click edit to insert your contact number";
+                                    txtContactNo.Text = "Edit your contact no.";
+                                 }
                             }
-                        }
-                    }
-                }
+                       }
+                 }
             }
         }
 
@@ -68,24 +70,48 @@ namespace ArtMoments.Sites.usermgmt
         }
 
         protected void btnSave_Click(object sender, EventArgs e)
-        {
-            using (SqlConnection sqlCon = new SqlConnection(connectionString))
+        {            
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                sqlCon.Open();
 
-                String usrName = txtUserName.Text;
-                String query1 = "UPDATE [User] SET [user_name] = @UserName, [user_email] = @Email, [user_contactno] = @ContactNo WHERE user_name = @UserName";
+                //make sure no replicated username
+                String query = "SELECT COUNT(*) FROM [USER] WHERE user_name = @username";
+                conn.Open();
 
-                SqlCommand sqlCmd = new SqlCommand(query1, sqlCon);
+                SqlCommand sqlCmd = new SqlCommand(query, conn);
+                sqlCmd.Connection = conn;
 
-                sqlCmd.Parameters.AddWithValue("@UserName", txtUserName.Text);
-                sqlCmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                sqlCmd.Parameters.AddWithValue("@ContactNo", txtContactNo.Text);
+                sqlCmd.CommandText = query;
+                sqlCmd.Parameters.Clear();
+                sqlCmd.Parameters.AddWithValue("@username", txtUserName.Text);
+                int numRecords = (int)sqlCmd.ExecuteScalar();
+                conn.Close();
 
-                sqlCmd.ExecuteNonQuery();
-                lblSuccessMessage.Text = "Edited Successfully";
-                RedirectAfterDelayFn();
-                sqlCon.Close();
+                if (numRecords == 1 && (!txtUserName.Text.Equals(Session["UserName"].ToString())))
+                {
+                    errorMsg.Text = "This user name already exists";
+                }
+                else
+                {                    
+                    using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                    {
+                        sqlCon.Open();
+
+                        String usrName = txtUserName.Text;
+                        String query1 = "UPDATE [User] SET [user_name] = @UserName, [user_email] = @Email, [user_contactno] = @ContactNo WHERE user_name = @UserName";
+
+                        SqlCommand sqlCmd1 = new SqlCommand(query1, sqlCon);
+
+                        sqlCmd1.Parameters.AddWithValue("@UserName", txtUserName.Text);
+                        sqlCmd1.Parameters.AddWithValue("@Email", txtEmail.Text);
+                        sqlCmd1.Parameters.AddWithValue("@ContactNo", txtContactNo.Text);
+
+                        sqlCmd1.ExecuteNonQuery();
+                        lblSuccessMessage.Text = "Edited Successfully";
+                        RedirectAfterDelayFn();
+                        sqlCon.Close();
+                    }
+                }
             }
         }
 
