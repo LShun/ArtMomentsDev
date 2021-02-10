@@ -99,7 +99,7 @@
         }
 
         @media (min-width: 768px)
-        .container, .container-md, .container-sm {
+        .container {
             max-width: 720px;
         }
 
@@ -148,10 +148,11 @@
             justify-content: center!important;
         }
 
-        @media (min-width: 576px)
         .align-content-sm-center {
             align-content: center!important;
+            min-width: 576px;
         }
+
         .auto-style1 {
             position: relative;
             width: 100%;
@@ -191,7 +192,7 @@
     
     <div class="container" id="artOrder">
         <div class="row">
-            <div class="col-xl-6 col-sm-12 artImgDiv">
+            <div class="col artImgDiv">
                <!-- ArtWork Image -->
                 <div class="justify-content-center align-self-center col-12">
                     <div class="artwork-image-division col-12">
@@ -200,7 +201,7 @@
                 </div>
             </div>
        
-            <div class="col-xl-6">
+            <div class="col">
                 <!-- Artwork Name-->
                 <div class="row artworkNameDivision" id="artworkNameDivision">
                     <div class="col-12">
@@ -299,7 +300,7 @@
                 <!-- Buy now button -->
                 <div class="row">
                     <div class="col-12 btnBuyNowDivision" id="btnBuyNowDivision">
-                        <asp:LinkButton ID="btnBuyNow" runat="server" PostBackUrl="../client/OrderHistory.aspx" CssClass="btn btn-primary btn-block">BUY NOW</asp:LinkButton>
+                        <asp:LinkButton ID="btnBuyNow" runat="server" PostBackUrl="../client/OrderHistory.aspx" CssClass="btn btn-primary btn-block" OnClick="btnBuyNow_Click">BUY NOW</asp:LinkButton>
                     </div>
                 </div>
             </div>
