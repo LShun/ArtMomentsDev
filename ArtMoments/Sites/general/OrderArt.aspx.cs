@@ -14,36 +14,36 @@ namespace ArtMoments.Sites.general
         string conString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (IsPostBack)
-            {
-                if (Session["UserName"] != null)
-                {
-                    //still need get selected ID from display
-                    SqlConnection conn = new SqlConnection(conString);
-                    conn.Open();
+            //if (IsPostBack)
+            //{
+            //    if (Session["UserName"] != null)
+            //    {
+            //        //still need get selected ID from display
+            //        SqlConnection conn = new SqlConnection(conString);
+            //        conn.Open();
 
-                    string getCustIdQuery = "select cust.id as [cust-id] from User cust where @custUserName like cust.user_name";
+            //        string getCustIdQuery = "select cust.id as [cust-id] from User cust where @custUserName like cust.user_name";
 
-                    SqlCommand cmd = new SqlCommand(getCustIdQuery, conn);
-                    cmd.Parameters.AddWithValue("@custUserName", (String)Session["UserName"]);
+            //        SqlCommand cmd = new SqlCommand(getCustIdQuery, conn);
+            //        cmd.Parameters.AddWithValue("@custUserName", (String)Session["UserName"]);
 
-                    DataTable dt = new DataTable();
-                    SqlDataAdapter sda = new SqlDataAdapter(cmd);
-                    sda.Fill(dt);
-                    Session["CustId"] = dt;
+            //        DataTable dt = new DataTable();
+            //        SqlDataAdapter sda = new SqlDataAdapter(cmd);
+            //        sda.Fill(dt);
+            //        Session["CustId"] = dt;
 
-                    string selectedArt = "select P.id as [prod-id], P.prod_name as [prod-name], P.prod_size [prod-size], P.prod_description as [prod-descrip], P.prod_image as [prod-image], P.prod_price as [prod-price] , P.prod_stock as [prod-stock] from Product P where P.prod_id = selectedId";
-                    //put cust id //putselectedprodid
-                    cmd = new SqlCommand(selectedArt, conn);
-                    cmd.Parameters.AddWithValue("@custId", (String)Session["CustId"]);
-                    //get avaiable stock value
-                    conn.Close();
-                }
-                else
-                {
-                    Response.Write("Require Sign In");
-                }
-            }
+            //        string selectedArt = "select P.id as [prod-id], P.prod_name as [prod-name], P.prod_size [prod-size], P.prod_description as [prod-descrip], P.prod_image as [prod-image], P.prod_price as [prod-price] , P.prod_stock as [prod-stock] from Product P where P.prod_id = selectedId";
+            //        //put cust id //putselectedprodid
+            //        cmd = new SqlCommand(selectedArt, conn);
+            //        cmd.Parameters.AddWithValue("@custId", (String)Session["CustId"]);
+            //        //get avaiable stock value
+            //        conn.Close();
+            //    }
+            //    else
+            //    {
+            //        Response.Write("Require Sign In");
+            //    }
+            //}
         }
         protected int qtyValue = 20;
         protected void btnMinus_Click(object sender, EventArgs e)
