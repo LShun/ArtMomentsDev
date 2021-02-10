@@ -28,7 +28,8 @@
                             </div>
 
                             <div class="form-group">                                
-                                <asp:TextBox class="myInput" placeholder="Password" ID="txtUserPassword" runat="server" OnTextChanged="txtUserPassword_TextChanged"></asp:TextBox>
+                                <asp:TextBox class="myInput" placeholder="Password" ID="txtUserPassword" runat="server" OnTextChanged="txtUserPassword_TextChanged" TextMode="Password"></asp:TextBox>
+                                <asp:Label Text="*" runat="server" ForeColor="Red" />
                             </div>
 
                             <asp:Button class="butt" ID="Button1" OnClick="Button1_Click" runat="server" Text="LOGIN"></asp:Button>  
