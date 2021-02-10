@@ -30,19 +30,32 @@
                               <div class="form-group row">   
                                   <label for="currentPw" class="col-4 col-form-label">Current password: </label>                                               
                                 <div class="col-8">
-                                     <asp:TextBox ID="tbPassword" runat="server" OnTextChanged="TextBox1_TextChanged"></asp:TextBox>
+                                     <asp:TextBox ID="tbPassword" runat="server" OnTextChanged="TextBox1_TextChanged" TextMode="Password"></asp:TextBox>
+                                     <asp:Label Text="*" runat="server" ForeColor="Red" />  
                                  </div>
                               </div>
                               <div class="form-group row"> 
                                   <label for="newPw" class="col-4 col-form-label">New password: </label> 
                                   <div class="col-8">
-                                     <asp:TextBox ID="tbNewPassword" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
+                                     <asp:TextBox ID="tbNewPassword" runat="server" OnTextChanged="TextBox2_TextChanged" TextMode="Password"></asp:TextBox>
+                                      <asp:Label Text="*" runat="server" ForeColor="Red" />  
+                                      <br />
+                                        <asp:RegularExpressionValidator ID="rev1" runat="server" 
+                                        ControlToValidate="tbNewPassword"
+                                        ErrorMessage="Minimum 8 characters atleast 1 Alphabet and 1 Number"
+                                        ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" Font-Size="Small" Display="Dynamic"/>
                               </div>
                               </div>
                               <div class="form-group row">   
                                   <label for="conNewPw" class="col-4 col-form-label">Confirmed password: </label>         
                               <div class="col-8">
-                                  <asp:TextBox ID="tbNewConPassword" runat="server" OnTextChanged="TextBox3_TextChanged"></asp:TextBox>
+                                  <asp:TextBox ID="tbNewConPassword" runat="server" OnTextChanged="TextBox3_TextChanged" TextMode="Password"></asp:TextBox>
+                                  <asp:Label Text="*" runat="server" ForeColor="Red" />  
+                                    <br />
+                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
+                                    ControlToValidate="tbNewConPassword"
+                                    ErrorMessage="Minimum 8 characters atleast 1 Alphabet and 1 Number"
+                                    ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" Font-Size="Small" Display="Dynamic"/>
                               </div>
                               </div>
 
