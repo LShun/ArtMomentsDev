@@ -29,7 +29,7 @@
                               <div class="form-group row">
                                 <label for="website" class="col-4 col-form-label">Bibliography</label> 
                                 <div class="col-8">
-                                  <asp:TextBox ID="tbBibliography" runat="server" OnTextChanged="tbBibliography_TextChanged" BorderStyle="Solid" EnableTheming="True"></asp:TextBox>
+                                  <asp:TextBox ID="tbBibliography" runat="server" OnTextChanged="tbBibliography_TextChanged" BorderStyle="None" EnableTheming="True" ReadOnly="True"></asp:TextBox>
                                 </div>
                               </div>
                               <div class="form-group row">
