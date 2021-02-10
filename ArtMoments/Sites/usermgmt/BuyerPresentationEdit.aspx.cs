@@ -16,9 +16,7 @@ namespace ArtMoments.Sites.usermgmt
 
     public partial class BuyerPresentationEdit : System.Web.UI.Page
     {
-        //String connectionString = @"Data Source =(local)\SQLEXPRESSFJE; initial Catalog=tblFile; Integrated Security = True;";
-        string connectionString = "Data Source=LAPTOP-RF7VE486\\SQLEXPRESSFJE;Initial Catalog=ArtMomentsDb; Integrated Security=True; User ID=sa;Password=***********";
-
+        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +26,31 @@ namespace ArtMoments.Sites.usermgmt
                 {
                     Response.Redirect("PreLogin.aspx");
                 }
-                //string constr = ConfigurationManager.ConnectionStrings["constr"].ConnectionString;
+
+                String tbUserName = Session["UserName"].ToString();
+
+                using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                {
+                    sqlCon.Open();
+                    String query = "SELECT * FROM [User] WHERE user_name = @UserName";
+                    SqlCommand cmd = new SqlCommand(query, sqlCon);
+
+                    cmd.Parameters.AddWithValue("@UserName", tbUserName);
+                    SqlDataReader dr = cmd.ExecuteReader();
+
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            tbBibliography.Text = dr.GetValue(5).ToString();
+                            if (tbBibliography.Text == "")
+                            {
+                                tbBibliography.Text = "Enter your bibliography to let others know you better";
+                            }
+                        }
+                    }
+                }
+
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     string UserName = Session["UserName"].ToString();
@@ -48,10 +70,17 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
+            string imageUrl = "";
+
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
                 DataRowView dr = (DataRowView)e.Row.DataItem;
-                string imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])dr["profile_pic"]);
+                if (!DBNull.Value.Equals(dr["profile_pic"]))
+                    imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])dr["profile_pic"]);
+                else
+                    imageUrl = String.Empty;
+
+                (e.Row.FindControl("Image1") as Image).ImageUrl = imageUrl;
                 (e.Row.FindControl("Image1") as Image).ImageUrl = imageUrl;
             }
         }
@@ -70,12 +99,13 @@ namespace ArtMoments.Sites.usermgmt
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     string UserName = Session["UserName"].ToString();
-                    string sql = "UPDATE [User] SET profile_pic = @Data WHERE user_name = @UserName";
+                    string sql = "UPDATE [User] SET bibliography = @Bibliography, profile_pic = @Data WHERE user_name = @UserName";
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@UserName", UserName);
                         //cmd.Parameters.AddWithValue("@Name", Path.GetFileName(FileUpload1.PostedFile.FileName));
                         //cmd.Parameters.AddWithValue("@ContentType", FileUpload1.PostedFile.ContentType);
+                        cmd.Parameters.AddWithValue("@Bibliography", tbBibliography.Text.ToString());
                         cmd.Parameters.AddWithValue("@Data", bytes);
                         conn.Open();
                         cmd.ExecuteNonQuery();
@@ -84,7 +114,7 @@ namespace ArtMoments.Sites.usermgmt
                 }
 
                 Response.Redirect(Request.Url.AbsoluteUri);
-                
+                Response.Redirect("BuyerPresentation.aspx");
             }
         }
 
