@@ -5,7 +5,13 @@
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
     <style>
         .radioButtonStyle{
-            padding:100px;
+            padding:2em;
+        }
+        .invalidMsgMargin{
+            margin-left:2em;
+        }
+        .ErrorMsgColor{
+            color:red;
         }
     </style>
 </asp:Content>
@@ -25,16 +31,34 @@
                             <div class="form-group">
                                 <i class="fas fa-envelope"></i>
                                 <asp:TextBox class="myInput" placeholder="Email" ID="txtUserEmail" runat="server"></asp:TextBox>
+                                <br />
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="txtUserEmail"
+                                ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                                Display="Dynamic" ErrorMessage="Invalid email address" CssClass="invalidMsgMargin"/>
+                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="txtUserEmail"
+                                ForeColor="Red" Display="Dynamic" ErrorMessage="Required" CssClass="invalidMsgMargin"/>
                             </div>
 
                             <div class="form-group">
                                 <i class="fas fa-lock"></i>
-                                <asp:TextBox class="myInput" placeholder="Password" ID="txtUserPassword" runat="server"></asp:TextBox>
+                                <asp:TextBox class="myInput" placeholder="Password" ID="txtUserPassword" TextMode="Password" runat="server"></asp:TextBox>
+                                <asp:Label Text="*" runat="server" ForeColor="Red" />
+                                <br />
+                                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
+                                ControlToValidate="txtUserPassword"
+                                ErrorMessage="Minimum 8 characters atleast 1 Alphabet and 1 Number"
+                                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" Font-Size="Small" Display="Dynamic"/>
                             </div>
 
                             <div class="form-group">
                                 <i class="fas fa-unlock"></i>
-                                <asp:TextBox class="myInput" placeholder="Confirmed Password" ID="txtConfirmedPassword" runat="server"></asp:TextBox>
+                                <asp:TextBox class="myInput" placeholder="Confirm Password" ID="txtConfirmedPassword" TextMode="Password" runat="server"></asp:TextBox>
+                                <asp:Label Text="*" runat="server" ForeColor="Red" />  
+                                <br />
+                                <asp:RegularExpressionValidator ID="rev1" runat="server" 
+                                ControlToValidate="txtConfirmedPassword"
+                                ErrorMessage="Minimum 8 characters atleast 1 Alphabet and 1 Number"
+                                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" Font-Size="Small" Display="Dynamic"/>
                             </div>
 
                             <div class="form-group">
@@ -54,7 +78,7 @@
                             
                             <br />                            
                         </form>
-                        <asp:Label ID="lblMessage" runat="server"></asp:Label>
+                        <asp:Label ID="lblMessage" runat="server" CssClass="ErrorMsgColor"></asp:Label>
                         <br />
                     </div>
                 </div> 
