@@ -11,8 +11,7 @@ namespace ArtMoments.Sites.usermgmt
 {
     public partial class BuyerPresentation : System.Web.UI.Page
     {
-        string connectionString = "Data Source=LAPTOP-RF7VE486\\SQLEXPRESSFJE;Initial Catalog=ArtMomentsDb; Integrated Security=True; User ID=sa;Password=***********";
-
+        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -27,7 +26,6 @@ namespace ArtMoments.Sites.usermgmt
                 using (SqlConnection sqlCon = new SqlConnection(connectionString))
                 {
                     sqlCon.Open();
-                    //@UserID, @UserName, @UserPassword, @UserConfirmedPassword, @UserEmail, @Bibliography, @UserContactNo, @UserAddress
                     String query = "SELECT * FROM [User] WHERE user_name = @UserName";
                     SqlCommand cmd = new SqlCommand(query, sqlCon);
 
@@ -52,7 +50,6 @@ namespace ArtMoments.Sites.usermgmt
 
                     using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM [User] WHERE user_name = @UserName", conn))
                     {
-                        //sqlDa.SelectCommand.Parameters.AddWithValue("@UserID", userID);
                         sda.SelectCommand.Parameters.AddWithValue("@UserName", UserName);
                         DataTable dt = new DataTable();
                         sda.Fill(dt);
@@ -101,9 +98,17 @@ namespace ArtMoments.Sites.usermgmt
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
+                string imageUrl = "";
+
                 DataRowView dr = (DataRowView)e.Row.DataItem;
-                string imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])dr["profile_pic"]);
-                (e.Row.FindControl("Image1") as Image).ImageUrl = imageUrl;
+
+                if (!DBNull.Value.Equals(dr["profile_pic"]))
+                    imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])dr["profile_pic"]); 
+                else
+                    imageUrl = String.Empty;
+
+                (e.Row.FindControl("Image1") as Image).ImageUrl = imageUrl;            
+                
             }
         }
     }
