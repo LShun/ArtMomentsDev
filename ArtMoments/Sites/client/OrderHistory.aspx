@@ -93,13 +93,6 @@
             padding-left: 15px;
         }
 
-        @media (min-width: 768px)
-        .col-md-12 {
-            -ms-flex: 0 0 100%;
-            flex: 0 0 100%;
-            max-width: 100%;
-        }
-
         .row {
             display: -ms-flexbox;
             display: flex;
@@ -109,15 +102,8 @@
             margin-left: -15px;
         }
 
-        .col-lg-4{-ms-flex:0 0 33.333333%;flex:0 0 33.333333%;max-width:33.333333%}
+       
 
-        .col-sm-12{-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%}
-
-        .col-md-12{-ms-flex:0 0 100%;flex:0 0 100%;max-width:100%}
-
-        .col-lg-8{-ms-flex:0 0 66.666667%;flex:0 0 66.666667%;max-width:66.666667%}
-
-        .col{-ms-flex-preferred-size:0;flex-basis:0;-ms-flex-positive:1;flex-grow:1;max-width:100%}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

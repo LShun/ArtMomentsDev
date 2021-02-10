@@ -191,7 +191,7 @@
     
     <div class="container" id="artOrder">
         <div class="row">
-            <div class="col-xl-6 col-sm-12 artImgDiv">
+            <div class="col artImgDiv">
                <!-- ArtWork Image -->
                 <div class="justify-content-center align-self-center col-12">
                     <div class="artwork-image-division col-12">
@@ -200,7 +200,7 @@
                 </div>
             </div>
        
-            <div class="col-xl-6">
+            <div class="col">
                 <!-- Artwork Name-->
                 <div class="row artworkNameDivision" id="artworkNameDivision">
                     <div class="col-12">
