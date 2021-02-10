@@ -1771,7 +1771,6 @@
     <Content Include="Sites\general\HomePage.aspx" />
     <Content Include="Sites\usermgmt\BuyerAccount.aspx" />
     <Content Include="Sites\usermgmt\BuyerPresentation.aspx" />
-    <Content Include="Sites\usermgmt\BuyerPresentationEdit.aspx" />
     <Content Include="Sites\usermgmt\BuyerSetting.aspx" />
     <Content Include="Sites\usermgmt\BuyerSettingEdit.aspx" />
     <Content Include="Sites\usermgmt\ChangePassword.aspx" />
@@ -1867,13 +1866,6 @@
     </Compile>
     <Compile Include="Sites\usermgmt\BuyerPresentation.aspx.designer.cs">
       <DependentUpon>BuyerPresentation.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\usermgmt\BuyerPresentationEdit.aspx.cs">
-      <DependentUpon>BuyerPresentationEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\usermgmt\BuyerPresentationEdit.aspx.designer.cs">
-      <DependentUpon>BuyerPresentationEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\usermgmt\BuyerSetting.aspx.cs">
       <DependentUpon>BuyerSetting.aspx</DependentUpon>
