@@ -37,7 +37,7 @@ namespace ArtMoments.Sites.general
         }
         protected int qtyValue = 20;
         protected void btnMinus_Click(object sender, EventArgs e)
-        { 
+        {
             if (qtyValue > 1)
             {
                 qtyValue--;
@@ -102,32 +102,33 @@ namespace ArtMoments.Sites.general
             //}
         }
 
-    protected void btnBuyNow_Click(object sender, EventArgs e)
-    {
-        //try
-        //{
-                
-        //    DateTime deliveryDate = DateTime.Now;
-        //    string orderStatus = "Pending";
-        //    SqlConnection conn = new SqlConnection(conString);
-        //    conn.Open();
-        //    //insert custid
-        //    string insertOrderQuery = "insert into [dbo].[Order](prod_id,quantity,deliver_channel,date_delivery,order_status) values (@productId,@quantity, @deliveryChannel, @dateDelivery, @orderStatus)";
-        //    SqlCommand cmd = new SqlCommand(insertOrderQuery, conn);
-        //    cmd.Parameters.AddWithValue("@productId", lblartworkID);
-        //    cmd.Parameters.AddWithValue("@quantity", Convert.ToInt32(txtboxQty.Text));
-        //    cmd.Parameters.AddWithValue("@deliveryChannel", ddlDeliveyMethod.SelectedValue);
-        //    cmd.Parameters.AddWithValue("@prodDesc", deliveryDate);
-        //    cmd.Parameters.AddWithValue("@categoryId", orderStatus);
-        //    cmd.Parameters.AddWithValue("@custId", (String)Session["CustId"]);
-        //    cmd.ExecuteNonQuery();
+        protected void btnBuyNow_Click(object sender, EventArgs e)
+        {
+            //try
+            //{
 
-        //    Response.Write("Insert Order Successfully");
-        //    conn.Close();
-        //}
-        //catch (Exception ex)
-        //{
-        //    Response.Write("Error Insert Order");
-        //}
+            //    DateTime deliveryDate = DateTime.Now;
+            //    string orderStatus = "Pending";
+            //    SqlConnection conn = new SqlConnection(conString);
+            //    conn.Open();
+            //    //insert custid
+            //    string insertOrderQuery = "insert into [dbo].[Order](prod_id,quantity,deliver_channel,date_delivery,order_status) values (@productId,@quantity, @deliveryChannel, @dateDelivery, @orderStatus)";
+            //    SqlCommand cmd = new SqlCommand(insertOrderQuery, conn);
+            //    cmd.Parameters.AddWithValue("@productId", lblartworkID);
+            //    cmd.Parameters.AddWithValue("@quantity", Convert.ToInt32(txtboxQty.Text));
+            //    cmd.Parameters.AddWithValue("@deliveryChannel", ddlDeliveyMethod.SelectedValue);
+            //    cmd.Parameters.AddWithValue("@prodDesc", deliveryDate);
+            //    cmd.Parameters.AddWithValue("@categoryId", orderStatus);
+            //    cmd.Parameters.AddWithValue("@custId", (String)Session["CustId"]);
+            //    cmd.ExecuteNonQuery();
+
+            //    Response.Write("Insert Order Successfully");
+            //    conn.Close();
+            //}
+            //catch (Exception ex)
+            //{
+            //    Response.Write("Error Insert Order");
+            //}
+        }
     }
 }
