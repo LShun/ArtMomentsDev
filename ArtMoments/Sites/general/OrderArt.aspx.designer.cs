@@ -96,13 +96,13 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.Label lblartworkDescription;
 
         /// <summary>
-        /// btnMinus control.
+        /// btnMinusQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMinus;
+        protected global::System.Web.UI.WebControls.Button btnMinusQty;
 
         /// <summary>
         /// txtboxQty control.
@@ -114,13 +114,31 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.TextBox txtboxQty;
 
         /// <summary>
-        /// btnPlus control.
+        /// btnPlusQty control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnPlus;
+        protected global::System.Web.UI.WebControls.Button btnPlusQty;
+
+        /// <summary>
+        /// lblHideStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblHideStock;
+
+        /// <summary>
+        /// lblRM control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblRM;
 
         /// <summary>
         /// lblartworkPrice control.
@@ -159,12 +177,21 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.Image authorImage;
 
         /// <summary>
-        /// authorInfoName control.
+        /// lblauthorInfoName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label authorInfoName;
+        protected global::System.Web.UI.WebControls.Label lblauthorInfoName;
+
+        /// <summary>
+        /// lblauthorBibliography control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblauthorBibliography;
     }
 }

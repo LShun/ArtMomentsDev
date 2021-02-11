@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
+using System.Configuration;
 
 namespace ArtMoments.Sites.general
 {
@@ -14,153 +15,251 @@ namespace ArtMoments.Sites.general
         string conString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
-            //if (IsPostBack)
-            //{
-            //    if (Session["UserName"] != null)
-            //    {
-            //        //still need get selected ID from display
-            //        SqlConnection conn = new SqlConnection(conString);
-            //        conn.Open();
+            if(!IsPostBack)
+            {
+                Session["CustId"] = 1;
+                Session["ProdId"] = 12;
 
-            //        string getCustIdQuery = "select cust.id as [cust-id] from User cust where @custUserName like cust.user_name";
+                if (Session["CustId"] != null && Session["ProdId"] != null)
+                {
+                    using (SqlConnection con = new SqlConnection(conString))
+                    {
+                        using (SqlCommand cmd = new SqlCommand("select P.id as [prod-id], P.prod_name as [prod-name], P.prod_size [prod-size], P.prod_description as [prod-descrip], P.prod_image as [prod-image], P.prod_price as [prod-price] , P.prod_stock as [prod-stock], C.category_name as [category-name], C.category_name as [category_name], U.user_name as [author], U.bibliography as [bibliography], U.profile_pic as [author_profilePic] from [Product] P left join [Product_Category] C on C.id = P.category_id left join [User] U on U.id = P.user_id where P.id like @ProdId"))
+                        {
+                            cmd.Parameters.AddWithValue("@ProdId", (String)Session["ProdId"].ToString());
+                            using (SqlDataAdapter sda = new SqlDataAdapter())
+                            {
+                                cmd.Connection = con;
+                                sda.SelectCommand = cmd;
+                                using (DataTable prodInfo = new DataTable())
+                                {
+                                    sda.Fill(prodInfo);
 
-            //        SqlCommand cmd = new SqlCommand(getCustIdQuery, conn);
-            //        cmd.Parameters.AddWithValue("@custUserName", (String)Session["UserName"]);
+                                    foreach (DataRow rw in prodInfo.Rows)
+                                    {
+                                        artworkImage.ImageUrl = prodInfo.Rows[0]["prod-image"].ToString();
+                                        lblartworkName.Text = prodInfo.Rows[0]["prod-name"].ToString();
+                                        lblartworkID.Text = prodInfo.Rows[0]["prod-id"].ToString();
+                                        lblartworkSize.Text = prodInfo.Rows[0]["prod-size"].ToString();
+                                        lblartworkCategory.Text = prodInfo.Rows[0]["category-name"].ToString();
+                                        lblauthor.Text = prodInfo.Rows[0]["author"].ToString();
+                                        lblartworkDescription.Text = prodInfo.Rows[0]["prod-descrip"].ToString();
+                                        lblartworkPrice.Text = string.Format("{0:#.##}",prodInfo.Rows[0]["prod-price"].ToString());
+                                        Session["ProdPrice"] = prodInfo.Rows[0].Field<System.Double>("prod-price");
+                                        //artworkPrice = prodInfo.Rows[0].Field<System.Double>("prod-price");
+                                        lblHideStock.Text = prodInfo.Rows[0]["prod-stock"].ToString();
+                                        checkStock();
+                                        authorImage.ImageUrl = prodInfo.Rows[0]["author_profilePic"].ToString();
+                                        lblauthorInfoName.Text = prodInfo.Rows[0]["author"].ToString();
+                                        lblauthorBibliography.Text = prodInfo.Rows[0]["bibliography"].ToString();
+                                    }
+                                }
+                            }
+                        }
+                        //check wishlist
+                        using (SqlCommand cmd = new SqlCommand("select W.id as [wishlist-id] from [Wishlist] W where W.user_id like @CustId and W.product_id like @ProdId"))
+                        {
+                            cmd.Parameters.AddWithValue("@ProdId", (String)Session["ProdId"].ToString());
+                            cmd.Parameters.AddWithValue("@CustId", (String)Session["CustId"].ToString());
+                            using (SqlDataAdapter sda = new SqlDataAdapter())
+                            {
+                                cmd.Connection = con;
+                                sda.SelectCommand = cmd;
+                                using (DataTable isWishlist = new DataTable())
+                                {
+                                    sda.Fill(isWishlist);
 
-            //        DataTable dt = new DataTable();
-            //        SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            //        sda.Fill(dt);
-            //        Session["CustId"] = dt;
+                                    foreach (DataRow rw in isWishlist.Rows)
+                                    {
+                                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Found')", true);
 
-            //        string selectedArt = "select P.id as [prod-id], P.prod_name as [prod-name], P.prod_size [prod-size], P.prod_description as [prod-descrip], P.prod_image as [prod-image], P.prod_price as [prod-price] , P.prod_stock as [prod-stock] from Product P where P.prod_id = selectedId";
-            //        //put cust id //putselectedprodid
-            //        cmd = new SqlCommand(selectedArt, conn);
-            //        cmd.Parameters.AddWithValue("@custId", (String)Session["CustId"]);
-            //        //get avaiable stock value
-            //        conn.Close();
-            //    }
-            //    else
-            //    {
-            //        Response.Write("Require Sign In");
-            //    }
-            //}
+                                        btnwishlistOn.Visible = true;
+                                        btnwishlistOff.Visible = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
-        protected int qtyValue = 20;
+
+        protected void checkStock()
+        {
+            int availableStock = Convert.ToInt32(lblHideStock.Text);
+            if (availableStock == 0)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Found')", true);
+
+                txtboxQty.Text = "0";
+                txtboxQty.Enabled = false;
+                btnBuyNow.Enabled = false;
+            }
+        }
+
+        protected void calculatePrice(int qty)
+        {
+            string artworkPrice = Session["ProdPrice"].ToString();
+            string[] artworkPriceSplit = artworkPrice.Split('.');
+            Double artPrice = Convert.ToInt32(artworkPriceSplit[0]);
+            if (artworkPriceSplit[0] != null)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('decimal found')", true);
+                if (artworkPriceSplit[1].Length == 1)
+                {
+                    artPrice += (Convert.ToDouble(artworkPriceSplit[1]) / 10);
+                }
+                else
+                {
+                    artPrice += (Convert.ToDouble(artworkPriceSplit[1]) / 100);
+                }
+            }
+            Double subtotal = (qty * artPrice);
+            lblartworkPrice.Text = subtotal.ToString("0.00");
+        }
+
         protected void btnMinus_Click(object sender, EventArgs e)
         {
-            if (qtyValue > 1)
+            int custOrder = Convert.ToInt32(txtboxQty.Text);
+            if (custOrder > 1)
             {
-                qtyValue--;
-                txtboxQty.Text = qtyValue.ToString();
+                custOrder--;
+                txtboxQty.Text = custOrder.ToString();
+                calculatePrice(custOrder);
             }
-
-            // if the stock available = 0, disable minus , plus button and disable the textbox
         }
 
-        protected void btnPlus_Click(object sender, EventArgs e)
-        {
-            qtyValue = Convert.ToInt32(txtboxQty.Text);
-            qtyValue++;
-            txtboxQty.Text = qtyValue.ToString();
-
-            // if stock = stock available, disable the plus button
-        }
 
         protected void btnwishlistOff_Click(object sender, EventArgs e)
         {
-            //btnwishlistOn.Visible = true;
-            //btnwishlistOff.Visible = false;
-            //// 
-            //try
-            //{
-            //    SqlConnection conn = new SqlConnection(conString);
-            //    conn.Open();
+            btnwishlistOn.Visible = true;
+            btnwishlistOff.Visible = false;
 
-            //    //put seected prod id // put cust id // use addwitvalue
-            //    string removeWishlistQuery = "Delete from [dbo].[Wishlist] where ";
-            //    SqlCommand cmd = new SqlCommand(removeWishlistQuery, conn);
+            try
+            {
+                SqlConnection con = new SqlConnection(conString);
+                
+                string addWishlistQuery = "insert into [Wishlist] (product_id, user_id) VALUES (@ProdId, @CustId)";
+                SqlCommand cmd = new SqlCommand(addWishlistQuery,con);
+                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
+                cmd.Parameters.AddWithValue("@ProdId", Convert.ToInt32(Session["ProdId"]));
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Inserted')", true);
 
-            //    cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
 
-            //    Response.Write("Insert Order Successfully");
-            //    conn.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Response.Write("Error Delete Wishlist");
-            //}
+            }
         }
 
         protected void btnwishlistOn_Click(object sender, EventArgs e)
         {
             btnwishlistOn.Visible = false;
             btnwishlistOff.Visible = true;
-            //try
-            //{
-            //    SqlConnection conn = new SqlConnection(conString);
-            //    conn.Open();
-            //    //insert custid
-            //    string insertWishlistQuery = "insert into [dbo].[Wishlist](prod_id,cust_id) values (@productId,@custId)";
-            //    SqlCommand cmd = new SqlCommand(insertWishlistQuery, conn);
-            //    cmd.Parameters.AddWithValue("@productId", lblartworkID);
-            //    cmd.Parameters.AddWithValue("@custId", (String)Session["CustId"]);
-            //    cmd.ExecuteNonQuery();
 
-            //    Response.Write("Insert Wishlist Successfully");
-            //    conn.Close();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Response.Write("Error Insert Wishlist");
-            //}
+            try
+            {
+                SqlConnection con = new SqlConnection(conString);
+
+                string removeWishlistQuery = "Delete from [Wishlist] where user_id like @CustId and product_id like @ProdId";
+                SqlCommand cmd = new SqlCommand(removeWishlistQuery, con);
+                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
+                cmd.Parameters.AddWithValue("@ProdId", Convert.ToInt32(Session["ProdId"]));
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Deleted')", true);
+
+            }catch(Exception ex)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail Delete')", true);
+            }
         }
 
         protected void btnBuyNow_Click(object sender, EventArgs e)
         {
-            //    try
-            //    {
+            try
+            {
+                //create transaction
+                SqlConnection con = new SqlConnection(conString);
+                string createTransacQuery = "insert into [Transaction] (user_id,date_order) VALUES (@CustId,@OrderDate)";
+                SqlCommand cmd = new SqlCommand(createTransacQuery, con);
+                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
+                cmd.Parameters.AddWithValue("@OrderDate", DateTime.Now);
+                con.Open();
+                cmd.ExecuteNonQuery();
 
-            //        DateTime deliveryDate = DateTime.Now;
-            //        string orderStatus = "Pending";
-            //        SqlConnection conn = new SqlConnection(conString);
-            //        conn.Open();
-            //        string insertOrderQuery = "insert into [dbo].[Order](prod_id,quantity,deliver_channel,date_delivery,order_status) values (@productId,@quantity, @deliveryChannel, @dateDelivery, @orderStatus)";
-            //        SqlCommand cmd = new SqlCommand(insertOrderQuery, conn);
-            //        cmd.Parameters.AddWithValue("@productId", lblartworkID);
-            //        cmd.Parameters.AddWithValue("@quantity", Convert.ToInt32(txtboxQty.Text));
-            //        cmd.Parameters.AddWithValue("@deliveryChannel", ddlDeliveyMethod.SelectedValue);
-            //        cmd.Parameters.AddWithValue("@prodDesc", deliveryDate);
-            //        cmd.Parameters.AddWithValue("@categoryId", orderStatus);
-            //        cmd.ExecuteNonQuery();
+                //get the newly added transaction id
+                using (SqlCommand cmdTransacId = new SqlCommand("select max(id) as [transac-id] from [Transaction]"))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    { 
+                        cmdTransacId.Connection = con;
+                        sda.SelectCommand = cmdTransacId;
+                        using (DataTable lastTransacId = new DataTable())
+                        {
 
-            //        Response.Write("Insert Order Successfully");
+                            sda.Fill(lastTransacId);
 
-            //        //put into transaction
-            //        try
-            //        {
-            //            DateTime transac_date = DateTime.Now;
-            //            string insertTransacQuery = "insert into [dbo].[Transaction](order_id, user_id, date_order) values (@orderId, @user_id, transac_date)";
-            //            cmd = new SqlCommand(insertTransacQuery, conn);
-            //            cmd.Parameters.AddWithValue("@transacDate", transac_date);
-            //            cmd.Parameters.AddWithValue("@custId", (String)Session["CustId"]);
-            //            // Create Order ID reference
-            //            DataTable dt = new DataTable();
-            //            SqlDataAdapter sda = new SqlDataAdapter(cmd);
-            //            sda.Fill(dt);
-            //            Session["OrderId"] = dt.Columns[0];
-            //            cmd.Parameters.AddWithValue("@orderId", (String)Session["OrderId"]);
-            //        }
-            //        catch (Exception ex)
-            //        {
+                            foreach (DataRow rw in lastTransacId.Rows)
+                            {
+                                Session["TransacId"] = lastTransacId.Rows[0].Field<int>("transac-id");
+                            }
+                        }
+                    }
+                }
+                //create order
 
-            //        }
-            //        conn.Close();
-            //    }
-            //    catch (Exception ex)
-            //    {
-            //        Response.Write("Error Insert Order");
-            //    }
-            //}
+                try
+                {
+                    string addOrderQuery = "insert into [Order] (product_id,quantity,deliver_channel,order_status,transaction_id) VALUES (@ProdId, @Qty, @DeliverChannel, @OrderStatus, @TransacId)";
+                    //string addOrderQuery = "insert into [Order] (product_id,transaction_id) VALUES (@ProdId, @TransacId)";
+                    SqlCommand cmdOrder = new SqlCommand(addOrderQuery, con);
+                    String deliverChannel = ddlDeliveyMethod.SelectedValue;
+                    String orderStatus = "Pending";
+                    cmdOrder.Parameters.AddWithValue("@ProdId", Convert.ToInt32(Session["ProdId"]));
+                    cmdOrder.Parameters.AddWithValue("@Qty", Convert.ToInt32(txtboxQty.Text));
+                    cmdOrder.Parameters.AddWithValue("@DeliverChannel", deliverChannel);
+                    cmdOrder.Parameters.AddWithValue("@OrderStatus", orderStatus);
+                    int transacId = Convert.ToInt32(Session["TransacId"]);
+                    cmdOrder.Parameters.AddWithValue("@TransacId", transacId);
+
+                    cmdOrder.ExecuteNonQuery();
+                    con.Close();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Inserted Order')", true);
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
+
+            }
+        }
+
+        protected void btnPlusQty_Click(object sender, EventArgs e)
+        {
+            int custOrder = Convert.ToInt32(txtboxQty.Text);
+            int availableStock = Convert.ToInt32(lblHideStock.Text);
+            if (custOrder < availableStock)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Success plus')", true);
+                custOrder++;
+                txtboxQty.Text = custOrder.ToString();
+                calculatePrice(custOrder);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
+            }
         }
     }
 }

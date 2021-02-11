@@ -93,23 +93,6 @@
            display:block;
        }
 
-        @media (min-width: 1200px).col-xl-6 {
-            flex: 0 0 50%;
-            max-width: 50%;
-        }
-
-        @media (min-width: 768px)
-        .container {
-            max-width: 720px;
-        }
-
-        @media (min-width: 768px)
-        .col-md-12 {
-            -ms-flex: 0 0 100%;
-            flex: 0 0 100%;
-            max-width: 100%;
-        }
-
         .btn-primary{
             color:#fff;
             background-color:#007bff;
@@ -153,18 +136,6 @@
             min-width: 576px;
         }
 
-        .auto-style1 {
-            position: relative;
-            width: 100%;
-            -ms-flex: 0 0 33.333333%;
-            flex: 0 0 33.333333%;
-            max-width: 33.333333%;
-            left: 0px;
-            top: 0px;
-            padding-left: 15px;
-            padding-right: 15px;
-        }
-
         .col-4{-ms-flex:0 0 33.333333%;flex:0 0 33.333333%;max-width:33.333333%}
 
         .col-xl-6{-ms-flex:0 0 50%;flex:0 0 50%;max-width:50%}
@@ -180,6 +151,7 @@
         .col-6{-ms-flex:0 0 50%;flex:0 0 50%;max-width:50%}
 
         .col-7{-ms-flex:0 0 58.333333%;flex:0 0 58.333333%;max-width:58.333333%}
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -205,17 +177,17 @@
                 <!-- Artwork Name-->
                 <div class="row artworkNameDivision" id="artworkNameDivision">
                     <div class="col-12">
-                        <h1><asp:Label ID="lblartworkName" runat="server" Text="artworkName"></asp:Label></h1>
+                        <h1><asp:Label ID="lblartworkName" runat="server" Text=''></asp:Label></h1>
                         <asp:Label ID="lblartworkID" runat="server" Text="" Visible="false"></asp:Label>
                     </div>
 
                      <!-- wishlist icon img -->
                 <div class="row wishlistBtnDivision" id="wishlistBtnDivision">
-                    <div id="wishlistOff">
-                        <asp:Button ID="btnwishlistOff" runat="server" Text="&#9829;" style="color:darkgrey; font-size:55px;background-color:transparent; border:none; background-size:55px" OnClick="btnwishlistOff_Click" CssClass="btnOff" ToolTip="add to wishlist" />
+                    <div id="wishlistOff" class="auto-style1">
+                        <asp:Button ID="btnwishlistOff" runat="server" Text="&#9829;" style="color:darkgrey; font-size:55px;background-color:transparent; border:none; background-size:55px" OnClick="btnwishlistOff_Click" CssClass="btnOff" ToolTip="add to wishlist" Height="98px" />
                     </div>
-                    <div id="wishlistOn">
-                        <asp:Button ID="btnwishlistOn" runat="server" Text="&#9829;" style="color:red; font-size:55px;background-color:transparent; border:none;background-size:55px" OnClick="btnwishlistOn_Click" visible="false" ToolTip="remove from wishlist"/>
+                    <div id="wishlistOn" class="auto-style2">
+                        <asp:Button ID="btnwishlistOn" runat="server" Text="&#9829;" style="color:red; font-size:55px;background-color:transparent; border:none;background-size:55px" OnClick="btnwishlistOn_Click" visible="false" ToolTip="remove from wishlist" Height="98px"/>
                     </div>
                 </div>
                 </div>
@@ -276,14 +248,15 @@
                 <div class="row" id="qtynPriceDiv">
                     <div class="col-4" id="quantityDivision">
                         <div class="quantity">
-                            <asp:Button ID="btnMinus" runat="server" Text="-" OnClick="btnMinus_Click" />
+                            <asp:Button ID="btnMinusQty" runat="server" Text="-" OnClick="btnMinus_Click" />
                             <asp:TextBox ID="txtboxQty" runat="server" Width="55px" onkeypress="numValid(event);" onfocusout="qtyValid();" class="txtboxQtyClass">1</asp:TextBox>
-                            <asp:Button ID="btnPlus" runat="server" Text="+" OnClick="btnPlus_Click" />
+                            <asp:Button ID="btnPlusQty" runat="server" Text="+" OnClick="btnPlusQty_Click" />
+                            <asp:Label ID="lblHideStock" runat="server" Text="" Visible="true" CssClass ="lblHideStock"></asp:Label>
                         </div>
                     </div>
 
                     <div class="col-4" id="priceDivision">
-                        <asp:Label ID="lblartworkPrice" runat="server" Text="RM "></asp:Label>
+                        <asp:Label ID="lblRM" runat="server" Text="RM "></asp:Label><asp:Label ID="lblartworkPrice" runat="server" Text=""></asp:Label>
                     </div>
 
                     <div class="col-4" id="deliveryDivision">
@@ -300,28 +273,30 @@
                 <!-- Buy now button -->
                 <div class="row">
                     <div class="col-12 btnBuyNowDivision" id="btnBuyNowDivision">
-                        <asp:LinkButton ID="btnBuyNow" runat="server" PostBackUrl="../client/OrderHistory.aspx" CssClass="btn btn-primary btn-block" OnClick="btnBuyNow_Click">BUY NOW</asp:LinkButton>
+                        <asp:LinkButton ID="btnBuyNow" runat="server" CssClass="btn btn-primary btn-block" OnClick="btnBuyNow_Click">BUY NOW</asp:LinkButton>
                     </div>
                 </div>
             </div>
         </div>
 
         <!-- Author Information -->
-    <div class="container authorInfoContainer">
-        <div class="row justify-content-center align-self-center">
-            <h2 class="authorInfoHeading" id="authorInfoHeading" style="padding-top:50px;">Author Information</h2>
-        </div>
+        <div class="container authorInfoContainer">
+            <div class="row justify-content-center align-self-center">
+                <h2 class="authorInfoHeading" id="authorInfoHeading" style="padding-top:50px;">Author Information</h2>
+            </div>
 
-        <div class="container justify-content-center">       
-            <div class="row authorInfoDivision" id="authorInfoDivision"> 
-                <div class="col-5 float-right">
-                    <div class="author-pic-image" id="authorpicDivision">
-                        <asp:Image ID="authorImage" runat="server" src="../../Content/panda.jpg" alt="Author Profile Pic" />
+            <div class="container justify-content-center">       
+                <div class="row authorInfoDivision" id="authorInfoDivision"> 
+                    <div class="col-5 float-right">
+                        <div class="author-pic-image" id="authorpicDivision">
+                            <asp:Image ID="authorImage" runat="server" src="../../Content/panda.jpg" alt="Author Profile Pic" />
+                        </div>
                     </div>
-                </div>
 
-                <div class="col-7 authorName" id="authorName">
-                    <asp:Label ID="authorInfoName" runat="server" Text="authorName"></asp:Label>
+                    <div class="col-7 authorName" id="authorName">
+                        <asp:Label ID="lblauthorInfoName" runat="server" Text="authorName"></asp:Label>
+                        <asp:Label ID="lblauthorBibliography" runat="server" Text=""></asp:Label>
+                    </div>
                 </div>
             </div>
         </div>
@@ -339,20 +314,28 @@
 
             function qtyValid() {
                 var qtyElement = document.getElementsByClassName("txtboxQtyClass")[0];
-                    var qtyInput = parseInt(qtyElement.value);
-                    var maxQty = 20;
+                var qtyInput = parseInt(qtyElement.value);
+                var qtyAvailable = document.getElementsByClassName("lblHideStock")[0];
+                var maxQty = parseInt(qtyAvailable.value);
                     if (qtyInput > 1) {
                         if (qtyInput > maxQty) {
                             qtyInput = maxQty;
-                            alert("The current available stock of this artwork is only 20 pieces.");
+                            alert("The current available stock of this artwork is only " + qtyAvailable +" pieces.");
                         }
                     }
                     else{
                         qtyInput = 1;
                         qtyElement.value = qtyInput.toString();
-                    }
+                }
+                calcSubtotal(qtyInput);
+
             }
 
+            function calcSubtotal(qtyInput) {
+                var price = document.getElementById("lblartworkPrice").textContent;
+                price = parseFloat.price * qtyInput;
+                document.getElementsByClassName("txtboxQtyClass")[0].textContent = price;
+            }
         </script>
 
 </asp:Content>
