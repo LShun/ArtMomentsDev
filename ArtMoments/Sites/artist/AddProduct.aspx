@@ -1,6 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="AddProduct.aspx.cs" Inherits="ArtMoments.Sites.artist.AddProduct" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <style type="text/css">
+    .h1, h1 {
+        font-size: 2.5rem;
+    }
     .addArtwork input[type=text], input[type=email], input[type=tel], select, textarea{
         width: 100%;
         padding: 12px;
@@ -79,6 +82,30 @@
         margin-right: -15px;
         margin-left: -15px;
     }
+    .button:not(:disabled):not(.disabled) {
+        cursor: pointer;
+    }
+    .button:hover{
+        color: #212529;
+    }
+    .btn-artwork {
+        color: #fff;
+        background-color: #007bff;
+        border-color: #007bff;
+        display: inline-block;
+        font-weight: 400;
+        text-align: center;
+        vertical-align: middle;
+        user-select: none;
+        border: 1px solid transparent;
+        padding: .375rem .75rem;
+        font-size: 1rem;
+        line-height: 1.5;
+        border-radius: .25rem;
+        transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    }
+
+        
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -113,7 +140,7 @@
 				<div class="col-10">
 					<asp:DropDownList ID="ddlArtworkCategory" runat="server" DataSourceID="test" DataTextField="category_name" DataValueField="ID">
 						</asp:DropDownList>
-                    <asp:SqlDataSource ID ="test" runat="server" ConnectionString="Data Source=DESKTOP-RT2Q9PA\SQLEXPRESS;Initial Catalog=ArtMomentsDb;User ID=sa;Password=1234"
+                    <asp:SqlDataSource ID ="test" runat="server" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security = True"
                         SelectCommand="Select ID, category_name from product_category"></asp:SqlDataSource>
 					</div>
 				    
@@ -123,7 +150,7 @@
 						<label for="artworkImage">Artwork Image*:</label> 
 					</div>
 					<div class="col-10">	
-                        <asp:fileupload id="fileUpload" accept="image/*" runat="server" />	
+                        <asp:fileupload id="ImageUpload" accept="image/*" runat="server" />	
 					</div>
 					
 				</div>
@@ -143,8 +170,8 @@
 					</div>
 				</div>
 				<div class="row">		
-					<asp:Button ID="submitAddProdBtn" class="btn btn-primary" runat="server" Text="Save & Create" OnClick="saveProdBtn_Click"/>
-					<asp:Button ID="resetAddProdBtn" class="btn btn-primary" runat="server" Text="Reset" OnClick="resetProdBtn_Click"/>
+					<asp:Button ID="submitAddProdBtn" class="button btn-artwork" runat="server" Text="Save & Create" OnClientClick="return validate()" OnClick="saveProdBtn_Click"/>
+					<asp:Button ID="resetAddProdBtn" class="button btn-artwork" runat="server" Text="Reset" OnClick="resetProdBtn_Click"/>
 				</div>
             
             </div>
@@ -159,8 +186,12 @@
                 return false;
             return true;
         }
-        
 
+        function alertMsg() {
+            alert("The form is not completed!!!")
+
+        }
+       
     </script> 
 </asp:Content>
 
