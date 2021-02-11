@@ -19,81 +19,84 @@ namespace ArtMoments.Sites.artist
         {
             if (!this.IsPostBack)
             {
-               
-                //if (Session["UserName"] == null)
-                //{
-                //    Response.Redirect("usermgmt/PreLogin.aspx");
-                //}
 
+                if (Session["UserName"] == null)
+                {
+                    Response.Redirect("../usermgmt/PreLogin.aspx");
+                } 
 
-                //using (SqlConnection sqlcon = new SqlConnection(connectionString))
-                //{
-                //    string UserName = Session["UserName"].ToString();
-
-                    
-                //    //List<int> userIdList = new List<int>();
-                //    string sql = "SELECT id FROM [User] WHERE user_name = @UserName";
-
-                //    using (SqlCommand cmd = new SqlCommand(sql, sqlcon))
-                //    {
-                //        cmd.Parameters.AddWithValue("@UserName", UserName);
-                //        sqlcon.Open();
-                //        SqlDataReader reader = cmd.ExecuteReader();
-                //        while (reader.Read())
-                //        {
-                //            userId = reader[0].ToString();
-                //            //userIdList.Add(reader.GetInt32(0));
-                //        }
-                //        reader.Close();
-                //        sqlcon.Close();
-                //    }
-                //}
- 
             }
         }
 
         protected void saveProdBtn_Click(object sender, EventArgs e)
         {
-            string artworkName = txtArtworkName.Text;
-            string artworkSize = txtArtworkSize.Text;
-            string artworkDesc = txtArtworkDesc.Text;
-            int categoryID = int.Parse(ddlArtworkCategory.SelectedValue);
-            string test = ddlArtworkCategory.SelectedValue;
-            double artworkPrice = double.Parse(txtArtworkPrice.Text);
-            double artworkStock = double.Parse(txtArtworkStock.Text);
 
-            //int userID = getUserID();
-            byte[] bytes;
-            using (BinaryReader br = new BinaryReader(fileUpload.PostedFile.InputStream))
+            if (txtArtworkName.Text.Length == 0 || txtArtworkSize.Text.Length == 0 || txtArtworkDesc.Text.Length == 0 || txtArtworkPrice.Text.Length == 0 || txtArtworkStock.Text.Length == 0 || ImageUpload.HasFile == false)
             {
-                bytes = br.ReadBytes(fileUpload.PostedFile.ContentLength);
+                ClientScript.RegisterStartupScript(GetType(), "Message", "alertMsg();", true);
             }
-
-            using (SqlConnection sqlcon = new SqlConnection(connectionString))
+            else
             {
-                string sql = "insert into product (prod_name,prod_size,prod_description,category_id, prod_image, prod_price, prod_stock) values (@prodName, @prodSize, @prodDesc, @categoryId, @prodImage, @prodPrice, @prodStock) ";
-                using (SqlCommand cmd = new SqlCommand(sql, sqlcon))
+                string artworkName = txtArtworkName.Text;
+                string artworkSize = txtArtworkSize.Text;
+                string artworkDesc = txtArtworkDesc.Text;
+                int categoryID = int.Parse(ddlArtworkCategory.SelectedValue);
+                double artworkPrice = double.Parse(txtArtworkPrice.Text);
+                double artworkStock = double.Parse(txtArtworkStock.Text);
+
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
                 {
-                    cmd.Parameters.AddWithValue("@prodName", artworkName);
-                    cmd.Parameters.AddWithValue("@prodSize", artworkSize);
-                    cmd.Parameters.AddWithValue("@prodDesc", artworkDesc);
-                    cmd.Parameters.AddWithValue("@categoryId", categoryID);
-                    cmd.Parameters.AddWithValue("@prodImage", bytes);
-                    cmd.Parameters.AddWithValue("@prodPrice", artworkPrice);
-                    cmd.Parameters.AddWithValue("@prodStock", artworkStock);
-                    //cmd.Parameters.AddWithValue("@userId", userId);
-                    sqlcon.Open();
-                    cmd.ExecuteNonQuery();
-                    sqlcon.Close();
+
+                    string sql = "SELECT id FROM [User] WHERE user_name = @UserName";
+
+                    using (SqlCommand cmd = new SqlCommand(sql, sqlcon))
+                    {
+                        cmd.Parameters.AddWithValue("@UserName", Session["UserName"]);
+                        sqlcon.Open();
+                        SqlDataReader reader = cmd.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            userId = reader[0].ToString();
+                        }
+                        reader.Close();
+                        sqlcon.Close();
+                    }
                 }
+
+                //int userID = getUserID();
+                byte[] bytes;
+                using (BinaryReader br = new BinaryReader(ImageUpload.PostedFile.InputStream))
+                {
+                    bytes = br.ReadBytes(ImageUpload.PostedFile.ContentLength);
+                }
+
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    string sql = "insert into product (prod_name,prod_size,prod_description,category_id, prod_image, prod_price, prod_stock, prod_sales, user_id) values (@prodName, @prodSize, @prodDesc, @categoryId, @prodImage, @prodPrice, @prodStock, @prodSales, @userID)";
+                    using (SqlCommand cmd = new SqlCommand(sql, sqlcon))
+                    {
+                        cmd.Parameters.AddWithValue("@prodName", artworkName);
+                        cmd.Parameters.AddWithValue("@prodSize", artworkSize);
+                        cmd.Parameters.AddWithValue("@prodDesc", artworkDesc);
+                        cmd.Parameters.AddWithValue("@categoryId", categoryID);
+                        cmd.Parameters.AddWithValue("@prodImage", bytes);
+                        cmd.Parameters.AddWithValue("@prodPrice", artworkPrice);
+                        cmd.Parameters.AddWithValue("@prodStock", artworkStock);
+                        cmd.Parameters.AddWithValue("@prodSales", 0);
+                        cmd.Parameters.AddWithValue("@userID", userId);
+                        sqlcon.Open();
+                        cmd.ExecuteNonQuery();
+                        sqlcon.Close();
+                    }
+                }
+                //Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect("ProductList.aspx");
             }
-            //Response.Redirect(Request.Url.AbsoluteUri);
-            Response.Redirect("ProductList.aspx");
         }
         
         protected void resetProdBtn_Click(object sender, EventArgs e)
         {          
-            fileUpload.Attributes.Clear();
+            ImageUpload.Attributes.Clear();
             ClearInputs(Page.Controls);
         }
         void ClearInputs(ControlCollection ctrls)
