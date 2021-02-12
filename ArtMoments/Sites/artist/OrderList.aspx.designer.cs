@@ -15,21 +15,21 @@ namespace ArtMoments.Sites.artist
     {
 
         /// <summary>
-        /// ddlStatus control.
+        /// txtSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlStatus;
+        protected global::System.Web.UI.WebControls.TextBox txtSearch;
 
         /// <summary>
-        /// ddlDelivery control.
+        /// orderList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDelivery;
+        protected global::System.Web.UI.WebControls.GridView orderList;
     }
 }
