@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+using System.Text;
 
 namespace ArtMoments.Sites.general
 {
@@ -37,7 +38,8 @@ namespace ArtMoments.Sites.general
 
                                     foreach (DataRow rw in prodInfo.Rows)
                                     {
-                                        artworkImage.ImageUrl = prodInfo.Rows[0]["prod-image"].ToString();
+                                        byte[] imgBinUrl = (byte[])prodInfo.Rows[0]["prod-image"];
+                                        artworkImage.Src = string.Format("data:image/png;base64,{0}", Convert.ToBase64String(imgBinUrl));
                                         lblartworkName.Text = prodInfo.Rows[0]["prod-name"].ToString();
                                         lblartworkID.Text = prodInfo.Rows[0]["prod-id"].ToString();
                                         lblartworkSize.Text = prodInfo.Rows[0]["prod-size"].ToString();
@@ -49,7 +51,7 @@ namespace ArtMoments.Sites.general
                                         //artworkPrice = prodInfo.Rows[0].Field<System.Double>("prod-price");
                                         lblHideStock.Text = prodInfo.Rows[0]["prod-stock"].ToString();
                                         checkStock();
-                                        authorImage.ImageUrl = prodInfo.Rows[0]["author_profilePic"].ToString();
+                                        authorImage.Src = prodInfo.Rows[0]["author_profilePic"].ToString();
                                         lblauthorInfoName.Text = prodInfo.Rows[0]["author"].ToString();
                                         lblauthorBibliography.Text = prodInfo.Rows[0]["bibliography"].ToString();
                                     }

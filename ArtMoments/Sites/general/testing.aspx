@@ -5,4 +5,6 @@
     <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" PostBackUrl="~/Sites/general/OrderArt.aspx" />
     <asp:Label ID="Label1" runat="server" Text=''></asp:Label>
     <asp:Label ID="Label2" runat="server" Text=''></asp:Label>
+    <br />
+    <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="History" />
 </asp:Content>

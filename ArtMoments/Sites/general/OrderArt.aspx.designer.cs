@@ -21,7 +21,7 @@ namespace ArtMoments.Sites.general
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image artworkImage;
+        protected global::System.Web.UI.HtmlControls.HtmlImage artworkImage;
 
         /// <summary>
         /// lblartworkName control.
@@ -174,7 +174,7 @@ namespace ArtMoments.Sites.general
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image authorImage;
+        protected global::System.Web.UI.HtmlControls.HtmlImage authorImage;
 
         /// <summary>
         /// lblauthorInfoName control.

@@ -102,12 +102,26 @@
             margin-left: -15px;
         }
 
+        img#imgdbArtwork {
+            max-width: 200px;
+            max-height: 200px;
+        }
+
+        #lbladorderStatus{
+            color:#fff;
+            background-color:#28a745;
+            border-color:#28a745;
+            font-size: 13px;
+            border-radius: 8px;
+            padding-left:5px;
+            padding-right:5px;
+        }
        
 
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <!-- Heading -->
+    <%--<!-- Heading -->
     <header>
         <div class="row justify-content-center">
             <h1 class="orderHistoryHeader">Order History</h1>
@@ -284,5 +298,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>--%>
 </asp:Content>

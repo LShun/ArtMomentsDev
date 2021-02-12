@@ -1,12 +1,17 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Image = System.Web.UI.WebControls.Image;
 
 namespace ArtMoments.Sites.client
 {
@@ -14,266 +19,289 @@ namespace ArtMoments.Sites.client
     {
         string conString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
 
-        //protected void Page_Load(object sender, EventArgs e)
-        //{
-        //    if (IsPostBack)
-        //    {
-        //        if (Session["CustId"] != null)
-        //        {
-
-        //            DataTable transacTable = getTransacTable();
-
-        //            foreach (DataRow row in transacTable.Rows)
-        //            {
-        //                DataTable orderTable = getOrderTable();
-
-        //                //update delivery details
-        //                chkDispatchOrder(transacTable, orderTable);
-
-        //                //display HTML
-        //                displayInHTML(transacTable, orderTable);
-        //            }
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
+            {
+                Session["CustId"] = 1;
+                if (Session["CustId"] != null)
+                {
+                    DataTable transacTable = getTransacTable();
+                    int transacRow = 0;
+                    foreach (DataRow row in transacTable.Rows)
+                    {
+                        int TransacId = row.Field<int>("transac-id");
+                        DateTime TransacDate = row.Field<DateTime>("order-date");
 
 
+                        DataTable orderTable = getOrderTable(TransacId);
 
-        //            // step 1) store row  of transaction
-        //            // step 2) store row of order under transaction
-        //            // step 3) display a row of transaction follows by all the orders
-        //            // step 4) repeat step 3 till end
+                        //update delivery details
+                        chkDispatchOrder(orderTable, TransacDate,TransacId);
 
-        //            /*
-        //             CREATE TABLE [dbo].[Transaction] (
-        //            [id]         INT  IDENTITY (1, 1) NOT NULL,
-        //            [order_id]   INT  NULL,
-        //            [user_id]    INT  NULL,
-        //            [date_order] DATE NULL,
+                        ////display HTML
+                        displayInHTML(TransacId, orderTable);
+                        
+                        transacRow++;
+                    }
+                }
+            }
 
-        //            CREATE TABLE [dbo].[Order] (
-        //            [id]              INT           IDENTITY (1, 1) NOT NULL,
-        //            [product_id]      INT           NULL,
-        //            [quantity]        INT           NULL,
-        //            [deliver_channel] NVARCHAR (50) NULL,
-        //            [date_delivery]   DATE          NULL,
-        //            [order_status]    NVARCHAR (20) NULL,
-        //            [date_received]   DATE          NULL,
-        //             */
+        }
+        protected DataTable getTransacTable()
+        {
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                using (SqlCommand cmd = new SqlCommand("select id as [transac-id], user_id as [user-id], date_order as [order-date] from [Transaction] where user_id like @CustId"))
+                {
+                    cmd.Parameters.AddWithValue("@CustId", (String)Session["CustId"].ToString());
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        sda.SelectCommand = cmd;
+                        using (DataTable custTransac = new DataTable())
+                        {
+                            sda.Fill(custTransac);
+
+                            return custTransac;
+                        }
+                    }
+                }
+            }
+        }
+
+        protected DataTable getOrderTable(int TransacId)
+        {
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                using (SqlCommand cmd = new SqlCommand("select id as [order-id], product_id as [order-id], quantity as [order-qty], deliver_channel as [order-deliverChannel], date_delivery as [order-deliverDate], order_status as [order-status], date_received as [order-dateReceive], O.transaction_id as [transac-id] from [Order] O where O.transaction_id like @TransacId"))
+                {
+                    cmd.Parameters.AddWithValue("@TransacId", TransacId);
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        sda.SelectCommand = cmd;
+                        using (DataTable custOrder = new DataTable())
+                        {
+                            sda.Fill(custOrder);
+                            return custOrder;
+                        }
+                    }
+                }
+            }
+        }
+
+        protected void chkDispatchOrder(DataTable orderTable, DateTime TransacDate, int TransacId)
+        {
+            int rowCount = 0;
+            foreach (DataRow row in orderTable.Rows)
+            {
+                DateTime todayDT = DateTime.Now;
+                DateTime orderDT = TransacDate;
+                //DateTime orderDT = transacTable.Rows[rowCount].Field<DateTime>(3);
+                DateTime deliveredDT = orderDT.AddDays(8);
+                DateTime dispatchDT = orderDT.AddDays(3);
+                int updateDeliveryInfo = 0;
+                // if more than 8 days and null 2-> process 2 if null 1, process 1. if not null -> no need to process
+                // if more than 3 days and null -> process 1 
+
+                if (dispatchDT <= todayDT)
+                {
+                    updateDeliveryInfo = 1;
+                    if (deliveredDT <= todayDT)
+                    {
+                        updateDeliveryInfo = 2;
+                    }
+                    updateDeliveryStatus(orderTable, updateDeliveryInfo, dispatchDT, deliveredDT, TransacId);
+                }
+                rowCount++;
+            }
+        }
+
+        protected void updateDeliveryStatus(DataTable orderTable, int delivery2Update, DateTime dispatchDT, DateTime deliveredDT, int TransacId)
+        {
+            int rowCount = 0;
+            foreach (DataRow row in orderTable.Rows)
+            {
+                DateTime? dbdeliveredDT = row.Field<DateTime?>("order-deliverDate");
+                DateTime? dbdispatchDT = row.Field<DateTime?>("order-dateReceive");
+
+                if (!dbdeliveredDT.HasValue && delivery2Update == 1)
+                {
+                    SqlConnection conn = new SqlConnection(conString);
+                    conn.Open();
+                    string updateDeliverDTQuery = @"update [Order] set date_delivery = @DispatchDT, order_status = @OrderStatus where date_delivery IS NULL and @TransacId like transaction_id";
+                    using (SqlCommand cmd = new SqlCommand(updateDeliverDTQuery, conn))
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('success get order info')", true);
+                        cmd.Parameters.AddWithValue("@TransacId", TransacId);
+                        cmd.Parameters.AddWithValue("@DispatchDT", dispatchDT);
+                        cmd.Parameters.AddWithValue("@OrderStatus", "Dispatched");
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+                if (!dbdispatchDT.HasValue && delivery2Update == 2)
+                {
+                    SqlConnection conn = new SqlConnection(conString);
+                    conn.Open();
+                    string updateReceivedDTQuery = @"update [Order] set date_received = @deliveredDT, order_status = @OrderStatus where date_received IS NULL and @TransacId like transaction_id";
+                    using (SqlCommand cmd = new SqlCommand(updateReceivedDTQuery, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@TransacId", TransacId);
+                        cmd.Parameters.AddWithValue("@deliveredDT", deliveredDT);
+                        cmd.Parameters.AddWithValue("@OrderStatus", "Delivered");
+                        cmd.ExecuteNonQuery();
+                        conn.Close();
+                    }
+                }
+                if (dbdeliveredDT.HasValue && dbdispatchDT.HasValue)
+                {
+                    break;
+                }
+                rowCount++;
+            }
+        }
+        protected string calcPrice(int qty, Double price)
+        {
+            Double subtotal = (qty * price);
+            return subtotal.ToString("0.00");
+        }
+        protected void displayInHTML(int transacId, DataTable orderTable)
+        {
+            Double total = 0;
+            StringBuilder html = new StringBuilder();
+
+            html.Append("<div class='container transactionHistoryContainer'>");
+            html.Append("<div class='row'>");
+            // Transaction
+            html.Append("<h2><asp:Label ID='lbltransacId' runat='server'>");
+            // transactionID
+            html.Append(transacId);
+            html.Append("</asp:Label></h2></div>");
+        // ORDERS
+            using (SqlConnection con = new SqlConnection(conString))
+            {
+                using (SqlCommand cmd = new SqlCommand("select P.id as [prod-id], P.prod_name as [prod-name], P.prod_size as [prod-size], P.prod_description as [prod-descrip], P.prod_image as [prod-img], P.prod_price as [prod-price], U.user_name as [prod-author], C.category_name as [category-name], O.id as [order-id], O.quantity as [order-qty], O.order_status as [order-status], O.transaction_id from"
+                                                        + "[Product] P join[Order] O on O.[product_id] = P.id join[Transaction] T on O.transaction_id = T.id join[Product_Category] C on C.id = P.category_id join[User] U on P.user_id = U.id where T.id like @TransacId"))
+                {
+                    cmd.Parameters.AddWithValue("@TransacId", transacId);
+                    using (SqlDataAdapter sda = new SqlDataAdapter())
+                    {
+                        cmd.Connection = con;
+                        sda.SelectCommand = cmd;
+                        using (DataTable custTransac = new DataTable())
+                        {
+                            sda.Fill(custTransac);
+                            orderTable = custTransac;
+                        }
+                    }
+                }
+            }
+            foreach (DataRow rows in orderTable.Rows)
+            {
+
+                // data to be use
+                string orderId = (rows.Field<int>("order-id")).ToString();
+                byte[] prodImg = (byte[])rows["prod-img"];
+
+                //String file = "data:image/png;base64," + Convert.ToBase64String(prodImg, Base64FormattingOptions.None);
+                //System.Drawing.Image img = (System.Drawing.Image)new Bitmap(file);
+                string orderStatus = rows.Field<string>("order-status");
+                string prodName = rows.Field<string>("prod-name");
+                string prodSize = rows.Field<string>("prod-size");
+                string prodCategory = rows.Field<string>("category-name");
+                string author = rows.Field<string>("prod-author");
+                int qty = rows.Field<int>("order-qty");
+                Double prodPrice = rows.Field<System.Double>("prod-price");
+                //calculate price
+                Double subtotal = (qty * prodPrice);
+                string viewMore = "View More Details";
+                string buyAgain = "BUY AGAIN";
+                total += subtotal;
+                // combine order & product
+                html.Append("<div class='container align-content-sm-center orderHistoryContainer'>");
+                html.Append("<div class='row'>");
+                html.Append("<div class='col-lg-4 col-md-12 col-sm-12 orderHistoryRowDiv'>");
+                html.Append("<div class='col justify-content-center orderNumnArt'>");
+                html.Append("<div class='row'>");
+                html.Append("<h3><asp:Label ID='lbladorderNum' runat='server'>");
+                // orderNum
+                html.Append(orderId);
+                html.Append("</ asp:Label ></h3></div>");
+
+                // ORDER IMG
+                string imgArt = "data:Image/png;base64,Convert.ToBase64String((byte[])prodImg";
+                var imageString = string.Format("data:image/png;base64,{0}", Convert.ToBase64String(prodImg));
+                //html.Append("<asp:Repeater ID = 'Repeater1' runat = 'server' OnItemDataBound = 'repeater_ItemDataBound' >");
 
 
+                //html.Append("<img src=\"/path/to/image/" +  + "\"></div>")
+                //"data:Image/png;base64," + Convert.ToBase64String((byte[])prodImg);
+                //ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                //yourbitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                ////this will convert image to byte[] 
+                //byte[] byteArrayImage = baos.toByteArray();
+                //// this will convert byte[] to string
+                //String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
 
-        //            // combine order, transaction, and customer 
-        //            //compare cust id and order id
-        //        }    
-        //    }
-        //}
-        //protected DataTable getTransacTable()
-        //{
-        //    SqlConnection conn = new SqlConnection(conString);
-        //    conn.Open();
+                html.AppendFormat("<img id=\'imgdbArtwork\' u=\'image\' src=\'{0}\' />", ResolveUrl(imageString));
 
-        //    string custTransacQuery = "select T.id,T.order_id,T.date_order as [transac-id] from Transaction T where T.id = @custId";
-        //    SqlCommand cmd = new SqlCommand(custTransacQuery, conn);
-        //    DataTable transacTable = new DataTable();
-        //    SqlDataAdapter transacRecord = new SqlDataAdapter(cmd);
-        //    transacRecord.Fill(transacTable);
+                html.Append("</div></div>");
+                // ORDER DETAIL
+                html.Append("<div class='col-lg-8 orderHistoryDetail'>");
+                // DELIVERY STATUS
+                html.Append("<div class='row  float-right deliveryStatus'>");
+                html.Append("<asp:Label ID='lbladorderStatus' runat='server' CssClass='btn-success'>");
+                html.Append( orderStatus +"</asp:Label>"+ "</div>");
+                // ART NAME
+                html.Append("<div class='row artNameRow'><asp:Label ID='lbladartName' runat='server' Text ='");
+                // art name
+                html.Append("' CssClass='h2'>" +prodName + "</asp:Label></div>");
+                // Size, Category, Author label
+                html.Append("<div class='row sizeCategoryAuthor'><div class='col' id='sizeDivision'><label id ='sizeTxt'>");
+                // Size
+                html.Append("Size");
+                html.Append("</label ></div ><div class='col' id='categoryDivision'><label id ='categoryTxt'>");
+                // Category
+                html.Append("Category");
+                html.Append("</label></div><div class='col' id='authorDivision'><label id='authorTxt'>");
+                //Author
+                html.Append("Author");
+                html.Append("</label></div></div>");
+                // Size, Category, Author from db
+                html.Append("<div class='row sizeCategoryAuthorDB'><div class='col' id='lblsizeDivision'><asp:Label ID ='lblartworkSize' runat='server' Text='");
+                // Size
+                html.Append("'>"+ prodSize +"</asp:Label></div><div class='col' id='lblcategorryDivision'><asp:Label ID = 'lblartworkCategory' runat='server' Text='");
+                // Category
+                html.Append("'>"+prodCategory+"</asp:Label></div><div class='col' id='lblauthorDivision'><asp:Label ID = 'lblauthor' runat='server' Text='");
+                //Author
+                html.Append("'>"+author+"</asp:Label></div></div>");
+                // Qty, Price, view more details label
+                html.Append("<div class='row qtyPriceMore'><div class='col' id='qtyDivision'><label id = 'qtyTxt' > Quantity </label></div><div class='col' id='priceDivision'>"
+                            + "<label id = 'priceTxt'> RM </label></div><div class='col' id='modeDetailsRow'><a href = '");
+                //more details -> src
+                html.Append("'><asp:Label ID = 'lblMoreDetail' runat='server'>"+ viewMore +"</asp:Label></a></div></div>");
 
-        //    conn.Close();
-        //    return transacTable;
-        //}
-
-        //protected DataTable getOrderTable()
-        //{
-        //    SqlConnection conn = new SqlConnection(conString);
-        //    conn.Open();
-
-        //    string transacOrderQuery = "select O.id, O.product_id, O.quantity, O.deliver_channel, O.date_delivery, O.status, O.date_received";
-        //    SqlCommand cmd = new SqlCommand(transacOrderQuery, conn);
-        //    DataTable orderTable = new DataTable();
-        //    SqlDataAdapter orderRecord = new SqlDataAdapter(cmd);
-        //    orderRecord.Fill(orderTable);
-
-        //    conn.Close();
-        //    return orderTable;
-        //}
-
-        //protected DataTable getOrderTable(int transactionId)
-        //{
-        //    SqlConnection conn = new SqlConnection(conString);
-        //    conn.Open();
-        //    // o.transaction_id = transactionId;
-        //    string transacOrderQuery = "select O.id, O.product_id, O.quantity, O.deliver_channel, O.date_delivery, O.status, O.date_received where ";
-        //    SqlCommand cmd = new SqlCommand(transacOrderQuery, conn);
-        //    DataTable orderTable = new DataTable();
-        //    SqlDataAdapter orderRecord = new SqlDataAdapter(cmd);
-        //    orderRecord.Fill(orderTable);
-
-        //    conn.Close();
-        //    return orderTable;
-        //}
-
-        //protected void chkDispatchOrder(DataTable transacTable,DataTable orderTable)
-        //{
-        //    foreach (DataRow row in transacTable.Rows)
-        //    {
-        //        int rowCount = 0;
-        //        SqlConnection conn = new SqlConnection(conString);
-        //        conn.Open();
-        //        DateTime todayDT = DateTime.Now;
-        //        DateTime orderDT = transacTable.Rows[rowCount].Field<DateTime>(3);
-        //        DateTime deliveredDT = transacTable.Rows[rowCount].Field<DateTime>(3).AddDays(8);
-        //        DateTime dispatchDT = transacTable.Rows[rowCount].Field<DateTime>(3).AddDays(3);
-        //        int transacId = transacTable.Rows[rowCount].Field<int>(0);
-        //        int updateDeliveryInfo = 0;
-        //        // if more than 8 days and null 2-> process 2 if null 1, process 1. if not null -> no need to process
-        //        // if more than 3 days and null -> process 1 
-
-        //        if (deliveredDT <= todayDT)
-        //        {
-        //            updateDeliveryInfo = 1;
-        //            if(dispatchDT <= todayDT)
-        //            {
-        //                updateDeliveryInfo = 2;
-        //                updateDeliveryStatus(orderTable, updateDeliveryInfo, orderDT, deliveredDT, dispatchDT);
-        //                continue;
-        //            }
-        //            updateDeliveryStatus(orderTable, updateDeliveryInfo, orderDT, deliveredDT, dispatchDT);
-        //        }
-        //    }
-        //}
-
-        //protected void updateDeliveryStatus(DataTable orderTable, int delivery2Update, DateTime orderDT, DateTime deliveredDT, DateTime dispatchDT)
-        //{
-        //    foreach (DataRow row in orderTable.Rows)
-        //    {
-        //        int rowCount = 0;
-        //        DateTime dbdeliveredDT = orderTable.Rows[rowCount].Field<DateTime>(4);
-        //        DateTime dbdispatchDT = orderTable.Rows[rowCount].Field<DateTime>(6);
-
-        //        if (dbdeliveredDT == null)
-        //        {
-        //            SqlConnection conn = new SqlConnection(conString);
-        //            conn.Open();
-        //            string updateDeliverDTQuery = "update Order set O.date_received = @deliveredDT where O.date_delivery = null";
-        //            SqlCommand cmd = new SqlCommand(updateDeliverDTQuery, conn);
-        //            cmd.Parameters.AddWithValue("@deliveredDT", orderDT.AddDays(3));
-        //            cmd.Parameters.AddWithValue("@deliveredStat", "Dispatched");
-        //            string updateDeliverStatQuery = "update Order set O.order_status = @deliveredStat where O.order_status in ('Pending')";
-        //            cmd = new SqlCommand(updateDeliverStatQuery, conn);
-        //            conn.Close();
-        //        }
-        //        if (dbdispatchDT == null && delivery2Update == 2)
-        //        {
-        //            SqlConnection conn = new SqlConnection(conString);
-        //            conn.Open();
-        //            string updateDeliverDTQuery = "update Order set O.date_received = @deliveredDT where O.date_received = null";
-        //            SqlCommand cmd = new SqlCommand(updateDeliverDTQuery, conn);
-        //            cmd.Parameters.AddWithValue("@deliveredDT", orderDT.AddDays(8));
-        //            cmd.Parameters.AddWithValue("@deliveredStat", "Delivered");
-        //            string updateDeliverStatQuery = "update Order set O.order_status = @deliveredStat where O.order_status in ('Pending','Dispatched')";
-        //            cmd = new SqlCommand(updateDeliverStatQuery, conn);
-        //            conn.Close();
-        //        }
-        //        if(dbdeliveredDT != null && dbdispatchDT != null)
-        //        {
-        //            break;
-        //        }
-        //        rowCount++;
-        //    }
-        //    //if date > 8 days : update to delivered
-
-
-        //    // if date > 5 days : update to dispatched 
-
-        //}
-        //protected void displayInHTML(DataTable transacTable)
-        //{
-        //    StringBuilder html = new StringBuilder();
-        //    html.Append("<table border = '1'>");
-
-        //    int rowCount = 0;
-        //    foreach (DataRow row in transacTable.Rows)
-        //    {
-        //        html.Append("<div class='container transactionHistoryContainer'>");
-        //        html.Append("<div class='row'>");
-        //        // Transaction
-        //        html.Append("<h2><asp:Label ID='lbltransacId' runat='server' Text='");
-        //        // transactionID
-        //        //html.Append();
-        //        html.Append("'></asp:Label></h2></div>");
-        //        // ORDERS
-        //        int transacId = transacTable.Rows[rowCount].Field<int>(0);
-        //        DataTable orderTable = getOrderTable(transacId);
-        //        foreach (DataRow rows in orderTable.Rows)
-        //        {
-        //            html.Append("<div class='container align-content-sm-center orderHistoryContainer'>");
-        //            html.Append("<div class='row'>");
-        //            html.Append("<div class='col-lg-4 col-md-12 col-sm-12 orderHistoryRowDiv'>");
-        //            html.Append("<div class='col justify-content-center orderNumnArt'>");
-        //            html.Append("<div class='row'>"); 
-        //            html.Append("<h3><asp:Label ID='lbladorderNum' runat='server' Text='");
-        //            // orderNum
-        //            //html.Append("");
-        //            html.Append("'></ asp:Label ></h3>");
-        //            // ORDER IMG
-        //            html.Append("</div><asp:Image ID='imgdbArtwork' runat='server' src='");
-        //            // img src
-        //            html.Append("");
-        //            html.Append("' height = '200' /></div></div>");
-        //            // ORDER DETAIL
-        //            html.Append("<div class='col-lg-8 orderHistoryDetail'>");
-        //            // DELIVERY STATUS
-        //            html.Append("<div class='row  float-right deliveryStatus'>");
-        //            html.Append("<asp:Label ID='lbladorderStatus' runat='server' Text='");
-        //            // delivery status
-        //            //html.Append("");
-        //            html.Append("' CssClass='btn-success' ></asp:Label></div>");
-        //            // ART NAME
-        //            html.Append("<div class='row artNameRow'>< asp:Label ID='lbladartName' runat = 'server' Text ='");
-        //            // art name
-        //            //html.Append("");
-        //            html.Append("' CssClass ='h2'></asp:Label></div>");
-        //            // Size, Category, Author label
-        //            html.Append("<div class='row sizeCategoryAuthor'><div class='col' id='sizeDivision'><label id ='sizeTxt'>");
-        //            // Size
-        //            html.Append("Size");
-        //            html.Append("</label ></div ><div class='col' id='categoryDivision'><label id ='categoryTxt'>");
-        //            // Category
-        //            html.Append("Category");
-        //            html.Append("</label></div><div class='col' id='authorDivision'><label id='authorTxt'>");
-        //            //Author
-        //            html.Append("Author");
-        //            html.Append("</label></div></div>");
-        //            // Size, Category, Author from db
-        //            html.Append("<div class='row sizeCategoryAuthorDB'><div class='col' id='lblsizeDivision'><asp:Label ID ='lblartworkSize' runat='server' Text='");
-        //            // Size
-        //            //html.Append("");
-        //            html.Append("'></asp:Label></div><div class='col' id='lblcategorryDivision'><asp:Label ID = 'lblartworkCategory' runat='server' Text='");
-        //            // Category
-        //            //html.Append("");
-        //            html.Append("'></asp:Label></div><div class='col' id='lblauthorDivision'><asp:Label ID = 'lblauthor' runat='server' Text='");
-        //            //Author
-        //            html.Append("'></asp:Label></div></div>");
-        //            // Qty, Price, view more details label
-        //            html.Append("<div class='row qtyPriceMore'><div class='col' id='qtyDivision'><label id = 'qtyTxt' > Quantity </label></div><div class='col' id='priceDivision'>"
-        //                        + "<label id = 'priceTxt'> RM </label></div><div class='col' id='modeDetailsRow'><a href = '");
-        //            //more details -> src
-        //            html.Append("' >< asp:Label ID = 'lblMoreDetail' runat='server' Text='View more details'></asp:Label></a></div></div>");
-
-        //            //-Qty, Price, view more details label from db
-        //            html.Append("<div class='row qtyPriceMoreDB'>");
-        //            html.Append("<div class='col' id='lblqtyDivision'>");    
-        //            html.Append("<asp:Label ID = 'lblQty' runat='server' Text='");
-        //            // Qty
-        //            //html.Append("")
-        //            html.Append("'></asp:Label></div><div class='col' id='lblpriceDivision'><asp:Label ID = 'lblTotalPrice' runat='server' Text='");
-        //            // Total Price
-        //            //html.Append("");
-        //            html.Append("'></asp:Label></div><div class='col' id='btnBuyAgainDivision'><asp:Button ID = 'btnBuyAgain' runat='server' Text='BUY AGAIN' class='btn-primary rounded'/>"
-        //                        + "</div></div></div></div></div></div>");                    
-        //        }
+                //-Qty, Price, view more details label from db
+                html.Append("<div class='row qtyPriceMoreDB'>");
+                html.Append("<div class='col' id='lblqtyDivision'>");
+                html.Append("<asp:Label ID = 'lblQty' runat='server' Text='");
+                // Qty
+                html.Append("'>"+qty+"</asp:Label></div><div class='col' id='lblpriceDivision'><asp:Label ID = 'lblTotalPrice' runat='server' Text='");
+                // Total Price
+                html.Append("'>"+calcPrice(qty,prodPrice)+"</asp:Label></div><div class='col' id='btnBuyAgainDivision'>");
+                html.Append("<asp:Button  runat=\"server\" ID=\"btnBuyAgain\" class='btn-primary rounded'>" + buyAgain + "</asp:Button>");
+                html.Append("</div></div></div></div></div></div>");
                 
-        //        rowCount++;
-        //    }
-        //}
-
+                // OnClick=\"Button1_Click\"
+            }
+            // can display total
+            //Append the HTML string to Placeholder.
+            ContentPlaceHolder conPlaceHolder = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
+        conPlaceHolder.Controls.Add(new Literal { Text = html.ToString() });
+        }
     }
+
 }
+

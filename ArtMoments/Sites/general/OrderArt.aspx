@@ -168,7 +168,7 @@
                <!-- ArtWork Image -->
                 <div class="justify-content-center align-self-center col-12">
                     <div class="artwork-image-division col-12">
-                        <asp:Image ID="artworkImage" runat="server" src="../../Content/14019785_00-129-spheroide-noire-01.jpg" class="img-thumbnail" Height="450"/>
+                        <img ID="artworkImage" runat="server" src="" class="img-thumbnail" Height="450"/>
                     </div>
                 </div>
             </div>
@@ -289,7 +289,7 @@
                 <div class="row authorInfoDivision" id="authorInfoDivision"> 
                     <div class="col-5 float-right">
                         <div class="author-pic-image" id="authorpicDivision">
-                            <asp:Image ID="authorImage" runat="server" src="../../Content/panda.jpg" alt="Author Profile Pic" />
+                            <img ID="authorImage" runat="server" src="../../Content/panda.jpg" alt="Author Profile Pic" />
                         </div>
                     </div>
 
