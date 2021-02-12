@@ -15,49 +15,76 @@ namespace ArtMoments.Sites.artist
     {
 
         /// <summary>
-        /// artworkName control.
+        /// txtArtworkName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox artworkName;
+        protected global::System.Web.UI.WebControls.TextBox txtArtworkName;
 
         /// <summary>
-        /// artworkSize control.
+        /// txtArtworkSize control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox artworkSize;
+        protected global::System.Web.UI.WebControls.TextBox txtArtworkSize;
 
         /// <summary>
-        /// artworkDesc control.
+        /// txtArtworkDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox artworkDesc;
+        protected global::System.Web.UI.WebControls.TextBox txtArtworkDesc;
 
         /// <summary>
-        /// ArtworkCategory control.
+        /// ddlArtworkCategory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ArtworkCategory;
+        protected global::System.Web.UI.WebControls.DropDownList ddlArtworkCategory;
 
         /// <summary>
-        /// fileUpload control.
+        /// test control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileUpload;
+        protected global::System.Web.UI.WebControls.SqlDataSource test;
+
+        /// <summary>
+        /// ImageUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload ImageUpload;
+
+        /// <summary>
+        /// txtArtworkPrice control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtArtworkPrice;
+
+        /// <summary>
+        /// txtArtworkStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtArtworkStock;
 
         /// <summary>
         /// submitAddProdBtn control.
@@ -69,12 +96,12 @@ namespace ArtMoments.Sites.artist
         protected global::System.Web.UI.WebControls.Button submitAddProdBtn;
 
         /// <summary>
-        /// resetAddProdBtn control.
+        /// cancelAddProdBtn control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button resetAddProdBtn;
+        protected global::System.Web.UI.WebControls.Button cancelAddProdBtn;
     }
 }
