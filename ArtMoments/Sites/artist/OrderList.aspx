@@ -1,74 +1,94 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="OrderList.aspx.cs" Inherits="ArtMoments.Sites.artist.OrderList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
-        th,td{
-            border: 1px solid black;
-        }
-        #searchInput {
-        background-image: url('../../Content/search--v2.png'); /* Add a search icon to input */
-        background-position: 10px 10px; /* position the search icon */
-        background-repeat: no-repeat; /* do not repeat the icon image */
-        background-size: 25px 25px; /*adjust background image size*/
-        width: 50%; /* half-width */
-        font-size: 16px; /* increase font-size */
-        padding: 12px 20px 12px 40px; /* add some padding */
-        border: 1px solid #ddd; /* add a grey border */
-        margin-bottom: 12px; /* add some space below the input */
-		}
-        #dropdownlist1{
-            font-weight: bold;
-            width:218px;
-        }
-
         th {
             cursor: pointer;
+            text-align:center;
+            color:#fff;
+            background-color:#343a40;
+            border-color:#454d55;
         }
-        .auto-style27 {
-            height: 25px;
-            width: 166px;
+        table{
+            border-collapse:collapse;
+            color:#212529
         }
-        .auto-style28 {
-            width: 166px;
+        .orderListTable tr:nth-of-type(odd){
+            background-color:rgba(0,0,0,.05)
         }
-        .auto-style29 {
-            height: 24px;
-            width: 166px;
+        td {
+            display: table-cell;
+            vertical-align: inherit;
         }
-        .auto-style31 {
-            width: 140px;
-            text-align: center;
+        @media (min-width: 1200px){
+            .container{
+                max-width: 1140px;
+
+            }
         }
-        .auto-style32 {
-            width: 94px;
-            text-align: center;
+        .contaner{
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
         }
-        .auto-style33 {
-            width: 509px;
-            text-align: center;
+        .pagination {   
+            display: flex;
+            padding-left: 0;
+            list-style: none;
+            border-radius:0;
         }
-        .auto-style34 {
-            width: 133px;
-            text-align: center;
+        .pagination a, .pagination span
+        {
+        display: block;
+        height: 35px;
+        width: 35px;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
         }
-        .auto-style35 {
-            width: 118px;
-            text-align: center;
+        .pagination a
+        {
+            background-color: #f5f5f5;
+            color: #969696;
+            border: 1px solid #969696;
         }
-        .auto-style36 {
-            width: 254px;
-            text-align: center;
-        }
-        .auto-style27 {
-            text-align: center;
+        .pagination span
+        {
+            background-color: #A1DCF2;
+            color: #000;
+            border: 1px solid #3AC0F2;
+            margin:5px 5px 5px 5px;
         }
         div.orderListHeader{
             margin-top:10px;
             margin-bottom:10px;
             margin-left:5px;
+            display: flex;           
+            flex-wrap: wrap;           
+            justify-content: space-between!important;
         }
-        .table-responsive.orderListTable{
+        #ContentPlaceHolder1_txtSearch{
+        background-image: url('../../Content/search--v2.png'); /* Add a search icon to input */
+        background-position: 10px 10px; /* Position the search icon */
+        background-repeat: no-repeat; /* Do not repeat the icon image */
+        background-size: 25px 25px; /*adjust background image size*/
+        width: 50%; /* Full-width */
+        font-size: 16px; /* Increase font-size */
+        padding: 12px 20px 12px 40px; /* Add some padding */
+        border: 1px solid #ddd; /* Add a grey border */
+        margin-bottom: 12px; /* Add some space below the input */
+		}
+        .orderListTable{
             margin-bottom:10px;
             border: 1px solid #dee2e6;
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        *, ::after, ::before {
+            box-sizing: border-box;
         }
     </style>
 </asp:Content>
@@ -78,248 +98,59 @@
 			<h1>Artwork Order</h1>
 	    </div>
 
-	    <input type="text" id="searchInput" onkeyup="searchFunction()" placeholder="Search for Artwork names.."/>
-        <div class="table-responsive orderListTable"> 
-            <table id="orderTable" class="table table-striped table-bordered" style="border:1px solid black">
-				<thead class="thead-dark">
-					<tr>
-						<th class="auto-style32" onclick="sortOrderTable(0)">Order ID</th>
-						<th class="auto-style33" onclick="sortOrderTable(1)">Artwork Name</th>
-						<th class="auto-style34" onclick="sortOrderTable(2)">Category</th>
-						<th class="auto-style35" onclick="sortOrderTableNum(3)">Order Total</th>
-                        <th class="auto-style31" onclick="sortOrderTableNum(4)">Subtotal(RM)</th>
-						<th class="auto-style36" onclick="sortOrderTable(5)">Customer</th>
-						<th class="auto-style24">
-                            <asp:DropDownList ID="ddlStatus" runat="server" Font-Bold="True" CssClass="auto-style26" Height="34px" onchange = "filterStatusFunction()">
-                                <asp:ListItem>Status</asp:ListItem>
-                                <asp:ListItem>Pending</asp:ListItem>
-                                <asp:ListItem>Delivering</asp:ListItem>
-                                <asp:ListItem>Completed</asp:ListItem>
-                                <asp:ListItem>Canceled</asp:ListItem>
-                            </asp:DropDownList>
-                        </th>
-						<th class="auto-style37"><asp:DropDownList ID="ddlDelivery" runat="server" Font-Bold="True" Height="34px" onchange = "filterDeliveryFunction()" CssClass="auto-style26">
-                            <asp:ListItem>Delivery Channels</asp:ListItem>
-                            <asp:ListItem>Ninja Van</asp:ListItem>
-                            <asp:ListItem>Pos Laju</asp:ListItem>
-                            <asp:ListItem>FedEx</asp:ListItem>
-                            <asp:ListItem>J&T express</asp:ListItem>
-                            <asp:ListItem>GD Express</asp:ListItem>
-                            <asp:ListItem>City-Link Express</asp:ListItem>
-                            <asp:ListItem>DHL</asp:ListItem>
-                            </asp:DropDownList>
-                        </th>
-						<th class="auto-style27">Date Order</th>
-					</tr>
-				</thead>
-				<tbody>
-				<tr>
-					<td class="auto-style32">S100007</td>
-					<td class="auto-style33">My Elephant Friend</td>
-					<td class="auto-style34">Prints</td>
-					<td class="auto-style35">1</td>
-                    <td class="auto-style31">540.00</td>
-					<td class="auto-style36">Loong Yi Ren</td>
-					<td class="auto-style25">Completed</td>
-					<td class="auto-style37">Ninja Van</td>
-					<td class="auto-style28">2/1/2021</td>
-			    </tr>
-			    <tr>
-					<td class="auto-style32">S100002</td>
-					<td class="auto-style33">Tetons and The Snake River, Grand Teton National Park</td>
-					<td class="auto-style34">Photography</td>
-					<td class="auto-style35">2</td>
-                    <td class="auto-style31">178.00</td>
-					<td class="auto-style36">Tan Xue Ern</td>
-					<td class="auto-style1">Delivering</td>
-					<td class="auto-style37">Pos Laju</td>
-					<td class="auto-style29">21/1/2021</td>
-			    </tr>
-			    <tr>
-					<td class="auto-style32">S100001</td>
-					<td class="auto-style33">SPHÉROÏDE ARDOISÉE</td>
-					<td class="auto-style34">Sculpture</td>
-					<td class="auto-style35">1</td>
-                    <td class="auto-style31">9028.29</td>
-					<td class="auto-style36">Ang Chun Kit</td>
-					<td class="auto-style25">Pending</td>
-					<td class="auto-style37">Ninja Van</td>
-					<td class="auto-style28">31/1/2021</td>
-			    </tr>
-		    </tbody>		
-	    </table>
-        </div>
-        <nav aria-label="...">
-                <ul class="pagination">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1 <span class="sr-only">(current)</span></a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2 </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
+	    <asp:TextBox ID="txtSearch" OnTextChanged="Search" AutoPostBack="true" placeholder="Search for Artwork names.." runat="server"></asp:TextBox>
+        <div class="orderListTable"> 
+            <asp:GridView ID="orderList" runat="server" AutoGenerateColumns="false" AllowPaging="true" AllowSorting="true" OnSorting="OnSorting" OnPageIndexChanging="OnPageIndexChanging" PageSize="10" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged = "OnSelectedIndexChanged">
+            <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" FirstPageText="First" LastPageText="Last"/>       
+            <pagerstyle horizontalalign="Left" CssClass="pagination"/>
+                <Columns>
+                    <asp:BoundField DataField="ID" HeaderText="Order ID" SortExpression="ID" HeaderStyle-ForeColor="White" >
+                        <ItemStyle Width="80" HorizontalAlign="Center" /> 
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:boundfield>
+
+                    <asp:BoundField DataField="ProdName" HeaderText="Artwork Name" SortExpression="ProdName" HeaderStyle-ForeColor="White" >
+                        <ItemStyle Width="250" HorizontalAlign="Center" /> 
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:boundfield>
+
+                    <asp:BoundField DataField="Category" HeaderText="Category" SortExpression="Category" HeaderStyle-ForeColor="White" >
+                        <ItemStyle Width="100" HorizontalAlign="Center" /> 
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:boundfield>
+
+                    <asp:BoundField DataField="Qty" HeaderText="Quantity" SortExpression="Qty" HeaderStyle-ForeColor="White" >
+                        <ItemStyle Width="100" HorizontalAlign="Center" /> 
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:boundfield>
+
+                    <asp:BoundField DataField="Customer" HeaderText="Customer" SortExpression="Customer" HeaderStyle-ForeColor="White" >
+                        <ItemStyle Width="120" HorizontalAlign="Center" /> 
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:boundfield>
+
+                    <asp:BoundField DataField="DateOrder" HeaderText="Date Ordered" SortExpression="DateOrder" HeaderStyle-ForeColor="White" >
+                        <ItemStyle Width="120" HorizontalAlign="Center" /> 
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:boundfield>
+
+                    <asp:BoundField DataField="DeliveryChannel" HeaderText="Delivery Channel" SortExpression="DeliveryChannel" HeaderStyle-ForeColor="White" >
+                        <ItemStyle Width="130" HorizontalAlign="Center" /> 
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:boundfield>
+
+                    <asp:BoundField DataField="DateDelivery" HeaderText="Date Delivery" SortExpression="DateDelivery" HeaderStyle-ForeColor="White" >
+                        <ItemStyle Width="120" HorizontalAlign="Center" /> 
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:boundfield>
+
+                    <asp:BoundField DataField="OrderStatus" HeaderText="Order Status" SortExpression="OrderStatus" HeaderStyle-ForeColor="White" >
+                        <ItemStyle Width="100" HorizontalAlign="Center" /> 
+                        <HeaderStyle HorizontalAlign="Center" />
+                    </asp:boundfield>
+                </Columns>
+            </asp:GridView>
+	    </div>
     </div>
-    <script>
-        function sortOrderTable(n) {
-            var table, rows, swap, i, x, y, shouldSwap, dir, switchcount = 0;
-            table = document.getElementById("orderTable");
-            swap = true;
-            dir = "asc";                  //Set the direction of sorting to ascending:
 
-            //loop continue until no swap has been done:
-            while (swap) {
-                swap = false;
-                rows = table.rows;
-
-                //Loop through all table rows except the table headers
-                for (i = 1; i < (rows.length - 1); i++) {      
-                    shouldSwap = false;
-
-                    //Get two elements, one from current row and one from the next:*/
-                    x = rows[i].getElementsByTagName("TD")[n];
-                    y = rows[i + 1].getElementsByTagName("TD")[n];
-
-                    //*check if the two rows should switch place, based on the direction, asc or desc:*/
-                    if (dir == "asc") {
-                        if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
-                            shouldSwap = true;
-                            break;
-                        }
-                    } else if (dir == "desc") {
-                        if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
-                            shouldSwap = true;
-                            break;
-                        }
-                    }
-                }
-                if (shouldSwap) {
-                    //swap
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    swap = true;
-                    //Each time a switch is done, increase this count by 1:
-                    switchcount++;
-                } else {
-                    if (switchcount == 0 && dir == "asc") {
-                        dir = "desc";
-                        swap = true;
-                    }
-                }
-            }
-        }
-        function sortOrderTableNum(n) {
-            var table, rows, swap, i, x, y, shouldSwap, dir, switchcount = 0;
-            table = document.getElementById("orderTable");
-            swap = true;
-            dir = "asc";                  //Set the direction of sorting to ascending:
-
-            //loop continue until no swap has been done:
-            while (swap) {
-                swap = false;
-                rows = table.rows;
-
-                //Loop through all table rows except the table headers
-                for (i = 1; i < (rows.length - 1); i++) {
-                    shouldSwap = false;
-
-                    //Get two elements, one from current row and one from the next:*/
-                    x = rows[i].getElementsByTagName("TD")[n];
-                    y = rows[i + 1].getElementsByTagName("TD")[n];
-
-                    //*check if the two rows should switch place, based on the direction, asc or desc:*/
-                    if (dir == "asc") {
-                        if (Number(x.innerHTML) > Number(y.innerHTML)) {
-                            shouldSwap = true;
-                            break;
-                        }
-                    } else if (dir == "desc") {
-                        if (Number(x.innerHTML) < Number(y.innerHTML)) {
-                            shouldSwap = true;
-                            break;
-                        }
-                    }
-                }
-                if (shouldSwap) {
-                    //swap
-                    rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
-                    swap = true;
-                    //Each time a switch is done, increase this count by 1:
-                    switchcount++;
-                } else {
-                    if (switchcount == 0 && dir == "asc") {
-                        dir = "desc";
-                        swap = true;
-                    }
-                }
-            }
-        }
-
-        function searchFunction() {
-            var input, filter, table, tr, td, i, textValue;
-            input = document.getElementById("searchInput");
-            filter = input.value.toUpperCase();
-            table = document.getElementById("orderTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
-                if (td) {
-                    textValue = td.textContent || td.innerText;
-                    if (textValue.toUpperCase().indexOf(filter) > -1) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-
-        function filterDeliveryFunction() {
-            var filterValue, table, tr, td, i, textValue;
-            var originalText = "Delivery Channels";
-            filterValue = document.getElementById("ContentPlaceHolder1_ddlDelivery").value;
-            table = document.getElementById("orderTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[7];
-                if (td) {
-                    textValue = td.innerText;
-                    if (originalText.localeCompare(filterValue) == 0) {
-                        tr[i].style.display = "";
-                    }
-                    else if (textValue.localeCompare(filterValue) == 0) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-
-        function filterStatusFunction() {
-            var filterValue, table, tr, td, i, textValue;
-            var originalText = "Status";
-            filterValue = document.getElementById("ContentPlaceHolder1_ddlStatus").value;
-            table = document.getElementById("orderTable");
-            tr = table.getElementsByTagName("tr");
-            for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[6];
-                if (td) {
-                    textValue = td.innerText;
-                    if (originalText.localeCompare(filterValue) == 0) {
-                        tr[i].style.display = "";
-                    }
-                    else if (textValue.localeCompare(filterValue) == 0) {
-                        tr[i].style.display = "";
-                    } else {
-                        tr[i].style.display = "none";
-                    }
-                }
-            }
-        }
-    </script>
 </asp:Content>
