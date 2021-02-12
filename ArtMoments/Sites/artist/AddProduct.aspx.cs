@@ -26,6 +26,22 @@ namespace ArtMoments.Sites.artist
                 } 
 
             }
+            //else
+            //{
+            //    using (SqlConnection conn = new SqlConnection(connectionString))
+            //    {
+            //        using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM Product_category", conn))
+            //        {
+            //            using (DataTable dt = new DataTable())
+            //            {
+            //                ddlArtworkCategory.DataSource = dt;
+            //                ddlArtworkCategory.DataTextField = "category_id";
+            //                ddlArtworkCategory.DataValueField = "id";
+            //                ddlArtworkCategory.DataBind();
+            //            }
+            //        }
+            //    }
+            //}
         }
 
         protected void saveProdBtn_Click(object sender, EventArgs e)
