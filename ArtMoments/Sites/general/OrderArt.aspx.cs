@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
 using System.Text;
+using System.Web.Services;
 
 namespace ArtMoments.Sites.general
 {
@@ -25,7 +26,7 @@ namespace ArtMoments.Sites.general
                 {
                     using (SqlConnection con = new SqlConnection(conString))
                     {
-                        using (SqlCommand cmd = new SqlCommand("select P.id as [prod-id], P.prod_name as [prod-name], P.prod_size [prod-size], P.prod_description as [prod-descrip], P.prod_image as [prod-image], P.prod_price as [prod-price] , P.prod_stock as [prod-stock], C.category_name as [category-name], C.category_name as [category_name], U.user_name as [author], U.bibliography as [bibliography], U.profile_pic as [author_profilePic] from [Product] P left join [Product_Category] C on C.id = P.category_id left join [User] U on U.id = P.user_id where P.id like @ProdId"))
+                        using (SqlCommand cmd = new SqlCommand("select P.id as [prod-id], P.prod_name as [prod-name], P.prod_size [prod-size], P.prod_description as [prod-descrip], P.prod_image as [prod-image], P.prod_price as [prod-price] , P.prod_stock as [prod-stock], P.prod_sales as [prod-sales], C.category_name as [category-name], C.category_name as [category_name], U.user_name as [author], U.bibliography as [bibliography], U.profile_pic as [author_profilePic] from [Product] P left join [Product_Category] C on C.id = P.category_id left join [User] U on U.id = P.user_id where P.id like @ProdId"))
                         {
                             cmd.Parameters.AddWithValue("@ProdId", (String)Session["ProdId"].ToString());
                             using (SqlDataAdapter sda = new SqlDataAdapter())
@@ -46,7 +47,8 @@ namespace ArtMoments.Sites.general
                                         lblartworkCategory.Text = prodInfo.Rows[0]["category-name"].ToString();
                                         lblauthor.Text = prodInfo.Rows[0]["author"].ToString();
                                         lblartworkDescription.Text = prodInfo.Rows[0]["prod-descrip"].ToString();
-                                        lblartworkPrice.Text = string.Format("{0:#.##}",prodInfo.Rows[0]["prod-price"].ToString());
+                                        lblartworkPrice.Text = string.Format("{0:n}",prodInfo.Rows[0]["prod-price"].ToString());
+                                        artworkPricePerPiece.Text= ((Double)prodInfo.Rows[0]["prod-price"]).ToString();
                                         Session["ProdPrice"] = prodInfo.Rows[0].Field<System.Double>("prod-price");
                                         //artworkPrice = prodInfo.Rows[0].Field<System.Double>("prod-price");
                                         lblHideStock.Text = prodInfo.Rows[0]["prod-stock"].ToString();
@@ -54,6 +56,7 @@ namespace ArtMoments.Sites.general
                                         authorImage.Src = prodInfo.Rows[0]["author_profilePic"].ToString();
                                         lblauthorInfoName.Text = prodInfo.Rows[0]["author"].ToString();
                                         lblauthorBibliography.Text = prodInfo.Rows[0]["bibliography"].ToString();
+                                        Session["CurrentSales"] = prodInfo.Rows[0]["prod-sales"];
                                     }
                                 }
                             }
@@ -99,14 +102,14 @@ namespace ArtMoments.Sites.general
             }
         }
 
-        protected void calculatePrice(int qty)
+        public void calculatePrice(int qty)
         {
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('decimal found')", true);
             string artworkPrice = Session["ProdPrice"].ToString();
             string[] artworkPriceSplit = artworkPrice.Split('.');
             Double artPrice = Convert.ToInt32(artworkPriceSplit[0]);
             if (artworkPriceSplit[0] != null)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('decimal found')", true);
                 if (artworkPriceSplit[1].Length == 1)
                 {
                     artPrice += (Convert.ToDouble(artworkPriceSplit[1]) / 10);
@@ -239,6 +242,28 @@ namespace ArtMoments.Sites.general
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
 
                 }
+
+                //update product detail
+                try
+                {
+                    con.Open();
+                    int currentQty = Convert.ToInt32(lblHideStock.Text) - Convert.ToInt32(txtboxQty.Text);
+                    int currentSales = Convert.ToInt32(Session["CurrentSales"]) + Convert.ToInt32(txtboxQty.Text);
+
+                    string updateProdInfoQuery = @"update [Product] set prod_stock = @UpdatesAvailableQty, prod_sales = @UpdatedSales where id like @PodId";
+                    using (SqlCommand cmdSales = new SqlCommand(updateProdInfoQuery, con))
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('success update product info')", true);
+                        cmdSales.Parameters.AddWithValue("@UpdatedAvailableQty", currentQty);
+                        cmdSales.Parameters.AddWithValue("@UpdatedSales", currentSales);
+                        cmdSales.Parameters.AddWithValue("@ProdId", Convert.ToInt32(Session["ProdId"]));
+                        cmdSales.ExecuteNonQuery();
+                        con.Close();
+                    }
+                }catch(Exception ex)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('fail update product info')", true);
+                }
             }
             catch (Exception ex)
             {
@@ -258,10 +283,7 @@ namespace ArtMoments.Sites.general
                 txtboxQty.Text = custOrder.ToString();
                 calculatePrice(custOrder);
             }
-            else
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
-            }
         }
+
     }
 }

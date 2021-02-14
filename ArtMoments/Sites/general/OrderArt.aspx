@@ -2,7 +2,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Order Artwork</title>
     <link rel="stylesheet" type="text/css" href="../../Content/css/OrderArtCss.css" />
-
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <style>
         div#authorpicDivision {
             float: right;
@@ -256,7 +257,7 @@
                     </div>
 
                     <div class="col-4" id="priceDivision">
-                        <asp:Label ID="lblRM" runat="server" Text="RM "></asp:Label><asp:Label ID="lblartworkPrice" runat="server" Text=""></asp:Label>
+                        <asp:Label ID="lblRM" runat="server" Text="RM "></asp:Label><asp:Label ID="lblartworkPrice" runat="server" Text="" CssClass="lblartworkPrice"></asp:Label>
                     </div>
 
                     <div class="col-4" id="deliveryDivision">
@@ -302,8 +303,6 @@
         </div>
     </div>
 
-
-
         <script type="text/javascript">
             function numValid(evt) {
                 var ch = String.fromCharCode(evt.which);
@@ -316,26 +315,46 @@
                 var qtyElement = document.getElementsByClassName("txtboxQtyClass")[0];
                 var qtyInput = parseInt(qtyElement.value);
                 var qtyAvailable = document.getElementsByClassName("lblHideStock")[0];
-                var maxQty = parseInt(qtyAvailable.value);
-                    if (qtyInput > 1) {
-                        if (qtyInput > maxQty) {
-                            qtyInput = maxQty;
-                            alert("The current available stock of this artwork is only " + qtyAvailable +" pieces.");
-                        }
-                    }
-                    else{
-                        qtyInput = 1;
+                var maxQty = parseInt(qtyAvailable.textContent);
+                
+                if (qtyInput > 1) {
+                    if (qtyInput > maxQty) {
+                        qtyInput = maxQty;
                         qtyElement.value = qtyInput.toString();
+                        calcMax(maxQty);
+                        alert("The current available stock of this artwork is only " + maxQty + " pieces.");
+                    }
                 }
-                calcSubtotal(qtyInput);
-
+                else {
+                    qtyInput = 1;
+                    qtyElement.value = qtyInput.toString();
+                    calcMin();
+                    alert("Min stock = 1");
+                }
+                var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
+                var artPiecePrice = parseFloat(onePiecePrice.textContent);
+                var subtotal = artPiecePrice * qtyInput;
+                document.getElementsByClassName("lblartworkPrice")[0].textContent = subtotal.toString();
+                
             }
 
-            function calcSubtotal(qtyInput) {
-                var price = document.getElementById("lblartworkPrice").textContent;
-                price = parseFloat.price * qtyInput;
-                document.getElementsByClassName("txtboxQtyClass")[0].textContent = price;
+            function calcMin() {
+                var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
+                var artPiecePrice = parseFloat(onePiecePrice.textContent);
+                var subtotal = artPiecePrice * 1;
+                document.getElementsByClassName("lblartworkPrice")[0].textContent = subtotal.toString();
             }
+
+            function calcMax(maxQty) {
+                var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
+                var artPiecePrice = parseFloat(onePiecePrice.textContent);
+                var subtotal = artPiecePrice * maxQty;
+                document.getElementsByClassName("lblartworkPrice")[0].textContent = subtotal.toString();
+            }
+            //fution calcSubtotal(qtyInput) {
+            //  // vprrce = document.get.getElementById("lblartworkPrice")tContent;
+            //  var pricericparseFloat.e * qtyInput;;
+           //   document.getElementsByClassName("txtboxQtyClass")[0].textContent = subprice           // }   
         </script>
-
+    <asp:Label ID="artworkPricePerPiece" runat="server" Text="" CssClass="artworkPricePerPiece"></asp:Label>
 </asp:Content>
