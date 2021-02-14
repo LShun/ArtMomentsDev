@@ -1,196 +1,77 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="Display.aspx.cs" Inherits="ArtMoments.Sites.general.Display" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/General.Master"  CodeBehind="DisplayArtwork.aspx.cs" Inherits="ArtMoments.Sites.general.DisplayArtwork" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <link href="../../Content/css/DisplayArt.css" rel="stylesheet" />
+    <title>Display Artwork</title>
+    <link href="../../Content/css/searchForm.css" rel="stylesheet" />
+    <link href="../../Content/css/DisplayImageHover.css" rel="stylesheet" />
     <style type="text/css">
-        #Text1 {
-            width: 40px;
+        .btnImg{
+            width:100%;
+            height:100%;
         }
 
-        #Text2 {
-            width: 39px;
+        .lblImg{
+            text-align:center;
         }
 
-        #minPrice {
-            width: 40px;
-        }
-
-        #maxPrice {
-            width: 36px;
-        }
-
-        .auto-style2 {
-            margin-left: 428px;
-            margin-right: 0px;
-            width: 243px;
-            height: 422px;
-        }
-
-        .ImgInlineTable {
-            margin-bottom: 0px;
-            top: 0.2px;
-            left: 15px;
-            right: 796px;
-            position: absolute;
-            height: 175px;
-            padding-top: 0.5em;
-        }
-
-        .auto-style13 {
-            position: relative;
-            z-index: 5;
-            left: 0px;
-            top: 0px;
-            width: 264px;
-            height: 204px;
-        }
-
-
-        .form-group {
-            margin-bottom: 0rem;
-        }
-
-        .btn {
-            align-content: center;
-        }
-
-        .ImgInlineTable .col-6 {
-            padding: 0.1em;
+        .search-form-group label {
+            font-size: 60%;
         }
     </style>
 
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-  <div class="container">
-    <h2>Artwork Display</h2>
-    
-    <div class="table">
-        <div class="row">
-             <div class="col-10" style="text-align:center">
-                     <div class="row">
-                          <div class="col-4">
-                              <asp:Image ID="Image1" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg"  style="display:flex;" CssClass="auto-style13"/>
-                              <div class="table ImgInlineTable" id="Image1Table" style="width:264px; height:204px">
-                                  <div class="row">
-                                      <div class="col-6"><asp:Image ID="Image17" class="img" runat="server"  ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Height="94px" Width="119px"/>
-                                        </div>
-                                       <div class="col-6"><asp:Image ID="Image18" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Height="94px" Width="119px"/>
-                                        </div>
-                                  </div>
-                                  <div class="row">
-                                      <div class="col-6"><asp:Image ID="Image19" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Height="94px" Width="119px"/>
-                                        </div>
-                                       <div class="col-6"><asp:Image ID="Image20" class="img" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" Height="94px" Width="119px"/>
-                                        </div>
-                                  </div>
-                              </div>
-                              <br />
-                              <asp:Label ID="Label1" runat="server" Text="Category 1" ></asp:Label>
-                          </div>
-                          <div class="col-4"> 
-                              <asp:ImageButton ID="Image2" runat="server" style="display:flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" PostBackUrl="~/Sites/general/OrderArt.aspx"/>
-                             
-                              <br />
-                              <asp:Label class="ImgLabel" ID="Label2" runat="server" Text="Category 2"></asp:Label>
-                          </div>
-                          <div class="col-4">  
-                              <asp:Image ID="Image3" runat="server"  style="display:flex;" CssClass="auto-style13" ImageUrl="~/Content/artwork-4.jpg" />
-                              <br />
-                              <asp:Label class="ImgLabel" ID="Label3" runat="server" Text="Category 3"></asp:Label>
-                          </div>
-<%--                          <div class="col-3">
-                               <asp:Image ID="Image4" runat="server"  style="display:flex;" CssClass="auto-style13" ImageUrl="~/Content/il_570xN.1343115773_kxun.jpg" />
-                               <br />
-                               <asp:Label class="ImgLabel" ID="Label4" runat="server" Text="Category 4"></asp:Label>
-                          </div>--%>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <asp:Image ID="Image5" runat="server" Style="display: flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
-                            <br />
-                            <asp:Label class="ImgLabel" ID="Label5" runat="server" Text="Label"></asp:Label>
-                        </div>
-                        <div class="col-4">
-                            <asp:Image ID="Image6" runat="server" Style="display: flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
-                            <br />
-                            <asp:Label class="ImgLabel" ID="Label6" runat="server" Text="Label"></asp:Label>
-                        </div>
-                        <div class="col-4">
-                            <asp:Image ID="Image7" runat="server" Style="display: flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
-                            <br />
-                            <asp:Label class="ImgLabel" ID="Label7" runat="server" Text="Label"></asp:Label>
-                        </div>
-                        <%--  <div class="col-3">
-                               <asp:Image ID="Image8" runat="server" style="display:flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg"  />
-                               <br />
-                               <asp:Label class="ImgLabel" ID="Label8" runat="server" Text="Label"></asp:Label>
-                          </div>--%>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <asp:Image ID="Image9" runat="server" Style="display: flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
-                            <br />
-                            <asp:Label class="ImgLabel" ID="Label9" runat="server" Text="Label"></asp:Label>
-                        </div>
-                        <div class="col-4">
-                            <asp:Image ID="Image10" runat="server" Style="display: flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
-                            <br />
-                            <asp:Label class="ImgLabel" ID="Label10" runat="server" Text="Label"></asp:Label>
-                        </div>
-                        <div class="col-4">
-                            <asp:Image ID="Image11" runat="server" Style="display: flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
-                            <br />
-                            <asp:Label class="ImgLabel" ID="Label11" runat="server" Text="Label"></asp:Label>
-                        </div>
-                        <%-- <div class="col-3">
-                               <asp:Image ID="Image12" runat="server" style="display:flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
-                               <br />
-                               <asp:Label class="ImgLabel" ID="Label12" runat="server" Text="Label"></asp:Label>
-                          </div>--%>
-                    </div>
-                    <div class="row">
-                        <div class="col-4">
-                            <asp:Image ID="Image13" runat="server" Style="display: flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
-                            <br />
-                            <asp:Label class="ImgLabel" ID="Label13" runat="server" Text="Label"></asp:Label>
-                        </div>
-                        <div class="col-4">
-                            <asp:Image ID="Image14" runat="server" Style="display: flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
-                            <br />
-                            <asp:Label class="ImgLabel" ID="Label14" runat="server" Text="Label"></asp:Label>
-                        </div>
-                        <div class="col-4">
-                            <asp:Image ID="Image15" runat="server" Style="display: flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
-                            <br />
-                            <asp:Label class="ImgLabel" ID="Label15" runat="server" Text="Label"></asp:Label>
-                        </div>
-                        <%--<div class="col-3">
-                               <asp:Image ID="Image16" runat="server" style="display:flex;" CssClass="auto-style13" ImageUrl="~/Content/8585-mur-africa-met.jpg" />
-                               <br />
-                               <asp:Label class="ImgLabel" ID="Label16" runat="server" Text="Label"></asp:Label>
-                          </div>--%>
-                    </div>
-                </div>
-                <div class="col-4">
-                    <div id="circle" class="auto-style2">
-                        <div id="searchForm" runat="server" class="auto-style1" style="margin-left: 110px; margin-top: 250px">
-                            <h3 style="color: black">Price Range</h3>
-                            <div class="slider" id="slider-distance">
-                                <div>
-                                    <div class="inverse-left" style="width: 70%;" id="LHSrange" runat="server"></div>
-                                    <div class="inverse-right" style="width: 70%;" id="RHSrange" runat="server"></div>
-                                    <div class="range" style="left: 30%; right: 40%;" id="Pricerange" runat="server"></div>
-                                    <span class="thumb" style="left: 30%;" id="LHSthumb" runat="server"></span>
-                                    <span class="thumb" style="left: 60%;" id="RHSthumb" runat="server"></span>
-                                    <div class="sign" style="left: 30%;">
-                                        <span class="value">30</span>
-                                    </div>
-                                    <div class="sign" style="left: 60%;">
-                                        <span class="value">60</span>
-                                    </div>
+    <div class="container">
+        <h2>Display Artwork</h2>
+        <div class="container" ID="search-form-container">
+            <div class="row">
+             <div class="col-3 form-group search-form-group">
+                <label>Type</label>
+                <asp:DropDownList ID="DropDownList1" runat="server" CssClass="form-control search-form-control">
+                    <asp:ListItem>Artwork</asp:ListItem>
+                    <asp:ListItem>Painting</asp:ListItem>
+                </asp:DropDownList>
+            </div>
+            <div class="col-3 form-group search-form-group">
+                <label>Artist</label>
+               <asp:DropDownList ID="DropDownList2" runat="server" CssClass="form-control search-form-control">
+                    <asp:ListItem>Andy Warhol</asp:ListItem>
+                    <asp:ListItem>Pablo Picasso</asp:ListItem>
+               </asp:DropDownList>
+            </div>
+            <div class="col-3 form-group search-form-group">
+                <label>Publication Year</label>
+               <asp:DropDownList ID="DropDownList3" runat="server" CssClass="form-control search-form-control">
+                   <asp:ListItem>2000-2009</asp:ListItem>
+                   <asp:ListItem>2010-2019</asp:ListItem>
+               </asp:DropDownList>
+            </div>
+             <div class="col-3 form-group search-form-group" style="margin-top:auto" >
+                 <asp:Button ID="Button1" runat="server" Text="Search" CssClass="btn btn-primary" />
+            </div>
+            </div>
 
-                                </div>
-                                <input type="range" tabindex="0" value="30" max="100" min="0" step="1" runat="server" id="rangeMin" oninput="
+            <div class="row">
+                <div class="col-2 form-group search-form-group">
+                    <label>Price Range</label>
+                </div>
+                <div class="col-7 form-group">
+                    <div class="slider" id="slider-distance">
+                          <div>
+                            <div class="inverse-left" style="width:70%;" id="LHSrange" runat="server"></div>
+                            <div class="inverse-right"  style="width:70%;" id="RHSrange" runat="server"></div>
+                            <div class="range" style="left:30%;right:40%;" id="Pricerange" runat="server" ></div>
+                            <span class="thumb"  style="left:30%;" id="LHSthumb" runat="server"></span>
+                            <span  class="thumb" style="left:60%;" id="RHSthumb" runat="server"></span>
+                            <div class="sign" style="left:30%;">
+                              <span class="value">30</span>
+                            </div>
+                            <div class="sign" style="left:60%;">
+                              <span class="value">60</span>
+                            </div>
+                            
+                          </div>
+                           <input type="range" tabindex="0" value="30" max="100" min="0" step="1" runat="server" id="rangeMin" oninput="
                               this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
                               var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
                               var children = this.parentNode.childNodes[1].childNodes;
@@ -201,7 +82,7 @@
                               children[11].childNodes[1].innerHTML=this.value;
                                 txtMin.Text =this.value;" />
 
-                                <input type="range" tabindex="0" value="60" max="100" min="0" step="1" runat="server" id="rangeMax" oninput="
+                          <input type="range" tabindex="0" value="60" max="100" min="0" step="1" runat="server" id="rangeMax" oninput="
                               this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
                               var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
                               var children = this.parentNode.childNodes[1].childNodes;
@@ -211,48 +92,338 @@
                               children[13].style.left=value+'%';
                               children[13].childNodes[1].innerHTML=this.value;
                               txtMax.Text =this.value;" />
-                            </div>
-
-
-                            <br />
-
-                            <br />
-                            <div class="form-group row">
-                                Type&nbsp;&nbsp;&nbsp; :
-                        <asp:DropDownList ID="DropDownList1" runat="server" Width="140px" CssClass="dropdown">
-                            <asp:ListItem>Artwork</asp:ListItem>
-                            <asp:ListItem>Painting</asp:ListItem>
-                        </asp:DropDownList>
-                            </div>
-                            <br />
-                            <br />
-
-                            <div class="form-group row">
-                                Artist&nbsp;&nbsp; :
-                            <asp:DropDownList ID="DropDownList2" runat="server" Width="140px" CssClass="dropdown">
-                                <asp:ListItem>Andy Warhol</asp:ListItem>
-                                <asp:ListItem>Pablo Picasso</asp:ListItem>
-                            </asp:DropDownList>
-                            </div>
-                            <br />
-                            <br />
-                            <div class="form-group row">
-                                Year&nbsp;&nbsp;&nbsp; :
-                             <asp:DropDownList ID="DropDownList3" runat="server" Width="140px" CssClass="dropdown">
-                                 <asp:ListItem>2000-2009</asp:ListItem>
-                                 <asp:ListItem>2010-2019</asp:ListItem>
-                             </asp:DropDownList>
-                            </div>
-
-
-                            <br />
-                            <asp:Button ID="btnFilter" runat="server" Height="27px" Text="Filter" Width="59px" class="btn btn-primary" />
-                            <asp:Button ID="btnAll" runat="server" Height="27px" Text="Select All" Width="104px" class="btn btn-primary" />
                         </div>
-
-                    </div>
+                </div>
+                <div class="col-3 form-group search-form-group" style="margin-top:auto" >
+                     <asp:Button ID="Button2" runat="server" Text="Clear" CssClass="btn btn-primary" />
                 </div>
             </div>
         </div>
-    </div>
+        <div class="container" ID="display-img-container">
+            <div class="d-flex">
+              <div class="flex-row containerRow1">
+  
+                  <div class="p-2 imgItem">
+                    <div class="imgLabel" id="Img_bckgrd1">
+                      <p class="h2">Category 1</p>
+                    </div>
+    
+                    <div class="imgPreviews">
+                      <div class="preview-image">
+                          <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/Black Deer2.png" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image2" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image3" runat="server" ImageUrl="~/Content/boat.jpg"/>
+                      </div>
+                      <div class="preview-image">
+                       <asp:Image ID="Image4" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image5" runat="server" ImageUrl="~/Content/blue-man-waves.jpg"/>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="p-2 imgItem">
+                    <div class="imgLabel" id="Img_bckgrd2">
+                      <h2>Category 2</h2>
+                    </div>
+    
+                     <div class="imgPreviews">
+                      <div class="preview-image">
+                          <asp:Image ID="Image6" runat="server" ImageUrl="~/Content/Black Deer2.png" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image7" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image8" runat="server" ImageUrl="~/Content/boat.jpg" />
+                      </div>
+                      <div class="preview-image">
+                       <asp:Image ID="Image9" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image10" runat="server" ImageUrl="~/Content/monalisa.jpg" />
+                      </div>
+                    </div>
+                  </div>
+
+                   <div class="p-2 imgItem">
+                    <div class="imgLabel" id="Img_bckgrd3">
+                      <h2>Category 3</h2>
+                    </div>
+    
+                     <div class="imgPreviews">
+                      <div class="preview-image">
+                          <asp:Image ID="Image11" runat="server" ImageUrl="~/Content/Black Deer2.png" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image12" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image13" runat="server" ImageUrl="~/Content/boat.jpg" />
+                      </div>
+                      <div class="preview-image">
+                       <asp:Image ID="Image14" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image15" runat="server" ImageUrl="~/Content/monalisa.jpg" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="p-2 imgItem">
+                    <div class="imgLabel" id="Img_bckgrd4">
+                      <h2>Category 4</h2>
+                    </div>
+    
+                    <div class="imgPreviews">
+                      <div class="preview-image">
+                          <asp:Image ID="Image46" runat="server" ImageUrl="~/Content/Black Deer2.png" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image47" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image48" runat="server" ImageUrl="~/Content/boat.jpg" />
+                      </div>
+                      <div class="preview-image">
+                       <asp:Image ID="Image49" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image50" runat="server" ImageUrl="~/Content/monalisa.jpg" />
+                      </div>
+                    </div>
+                  </div>
+
+
+                  </div>
+
+                </div>
+            <div class="row">
+              <div class="containerRow1">
+  
+                  <div class="imgItem">
+                    <div class="imgLabel" id="Img_bckgrd5">
+                      <h2>Category 5</h2>
+                    </div>
+    
+                    <div class="imgPreviews">
+                      <div class="preview-image">
+                          <asp:Image ID="Image16" runat="server" ImageUrl="~/Content/Black Deer2.png" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image17" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image18" runat="server" ImageUrl="~/Content/boat.jpg" />
+                      </div>
+                      <div class="preview-image">
+                       <asp:Image ID="Image19" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image20" runat="server" ImageUrl="~/Content/monalisa.jpg" />
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="imgItem">
+                    <div class="imgLabel" id="Img_bckgrd6">
+                      <h2>Category 6</h2>
+                    </div>
+    
+                     <div class="imgPreviews">
+                      <div class="preview-image">
+                          <asp:Image ID="Image21" runat="server" ImageUrl="~/Content/Black Deer2.png" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image22" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image23" runat="server" ImageUrl="~/Content/boat.jpg" />
+                      </div>
+                      <div class="preview-image">
+                       <asp:Image ID="Image24" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image25" runat="server" ImageUrl="~/Content/monalisa.jpg" />
+                      </div>
+                    </div>
+                  </div>
+
+                   <div class="imgItem">
+                    <div class="imgLabel" id="Img_bckgrd7">
+                      <h2>Category 7</h2>
+                    </div>
+    
+                     <div class="imgPreviews">
+                      <div class="preview-image">
+                          <asp:Image ID="Image26" runat="server" ImageUrl="~/Content/Black Deer2.png" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image27" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image28" runat="server" ImageUrl="~/Content/boat.jpg" />
+                      </div>
+                      <div class="preview-image">
+                       <asp:Image ID="Image29" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image30" runat="server" ImageUrl="~/Content/monalisa.jpg" />
+                      </div>
+                    </div>
+                  </div>
+        
+                  <div class="imgItem">
+                    <div class="imgLabel" id="Img_bckgrd8">
+                      <h2>Category 8</h2>
+                    </div>
+    
+                    <div class="imgPreviews">
+                      <div class="preview-image">
+                          <asp:Image ID="Image56" runat="server" ImageUrl="~/Content/Black Deer2.png" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image57" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image58" runat="server" ImageUrl="~/Content/boat.jpg" />
+                      </div>
+                      <div class="preview-image">
+                       <asp:Image ID="Image59" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image60" runat="server" ImageUrl="~/Content/monalisa.jpg" />
+                      </div>
+                    </div>
+                  </div>
+                  
+                  </div>
+
+                </div>
+            <div class="row">
+              <div class="containerRow1">
+  
+                  <div class="imgItem">
+                    <div class="imgLabel" id="Img_bckgrd9">
+                      <h2>Category 9</h2>
+                    </div>
+    
+                    <div class="imgPreviews">
+                      <div class="preview-image">
+                          <asp:Image ID="Image31" runat="server" ImageUrl="~/Content/Black Deer2.png" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image32" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image33" runat="server" ImageUrl="~/Content/boat.jpg" />
+                      </div>
+                      <div class="preview-image">
+                       <asp:Image ID="Image34" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image35" runat="server" ImageUrl="~/Content/monalisa.jpg" />
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="imgItem">
+                    <div class="imgLabel" id="Img_bckgrd10">
+                      <h2>Category 10</h2>
+                    </div>
+    
+                     <div class="imgPreviews">
+                      <div class="preview-image">
+                          <asp:Image ID="Image36" runat="server" ImageUrl="~/Content/Black Deer2.png" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image37" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image38" runat="server" ImageUrl="~/Content/boat.jpg" />
+                      </div>
+                      <div class="preview-image">
+                       <asp:Image ID="Image39" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image40" runat="server" ImageUrl="~/Content/monalisa.jpg" />
+                      </div>
+                    </div>
+                  </div>
+
+                   <div class="imgItem">
+                    <div class="imgLabel" id="Img_bckgrd11">
+                      <h2>Category 11</h2>
+                    </div>
+    
+                     <div class="imgPreviews">
+                      <div class="preview-image">
+                          <asp:Image ID="Image41" runat="server" ImageUrl="~/Content/Black Deer2.png" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image42" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image43" runat="server" ImageUrl="~/Content/boat.jpg" />
+                      </div>
+                      <div class="preview-image">
+                       <asp:Image ID="Image44" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image45" runat="server" ImageUrl="~/Content/monalisa.jpg" />
+                      </div>
+                    </div>
+                  </div>
+    
+                  <div class="imgItem">
+                    <div class="imgLabel" id="Img_bckgrd12">
+                      <h2>Category 12</h2>
+                    </div>
+    
+                    <div class="imgPreviews">
+                      <div class="preview-image">
+                          <asp:Image ID="Image51" runat="server" ImageUrl="~/Content/Black Deer2.png" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image52" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image53" runat="server" ImageUrl="~/Content/boat.jpg" />
+                      </div>
+                      <div class="preview-image">
+                       <asp:Image ID="Image54" runat="server" ImageUrl="~/Content/StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+                      </div>
+                      <div class="preview-image">
+                        <asp:Image ID="Image55" runat="server" ImageUrl="~/Content/monalisa.jpg" />
+                      </div>
+                    </div>
+                  </div>
+    
+                  </div>
+
+                </div>
+        </div>
+        </div>
+<script>
+    $(() => {
+
+        $('.search-form-group').each((i, e) => {
+            $('.search-form-control', e)
+                .focus(function () {
+                    e.classList.add('not-empty');
+                })
+                .blur(function () {
+                    this.value === '' ? e.classList.remove('not-empty') : null;
+                })
+                ;
+        });
+
+    }); 
+</script>
 </asp:Content>
+

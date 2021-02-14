@@ -79,7 +79,6 @@
 
     .containerRow1 .imgItem .imgPreviews .preview-image {
         width: 50%;
-        height: 8em;
         transition: all 0.2s cubic-bezier(0.28, 0.05, 0.65, 0.97);
         position: absolute;
         bottom: 1em;

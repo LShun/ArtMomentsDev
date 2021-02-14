@@ -11,7 +11,7 @@ namespace ArtMoments.Sites.general
 {
 
 
-    public partial class DisplayArtwork
+    public partial class DisplayArtworkProduct
     {
 
         /// <summary>
@@ -123,12 +123,12 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.Button btnClear;
 
         /// <summary>
-        /// dlProdCat control.
+        /// dlProd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlProdCat;
+        protected global::System.Web.UI.WebControls.DataList dlProd;
     }
 }

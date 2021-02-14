@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/General.Master"  CodeBehind="DisplayArtwork.aspx.cs" Inherits="ArtMoments.Sites.general.DisplayArtwork" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/General.Master"  CodeBehind="DisplayArtworkProduct.aspx.cs" Inherits="ArtMoments.Sites.general.DisplayArtworkProduct" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Display Artwork</title>
@@ -48,7 +48,7 @@
                </asp:DropDownList>
             </div>
              <div class="col-3 form-group search-form-group" style="margin-top:auto" >
-                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
+                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" />
             </div>
             </div>
 
@@ -100,24 +100,24 @@
         </div>
         <div class="container" ID="display-img-container">
            <br/>
-            <asp:DataList ID="dlProdCat" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="321px" Width="1059px" OnItemCommand="dlProdCat_ItemCommand" >
+            <asp:DataList ID="dlProd" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="321px" Width="1059px" OnItemCommand="dlProd_ItemCommand" >
                 <ItemTemplate>
                     <table class="w-100">
                         <tr>
                             <td>
                                 <asp:Image ID="ibtnCategory_img" runat="server" Height="175px" Width="193px" 
-                                    ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("category_image")) %>'  />
+                                    ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>'/>
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                <asp:Label ID="lblCategory_name" runat="server" Text='<%# Eval("category_name") %>' ></asp:Label>
+                                <asp:Label ID="lblCategory_name" runat="server" Text='<%# Eval("prod_name") %>'></asp:Label>
                             </td>
                         </tr>
-                        <tr>
+                         <tr>
                             <td>
 
-                                <asp:Button ID="btnNavProd" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="viewProd" Text="View Products"/>
+                                <asp:Button ID="btnNavOrder" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="orderProd" Text="Order"/>
 
                             </td>
                         </tr>
