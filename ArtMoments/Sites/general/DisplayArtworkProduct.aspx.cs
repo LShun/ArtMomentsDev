@@ -16,8 +16,14 @@ namespace ArtMoments.Sites.general
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            generalDisplay();
-            bindDDLprocCat();
+            if(!IsPostBack)
+            {
+
+                generalDisplay();
+                bindDDLprocCat();
+                bindDDLprocSize();
+                bindDDLartist();
+            }
         }
 
         public void generalDisplay()
@@ -55,6 +61,50 @@ namespace ArtMoments.Sites.general
                     {
                         ListItem li = new ListItem((string)dr["category_name"]);
                         ddlProdCat.Items.Add(li);
+                    }
+                }
+            }
+            conn.Close();
+        }
+
+        public void bindDDLprocSize()
+        {
+            SqlConnection conn = new SqlConnection(strCon);
+            conn.Open();
+
+            string sqlCmd = "SELECT [prod_size] FROM [Product] ORDER BY [prod_size]";
+
+            using (SqlCommand cmd = new SqlCommand(sqlCmd, conn))
+            {
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        ListItem li = new ListItem((string)dr["prod_size"]);
+                        ddlProdSize.Items.Add(li);
+                    }
+                }
+            }
+            conn.Close();
+        }
+
+        public void bindDDLartist()
+        {
+            SqlConnection conn = new SqlConnection(strCon);
+            conn.Open();
+
+            string sqlCmd = "SELECT [user_name] FROM [User] ORDER BY [user_name]";
+
+            using (SqlCommand cmd = new SqlCommand(sqlCmd, conn))
+            {
+                SqlDataReader dr = cmd.ExecuteReader();
+                if (dr.HasRows)
+                {
+                    while (dr.Read())
+                    {
+                        ListItem li = new ListItem((string)dr["user_name"]);
+                        ddlArtist.Items.Add(li);
                     }
                 }
             }

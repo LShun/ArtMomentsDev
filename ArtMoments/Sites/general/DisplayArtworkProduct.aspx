@@ -33,18 +33,13 @@
             <div class="col-3 form-group search-form-group">
                 <label>Artist</label>
                <asp:DropDownList ID="ddlArtist" runat="server" CssClass="form-control search-form-control">
-                    <asp:ListItem>ALL</asp:ListItem> 
-                   <asp:ListItem>Andy Warhol</asp:ListItem>
-                    <asp:ListItem>Pablo Picasso</asp:ListItem>
+                    <asp:ListItem>ALL</asp:ListItem>
                </asp:DropDownList>
             </div>
             <div class="col-3 form-group search-form-group">
-                <label>Publication Year</label>
+                <label>Product Size</label>
                <asp:DropDownList ID="ddlProdSize" runat="server" CssClass="form-control search-form-control">
                    <asp:ListItem>ALL</asp:ListItem>
-                   <asp:ListItem>110cm x 90cm</asp:ListItem>
-                   <asp:ListItem>120cm x 120cm</asp:ListItem>
-                   <asp:ListItem>17cm x 25cm</asp:ListItem>
                </asp:DropDownList>
             </div>
              <div class="col-3 form-group search-form-group" style="margin-top:auto" >
