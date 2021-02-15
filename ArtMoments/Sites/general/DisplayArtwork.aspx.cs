@@ -137,19 +137,11 @@ namespace ArtMoments.Sites.general
 
         protected void btnSearch_Click(object sender, EventArgs e)
         {
-            SqlConnection conn = new SqlConnection(strCon);
+           /* SqlConnection conn = new SqlConnection(strCon);
             conn.Open();
 
-            string sqlCmd = "SELECT [category_name], [category_image] FROM [Product_Category] ORDER BY [category_name]";
+            string sqlCmd = "SELECT [id] FROM [Product_Category] WHERE category_name = @Category_Name";
 
-            SqlDataAdapter cmdGetCat_id = new SqlDataAdapter(sqlCmd, conn);
-            cmdGetCat_id.SelectCommand.Parameters.AddWithValue("@CategoryName", ddlProdCat.Text);
-            DataTable dt = new DataTable();
-            cmdGetCat_id.Fill(dt);
-            dlProdCat.DataSourceID = null;
-            dlProdCat.DataSource = dt;
-            dlProdCat.DataBind();
-            string cat_id = dt.Rows[0]["id"].ToString();
             if (cat_id != null)
             {
 
@@ -190,14 +182,10 @@ namespace ArtMoments.Sites.general
                     sda.SelectCommand.Parameters.AddWithValue("@User_ID", ddlArtist.Text);
                     sda.SelectCommand.Parameters.AddWithValue("@Product_Size", ddlProdSize.Text);
 
-                    dt = new DataTable();
-                    sda.Fill(dt);
-                    dlProdCat.DataSourceID = null;
-                    dlProdCat.DataSource = dt;
-                    dlProdCat.DataBind();
                 }
             }
             conn.Close();
+           */
         }
 
         protected void btnClear_Click(object sender, EventArgs e)
@@ -207,6 +195,7 @@ namespace ArtMoments.Sites.general
             ddlProdSize.ClearSelection();
             rangeMin.Value = "30";
             rangeMax.Value = "60";
+            generalDisplay();
         }
 
         protected void dlProdCat_ItemCommand(object source, DataListCommandEventArgs e)

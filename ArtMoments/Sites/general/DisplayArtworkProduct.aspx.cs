@@ -118,6 +118,7 @@ namespace ArtMoments.Sites.general
             ddlProdSize.ClearSelection();
             rangeMin.Value = "30";
             rangeMax.Value = "60";
+            generalDisplay();
         }
 
         protected void dlProd_ItemCommand(object source, DataListCommandEventArgs e)
