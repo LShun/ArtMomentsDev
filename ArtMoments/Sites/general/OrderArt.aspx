@@ -274,7 +274,7 @@
                 <!-- Buy now button -->
                 <div class="row">
                     <div class="col-12 btnBuyNowDivision" id="btnBuyNowDivision">
-                        <asp:LinkButton ID="btnBuyNow" runat="server" CssClass="btn btn-primary btn-block" OnClick="btnBuyNow_Click">BUY NOW</asp:LinkButton>
+                        <asp:LinkButton ID="btnBuyNow" runat="server" CssClass="btn btn-primary btn-block" OnClick="btnBuyNow_Click">ADD TO CART</asp:LinkButton>
                     </div>
                 </div>
             </div>
