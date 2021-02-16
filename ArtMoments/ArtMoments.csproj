@@ -102,6 +102,7 @@
     <Content Include="Content\colorful-street.jpg" />
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\DataList.css" />
     <Content Include="Content\css\DisplayImageHover.css" />
     <Content Include="Content\css\LoginUser.css" />
     <Content Include="Content\css\PreLogin.css" />

@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Display Artwork</title>
     <link href="../../Content/css/searchForm.css" rel="stylesheet" />
+    <link href="../../Content/css/DataList.css" rel="stylesheet" />
     <style type="text/css">
         .btnImg{
             width:100%;
@@ -15,6 +16,9 @@
 
         .search-form-group label {
             font-size: 60%;
+        }
+        .auto-style3 {
+            margin-left: 0px;
         }
         </style>
 
@@ -43,7 +47,7 @@
                </asp:DropDownList>
             </div>
              <div class="col-3 form-group search-form-group" style="margin-top:auto" >
-                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
+                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" PostBackUrl="~/Sites/general/DisplayArtworkProduct.aspx" />
             </div>
             </div>
 
@@ -59,13 +63,14 @@
                             <div class="range" style="left:30%;right:40%;" id="Pricerange" runat="server" ></div>
                             <span class="thumb"  style="left:30%;" id="LHSthumb" runat="server"></span>
                             <span  class="thumb" style="left:60%;" id="RHSthumb" runat="server"></span>
-                            <div class="sign" style="left:30%;">
+                            <div class="sign" style="left:30%;" onchange="ChangeLabel">
                               <span class="value">30</span>
                             </div>
                             <div class="sign" style="left:60%;">
                               <span class="value">60</span>
                             </div>
-                            
+                              <asp:Label ID="lblMinPRange" runat="server" Text="" Visible="false"></asp:Label>
+                              <asp:Label ID="lblMaxPRange" runat="server" Text="" Visible="false"></asp:Label>
                           </div>
                            <input type="range" tabindex="0" value="30" max="100" min="0" step="1" runat="server" id="rangeMin" oninput="
                               this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
@@ -95,34 +100,132 @@
         </div>
         <div class="container" ID="display-img-container">
            <br/>
-            <asp:DataList ID="dlProdCat" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="321px" Width="1059px" OnItemCommand="dlProdCat_ItemCommand" >
+            
+            <asp:Label ID="lblRecordMsg" runat="server" Text=""></asp:Label>
+            <asp:DataList ID="dlProdCat" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="321px" Width="1024px" OnItemCommand="dlProdCat_ItemCommand" 
+                BackColor="#CCCCCC" CellPadding="2" ForeColor="Black" CssClass="auto-style3" >
+                <FooterStyle BackColor="#CCCCCC" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                <ItemStyle BackColor="White" Font-Bold="False" Font-Italic="False" Font-Overline="False" 
+                    Font-Strikeout="False" Font-Underline="False" HorizontalAlign="Center" VerticalAlign="Middle" />
                 <ItemTemplate>
-                    <table class="w-100">
+                   <%-- <table class="w-100">
                         <tr>
-                            <td>
+                            <td style="text-align:center;vertical-align:middle">
                                 <asp:Image ID="ibtnCategory_img" runat="server" Height="175px" Width="193px" 
                                     ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("category_image")) %>'  />
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td  style="text-align:center;vertical-align:middle">
                                 <asp:Label ID="lblCategory_name" runat="server" Text='<%# Eval("category_name") %>' ></asp:Label>
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <td style="text-align:center;vertical-align:middle">
 
                                 <asp:Button ID="btnNavProd" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="viewProd" Text="View Products"/>
 
                             </td>
                         </tr>
                     </table>
-<br />
+               --%>
+                <div class="hovereffect">
+                    <asp:Image CssClass="img-responsive" ID="ibtnCategory_img" runat="server" Height="175px" Width="100%" 
+                            ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("category_image")) %>'  />
+                            
+                        <div class="overlay">
+                            <h2>
+                                <asp:Label ID="lblCategory_name" runat="server" Text='<%# Eval("category_name") %>' ></asp:Label>
+                            </h2>
+				            <p>
+					            <asp:Button ID="btnNavProd" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="viewProd" Text="View Products"/>
+				            </p>
+                        </div>
+                </div>
                 </ItemTemplate>
+                <SelectedItemStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
             </asp:DataList>
-            <br />
-         </div>
-     </div>
+
+            <%--<table id="dlPaging" runat="server">  
+              <tr>  
+                <td>  
+                    <asp:Button ID="btnFirst" runat="server" Font-Bold="true" Text="First" OnClick="btnFirst_Click"/></td>  
+                <td>  
+                    <asp:Button ID="btnPrevious" runat="server" Font-Bold="true" Text="Previous" OnClick="btnPrevious_Click"/></td>  
+                <td>  
+                    <asp:Button ID="btnNext" runat="server" Font-Bold="true" Text="Next" OnClick="btnNext_Click" style="height: 48px"/></td>  
+                <td>  
+                     <asp:Button ID="btnLast" runat="server" Font-Bold="true" Text="Last" OnClick="btnLast_Click"/></td>  
+                </tr>  
+               </table>  --%>
+
+              <table id="dlPaging" runat="server" style="width:100%">
+               <tr>  
+                <td class="btnPaging">  
+                    <svg width="100%" height="62">
+                    <defs>
+                        <linearGradient id="grad1">
+                            <stop offset="0%" stop-color="#FF8282"/>
+                            <stop offset="100%" stop-color="#E178ED" />
+                        </linearGradient>
+                    </defs>
+                     <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="95%" height="50"></rect>
+                  </svg>
+                  <span>
+                      <asp:Button style="border:none; background-color:transparent"  ID="btnFirst" runat="server" Font-Bold="true" Text="First" OnClick="btnFirst_Click"/> 
+                  </span>  
+               </td> 
+               <td class="btnPaging"> 
+                   <svg width="100%" height="62">
+                    <defs>
+                        <linearGradient id="grad2">
+                            <stop offset="0%" stop-color="#FF8282"/>
+                            <stop offset="100%" stop-color="#E178ED" />
+                        </linearGradient>
+                    </defs>
+                     <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="95%" height="50"></rect>
+                  </svg>
+                  <span>
+                       <asp:Button style="border:none; background-color:transparent" ID="btnPrevious" runat="server" Font-Bold="true" Text="Previous" OnClick="btnPrevious_Click"/>
+                </span> 
+                </td>   
+                <td class="btnPaging">  
+                    <svg width="100%" height="62">
+                    <defs>
+                        <linearGradient id="grad3">
+                            <stop offset="0%" stop-color="#FF8282"/>
+                            <stop offset="100%" stop-color="#E178ED" />
+                        </linearGradient>
+                    </defs>
+                     <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="95%" height="50"></rect>
+                  </svg>
+                  <span>
+                       <asp:Button style="border:none; background-color:transparent" ID="btnNext" runat="server" Font-Bold="true" Text="Next" OnClick="btnNext_Click"/>
+                  </span> 
+                    
+                </td>  
+                <td class="btnPaging"> 
+                    <svg width="100%" height="62">
+                    <defs>
+                        <linearGradient id="grad4">
+                            <stop offset="0%" stop-color="#FF8282"/>
+                            <stop offset="100%" stop-color="#E178ED" />
+                        </linearGradient>
+                    </defs>
+                     <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="95%" height="50"></rect>
+                  </svg>
+                  <span>
+                       <asp:Button style="border:none; background-color:transparent" ID="btnLast" runat="server" Font-Bold="true" Text="Last" OnClick="btnLast_Click"/>
+                  </span> 
+                    
+                </td>  
+                </tr>  
+            </table> 
+
+                        <br />
+                     </div>
+                 </div>
 
 </asp:Content>
 

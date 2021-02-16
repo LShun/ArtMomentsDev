@@ -22,6 +22,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <h2>Display Artwork</h2>
+        <asp:Label ID="lblDetails" runat="server" Text=""></asp:Label>
+                             
         <div class="container" ID="search-form-container">
             <div class="row">
              <div class="col-3 form-group search-form-group">
@@ -43,7 +45,7 @@
                </asp:DropDownList>
             </div>
              <div class="col-3 form-group search-form-group" style="margin-top:auto" >
-                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" />
+                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
             </div>
             </div>
 
@@ -65,7 +67,8 @@
                             <div class="sign" style="left:60%;">
                               <span class="value">60</span>
                             </div>
-                            
+                            <asp:Label ID="lblMinPRange" runat="server" Text="" Visible="false"></asp:Label>
+                              <asp:Label ID="lblMaxPRange" runat="server" Text="" Visible="false"></asp:Label>
                           </div>
                            <input type="range" tabindex="0" value="30" max="100" min="0" step="1" runat="server" id="rangeMin" oninput="
                               this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
@@ -95,22 +98,28 @@
         </div>
         <div class="container" ID="display-img-container">
            <br/>
-            <asp:DataList ID="dlProd" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="321px" Width="1059px" OnItemCommand="dlProd_ItemCommand" >
+            <asp:Label ID="lblRecordMsg" runat="server" Text=""></asp:Label>
+            <asp:DataList ID="dlProd" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="321px" Width="900px" OnItemCommand="dlProd_ItemCommand" 
+                BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="Both" >
+                <FooterStyle BackColor="#CCCCCC" />
+                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
+                <ItemStyle BackColor="White" Font-Bold="False" Font-Italic="False" Font-Overline="False"
+                    Font-Strikeout="False" Font-Underline="False" HorizontalAlign="Center" VerticalAlign="Middle" />
                 <ItemTemplate>
                     <table class="w-100">
                         <tr>
-                            <td>
+                            <td style="text-align:center;vertical-align:middle">
                                 <asp:Image ID="ibtnCategory_img" runat="server" Height="175px" Width="193px" 
                                     ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>'/>
                             </td>
                         </tr>
                         <tr>
-                            <td>
+                            <tdstyle="text-align:center;vertical-align:middle">
                                 <asp:Label ID="lblCategory_name" runat="server" Text='<%# Eval("prod_name") %>'></asp:Label>
                             </td>
                         </tr>
                          <tr>
-                            <td>
+                            <td style="text-align:center;vertical-align:middle">
 
                                 <asp:Button ID="btnNavOrder" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="orderProd" Text="Order"/>
 
@@ -119,7 +128,21 @@
                     </table>
 <br />
                 </ItemTemplate>
+                <SelectedItemStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
             </asp:DataList>
+
+            <table id="dlPaging" runat="server">  
+              <tr>  
+                <td>  
+                    <asp:Button ID="btnFirst" runat="server" Font-Bold="true" Text="First" OnClick="btnFirst_Click"/></td>  
+                <td>  
+                    <asp:Button ID="btnPrevious" runat="server" Font-Bold="true" Text="Previous" OnClick="btnPrevious_Click"/></td>  
+                <td>  
+                    <asp:Button ID="btnNext" runat="server" Font-Bold="true" Text="Next" OnClick="btnNext_Click" style="height: 48px"/></td>  
+                <td>  
+                     <asp:Button ID="btnLast" runat="server" Font-Bold="true" Text="Last" OnClick="btnLast_Click"/></td>  
+                </tr>  
+               </table> 
             <br />
          </div>
      </div>

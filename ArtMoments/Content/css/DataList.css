@@ -1,0 +1,137 @@
+﻿.hovereffect {
+    width: 100%;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+    cursor: default;
+    background: -webkit-linear-gradient(45deg, #ff89e9 0%, #05abe0 100%);
+    background: linear-gradient(45deg, #ff89e9 0%,#05abe0 100%);
+}
+
+    .hovereffect .overlay {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+        padding: 3em;
+        text-align: left;
+    }
+
+    .hovereffect img {
+        display: block;
+        position: relative;
+        max-width: none;
+        width: calc(100% + 60px);
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.45s;
+        transition: opacity 0.35s, transform 0.45s;
+        -webkit-transform: translate3d(-40px,0,0);
+        transform: translate3d(-40px,0,0);
+    }
+
+    .hovereffect h2 {
+        text-transform: uppercase;
+        color: #fff;
+        position: relative;
+        font-size: 17px;
+        background-color: transparent;
+        padding: 15% 0 10px 0;
+        text-align: left;
+    }
+
+    .hovereffect .overlay:before {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        bottom: 20px;
+        left: 20px;
+        border: 1px solid #fff;
+        content: '';
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.45s;
+        transition: opacity 0.35s, transform 0.45s;
+        -webkit-transform: translate3d(-20px,0,0);
+        transform: translate3d(-20px,0,0);
+    }
+
+    .hovereffect a, .hovereffect p {
+        color: #FFF;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.45s;
+        transition: opacity 0.35s, transform 0.45s;
+        -webkit-transform: translate3d(-10px,0,0);
+        transform: translate3d(-10px,0,0);
+    }
+
+    .hovereffect:hover img {
+        opacity: 0.6;
+        filter: alpha(opacity=60);
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+    }
+
+    .hovereffect:hover .overlay:before,
+    .hovereffect:hover a, .hovereffect:hover p {
+        opacity: 1;
+        filter: alpha(opacity=100);
+        -webkit-transform: translate3d(0,0,0);
+        transform: translate3d(0,0,0);
+    }
+
+
+/*Button*/
+.btnPaging {
+    /* margin-top: calc(50% + 25px); */
+    position: relative;
+    display: table-cell;
+    width: 25%;
+    height: 50px;
+    font-size: 1em;
+    font-weight: bold;
+    /* line-height: 60px; */
+    text-align: center;
+    text-transform: uppercase;
+    background-color: transparent;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 17px;
+    letter-spacing: 0.045em;
+}
+
+    .btnPaging svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+        .btnPaging svg rect {
+            //stroke: #EC0033;
+            stroke-width: 4;
+            stroke-dasharray: 353, 0;
+            stroke-dashoffset: 0;
+            -webkit-transition: all 600ms ease;
+            transition: all 600ms ease;
+        }
+
+    .btnPaging span {
+        background: rgb(255,130,130);
+        background: -moz-linear-gradient(left, rgba(255,130,130,1) 0%, rgba(225,120,237,1) 100%);
+        background: -webkit-linear-gradient(left, rgba(255,130,130,1) 0%,rgba(225,120,237,1) 100%);
+        background: linear-gradient(to right, rgba(255,130,130,1) 0%,rgba(225,120,237,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff8282', endColorstr='#e178ed',GradientType=1 );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .btnPaging:hover svg rect {
+        stroke-width: 4;
+        stroke-dasharray: 196, 543;
+        stroke-dashoffset: 437;
+    }
