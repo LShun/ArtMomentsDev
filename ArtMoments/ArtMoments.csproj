@@ -90,6 +90,7 @@
   <ItemGroup>
     <Content Include="Content\14019785_00-129-spheroide-noire-01.jpg" />
     <Content Include="Content\187803-200.png" />
+    <Content Include="Content\2-flower-painting-magnolia-pieterwagemansa.jpg" />
     <Content Include="Content\8585-mur-africa-met.jpg" />
     <Content Include="Content\arrow-left.png" />
     <Content Include="Content\arrow-right.png" />
@@ -102,6 +103,7 @@
     <Content Include="Content\colorful-street.jpg" />
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\BuyerAcc.css" />
     <Content Include="Content\css\DisplayImageHover.css" />
     <Content Include="Content\css\LoginUser.css" />
     <Content Include="Content\css\PreLogin.css" />
@@ -1761,6 +1763,7 @@
     <Content Include="Content\il_570xN.1343115773_kxun.jpg" />
     <Content Include="Content\nancy-tillman-my-elephant-friend_u-l-q1awkyfo1zln.jpg" />
     <Content Include="Content\pixel-castle-mountain.png" />
+    <Content Include="Content\scripts\app.js" />
     <Content Include="Content\scripts\blank.js" />
     <Content Include="Content\scripts\bootstrap.bundle.min.js" />
     <Content Include="Content\scripts\jquery-3.0.0.slim.min.js" />
@@ -1795,7 +1798,6 @@
     <Content Include="Sites\usermgmt\BuyerAccount.aspx" />
     <Content Include="Sites\usermgmt\BuyerPresentation.aspx" />
     <Content Include="Sites\usermgmt\BuyerSetting.aspx" />
-    <Content Include="Sites\usermgmt\BuyerSettingEdit.aspx" />
     <Content Include="Sites\usermgmt\ChangePassword.aspx" />
     <Content Include="Sites\usermgmt\ConfirmedRegMsg.aspx" />
     <Content Include="Sites\usermgmt\LoginUser.aspx" />
@@ -1911,13 +1913,6 @@
     </Compile>
     <Compile Include="Sites\usermgmt\BuyerSetting.aspx.designer.cs">
       <DependentUpon>BuyerSetting.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\usermgmt\BuyerSettingEdit.aspx.cs">
-      <DependentUpon>BuyerSettingEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\usermgmt\BuyerSettingEdit.aspx.designer.cs">
-      <DependentUpon>BuyerSettingEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\usermgmt\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
