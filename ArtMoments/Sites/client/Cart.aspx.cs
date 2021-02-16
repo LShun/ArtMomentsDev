@@ -126,89 +126,97 @@ namespace ArtMoments.Sites.client
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
-            //create new transaction
-            try
+            if (Page.IsValid)
             {
-                SqlConnection con = new SqlConnection(conString);
-
-                string createTransacQuery = "insert into [Transaction] (user_id, date_order) VALUES (@CustId, @DateOrder)";
-                SqlCommand cmd = new SqlCommand(createTransacQuery, con);
-                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
-                cmd.Parameters.AddWithValue("@DateOrder", DateTime.Now);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Inserted')", true);
-            }
-            catch (Exception ex)
-            {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
-            }
-
-
-
-            //insert order into transaction
-            try
-            {
-                //read data from cart
-                SqlConnection con = new SqlConnection(conString);
-                string getCartItemsQuery = "SELECT C.product_id as prod_id, C.quantity as cart_quantity, C.delivery_id as delivery_id, P.prod_stock as available_stock, P.prod_sales as prod_sales FROM CartItems AS C JOIN Product P on C.product_id = P.id where C.user_id = @CustId";
-                SqlDataAdapter sda = new SqlDataAdapter(getCartItemsQuery, con);
-                sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["CustId"]);
-                DataTable cartItem = new DataTable();
-                sda.Fill(cartItem);
-
-                getTransacID();
-                foreach (DataRow row in cartItem.Rows)
+                btnCheckout.Enabled = true;
+                //create new transaction
+                try
                 {
-                    con.Open();
-                    string insertOrdersQuery = "insert into [Order] (product_id,quantity,delivery_id,order_status,transaction_id) VALUES (@ProdId, @Qty,@DeliverId,@OrderStatus,@TransacId)";
-                    SqlCommand cmd = new SqlCommand(insertOrdersQuery, con);
-                    cmd.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
-                    cmd.Parameters.AddWithValue("@Qty", row.Field<Int32>("cart_quantity"));
-                    cmd.Parameters.AddWithValue("@DeliverId", row.Field<Int32>("delivery_id"));
-                    cmd.Parameters.AddWithValue("@OrderStatus", "Pending");
-                    cmd.Parameters.AddWithValue("@TransacId", Convert.ToInt32(Session["TransacId"]));
+                    SqlConnection con = new SqlConnection(conString);
 
+                    string createTransacQuery = "insert into [Transaction] (user_id, date_order) VALUES (@CustId, @DateOrder)";
+                    SqlCommand cmd = new SqlCommand(createTransacQuery, con);
+                    cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
+                    cmd.Parameters.AddWithValue("@DateOrder", DateTime.Now);
+                    con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
-
-                    //deduct stock qty
-                    try
-                    {
-                        con.Open();
-                        string updateProdStockQuery = "update [Product] set prod_stock = @UpdatedAvailableQty, prod_sales = @UpdatedSales where id like @ProdId";
-                        using (SqlCommand cmdSales = new SqlCommand(updateProdStockQuery, con))
-                        {
-                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('success update product info')", true);
-                            int cartQty = row.Field<Int32>("cart_quantity");
-                            int availableQty = row.Field<Int32>("available_stock");
-                            int updateQty = availableQty - cartQty;
-
-                            int currentSalesQty = row.Field<Int32>("prod_sales");
-                            int updateSales = currentSalesQty + cartQty;
-                            int prodId = row.Field<Int32>("prod_id");
-                            cmdSales.Parameters.AddWithValue("@UpdatedAvailableQty", updateQty);
-                            cmdSales.Parameters.AddWithValue("@UpdatedSales", updateSales);
-                            cmdSales.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
-                            cmdSales.ExecuteNonQuery();
-                            con.Close();
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('fail update product info')", true);
-                    }
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Inserted')", true);
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
                 }
 
-                //remove all from cart & minus the stock
-                clearCart();
 
+
+                //insert order into transaction
+                try
+                {
+                    //read data from cart
+                    SqlConnection con = new SqlConnection(conString);
+                    string getCartItemsQuery = "SELECT C.product_id as prod_id, C.quantity as cart_quantity, C.delivery_id as delivery_id, P.prod_stock as available_stock, P.prod_sales as prod_sales FROM CartItems AS C JOIN Product P on C.product_id = P.id where C.user_id = @CustId";
+                    SqlDataAdapter sda = new SqlDataAdapter(getCartItemsQuery, con);
+                    sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["CustId"]);
+                    DataTable cartItem = new DataTable();
+                    sda.Fill(cartItem);
+
+                    getTransacID();
+                    foreach (DataRow row in cartItem.Rows)
+                    {
+                        con.Open();
+                        string insertOrdersQuery = "insert into [Order] (product_id,quantity,delivery_id,order_status,transaction_id) VALUES (@ProdId, @Qty,@DeliverId,@OrderStatus,@TransacId)";
+                        SqlCommand cmd = new SqlCommand(insertOrdersQuery, con);
+                        cmd.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
+                        cmd.Parameters.AddWithValue("@Qty", row.Field<Int32>("cart_quantity"));
+                        cmd.Parameters.AddWithValue("@DeliverId", row.Field<Int32>("delivery_id"));
+                        cmd.Parameters.AddWithValue("@OrderStatus", "Pending");
+                        cmd.Parameters.AddWithValue("@TransacId", Convert.ToInt32(Session["TransacId"]));
+
+                        cmd.ExecuteNonQuery();
+                        con.Close();
+
+                        //deduct stock qty
+                        try
+                        {
+                            con.Open();
+                            string updateProdStockQuery = "update [Product] set prod_stock = @UpdatedAvailableQty, prod_sales = @UpdatedSales where id like @ProdId";
+                            using (SqlCommand cmdSales = new SqlCommand(updateProdStockQuery, con))
+                            {
+                                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('success update product info')", true);
+                                int cartQty = row.Field<Int32>("cart_quantity");
+                                int availableQty = row.Field<Int32>("available_stock");
+                                int updateQty = availableQty - cartQty;
+
+                                int currentSalesQty = row.Field<Int32>("prod_sales");
+                                int updateSales = currentSalesQty + cartQty;
+                                int prodId = row.Field<Int32>("prod_id");
+                                cmdSales.Parameters.AddWithValue("@UpdatedAvailableQty", updateQty);
+                                cmdSales.Parameters.AddWithValue("@UpdatedSales", updateSales);
+                                cmdSales.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
+                                cmdSales.ExecuteNonQuery();
+                                con.Close();
+                            }
+                        }
+                        catch (Exception ex)
+                        {
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('fail update product info')", true);
+                        }
+                    }
+
+                    //remove all from cart & minus the stock
+                    clearCart();
+
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
+
+                }
             }
-            catch (Exception ex)
+            else
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
-
+                btnCheckout.Enabled = false;
             }
         }
 

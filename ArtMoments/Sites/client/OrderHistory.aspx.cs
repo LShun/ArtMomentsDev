@@ -23,7 +23,7 @@ namespace ArtMoments.Sites.client
         {
             if (!IsPostBack)
             {
-                Session["CustId"] = 3;
+                Session["CustId"] = 1;
                 if (Session["CustId"] != null)
                 {
                     DataTable transacTable = getTransacTable();
@@ -74,7 +74,7 @@ namespace ArtMoments.Sites.client
         {
             using (SqlConnection con = new SqlConnection(conString))
             {
-                using (SqlCommand cmd = new SqlCommand("select id as [order-id], product_id as [order-id], quantity as [order-qty], deliver_channel as [order-deliverChannel], date_delivery as [order-deliverDate], order_status as [order-status], date_received as [order-dateReceive], O.transaction_id as [transac-id] from [Order] O where O.transaction_id like @TransacId"))
+                using (SqlCommand cmd = new SqlCommand("select id as [order-id], product_id as [order-id], quantity as [order-qty], delivery_id as [order-deliverId], date_delivery as [order-deliverDate], order_status as [order-status], date_received as [order-dateReceive], O.transaction_id as [transac-id] from [Order] O where O.transaction_id like @TransacId"))
                 {
                     cmd.Parameters.AddWithValue("@TransacId", TransacId);
                     using (SqlDataAdapter sda = new SqlDataAdapter())
@@ -282,7 +282,7 @@ namespace ArtMoments.Sites.client
                 html.Append("'>"+author+"</asp:Label></div></div>");
                 // Qty, Price, view more details label
                 html.Append("<div class='row qtyPriceMore'><div class='col' id='qtyDivision'><label id = 'qtyTxt' > Quantity </label></div><div class='col' id='priceDivision'>"
-                            + "<label id = 'priceTxt'> RM </label></div><div class='col' id='modeDetailsRow'><a href = '");
+                            + "<label id = 'priceTxt'> RM </label></div><div class='col' id='modeDetailsRow'><a href =# '");
                 //more details -> src
                 html.Append("'><asp:Label ID = 'lblMoreDetail' runat='server'>"+ viewMore +"</asp:Label></a></div></div>");
 

@@ -1,4 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="ArtMoments.Sites.client.Cart" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="ArtMoments.Sites.client.Cart" UnobtrusiveValidationMode="None"%>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <style>
     .heading {
@@ -24,6 +25,7 @@
             <ItemTemplate>
                 <div>
                     <table>
+
                         <tr><th id="author"><asp:Label ID="lblAuthor" runat="server" ><%#Eval ("author_id") %></asp:Label></th></tr>
                         
                         <td id="btnArtImg" rowspan="6"><asp:ImageButton ID="BtnProdImg" runat="server" style="max-height:200px;max-width:200px" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_img")) %>'/></td>
@@ -32,13 +34,20 @@
                             <asp:Button ID="btnDelete" runat="server" Text="Delete" OnClick="deleteItem"/></td></tr>
                         <tr><td id="prodName">ProdName <asp:Label ID="lblProdName" runat="server"><%#Eval("prod_name") %></asp:Label><asp:TextBox ID="txtProdId" runat="server" Text='<%# Eval("prod_id").ToString()%>' Visible="false" Enabled="false"></asp:TextBox></td></tr>
                         <tr><td id="prodPrice">RM <asp:Label ID="lblPrice" runat="server"><%#Eval ("prod_price") %></asp:Label></td></tr>
-                        <tr><td id="qty">Qty: <asp:Button ID="btnMinusQty" runat="server" Text="-" OnClick="minusQty" /><asp:TextBox ID="txtQty" runat="server" Text='<%# Eval("quantity").ToString()%> ' onkeypress="numValid(event);" onfocusout="qtyValid();"></asp:TextBox> <asp:Button ID="btnPlusQty" runat="server" Text="+" OnClick="plusQty"/>
+                        <tr><td id="qty">Qty: <asp:Button ID="btnMinusQty" runat="server" Text="-" OnClick="minusQty" />
+                            
+                            <asp:TextBox ID="txtQty" runat="server" Text='<%# Eval("quantity").ToString()%> ' onkeypress="numValid(event);" onfocusout="qtyValid();"></asp:TextBox>
+                           <asp:RangeValidator ID="rvclass" runat="server" ControlToValidate="txtQty" ErrorMessage="Minimum = 1, Maximum should not more than available quantity" MaximumValue='<%# Eval("prod_stock") %>' MinimumValue="1" Type="Integer" SetFocusOnError="True">
+            </asp:RangeValidator>
+                           
+                            
+                            <asp:Button ID="btnPlusQty" runat="server" Text="+" OnClick="plusQty" />                          
                             <asp:DropDownList ID="ddlDeliveryMethod" runat="server" DataSourceID="SqlDataSourceDeliver" DataTextField="deliver_type" DataValueField="id" SelectedValue='<%# Bind("deliver_id") %>' OnSelectedIndexChanged="ddlDeliverChg" AutoPostBack="True"></asp:DropDownList>
                             <asp:SqlDataSource ID="SqlDataSourceDeliver" runat="server" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security = True"
                         SelectCommand="Select id, deliver_type from delivery"></asp:SqlDataSource>
                             </td></tr>
                         <tr><td id="subtotal">Subtotal: RM <asp:Label ID="lblSubtotal" runat="server"><%#Eval ("subtotal") %></asp:Label></td></tr>
-                        <tr><td id="availableStock">Available Stock: <asp:TextBox ID="txtAvailable" runat="server" Text='<%# Eval("prod_stock").ToString()%>' Enabled="false"></asp:TextBox></td></tr>
+                        <tr><td id="availableStock">Available Stock: <asp:TextBox ID="txtAvailable" runat="server" Text='<%# Eval("prod_stock").ToString()%>' Enabled="false" onfocusout="ValidateQty();"></asp:TextBox></td></tr>
 
                     </table>
                 </div>
@@ -55,12 +64,13 @@
                     evt.preventDefault();
                 }
             }
-            ContentPlaceHolder1_Repeater1_txtQty_0
-            function qtyValid(qtyTextBox) {
-                var qtyElement = evt.which
-                var qtyInput = parseInt(qtyElement.value);
-                var qtyAvailable = document.getElementsByName("txtAvailable");
-                var maxQty = parseInt(qtyAvailable.textContent);
+
+        
+            
+            function qtyValid(source,argument) {
+                var qtyInput = argument.value;
+
+               
 
                 if (qtyInput > 1) {
                     if (qtyInput > maxQty) {
@@ -76,25 +86,25 @@
                     calcMin();
                     alert("Min stock = 1");
                 }
-                var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
+                var onePiecePrice = document.getElementById("ContentPlaceHolder1_RepeaterCartInfo_lblPrice_" + currentIndex);
                 var artPiecePrice = parseFloat(onePiecePrice.textContent);
                 var subtotal = artPiecePrice * qtyInput;
-                document.getElementsByClassName("lblartworkPrice")[0].textContent = subtotal.toString();
+                document.getElementById("ContentPlaceHolder1_RepeaterCartInfo_lblSubtotal_" + currentIndex).textContent = subtotal.toString();
 
             }
 
             function calcMin() {
-                var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
+                var onePiecePrice = document.getElementById("ContentPlaceHolder1_RepeaterCartInfo_lblPrice_" + currentIndex);
                 var artPiecePrice = parseFloat(onePiecePrice.textContent);
                 var subtotal = artPiecePrice * 1;
-                document.getElementsByClassName("lblartworkPrice")[0].textContent = subtotal.toString();
+                document.getElementById("ContentPlaceHolder1_RepeaterCartInfo_lblSubtotal_" + currentIndex).textContent = subtotal.toString();
             }
 
             function calcMax(maxQty) {
-                var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
+                var onePiecePrice = document.getElementById("ContentPlaceHolder1_RepeaterCartInfo_lblPrice_" + currentIndex);
                 var artPiecePrice = parseFloat(onePiecePrice.textContent);
                 var subtotal = artPiecePrice * maxQty;
-                document.getElementsByClassName("lblartworkPrice")[0].textContent = subtotal.toString();
+                document.getElementById("ContentPlaceHolder1_RepeaterCartInfo_lblSubtotal_" + currentIndex).textContent = subtotal.toString();
             }
 
         </script>
