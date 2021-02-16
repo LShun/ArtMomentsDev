@@ -10,9 +10,10 @@
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
-              <a href="BuyerAccount.aspx"  class="list-group-item list-group-item-action">My Account</a>
+              
               <a href="BuyerSetting.aspx" class="list-group-item list-group-item-action active">Setting</a>
-              <a href="BuyerPresentation.aspx"  class="list-group-item list-group-item-action">Presentation</a>              
+              <a href="BuyerPresentation.aspx"  class="list-group-item list-group-item-action">Presentation</a>       
+              <a href="BuyerAccount.aspx"  class="list-group-item list-group-item-action">Log out</a>
               
             </div> 
 		</div>
