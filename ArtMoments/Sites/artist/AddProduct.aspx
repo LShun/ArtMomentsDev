@@ -104,8 +104,7 @@
         border-radius: .25rem;
         transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     }
-
-        
+   
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -116,6 +115,7 @@
 				<div class="col-2">
 					<label for="artworkName">Artwork Title*:</label> </div>
 				<div class="col-10">
+
 					<asp:TextBox ID="txtArtworkName" runat="server" ></asp:TextBox>
 				</div>
 			</div>
@@ -159,7 +159,9 @@
 						<label for="artworkPrice">Artwork Price (RM)*:</label> </div>
 					<div class="col-10">
                         <asp:TextBox ID="txtArtworkPrice" runat="server"></asp:TextBox>
-					</div>
+                        
+                        <asp:RegularExpressionValidator ID="price" ValidationExpression="^\d{0,8}(\.\d{1,2})?$" runat="server" ControlToValidate="txtArtworkPrice" ErrorMessage="Valid Decimal number with maximum 2 decimal places" Display="Dynamic" ForeColor="Red" SetFocusOnError="True"></asp:RegularExpressionValidator>
+                    </div>
 
 				</div>
 				<div class="row">
@@ -169,6 +171,10 @@
                         <asp:TextBox ID="txtArtworkStock" onkeypress="return onlyNumberKey(event)" runat="server"></asp:TextBox>
 					</div>
 				</div>
+            <div class="row">
+                <asp:Label ID="lblErrorMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
+
+            </div>
 				<div class="row">		
 					<asp:Button ID="submitAddProdBtn" class="button btn-artwork" runat="server" Text="Save & Create" OnClientClick="return validate()" OnClick="saveProdBtn_Click"/>
 					<asp:Button ID="resetAddProdBtn" class="button btn-artwork" runat="server" Text="Reset" OnClick="resetProdBtn_Click"/>
@@ -185,11 +191,6 @@
             if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
                 return false;
             return true;
-        }
-
-        function alertMsg() {
-            alert("The form is not completed!!!")
-
         }
        
     </script> 

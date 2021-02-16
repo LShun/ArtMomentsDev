@@ -1,6 +1,20 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="ArtMoments.Sites.general.HomePage2" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+
+    <style>
+        img {
+            width: 150px; /* You can set the dimensions to whatever you want */
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .img-spotlight {
+            width: 200px; /* You can set the dimensions to whatever you want */
+            height: 200px;
+            object-fit: cover;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -24,18 +38,18 @@
                         </div>
                         <div class="row">
                             <div class="col-sm">
-                                <asp:ImageButton ID="ImageButton1" class="img-thumbnail" runat="server" ImageUrl="~/Content/art-paint-brush.jpg" />
+                                <asp:ImageButton ID="ImageButton1" class="img-spotlight" runat="server" ImageUrl="~/Content/art-paint-brush.jpg" />
                             </div>
                             <div class="col-sm">
-                                <asp:ImageButton ID="ImageButton3" class="img-thumbnail" runat="server" ImageUrl="~/Content/pixel-castle-mountain.png" />
+                                <asp:ImageButton ID="ImageButton3" class="img-spotlight" runat="server" ImageUrl="~/Content/pixel-castle-mountain.png" />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-sm">
-                                <asp:ImageButton ID="ImageButton2" class="img-thumbnail" runat="server" ImageUrl="~/Content/waterfall-blue-petal.jpg" />
+                                <asp:ImageButton ID="ImageButton2" class="img-spotlight" runat="server" ImageUrl="~/Content/waterfall-blue-petal.jpg" />
                             </div>
                             <div class="col-sm">
-                                <asp:ImageButton ID="ImageButton4" class="img-thumbnail" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
+                                <asp:ImageButton ID="ImageButton4" class="img-spotlight" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
                             </div>
                         </div>
                     </div>
@@ -51,7 +65,7 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-4">
-                                <img src="..." alt="...">
+                                <img src="../../Content/hp-wishlist-stars.jpg" />
                             </div>
                             <div class="col-8">
                                 <div class="card-body">
@@ -66,7 +80,7 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-4">
-                                <img src="..." alt="...">
+                                <img src="../../Content/hp-buy-art.jpg" />
                             </div>
                             <div class="col-8">
                                 <div class="card-body">
@@ -84,7 +98,7 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-4">
-                                <img src="..." alt="...">
+                                <img src="../../Content/hp-additional-income.jpg" />
                             </div>
                             <div class="col-8">
                                 <div class="card-body">
@@ -99,7 +113,7 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-4">
-                                <img src="..." alt="...">
+                                <img src="../../Content/hp-visibility.jpg" />
                             </div>
                             <div class="col-8">
                                 <div class="card-body">
@@ -121,6 +135,8 @@
         </div>
 
         <h2>Categories</h2>
+
+
         <div class="table">
             <div class="row">
                 <div class="col">

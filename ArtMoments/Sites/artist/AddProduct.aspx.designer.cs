@@ -78,6 +78,15 @@ namespace ArtMoments.Sites.artist
         protected global::System.Web.UI.WebControls.TextBox txtArtworkPrice;
 
         /// <summary>
+        /// price control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator price;
+
+        /// <summary>
         /// txtArtworkStock control.
         /// </summary>
         /// <remarks>
@@ -85,6 +94,15 @@ namespace ArtMoments.Sites.artist
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtArtworkStock;
+
+        /// <summary>
+        /// lblErrorMsg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblErrorMsg;
 
         /// <summary>
         /// submitAddProdBtn control.
