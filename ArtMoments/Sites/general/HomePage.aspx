@@ -137,7 +137,8 @@
         <h2>Categories</h2>
 
 
-        <div class="table">
+
+      <%--  <div class="table">
             <div class="row">
                 <div class="col">
                     <div class="card" style="width: auto;">
@@ -172,6 +173,6 @@
             </div>
 
 
-        </div>
+        </div>--%>
     </div>
 </asp:Content>
