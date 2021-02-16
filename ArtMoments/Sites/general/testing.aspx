@@ -7,4 +7,6 @@
     <asp:Label ID="Label2" runat="server" Text=''></asp:Label>
     <br />
     <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="History" />
+    <br />
+    <asp:Button ID="CartBtn" runat="server" Text="Cart" OnClick="CartBtn_Click" />
 </asp:Content>

@@ -20,7 +20,7 @@ namespace ArtMoments.Sites.general
             if(!IsPostBack)
             {
                 Session["CustId"] = 3;
-                Session["ProdId"] = 10;
+                Session["ProdId"] = 8;
 
                 if (Session["CustId"] != null && Session["ProdId"] != null)
                 {

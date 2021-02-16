@@ -80,5 +80,10 @@ namespace ArtMoments.Sites.general
         {
             Response.Redirect("../client/OrderHistory.aspx");
         }
+
+        protected void CartBtn_Click(object sender, EventArgs e)
+        {
+            Session["UserId"] = "3";
+        }
     }
 }
