@@ -18,18 +18,25 @@ namespace ArtMoments.Sites.client
         string conString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
         protected void Page_Load(object sender, EventArgs e)
         {
+            Double total = 0;
             if (!IsPostBack)
             {
                 Session["UserId"] = 3;
                 Session["CartId"] = 1003;
                 SqlConnection con = new SqlConnection(conString);
-                string getCartItemQuery = "SELECT C.id AS cart_id, C.user_id, CI.product_id, CI.quantity_int as cart_quantity, CI.cart_id, P.id AS prod_id, P.prod_name as prod_name, P.prod_size, P.prod_description, P.category_id, P.prod_image AS prod_image, P.prod_price AS prod_price, P.prod_stock AS available_stock, P.prod_sales, P.user_id, U.id AS user_id, U.user_name AS user_name, U.user_password, U.user_email, U.user_contactno, U.bibliography, U.profile_pic, U.user_type FROM User_Cart AS C INNER JOIN User_CartItem AS CI ON CI.cart_id = C.id INNER JOIN Product AS P ON CI.product_id = P.id INNER JOIN[User] AS U ON P.user_id = U.id WHERE(C.user_id = @UserId)";
+                string getCartItemQuery = "SELECT C.id AS cart_id, C.user_id, CI.product_id, CI.quantity_int as cart_quantity, CI.cart_id, P.id AS prod_id, P.prod_name as prod_name, P.prod_size, P.prod_description, P.category_id, P.prod_image AS prod_image, P.prod_price AS prod_price, P.prod_stock AS available_stock, P.prod_sales, P.user_id, U.id AS user_id, U.user_name AS user_name, U.user_password, U.user_email, U.user_contactno, U.bibliography, U.profile_pic, U.user_type, (P.prod_price*CI.quantity_int) as subtotal FROM User_Cart AS C INNER JOIN User_CartItem AS CI ON CI.cart_id = C.id INNER JOIN Product AS P ON CI.product_id = P.id INNER JOIN[User] AS U ON P.user_id = U.id WHERE(C.user_id = @UserId)";
                 SqlDataAdapter sda = new SqlDataAdapter(getCartItemQuery, con);
                 sda.SelectCommand.Parameters.AddWithValue("@UserId", Session["UserId"]);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
                 Repeater1.DataSource = dt;
                 Repeater1.DataBind();
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    total+= row.Field<Double>("subtotal");
+                    lblTotalPrice.Text = total.ToString();
+                }
             }
 
         }
@@ -99,6 +106,31 @@ namespace ArtMoments.Sites.client
             }
 
         }
+
+        protected void btnCheckout_Click(object sender, EventArgs e)
+        {
+            // select from cart
+            // take back the code from orderart
+        }
+
+        //public Double calculatePrice(int qty, Double price)
+        //{
+        //    string[] artworkPriceSplit = artworkPrice.Split('.');
+        //    Double artPrice = Convert.ToInt32(artworkPriceSplit[0]);
+        //    if (artworkPriceSplit[0] != null)
+        //    {
+        //        if (artworkPriceSplit[1].Length == 1)
+        //        {
+        //            artPrice += (Convert.ToDouble(artworkPriceSplit[1]) / 10);
+        //        }
+        //        else
+        //        {
+        //            artPrice += (Convert.ToDouble(artworkPriceSplit[1]) / 100);
+        //        }
+        //    }
+        //    Double subtotal = (qty * artPrice);
+        //    lblartworkPrice.Text = subtotal.ToString("0.00");
+        //}
 
     }
 }
