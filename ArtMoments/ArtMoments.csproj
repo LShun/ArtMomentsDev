@@ -1758,6 +1758,10 @@
     <Content Include="Content\fontawesome\webfonts\fa-brands-400.svg" />
     <Content Include="Content\fontawesome\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\hp-additional-income.jpg" />
+    <Content Include="Content\hp-buy-art.jpg" />
+    <Content Include="Content\hp-visibility.jpg" />
+    <Content Include="Content\hp-wishlist-stars.jpg" />
     <Content Include="Content\il_570xN.1343115773_kxun.jpg" />
     <Content Include="Content\nancy-tillman-my-elephant-friend_u-l-q1awkyfo1zln.jpg" />
     <Content Include="Content\pixel-castle-mountain.png" />
