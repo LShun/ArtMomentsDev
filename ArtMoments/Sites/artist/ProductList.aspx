@@ -175,7 +175,7 @@
         <pagerstyle horizontalalign="Left" CssClass="pagination"/>
                 <Columns>
                 <asp:BoundField DataField="ID" HeaderText="Product ID" SortExpression="ID" HeaderStyle-ForeColor="White" >
-                    <ItemStyle Width="100" HorizontalAlign="Center" /> 
+                    <ItemStyle Width="80" HorizontalAlign="Center" /> 
                     <HeaderStyle HorizontalAlign="Center" />
                 </asp:boundfield>
 
