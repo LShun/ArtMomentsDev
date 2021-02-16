@@ -8,6 +8,7 @@ using System.Data;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace ArtMoments.Sites.artist
 {
@@ -56,42 +57,56 @@ namespace ArtMoments.Sites.artist
         
         protected void saveProdBtn_Click(object sender, EventArgs e)
         {
-            string artworkName = txtArtworkName.Text;
-            string artworkSize = txtArtworkSize.Text;
-            string artworkDesc = txtArtworkDesc.Text;
-            int categoryID = int.Parse(ddlArtworkCategory.SelectedValue);
-            double artworkPrice = double.Parse(txtArtworkPrice.Text);
-            double artworkStock = double.Parse(txtArtworkStock.Text);
+            string pricePattern = @"^\d{0,8}(\.\d{1,2})?$";
 
-            //int userID = getUserID();
-            byte[] bytes;
-            using (BinaryReader br = new BinaryReader(ImageUpload.PostedFile.InputStream))
+            bool isPriceValid = Regex.IsMatch(txtArtworkPrice.Text, pricePattern);
+            if (txtArtworkName.Text.Length == 0 || txtArtworkSize.Text.Length == 0 || txtArtworkDesc.Text.Length == 0 || txtArtworkPrice.Text.Length == 0 || txtArtworkStock.Text.Length == 0 || ImageUpload.HasFile == false)
             {
-                bytes = br.ReadBytes(ImageUpload.PostedFile.ContentLength);
+                lblErrorMsg.Text = "The form is not completed!!!";
             }
-
-            using (SqlConnection sqlcon = new SqlConnection(connectionString))
+            else if (!isPriceValid)
             {
-                string sql = "UPDATE product SET prod_name = @prodName, prod_size = @prodSize, prod_description = @prodDesc, category_id = @categoryId, prod_image = @prodImage, prod_price = @prodPrice, prod_stock = @prodStock WHERE id = @prodID";
-                using (SqlCommand cmd = new SqlCommand(sql, sqlcon))
+                lblErrorMsg.Text = "The price is invalid!!!";
+            }
+            else
+            {
+                string artworkName = txtArtworkName.Text;
+                string artworkSize = txtArtworkSize.Text;
+                string artworkDesc = txtArtworkDesc.Text;
+                int categoryID = int.Parse(ddlArtworkCategory.SelectedValue);
+                double artworkPrice = double.Parse(txtArtworkPrice.Text);
+                double artworkStock = double.Parse(txtArtworkStock.Text);
+
+                //int userID = getUserID();
+                byte[] bytes;
+                using (BinaryReader br = new BinaryReader(ImageUpload.PostedFile.InputStream))
                 {
-                    string productID = Application["prodID"].ToString();
-                    cmd.Parameters.AddWithValue("@prodName", artworkName);
-                    cmd.Parameters.AddWithValue("@prodSize", artworkSize);
-                    cmd.Parameters.AddWithValue("@prodDesc", artworkDesc);
-                    cmd.Parameters.AddWithValue("@categoryId", categoryID);
-                    cmd.Parameters.AddWithValue("@prodImage", bytes);
-                    cmd.Parameters.AddWithValue("@prodPrice", artworkPrice);
-                    cmd.Parameters.AddWithValue("@prodStock", artworkStock);
-                    cmd.Parameters.AddWithValue("@prodID", productID);
-                    //cmd.Parameters.AddWithValue("@userId", userId);
-                    sqlcon.Open();
-                    cmd.ExecuteNonQuery();
-                    sqlcon.Close();
+                    bytes = br.ReadBytes(ImageUpload.PostedFile.ContentLength);
                 }
+
+                using (SqlConnection sqlcon = new SqlConnection(connectionString))
+                {
+                    string sql = "UPDATE product SET prod_name = @prodName, prod_size = @prodSize, prod_description = @prodDesc, category_id = @categoryId, prod_image = @prodImage, prod_price = @prodPrice, prod_stock = @prodStock WHERE id = @prodID";
+                    using (SqlCommand cmd = new SqlCommand(sql, sqlcon))
+                    {
+                        string productID = Application["prodID"].ToString();
+                        cmd.Parameters.AddWithValue("@prodName", artworkName);
+                        cmd.Parameters.AddWithValue("@prodSize", artworkSize);
+                        cmd.Parameters.AddWithValue("@prodDesc", artworkDesc);
+                        cmd.Parameters.AddWithValue("@categoryId", categoryID);
+                        cmd.Parameters.AddWithValue("@prodImage", bytes);
+                        cmd.Parameters.AddWithValue("@prodPrice", artworkPrice);
+                        cmd.Parameters.AddWithValue("@prodStock", artworkStock);
+                        cmd.Parameters.AddWithValue("@prodID", productID);
+                        //cmd.Parameters.AddWithValue("@userId", userId);
+                        sqlcon.Open();
+                        cmd.ExecuteNonQuery();
+                        sqlcon.Close();
+                    }
+                }
+                //Response.Redirect(Request.Url.AbsoluteUri);
+                Response.Redirect("ProductList.aspx");
             }
-            //Response.Redirect(Request.Url.AbsoluteUri);
-            Response.Redirect("ProductList.aspx");
         }
 
         protected void cancelProdBtn_Click(object sender, EventArgs e)

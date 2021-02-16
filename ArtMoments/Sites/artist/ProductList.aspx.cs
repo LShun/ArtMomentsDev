@@ -75,8 +75,9 @@ namespace ArtMoments.Sites.artist
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 using (SqlDataAdapter sda = new SqlDataAdapter("select P.id as [ID], P.prod_name as [Name], P.prod_size [Size], P.prod_description as [Description], C.category_name as [CategoryName], P.prod_image as [Image], P.prod_price as [Price] " +
-                     ", P.prod_stock as [Stock], P.prod_sales as [Sales] from Product P , Product_Category C where P.category_id = C.id and P.prod_name like @productName + '%'", conn))
+                     ", P.prod_stock as [Stock], P.prod_sales as [Sales] from Product P , Product_Category C where U.id = P.user_id AND U.user_name = @name AND P.category_id = C.id and P.prod_name like @productName + '%'", conn))
                 {
+                    sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
                     string emptyValue = "";
                     if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))
                     {

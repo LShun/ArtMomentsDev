@@ -157,6 +157,7 @@
 						<label for="artworkPrice">Artwork Price (RM)*:</label> </div>
 					<div class="col-10">
                         <asp:TextBox ID="txtArtworkPrice" runat="server"></asp:TextBox>
+                        <asp:RegularExpressionValidator ID="price" ValidationExpression="^\d{0,8}(\.\d{1,2})?$" runat="server" ControlToValidate="txtArtworkPrice" ErrorMessage="Valid Decimal number with maximum 2 decimal places" Display="Dynamic" ForeColor="Red" SetFocusOnError="True"></asp:RegularExpressionValidator>
 					</div>
 
 				</div>
@@ -167,6 +168,10 @@
                         <asp:TextBox ID="txtArtworkStock" onkeypress="return onlyNumberKey(event)" runat="server"></asp:TextBox>
 					</div>
 				</div>
+             <div class="row">
+                <asp:Label ID="lblErrorMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
+
+            </div>
 				<div class="row">		
 					<asp:Button ID="submitAddProdBtn" class="btn btn-primary" runat="server" Text="Save & Create" OnClientClick="return validate()" OnClick="saveProdBtn_Click"/>
 					<asp:Button ID="cancelAddProdBtn" class="btn btn-primary" runat="server" Text="Cancel" OnClick="cancelProdBtn_Click"/>
