@@ -48,21 +48,25 @@
 
 
         </div>--%>
-        <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist">
+        <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id">
             <Columns>
-                <asp:CommandField ShowSelectButton="True" />
-                <asp:BoundField DataField="product_id" HeaderText="ID" SortExpression="product_id" />
-                <asp:BoundField DataField="prod_name" HeaderText="Name" SortExpression="prod_name" />
-                <asp:BoundField DataField="prod_price" HeaderText="Price" SortExpression="prod_price" />
-                <asp:BoundField DataField="prod_stock" HeaderText="Stock" SortExpression="prod_stock" />
-                <asp:BoundField DataField="prod_size" HeaderText="Size" SortExpression="prod_size" />
-                <asp:BoundField DataField="prod_description" HeaderText="Description" SortExpression="prod_description" />
-                <asp:BoundField DataField="category_name" HeaderText="Category" SortExpression="category_name" />
+                <asp:CommandField ShowDeleteButton="True" ShowSelectButton="True" />
+<asp:BoundField DataField="id" HeaderText="id" SortExpression="id" InsertVisible="False" ReadOnly="True"></asp:BoundField>
+                <asp:BoundField DataField="product_id" HeaderText="product_id" SortExpression="product_id" />
+                <asp:BoundField DataField="prod_name" HeaderText="prod_name" SortExpression="prod_name" />
+                <asp:BoundField DataField="prod_price" HeaderText="prod_price" SortExpression="prod_price" />
+                <asp:BoundField DataField="prod_stock" HeaderText="prod_stock" SortExpression="prod_stock" />
+                <asp:BoundField DataField="prod_size" HeaderText="prod_size" SortExpression="prod_size" />
+                <asp:BoundField DataField="prod_description" HeaderText="prod_description" SortExpression="prod_description" />
+                <asp:BoundField DataField="category_name" HeaderText="category_name" SortExpression="category_name" />
 
             </Columns>
         </asp:GridView>
         <br />
-        <asp:SqlDataSource ID="dsWishlist" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT DISTINCT Wishlist.product_id, Product.prod_name, Product.prod_price, Product.prod_stock, Product.prod_size, Product.prod_description, Product_Category.category_name, Product.prod_image FROM Product INNER JOIN Product_Category ON Product.category_id = Product_Category.id INNER JOIN [User] ON Product.user_id = [User].id INNER JOIN Wishlist ON Product.id = Wishlist.product_id AND [User].id = Wishlist.user_id AND [User].id = 1">
+        <asp:SqlDataSource ID="dsWishlist" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT DISTINCT Wishlist.id, Wishlist.product_id, Product.prod_name, Product.prod_price, Product.prod_stock, Product.prod_size, Product.prod_description, Product_Category.category_name, Product.prod_image FROM Product INNER JOIN Product_Category ON Product.category_id = Product_Category.id INNER JOIN [User] ON Product.user_id = [User].id INNER JOIN Wishlist ON Product.id = Wishlist.product_id AND [User].id = Wishlist.user_id AND [User].id = 1" DeleteCommand="DELETE FROM Wishlist WHERE (id = @id)">
+            <DeleteParameters>
+                <asp:Parameter Name="id" />
+            </DeleteParameters>
 
         </asp:SqlDataSource>
     </div>
