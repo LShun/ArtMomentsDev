@@ -14,5 +14,13 @@ namespace ArtMoments.Sites.client
 
         }
 
+        protected void gvWishList_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            dsWishlist.DeleteCommand = "DELETE FROM Wishlist Where id=@wishlist_id";
+            dsWishlist.DeleteParameters.Add("wishlist_id", gvWishlist.DataKeys[e.RowIndex].Values["id"].ToString());
+            dsWishlist.Delete();
+            gvWishlist.DataBind();
+        }
+
     }
 }
