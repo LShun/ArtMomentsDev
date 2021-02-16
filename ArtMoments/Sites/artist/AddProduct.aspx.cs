@@ -8,7 +8,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Data;
 using System.Configuration;
-
+using System.Text.RegularExpressions;
 namespace ArtMoments.Sites.artist
 {
     public partial class AddProduct : System.Web.UI.Page
@@ -26,30 +26,21 @@ namespace ArtMoments.Sites.artist
                 } 
 
             }
-            //else
-            //{
-            //    using (SqlConnection conn = new SqlConnection(connectionString))
-            //    {
-            //        using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM Product_category", conn))
-            //        {
-            //            using (DataTable dt = new DataTable())
-            //            {
-            //                ddlArtworkCategory.DataSource = dt;
-            //                ddlArtworkCategory.DataTextField = "category_id";
-            //                ddlArtworkCategory.DataValueField = "id";
-            //                ddlArtworkCategory.DataBind();
-            //            }
-            //        }
-            //    }
-            //}
+            
         }
 
         protected void saveProdBtn_Click(object sender, EventArgs e)
         {
+             string pricePattern = @"^\d{0,8}(\.\d{1,2})?$";
 
+            bool isPriceValid = Regex.IsMatch(txtArtworkPrice.Text, pricePattern);
             if (txtArtworkName.Text.Length == 0 || txtArtworkSize.Text.Length == 0 || txtArtworkDesc.Text.Length == 0 || txtArtworkPrice.Text.Length == 0 || txtArtworkStock.Text.Length == 0 || ImageUpload.HasFile == false)
             {
-                ClientScript.RegisterStartupScript(GetType(), "Message", "alertMsg();", true);
+                lblErrorMsg.Text = "The form is not completed!!!";
+            }
+            else if (!isPriceValid)
+            {
+                lblErrorMsg.Text = "The price is invalid!!!";
             }
             else
             {
@@ -113,16 +104,14 @@ namespace ArtMoments.Sites.artist
         protected void resetProdBtn_Click(object sender, EventArgs e)
         {          
             ImageUpload.Attributes.Clear();
-            ClearInputs(Page.Controls);
+            txtArtworkName.Text = string.Empty;
+            txtArtworkSize.Text = string.Empty;
+            txtArtworkDesc.Text = string.Empty;
+            txtArtworkPrice.Text = string.Empty;
+            txtArtworkStock.Text = string.Empty;
+            lblErrorMsg.Text = string.Empty;
+            
         }
-        void ClearInputs(ControlCollection ctrls)
-        {
-            foreach (Control ctrl in ctrls)
-            {
-                if (ctrl is TextBox)
-                    ((TextBox)ctrl).Text = string.Empty;
-                ClearInputs(ctrl.Controls);
-            }
-        }
+      
     }
 }
