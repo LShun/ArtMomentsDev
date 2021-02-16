@@ -6,13 +6,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <h1>Wishlist</h1>
-        <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand">Search your saved arts</a>
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </nav>
+        <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: "></asp:Label>
+        <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
         <%--<div class="table">
             <div class="row">
                 <div class="col">
@@ -81,5 +76,14 @@
                 <asp:SessionParameter Name="user_name" SessionField="UserName" />
             </SelectParameters>
         </asp:SqlDataSource>
+
+      <%--  <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT DISTINCT Wishlist.id, Wishlist.product_id, Product.prod_name, Product.prod_price, Product.prod_stock, Product.prod_size, Product.prod_description, Product_Category.category_name, Product.prod_image FROM Wishlist, Product, Product_Category, [User] WHERE Wishlist.user_id = [User].id AND Wishlist.product_id = Product.id AND Product_Category.id = Product.category_id AND [User].user_name = @user_name" FilterExpression="Product.prod_name LIKE '%{0}%'">
+   <FilterParameters>
+      <asp:ControlParameter ControlID="txtSearch" PropertyName="Text" Type="String" />
+   </FilterParameters>
+            <SelectParameters>
+                <asp:SessionParameter Name="user_name" SessionField="UserName" />
+            </SelectParameters>
+        </asp:SqlDataSource>--%>
     </div>
 </asp:Content>

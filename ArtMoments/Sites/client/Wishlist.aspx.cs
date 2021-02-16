@@ -22,5 +22,9 @@ namespace ArtMoments.Sites.client
             gvWishlist.DataBind();
         }
 
+        protected void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
     }
 }
