@@ -135,6 +135,8 @@
         </div>
 
         <h2>Categories</h2>
+
+
         <div class="table">
             <div class="row">
                 <div class="col">

@@ -12,7 +12,7 @@
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
         </nav>
-        <div class="table">
+        <%--<div class="table">
             <div class="row">
                 <div class="col">
                     <div class="card" style="width: auto;">
@@ -47,6 +47,23 @@
             </div>
 
 
-        </div>
+        </div>--%>
+        <asp:GridView ID="GridView1" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist">
+            <Columns>
+                <asp:CommandField ShowSelectButton="True" />
+                <asp:BoundField DataField="product_id" HeaderText="ID" SortExpression="product_id" />
+                <asp:BoundField DataField="prod_name" HeaderText="Name" SortExpression="prod_name" />
+                <asp:BoundField DataField="prod_price" HeaderText="Price" SortExpression="prod_price" />
+                <asp:BoundField DataField="prod_stock" HeaderText="Stock" SortExpression="prod_stock" />
+                <asp:BoundField DataField="prod_size" HeaderText="Size" SortExpression="prod_size" />
+                <asp:BoundField DataField="prod_description" HeaderText="Description" SortExpression="prod_description" />
+                <asp:BoundField DataField="category_name" HeaderText="Category" SortExpression="category_name" />
+
+            </Columns>
+        </asp:GridView>
+        <br />
+        <asp:SqlDataSource ID="dsWishlist" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT DISTINCT Wishlist.product_id, Product.prod_name, Product.prod_price, Product.prod_stock, Product.prod_size, Product.prod_description, Product_Category.category_name, Product.prod_image FROM Product INNER JOIN Product_Category ON Product.category_id = Product_Category.id INNER JOIN [User] ON Product.user_id = [User].id INNER JOIN Wishlist ON Product.id = Wishlist.product_id AND [User].id = Wishlist.user_id AND [User].id = 1">
+
+        </asp:SqlDataSource>
     </div>
 </asp:Content>
