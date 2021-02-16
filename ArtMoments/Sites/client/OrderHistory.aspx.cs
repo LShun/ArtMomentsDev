@@ -23,7 +23,7 @@ namespace ArtMoments.Sites.client
         {
             if (!IsPostBack)
             {
-                Session["CustId"] = 1;
+                Session["CustId"] = 3;
                 if (Session["CustId"] != null)
                 {
                     DataTable transacTable = getTransacTable();

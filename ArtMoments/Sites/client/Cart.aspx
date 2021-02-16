@@ -41,6 +41,9 @@
         Total Price: <asp:Label ID="lblTotalPrice" runat="server"></asp:Label>
 
 
+        <br />
+
+
         <script type="text/javascript">
             function numValid(evt) {
                 var ch = String.fromCharCode(evt.which);
@@ -91,4 +94,5 @@
             }
 
         </script>
+    <asp:Button ID="btnCheckout" runat="server" OnClick="btnCheckout_Click" Text="Checkout" />
  </asp:Content>

@@ -109,8 +109,82 @@ namespace ArtMoments.Sites.client
 
         protected void btnCheckout_Click(object sender, EventArgs e)
         {
-            // select from cart
-            // take back the code from orderart
+            Session["UserId"] = 3;
+            Session["CartId"] = 1003;
+            //create new transaction
+            try
+            {
+                SqlConnection con = new SqlConnection(conString);
+
+                string createTransacQuery = "insert into [Transaction] (user_id, date_order) VALUES (@CustId, @DateOrder)";
+                SqlCommand cmd = new SqlCommand(createTransacQuery, con);
+                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserId"]));
+                cmd.Parameters.AddWithValue("@DateOrder", DateTime.Now);
+                con.Open();
+                cmd.ExecuteNonQuery();
+                con.Close();
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Inserted')", true);
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
+
+            }
+            //insert order into transaction
+            try
+            {
+                //read data from cart
+                SqlConnection con = new SqlConnection(conString);
+                string getCartItemQuery = "SELECT CI.product_id as prod_id, CI.quantity_int as cart_quantity, CI.cart_id as cart_id, P.prod_stock AS available_stock FROM User_CartItem AS CI JOIN Product P on CI.product_id = P.id INNER JOIN User_Cart C on C.id = CI.cart_id where C.id = @CartId";
+                SqlDataAdapter sda = new SqlDataAdapter(getCartItemQuery, con);
+                sda.SelectCommand.Parameters.AddWithValue("@CartId", Session["CartId"]);
+                DataTable dt = new DataTable();
+                sda.Fill(dt);
+                
+                getTransacID();
+                foreach (DataRow row in dt.Rows)
+                {
+                    con.Open();
+                    string insertOrdersQuery = "insert into [Order] (product_id,quantity,deliver_channel,order_status,transaction_id) VALUES (@ProdId, @Qty,@DeliverChannel,@OrderStatus,@TransacId)";
+                    SqlCommand cmd = new SqlCommand(insertOrdersQuery, con);
+                    cmd.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
+                    cmd.Parameters.AddWithValue("@Qty", row.Field<Int32>("cart_quantity"));
+                    cmd.Parameters.AddWithValue("@DeliverChannel", "Pos Laju");
+                    cmd.Parameters.AddWithValue("@OrderStatus", "Pending");
+                    cmd.Parameters.AddWithValue("@TransacId", Convert.ToInt32(Session["TransacId"]));
+                    
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
+
+            }
+        }
+
+        protected void getTransacID()
+        {
+            string getTransIdQuery = "select TOP(1) id from [Transaction] ORDER BY id DESC";
+            using (SqlConnection conn = new SqlConnection(conString))
+            {
+                SqlCommand cmd = new SqlCommand(getTransIdQuery, conn);
+                try
+                {
+                    conn.Open();
+
+                    if (cmd.ExecuteScalar() != null)
+                    {
+                        Session["TransacId"] = cmd.ExecuteScalar();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
+                }
+            }
         }
 
         //public Double calculatePrice(int qty, Double price)
