@@ -261,13 +261,9 @@
                     </div>
 
                     <div class="col-4" id="deliveryDivision">
-                        <asp:DropDownList ID="ddlDeliveyMethod" runat="server">
-                            <asp:ListItem>Pos Laju</asp:ListItem>
-                            <asp:ListItem>Citylink</asp:ListItem>
-                            <asp:ListItem>Gdex</asp:ListItem>
-                            <asp:ListItem>ABX</asp:ListItem>
-                            <asp:ListItem>Ninja Van</asp:ListItem>
+                        <asp:DropDownList ID="ddlDeliveryMethod" runat="server" DataSourceID="SqlDataSourceDelivery" DataTextField="deliver_type" DataValueField="id">
                         </asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSourceDelivery" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [id], [deliver_type] FROM [Delivery]"></asp:SqlDataSource>
                     </div>
                 </div>
 

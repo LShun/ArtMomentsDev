@@ -1792,6 +1792,7 @@
     <Content Include="Sites\general\DisplayArtwork.aspx" />
     <Content Include="Sites\general\DisplayArtworkProduct.aspx" />
     <Content Include="Sites\general\HomePage.aspx" />
+    <Content Include="Sites\general\OrderArtExtra.aspx" />
     <Content Include="Sites\general\testing.aspx" />
     <Content Include="Sites\usermgmt\BuyerAccount.aspx" />
     <Content Include="Sites\usermgmt\BuyerPresentation.aspx" />
@@ -1891,6 +1892,13 @@
     </Compile>
     <Compile Include="Sites\general\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\general\OrderArtExtra.aspx.cs">
+      <DependentUpon>OrderArtExtra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\general\OrderArtExtra.aspx.designer.cs">
+      <DependentUpon>OrderArtExtra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\general\testing.aspx.cs">
       <DependentUpon>testing.aspx</DependentUpon>

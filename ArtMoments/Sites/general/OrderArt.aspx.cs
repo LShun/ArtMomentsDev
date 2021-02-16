@@ -19,8 +19,8 @@ namespace ArtMoments.Sites.general
         {
             if(!IsPostBack)
             {
-                Session["CustId"] = 3;
-                Session["ProdId"] = 8;
+                Session["CustId"] = 1;
+                Session["ProdId"] = 6;
 
                 if (Session["CustId"] != null && Session["ProdId"] != null)
                 {
@@ -184,14 +184,14 @@ namespace ArtMoments.Sites.general
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail Delete')", true);
             }
         }
-        protected void updateCartItem(int totalQty)
+        protected void updateCartItemss(int totalQty)
         {
-            string updateCartItemQuery = "update [User_CartItem] set [quantity_int] = @UpdateQty where cart_id like @CartId and product_id like @ProdId";
+            string updateCartItemssQuery = "update [CartItems] set [quantity_int] = @UpdateQty where user_id like @CustId and product_id like @ProdId";
             using (SqlConnection conn = new SqlConnection(conString))
             {
                 conn.Open();
-                SqlCommand cmd = new SqlCommand(updateCartItemQuery, conn);
-                cmd.Parameters.AddWithValue("@CartId", (String)Session["CartId"].ToString());
+                SqlCommand cmd = new SqlCommand(updateCartItemssQuery, conn);
+                cmd.Parameters.AddWithValue("@CustId", (String)Session["CustId"].ToString());
                 cmd.Parameters.AddWithValue("@ProdId", (String)Session["ProdId"].ToString());
                 cmd.Parameters.AddWithValue("@UpdateQty", totalQty);
                 
@@ -199,8 +199,6 @@ namespace ArtMoments.Sites.general
                 conn.Close();
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('UpdateCart')", true);
             }
-
- 
         }
 
         void addNewIntoCart()
@@ -209,13 +207,14 @@ namespace ArtMoments.Sites.general
             {
                 
                 SqlConnection conn = new SqlConnection(conString);
-                string addCartQuery = "insert into [User_CartItem] (product_id,quantity_int,cart_id) VALUES (@ProdId, @Qty, @CartId)";
+                string addCartQuery = "insert into [CartItems] (product_id,quantity,delivery_id, user_id) VALUES (@ProdId, @Qty, @DeliveryId, @CustId)";
                 //string addOrderQuery = "insert into [Order] (product_id,transaction_id) VALUES (@ProdId, @TransacId)";
                 SqlCommand cmdOrder = new SqlCommand(addCartQuery, conn);
                 conn.Open();
                 cmdOrder.Parameters.AddWithValue("@ProdId", Convert.ToInt32(Session["ProdId"]));
                 cmdOrder.Parameters.AddWithValue("@Qty", Convert.ToInt32(txtboxQty.Text));
-                cmdOrder.Parameters.AddWithValue("@CartId", Convert.ToInt32(Session["CartId"]));
+                cmdOrder.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
+                cmdOrder.Parameters.AddWithValue("@DeliveryId", Convert.ToInt32(ddlDeliveryMethod.SelectedValue));
 
                 cmdOrder.ExecuteNonQuery();
                 conn.Close();
@@ -231,11 +230,11 @@ namespace ArtMoments.Sites.general
         protected void checkInCart()
         {
 
-            string cartChkQuery = "select quantity_int from [User_CartItem] CI where CI.cart_id like @CartId and CI.product_id like @ProdId";
+            string cartChkQuery = "select quantity from [CartItems] C where C.user_id like @CustId and C.product_id like @ProdId";
             using (SqlConnection conn = new SqlConnection(conString))
             {
                 SqlCommand cmd = new SqlCommand(cartChkQuery, conn);
-                cmd.Parameters.Add("@CartId", (String)Session["CartId"].ToString());
+                cmd.Parameters.Add("@CustId", (String)Session["CustId"].ToString());
                 cmd.Parameters.Add("@ProdId", (String)Session["ProdId"].ToString());
                 try
                 {
@@ -245,7 +244,7 @@ namespace ArtMoments.Sites.general
                     {
                         // update
                         int totalQty = Convert.ToInt32(txtboxQty.Text) + (Int32)cmd.ExecuteScalar();
-                        updateCartItem(totalQty);
+                        updateCartItemss(totalQty);
                     }
                     else
                     {
@@ -262,32 +261,32 @@ namespace ArtMoments.Sites.general
 
        
 
-        void getUserCartId()
-        {
-            string cartChkQuery = "select id from [User_Cart] C where C.user_id like @CustId";
-            using (SqlConnection conn = new SqlConnection(conString))
-            {
-                SqlCommand cmd = new SqlCommand(cartChkQuery, conn);
-                cmd.Parameters.Add("@CustId", (String)Session["CustId"].ToString());
-                try
-                {
-                    conn.Open();
-                    if(cmd.ExecuteScalar() != null)
-                    {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('addCart')", true);
-                        Session["CartId"] = cmd.ExecuteScalar();
-                        checkInCart();
-                    }
-                    else
-                    {
-                    }
-                }
-                catch (Exception ex)
-                {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
-                }
-            }
-        }
+        //void getUserCartId()
+        //{
+        //    string cartChkQuery = "select id from [User_Cart] C where C.user_id like @CustId";
+        //    using (SqlConnection conn = new SqlConnection(conString))
+        //    {
+        //        SqlCommand cmd = new SqlCommand(cartChkQuery, conn);
+        //        cmd.Parameters.Add("@CustId", (String)Session["CustId"].ToString());
+        //        try
+        //        {
+        //            conn.Open();
+        //            if(cmd.ExecuteScalar() != null)
+        //            {
+        //                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('addCart')", true);
+        //                Session["CartId"] = cmd.ExecuteScalar();
+        //                checkInCart();
+        //            }
+        //            else
+        //            {
+        //            }
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
+        //        }
+        //    }
+        //}
 
         
 
@@ -295,7 +294,7 @@ namespace ArtMoments.Sites.general
         {
             try
             {
-                getUserCartId();
+                checkInCart();
 
                 ////create transaction
                 //SqlConnection con = new SqlConnection(conString);
@@ -305,10 +304,10 @@ namespace ArtMoments.Sites.general
                 //con.Open();
                 //cmd.ExecuteNonQuery();
 
-                //get the newly added transaction id
+                ////get the newly added transaction id
 
 
-                //string newCartQuery = "SELECT [id] FROM [User_Cart] C where C.user_id like @UserId";
+                //string newCartQuery = "SELECT [id] FROM [User_Cart] C where C.user_id like @CustId";
                 //using (SqlConnection conn = new SqlConnection(conString))
                 //{
                 //    SqlCommand newTransacCmd = new SqlCommand(newCartQuery, conn);
@@ -327,28 +326,29 @@ namespace ArtMoments.Sites.general
                 //    }
                 //}
 
-                //using (SqlCommand cmdTransacId = new SqlCommand("select max(id) as [transac-id] from [Transaction]"))
-                //{
-                //    using (SqlDataAdapter sda = new SqlDataAdapter())
-                //    { 
-                //        cmdTransacId.Connection = con;
-                //        sda.SelectCommand = cmdTransacId;
-                //        using (DataTable lastTransacId = new DataTable())
-                //        {
+                ////using (SqlCommand cmdTransacId = new SqlCommand("select max(id) as [transac-id] from [Transaction]"))
+                ////{
+                ////    using (SqlDataAdapter sda = new SqlDataAdapter())
+                ////    {
+                ////        cmdTransacId.Connection = con;
+                ////        sda.SelectCommand = cmdTransacId;
+                ////        using (DataTable lastTransacId = new DataTable())
+                ////        {
 
-                //            sda.Fill(lastTransacId);
+                ////            sda.Fill(lastTransacId);
 
-                //            foreach (DataRow rw in lastTransacId.Rows)
-                //            {
-                //                Session["TransacId"] = lastTransacId.Rows[0].Field<int>("transac-id");
-                //            }
-                //        }
-                //    }
-                //}
+                ////            foreach (DataRow rw in lastTransacId.Rows)
+                ////            {
+                ////                Session["TransacId"] = lastTransacId.Rows[0].Field<int>("transac-id");
+                ////            }
+                ////        }
+                ////    }
+                ////}
 
-                //create order
+                //checkInCart();
+                ////create order
 
-                
+
 
                 //update product detail
                 //try

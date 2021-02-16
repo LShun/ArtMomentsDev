@@ -7,39 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArtMoments.Sites.client
+namespace ArtMoments.Sites.general
 {
 
 
-    public partial class Cart
+    public partial class OrderArtExtra
     {
 
         /// <summary>
-        /// RepeaterCartInfo control.
+        /// DetailsView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater RepeaterCartInfo;
-
-        /// <summary>
-        /// lblTotalPrice control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTotalPrice;
-
-        /// <summary>
-        /// btnCheckout control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCheckout;
+        protected global::System.Web.UI.WebControls.DetailsView DetailsView1;
 
         /// <summary>
         /// SqlDataSource1 control.

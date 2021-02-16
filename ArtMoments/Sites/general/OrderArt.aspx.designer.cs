@@ -150,13 +150,22 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.Label lblartworkPrice;
 
         /// <summary>
-        /// ddlDeliveyMethod control.
+        /// ddlDeliveryMethod control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlDeliveyMethod;
+        protected global::System.Web.UI.WebControls.DropDownList ddlDeliveryMethod;
+
+        /// <summary>
+        /// SqlDataSourceDelivery control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceDelivery;
 
         /// <summary>
         /// btnBuyNow control.
