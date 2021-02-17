@@ -72,8 +72,8 @@
                             <div class="sign" style="left:60%;">
                               <span class="value">60</span>
                             </div>
-                            <asp:Label ID="lblMinPRange" runat="server" Text="" Visible="false"></asp:Label>
-                              <asp:Label ID="lblMaxPRange" runat="server" Text="" Visible="false"></asp:Label>
+                            <asp:Label ID="lblMinPRange" runat="server" Text=""></asp:Label>
+                              <asp:Label ID="lblMaxPRange" runat="server" Text=""></asp:Label>
                           </div>
                            <input type="range" tabindex="0" value="30" max="100" min="0" step="1" runat="server" id="rangeMin" oninput="
                               this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
@@ -148,7 +148,7 @@
                 <SelectedItemStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
             </asp:DataList>
 
-            <table id="dlPaging" runat="server" style="width:100%; margin:2% 0% 0% 5%">  
+            <table id="tbPaging" runat="server" style="width:100%; margin:2% 0% 0% 5%">  
               <tr>  
                 <td>  
                     <asp:Button CssClass="btnPaging"  ID="btnFirst" runat="server" Font-Bold="true" Text="First" OnClick="btnFirst_Click"/></td>  

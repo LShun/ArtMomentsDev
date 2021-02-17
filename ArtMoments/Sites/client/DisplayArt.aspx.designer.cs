@@ -159,13 +159,13 @@ namespace ArtMoments.Sites.client
         protected global::System.Web.UI.WebControls.DataList dlProdCat;
 
         /// <summary>
-        /// dlPaging control.
+        /// tbPaging control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable dlPaging;
+        protected global::System.Web.UI.HtmlControls.HtmlTable tbPaging;
 
         /// <summary>
         /// btnFirst control.
