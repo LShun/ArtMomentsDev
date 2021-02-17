@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/General.Master"  CodeBehind="DisplayArtwork.aspx.cs" Inherits="ArtMoments.Sites.general.DisplayArtwork" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Masters/General.Master"  AutoEventWireup="true" CodeBehind="DisplayArt.aspx.cs" Inherits="ArtMoments.Sites.client.DisplayArt" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Display Artwork</title>
     <link href="../../Content/css/searchForm.css" rel="stylesheet" />
-    <link href="../../Content/css/DataList.css" rel="stylesheet" />
+    <link href="../../Content/css/DLProduct.css" rel="stylesheet" />
     <style type="text/css">
         .btnImg{
             width:100%;
@@ -131,7 +131,7 @@
                     </table>
                --%>
                 <div class="hovereffect">
-                    <asp:Image CssClass="img-responsive" ID="ibtnCategory_img" runat="server" Height="175px" Width="100%" 
+                    <asp:Image CssClass="img-responsive" ID="imgCategory_img" runat="server" Height="175px" Width="100%" 
                             ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("category_image")) %>'  />
                             
                         <div class="overlay">
@@ -139,7 +139,7 @@
                                 <asp:Label ID="lblCategory_name" runat="server" Text='<%# Eval("category_name") %>' ></asp:Label>
                             </h2>
 				            <p>
-					            <asp:Button ID="btnNavProd" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="viewProd" Text="View Products"/>
+					            <asp:Button CssClass="btnNav" ID="btnNavProd" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="viewProd" Text="View Products"/>
 				            </p>
                         </div>
                 </div>
@@ -147,20 +147,20 @@
                 <SelectedItemStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
             </asp:DataList>
 
-            <%--<table id="dlPaging" runat="server">  
+            <table id="dlPaging" runat="server" style="width:100%; margin:2% 0% 0% 5%">  
               <tr>  
                 <td>  
-                    <asp:Button ID="btnFirst" runat="server" Font-Bold="true" Text="First" OnClick="btnFirst_Click"/></td>  
+                    <asp:Button CssClass="btnPaging" ID="btnFirst" runat="server" Font-Bold="true" Text="First" OnClick="btnFirst_Click"/></td>  
                 <td>  
-                    <asp:Button ID="btnPrevious" runat="server" Font-Bold="true" Text="Previous" OnClick="btnPrevious_Click"/></td>  
+                    <asp:Button CssClass="btnPaging" ID="btnPrevious" runat="server" Font-Bold="true" Text="Previous" OnClick="btnPrevious_Click"/></td>  
                 <td>  
-                    <asp:Button ID="btnNext" runat="server" Font-Bold="true" Text="Next" OnClick="btnNext_Click" style="height: 48px"/></td>  
+                    <asp:Button CssClass="btnPaging" ID="btnNext" runat="server" Font-Bold="true" Text="Next" OnClick="btnNext_Click" style="height: 48px"/></td>  
                 <td>  
-                     <asp:Button ID="btnLast" runat="server" Font-Bold="true" Text="Last" OnClick="btnLast_Click"/></td>  
+                     <asp:Button CssClass="btnPaging" ID="btnLast" runat="server" Font-Bold="true" Text="Last" OnClick="btnLast_Click"/></td>  
                 </tr>  
-               </table>  --%>
+               </table>  
 
-              <table id="dlPaging" runat="server" style="width:100%">
+            <%--  <table id="dlPaging" runat="server" style="width:100%">
                <tr>  
                 <td class="btnPaging">  
                     <svg width="100%" height="62">
@@ -221,11 +221,10 @@
                     
                 </td>  
                 </tr>  
-            </table> 
+            </table> --%>
 
                         <br />
                      </div>
                  </div>
 
 </asp:Content>
-

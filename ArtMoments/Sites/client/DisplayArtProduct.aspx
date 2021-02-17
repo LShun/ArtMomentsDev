@@ -1,8 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/General.Master"  CodeBehind="DisplayArtworkProduct.aspx.cs" Inherits="ArtMoments.Sites.general.DisplayArtworkProduct" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/General.Master" CodeBehind="DisplayArtProduct.aspx.cs" Inherits="ArtMoments.Sites.client.DisplayArtProduct" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Display Artwork</title>
     <link href="../../Content/css/searchForm.css" rel="stylesheet" />
+    <link href="../../Content/css/DLProduct.css" rel="stylesheet" />
     <style type="text/css">
         .btnImg{
             width:100%;
@@ -15,6 +16,10 @@
 
         .search-form-group label {
             font-size: 60%;
+        }
+
+        .auto-style3 {
+            margin-left: 0px;
         }
         </style>
 
@@ -99,14 +104,14 @@
         <div class="container" ID="display-img-container">
            <br/>
             <asp:Label ID="lblRecordMsg" runat="server" Text=""></asp:Label>
-            <asp:DataList ID="dlProd" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="321px" Width="900px" OnItemCommand="dlProd_ItemCommand" 
-                BackColor="#CCCCCC" BorderColor="#999999" BorderStyle="Solid" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="Both" >
+            <asp:DataList ID="dlProd" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="321px" Width="1024px" OnItemCommand="dlProd_ItemCommand" 
+                BackColor="#CCCCCC"  CellPadding="2" ForeColor="Black" GridLines="Both" CssClass="auto-style3" >
                 <FooterStyle BackColor="#CCCCCC" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
                 <ItemStyle BackColor="White" Font-Bold="False" Font-Italic="False" Font-Overline="False"
                     Font-Strikeout="False" Font-Underline="False" HorizontalAlign="Center" VerticalAlign="Middle" />
                 <ItemTemplate>
-                    <table class="w-100">
+                   <%-- <table class="w-100">
                         <tr>
                             <td style="text-align:center;vertical-align:middle">
                                 <asp:Image ID="ibtnCategory_img" runat="server" Height="175px" Width="193px" 
@@ -125,22 +130,34 @@
 
                             </td>
                         </tr>
-                    </table>
-<br />
+                    </table>--%>
+                    <div class="hovereffect">
+                    <asp:Image CssClass="img-responsive" ID="imgProd_img" runat="server" Height="100%" Width="340px" 
+                                    ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>'/>
+                                 
+                        <div class="overlay">
+                            <h2>
+                                <asp:Label ID="lblProd_name" runat="server" Text='<%# Eval("prod_name") %>'></asp:Label>
+                            </h2>
+				            <p>
+					            <asp:Button CssClass="btnNav" ID="btnNavProd" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="viewProd" Text="Order"/>
+				            </p>
+                        </div>
+                   </div>
                 </ItemTemplate>
                 <SelectedItemStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
             </asp:DataList>
 
-            <table id="dlPaging" runat="server">  
+            <table id="dlPaging" runat="server" style="width:100%; margin:2% 0% 0% 5%">  
               <tr>  
                 <td>  
-                    <asp:Button ID="btnFirst" runat="server" Font-Bold="true" Text="First" OnClick="btnFirst_Click"/></td>  
+                    <asp:Button CssClass="btnPaging"  ID="btnFirst" runat="server" Font-Bold="true" Text="First" OnClick="btnFirst_Click"/></td>  
                 <td>  
-                    <asp:Button ID="btnPrevious" runat="server" Font-Bold="true" Text="Previous" OnClick="btnPrevious_Click"/></td>  
+                    <asp:Button CssClass="btnPaging" ID="btnPrevious" runat="server" Font-Bold="true" Text="Previous" OnClick="btnPrevious_Click"/></td>  
                 <td>  
-                    <asp:Button ID="btnNext" runat="server" Font-Bold="true" Text="Next" OnClick="btnNext_Click" style="height: 48px"/></td>  
+                    <asp:Button CssClass="btnPaging" ID="btnNext" runat="server" Font-Bold="true" Text="Next" OnClick="btnNext_Click" style="height: 48px"/></td>  
                 <td>  
-                     <asp:Button ID="btnLast" runat="server" Font-Bold="true" Text="Last" OnClick="btnLast_Click"/></td>  
+                     <asp:Button CssClass="btnPaging" ID="btnLast" runat="server" Font-Bold="true" Text="Last" OnClick="btnLast_Click"/></td>  
                 </tr>  
                </table> 
             <br />

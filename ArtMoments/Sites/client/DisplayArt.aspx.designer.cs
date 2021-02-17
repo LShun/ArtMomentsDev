@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArtMoments.Sites.general
+namespace ArtMoments.Sites.client
 {
 
 
-    public partial class DisplayArtwork
+    public partial class DisplayArt
     {
 
         /// <summary>

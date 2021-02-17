@@ -106,6 +106,7 @@
     <Content Include="Content\css\BuyerAcc.css" />
     <Content Include="Content\css\DataList.css" />
     <Content Include="Content\css\DisplayImageHover.css" />
+    <Content Include="Content\css\DLProduct.css" />
     <Content Include="Content\css\LoginUser.css" />
     <Content Include="Content\css\PreLogin.css" />
     <Content Include="Content\css\OrderArtCss.css" />
@@ -145,11 +146,11 @@
     <Content Include="Content\swing.jpg" />
     <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Sites\client\DisplayArt.aspx" />
+    <Content Include="Sites\client\DisplayArtProduct.aspx" />
     <Content Include="Sites\client\OrderHistory.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\general\Display.aspx" />
-    <Content Include="Sites\general\DisplayArtwork.aspx" />
-    <Content Include="Sites\general\DisplayArtworkProduct.aspx" />
     <Content Include="Sites\general\HomePage.aspx" />
     <Content Include="Sites\usermgmt\BuyerAccount.aspx" />
     <Content Include="Sites\usermgmt\BuyerPresentation.aspx" />
@@ -199,6 +200,20 @@
     <Compile Include="Sites\artist\ProductList.aspx.designer.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Sites\client\DisplayArt.aspx.cs">
+      <DependentUpon>DisplayArt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\client\DisplayArt.aspx.designer.cs">
+      <DependentUpon>DisplayArt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\client\DisplayArtProduct.aspx.cs">
+      <DependentUpon>DisplayArtProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\client\DisplayArtProduct.aspx.designer.cs">
+      <DependentUpon>DisplayArtProduct.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sites\client\OrderHistory.aspx.cs">
       <DependentUpon>OrderHistory.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -220,20 +235,6 @@
     </Compile>
     <Compile Include="Sites\general\Display.aspx.designer.cs">
       <DependentUpon>Display.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\general\DisplayArtwork.aspx.cs">
-      <DependentUpon>DisplayArtwork.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\general\DisplayArtwork.aspx.designer.cs">
-      <DependentUpon>DisplayArtwork.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\general\DisplayArtworkProduct.aspx.cs">
-      <DependentUpon>DisplayArtworkProduct.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\general\DisplayArtworkProduct.aspx.designer.cs">
-      <DependentUpon>DisplayArtworkProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\general\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
