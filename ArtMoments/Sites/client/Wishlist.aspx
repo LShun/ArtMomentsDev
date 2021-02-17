@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>--%>
-        <asp:GridView CssClass="table" ID="gvWishlist" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id" OnRowDeleting="gvWishList_RowDeleting">
+        <asp:GridView CssClass="table" ID="gvWishlist" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id" OnRowDeleting="gvWishList_RowDeleting" OnRowCommand="gvWishlist_RowCommand">
             <Columns>
                 
                 <asp:BoundField DataField="id" HeaderText="Wishlist ID" SortExpression="id" InsertVisible="False" ReadOnly="True" Visible="false"></asp:BoundField>
@@ -68,8 +68,8 @@
                    <ItemTemplate>
                     <asp:LinkButton ID="lbtnDelete" runat="server" CausesValidation="False" 
                         CommandName="Delete" Text="Delete" OnClientClick="return confirm('Confirm delete?');"></asp:LinkButton>
-                    <asp:LinkButton ID="lbtnOrder" runat="server" CausesValidation="False" 
-                        CommandName="Order" Text="Order" OnClientClick="return confirm('Confirm delete?');"></asp:LinkButton>
+                    <asp:LinkButton ID="lbtnView" runat="server" CausesValidation="False" 
+                        CommandName="View" Text="View"></asp:LinkButton>
                 </ItemTemplate>
 
                 </asp:TemplateField>
