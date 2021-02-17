@@ -23,6 +23,14 @@
                     <div class="myLeftCtn"> 
                         <form class="myForm text-center">
                             <header>Create new account</header>
+
+                            <div class="form-group">
+                                <asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" CellPadding="0" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" Width="212px">
+                                    <asp:ListItem>   Buyer</asp:ListItem>
+                                    <asp:ListItem>   Seller</asp:ListItem>
+                                </asp:RadioButtonList>
+                            </div>
+
                             <div class="form-group">
                                 <i class="fas fa-user"></i>                                
                                 <asp:TextBox class="myInput" placeholder="Username" ID="txtUserName" runat="server"></asp:TextBox>
@@ -60,14 +68,7 @@
                                 ControlToValidate="txtConfirmedPassword"
                                 ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character"
                                 ValidationExpression="(?=^.{8,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{":;'?/>.<,])(?!.*\s).*$" Font-Size="Small" Display="Dynamic"/>
-                            </div>
-
-                            <div class="form-group">
-                                <asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" CellPadding="0" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" Width="212px">
-                                    <asp:ListItem>   Buyer</asp:ListItem>
-                                    <asp:ListItem>   Seller</asp:ListItem>
-                                </asp:RadioButtonList>
-                            </div>
+                            </div>                            
 
                             <div class="form-group" id="textRemoveMargin">
                                 <label>
@@ -75,7 +76,7 @@
                                     <div class="invalid-feedback">You must check the box.</div>
                                 </label>
                             </div>
-                            <asp:Button class="butt" ID="Button1" OnClick="Button1_Click" runat="server" Text="CREATE ACCOUNT"></asp:Button>  
+                            <asp:Button class="butt" ID="btnCreateAcc" runat="server" Text="CREATE ACCOUNT" OnClick="btnCreateAcc_Click"></asp:Button>  
                             
                             <br />                            
                         </form>
