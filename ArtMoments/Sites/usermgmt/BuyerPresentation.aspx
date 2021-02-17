@@ -20,8 +20,9 @@
         <div class="col-md-3 ">
 		        <div class="list-group ">
                     <a href="BuyerAccount.aspx"  class="list-group-item list-group-item-action">My Account</a>
-                    <a href="BuyerSetting.aspx" class="list-group-item list-group-item-action">Setting</a>
-                    <a href="BuyerPresentation.aspx"  class="list-group-item list-group-item-action active">Presentation</a>            
+                    <a href="BuyerSettingExtra.aspx" class="list-group-item list-group-item-action">Setting</a>
+                    <a href="BuyerPresentation.aspx"  class="list-group-item list-group-item-action active">Presentation</a>   
+                     <a href="HomePage.aspx"  class="list-group-item list-group-item-action">Log out</a>  
                 </div> 
 		   </div>
            <div class="col-md-9">
@@ -41,6 +42,7 @@
                                   <asp:TextBox ID="tbBibliography" runat="server" OnTextChanged="tbBibliography_TextChanged" BorderStyle="Solid" CssClass="txtBoxBio"></asp:TextBox>
                                   <br /><br />
                                     <asp:Button ID="btnSave" class="btn btn-primary" runat="server" Text="Save" OnClick="btnSave_Click" CssClass="buttonEditStyle"/>
+                                    <br /><br />
                                 </div>
                               </div>
                                 <div class="form-group row">

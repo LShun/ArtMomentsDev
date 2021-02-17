@@ -1,8 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="BuyerSetting.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerSetting" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title></title>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title></title>    
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -11,9 +9,9 @@
 		<div class="col-md-3 ">
 		     <div class="list-group ">
               <a href="BuyerAccount.aspx"  class="list-group-item list-group-item-action">My Account</a>
-              <a href="BuyerSetting.aspx" class="list-group-item list-group-item-action active">Setting</a>
+              <a href="BuyerSettingExtra.aspx" class="list-group-item list-group-item-action active">Setting</a>
               <a href="BuyerPresentation.aspx"  class="list-group-item list-group-item-action">Presentation</a>              
-              
+               <a href="HomePage.aspx"  class="list-group-item list-group-item-action">Log out</a>  
             </div> 
 		</div>
 		<div class="col-md-9">

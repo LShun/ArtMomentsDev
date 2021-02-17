@@ -7,12 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArtMoments.Sites.general
+namespace ArtMoments.Sites.client
 {
 
 
-    public partial class DisplayArtwork
+    public partial class DisplayArtworkProduct
     {
+
+        /// <summary>
+        /// lblDetails control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblDetails;
 
         /// <summary>
         /// ddlProdCat control.
@@ -150,13 +159,13 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.Label lblRecordMsg;
 
         /// <summary>
-        /// dlProdCat control.
+        /// dlProd control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlProdCat;
+        protected global::System.Web.UI.WebControls.DataList dlProd;
 
         /// <summary>
         /// dlPaging control.

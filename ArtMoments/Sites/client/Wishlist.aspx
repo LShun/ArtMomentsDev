@@ -8,6 +8,7 @@
         <h1>Wishlist</h1>
         <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: "></asp:Label>
         <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
+        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
         <%--<div class="table">
             <div class="row">
                 <div class="col">

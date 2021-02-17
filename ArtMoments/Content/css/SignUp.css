@@ -208,3 +208,12 @@ body {
 .myLeftCtn #chgMyLeftCtnLogin{
     height: 0%;
 }
+
+.formViewStyle {
+    margin-left: 3em;
+    padding: 10px;
+}
+
+.changePWStyle {
+    margin-left: 4em;
+}
