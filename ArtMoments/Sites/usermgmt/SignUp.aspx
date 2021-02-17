@@ -47,8 +47,8 @@
                                 <br />
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
                                 ControlToValidate="txtUserPassword"
-                                ErrorMessage="Minimum 8 characters atleast 1 Alphabet and 1 Number"
-                                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" Font-Size="Small" Display="Dynamic"/>
+                                ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character"
+                                ValidationExpression="(?=^.{8,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{":;'?/>.<,])(?!.*\s).*$" Font-Size="Small" Display="Dynamic"/>
                             </div>
 
                             <div class="form-group">
@@ -58,12 +58,12 @@
                                 <br />
                                 <asp:RegularExpressionValidator ID="rev1" runat="server" 
                                 ControlToValidate="txtConfirmedPassword"
-                                ErrorMessage="Minimum 8 characters atleast 1 Alphabet and 1 Number"
-                                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$" Font-Size="Small" Display="Dynamic"/>
+                                ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character"
+                                ValidationExpression="(?=^.{8,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+}{":;'?/>.<,])(?!.*\s).*$" Font-Size="Small" Display="Dynamic"/>
                             </div>
 
                             <div class="form-group">
-                                <asp:RadioButtonList ID="rbGender" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" CellPadding="0" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" Width="212px">
+                                <asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" CellPadding="0" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" Width="212px">
                                     <asp:ListItem>   Buyer</asp:ListItem>
                                     <asp:ListItem>   Seller</asp:ListItem>
                                 </asp:RadioButtonList>
