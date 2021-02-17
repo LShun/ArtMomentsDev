@@ -56,7 +56,7 @@
                 <div class="col-3 form-group search-form-group">
                     <label>Price Range : Min (RM) </label>
                     <asp:TextBox ID="txtMinPR"  runat="server" CssClass="form-control search-form-control"
-                        MaxLength="10" MinLines="1" MaxLines="1"></asp:TextBox>
+                        MaxLength="10" MinLines="1" MaxLines="1" autocomplete="off"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="revTxtMinPR" runat="server" 
                         ErrorMessage="Minimum Price Range only accept integer value"
                         ValidationExpression="^[1-9]\d*(\.\d+)?$" ControlToValidate="txtMinPR" ForeColor="Red"></asp:RegularExpressionValidator>
@@ -64,7 +64,7 @@
                 <div class="col-3 form-group search-form-group">
                     <label>Price Range : Max (RM) </label>
                     <asp:TextBox ID="txtMaxPR" runat="server" CssClass="form-control search-form-control"
-                        MaxLength="10" MinLines="1" MaxLines="1"></asp:TextBox>
+                        MaxLength="10" MinLines="1" MaxLines="1" autocomplete="off"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="revTxtMaxPR" runat="server" 
                         ErrorMessage="Maximum Price Range only accept integer value"
                         ValidationExpression="^[1-9]\d*(\.\d+)?$" ControlToValidate="txtMaxPR" ForeColor="Red"></asp:RegularExpressionValidator>
@@ -73,7 +73,7 @@
                 <div class="col-3 form-group search-form-group">
                     <label>Product Name </label>
                     <asp:TextBox ID="txtProdName" runat="server" CssClass="form-control search-form-control"
-                        MaxLength="50" MinLines="1" MaxLines="1"></asp:TextBox>
+                        MaxLength="50" MinLines="1" MaxLines="1" autocomplete="off"></asp:TextBox>
                     <asp:RegularExpressionValidator ID="revTxtProdName" runat="server" 
                         ErrorMessage="Only alphabet is allowed for Product Name"
                         ValidationExpression="^[a-zA-Z]+$" ControlToValidate="txtProdName" ForeColor="Red"></asp:RegularExpressionValidator>
