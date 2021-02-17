@@ -9,11 +9,15 @@
             object-fit: cover;
         }
 
+        .paginate span {
+            color: Highlight;
+        }
+/*
         .img-spotlight {
             width: 150px;
             height: 150px;
             object-fit: cover;
-        }
+        }*/
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -36,24 +40,31 @@
                         <div class="row">
                             <h3 style="text-align: center;">Latest Arts</h3>
                         </div>
-                        <asp:DetailsView ID="dvLatestArt" runat="server" Height="50px" Width="125px" AllowPaging="True" AutoGenerateRows="false" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="dsLatestArt" ForeColor="Black" GridLines="Horizontal">
+                        <asp:DetailsView ID="dvLatestArt" runat="server" Height="50px" Width="125px" AllowPaging="True" AutoGenerateRows="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="dsLatestArt" ForeColor="Black" GridLines="Horizontal">
                             <EditRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                             <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-                            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
-
+                            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" Font-Bold="true" CssClass="paginate" />
+                            <PagerSettings Mode="NumericFirstLast"/>
                             <Fields>
-                                <asp:BoundField DataField="prod_name" HeaderText="Name" />
+                                <asp:HyperLinkField
+                                    DataNavigateUrlFields="id"
+                                    DataNavigateUrlFormatString="./OrderArt.aspx?id={0}"
+                                    DataTextField="prod_name"
+                                    HeaderText="Name" />
+
                                 <asp:TemplateField HeaderText="Image">
                                     <ItemTemplate>
-                                        <asp:Image ID="prod_image" runat="server"
+                                        <asp:ImageButton ID="prod_image" runat="server"
                                             Height="200px" Width="200px"
                                             ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
+
+
                             </Fields>
                         </asp:DetailsView>
-                        <asp:SqlDataSource ID="dsLatestArt" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [id], [prod_name], [prod_image] FROM [Product] ORDER BY [id] DESC"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="dsLatestArt" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [id], SUBSTRING([prod_name], 0, 35) AS prod_name, [prod_image] FROM [Product] ORDER BY [id] DESC"></asp:SqlDataSource>
                     </div>
                 </div>
             </div>
@@ -136,8 +147,8 @@
             </h2>
         </div>
 
-        <h2>Categories</h2>
-
+<%--        <h2>Categories</h2>
+--%>
 
 
         <%--  <div class="table">
