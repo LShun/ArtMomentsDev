@@ -4,14 +4,14 @@
 
     <style>
         img {
-            width: 150px; /* You can set the dimensions to whatever you want */
-            height: 150px;
+            width: 100px; 
+            height: 100px;
             object-fit: cover;
         }
 
         .img-spotlight {
-            width: 200px; /* You can set the dimensions to whatever you want */
-            height: 200px;
+            width: 150px;
+            height: 150px;
             object-fit: cover;
         }
     </style>
@@ -69,8 +69,8 @@
                             </div>
                             <div class="col-8">
                                 <div class="card-body">
-                                    <h5 class="card-title">Access to Wish-list System</h5>
-                                    <p class="card-text">Allow bookmarking of favorite arts, for review down the line.</p>
+                                    <h5 class="card-title">Wish-list System</h5>
+                                    <p class="card-text">Allow bookmarking of favorite arts</p>
                                 </div>
                             </div>
                         </div>
@@ -85,7 +85,7 @@
                             <div class="col-8">
                                 <div class="card-body">
                                     <h5 class="card-title">Buy Art</h5>
-                                    <p class="card-text">Purchase physical copies of art from the creators.</p>
+                                    <p class="card-text">Purchase art from the creators.</p>
                                 </div>
                             </div>
                         </div>
