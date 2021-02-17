@@ -100,7 +100,7 @@
 
 	    <asp:TextBox ID="txtSearch" OnTextChanged="Search" AutoPostBack="true" placeholder="Search for Artwork names.." runat="server"></asp:TextBox>
         <div class="orderListTable"> 
-            <asp:GridView ID="orderList" runat="server" AutoGenerateColumns="false" AllowPaging="true" AllowSorting="true" OnSorting="OnSorting" OnPageIndexChanging="OnPageIndexChanging" PageSize="10" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged = "OnSelectedIndexChanged">
+            <asp:GridView ID="orderList" runat="server" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" OnSorting="OnSorting" OnPageIndexChanging="OnPageIndexChanging" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged = "OnSelectedIndexChanged">
             <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" FirstPageText="First" LastPageText="Last"/>       
             <pagerstyle horizontalalign="Left" CssClass="pagination"/>
                 <Columns>
@@ -129,7 +129,7 @@
                         <HeaderStyle HorizontalAlign="Center" />
                     </asp:boundfield>
 
-                    <asp:BoundField DataField="DateOrder" HeaderText="Date Ordered" SortExpression="DateOrder" HeaderStyle-ForeColor="White" >
+                    <asp:BoundField DataField="DateOrder" HeaderText="Date Ordered" SortExpression="DateOrder" HeaderStyle-ForeColor="White" DataFormatString="{0:dd/MM/yyyy}" >
                         <ItemStyle Width="120" HorizontalAlign="Center" /> 
                         <HeaderStyle HorizontalAlign="Center" />
                     </asp:boundfield>
@@ -139,7 +139,7 @@
                         <HeaderStyle HorizontalAlign="Center" />
                     </asp:boundfield>
 
-                    <asp:BoundField DataField="DateDelivery" HeaderText="Date Delivery" SortExpression="DateDelivery" HeaderStyle-ForeColor="White" >
+                    <asp:BoundField DataField="DateDelivery" HeaderText="Date Delivery" SortExpression="DateDelivery" HeaderStyle-ForeColor="White" DataFormatString="{0:dd/MM/yyyy}" >
                         <ItemStyle Width="120" HorizontalAlign="Center" /> 
                         <HeaderStyle HorizontalAlign="Center" />
                     </asp:boundfield>

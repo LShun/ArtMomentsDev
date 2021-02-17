@@ -37,11 +37,11 @@ namespace ArtMoments.Sites.client
                         DataTable orderTable = getOrderTable(TransacId);
 
                         //update delivery details
-                        chkDispatchOrder(orderTable, TransacDate,TransacId);
+                        chkDispatchOrder(orderTable, TransacDate, TransacId);
 
                         ////display HTML
                         displayInHTML(TransacId, orderTable);
-                        
+
                         transacRow++;
                     }
                 }
@@ -180,7 +180,7 @@ namespace ArtMoments.Sites.client
             html.Append(transacId);
             html.Append("</asp:Label></h2></div>");
             html.Append("<div class='container align-content-sm-center orderHistoryContainer'>");
-            
+
             // ORDERS
             using (SqlConnection con = new SqlConnection(conString))
             {
@@ -200,7 +200,7 @@ namespace ArtMoments.Sites.client
                     }
                 }
             }
-           
+
             foreach (DataRow rows in orderTable.Rows)
             {
 
@@ -256,11 +256,11 @@ namespace ArtMoments.Sites.client
                 // DELIVERY STATUS
                 html.Append("<div class='row  float-right deliveryStatus'>");
                 html.Append("<asp:Label ID='lbladorderStatus' runat='server' CssClass='btn-success'>");
-                html.Append( orderStatus +"</asp:Label>"+ "</div>");
+                html.Append(orderStatus + "</asp:Label>" + "</div>");
                 // ART NAME
                 html.Append("<div class='row artNameRow'><asp:Label ID='lbladartName' runat='server' Text ='");
                 // art name
-                html.Append("' CssClass='h2'>" +prodName + "</asp:Label></div>");
+                html.Append("' CssClass='h2'>" + prodName + "</asp:Label></div>");
                 // Size, Category, Author label
                 html.Append("<div class='row sizeCategoryAuthor'><div class='col' id='sizeDivision'><label id ='sizeTxt'>");
                 // Size
@@ -275,35 +275,35 @@ namespace ArtMoments.Sites.client
                 // Size, Category, Author from db
                 html.Append("<div class='row sizeCategoryAuthorDB'><div class='col' id='lblsizeDivision'><asp:Label ID ='lblartworkSize' runat='server' Text='");
                 // Size
-                html.Append("'>"+ prodSize +"</asp:Label></div><div class='col' id='lblcategorryDivision'><asp:Label ID = 'lblartworkCategory' runat='server' Text='");
+                html.Append("'>" + prodSize + "</asp:Label></div><div class='col' id='lblcategorryDivision'><asp:Label ID = 'lblartworkCategory' runat='server' Text='");
                 // Category
-                html.Append("'>"+prodCategory+"</asp:Label></div><div class='col' id='lblauthorDivision'><asp:Label ID = 'lblauthor' runat='server' Text='");
+                html.Append("'>" + prodCategory + "</asp:Label></div><div class='col' id='lblauthorDivision'><asp:Label ID = 'lblauthor' runat='server' Text='");
                 //Author
-                html.Append("'>"+author+"</asp:Label></div></div>");
+                html.Append("'>" + author + "</asp:Label></div></div>");
                 // Qty, Price, view more details label
                 html.Append("<div class='row qtyPriceMore'><div class='col' id='qtyDivision'><label id = 'qtyTxt' > Quantity </label></div><div class='col' id='priceDivision'>"
                             + "<label id = 'priceTxt'> RM </label></div><div class='col' id='modeDetailsRow'><a href =# '");
                 //more details -> src
-                html.Append("'><asp:Label ID = 'lblMoreDetail' runat='server'>"+ viewMore +"</asp:Label></a></div></div>");
+                html.Append("'><asp:Label ID = 'lblMoreDetail' runat='server'>" + viewMore + "</asp:Label></a></div></div>");
 
                 //-Qty, Price, view more details label from db
                 html.Append("<div class='row qtyPriceMoreDB'>");
                 html.Append("<div class='col' id='lblqtyDivision'>");
                 html.Append("<asp:Label ID = 'lblQty' runat='server' Text='");
                 // Qty
-                html.Append("'>"+qty+"</asp:Label></div><div class='col' id='lblpriceDivision'><asp:Label ID = 'lblTotalPrice' runat='server' Text='");
+                html.Append("'>" + qty + "</asp:Label></div><div class='col' id='lblpriceDivision'><asp:Label ID = 'lblTotalPrice' runat='server' Text='");
                 // Total Price
-                html.Append("'>"+calcPrice(qty,prodPrice)+"</asp:Label></div><div class='col' id='btnBuyAgainDivision'>");
+                html.Append("'>" + calcPrice(qty, prodPrice) + "</asp:Label></div><div class='col' id='btnBuyAgainDivision'>");
                 html.Append("<asp:Button  runat=\"server\" ID=\"btnBuyAgain\" class='btn-primary rounded'>" + buyAgain + "</asp:Button>");
                 html.Append("</div></div></div></div>");
-                
+
                 // OnClick=\"Button1_Click\"
             }
             html.Append("</div></div>");
             // can display total
             //Append the HTML string to Placeholder.
             ContentPlaceHolder conPlaceHolder = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
-        conPlaceHolder.Controls.Add(new Literal { Text = html.ToString() });
+            conPlaceHolder.Controls.Add(new Literal { Text = html.ToString() });
         }
     }
 

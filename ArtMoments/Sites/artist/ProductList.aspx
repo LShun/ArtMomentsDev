@@ -162,7 +162,7 @@
                     <HeaderStyle HorizontalAlign="Center" />
                 </asp:boundfield>
 
-                <asp:BoundField DataField="Price" HeaderText="Price" DataFormatString="{0:n}" SortExpression="Price" HeaderStyle-ForeColor="White" >
+                <asp:BoundField DataField="Price" HeaderText="Price (RM)" DataFormatString="{0:n}" SortExpression="Price" HeaderStyle-ForeColor="White" >
                     <ItemStyle Width="140" HorizontalAlign="Center" />
                     <HeaderStyle HorizontalAlign="Center" />
                 </asp:boundfield>

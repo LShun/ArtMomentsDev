@@ -20,7 +20,7 @@
         float: right;
     }
 
-    span.lblProdName {
+    span.lbtnProdName {
         font-size: 20px;
         font-weight: bold;
     }
@@ -84,6 +84,17 @@
         border-color: transparent;
     }
 
+    td#availableStock {
+        font-size: 12px;
+        color: darkgray;
+        font-style: italic;
+
+    }
+
+    td#subtotal {
+        color: orangered;
+    }
+
 </style>
 </asp:Content>
 
@@ -102,29 +113,34 @@
 
                         <!--<tr><th id="author"><asp:Label ID="lblAuthor" runat="server" class="lblAuthor"><%#Eval ("author_id") %></asp:Label></th></tr>-->
                         
-                        <td id="btnArtImg" rowspan="8" class="imgTr"><asp:ImageButton ID="BtnProdImg" runat="server" style="max-height:200px;max-width:200px" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_img")) %>' CommandArgument='<%# Eval("prod_id") %>' CommandName="viewArtDetail" /></td>
+                        <td id="btnArtImg" rowspan="8" class="imgTr"><asp:ImageButton ID="BtnProdImg" runat="server" style="max-height:200px;max-width:200px" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_img")) %>' OnClick="viewProdDetailImg" /></td>
 
                         <tr><td class="rightCol">
                             <asp:Button ID="btnDelete" runat="server" Text="Delete" OnClick="deleteItem" CssClass="btnDelete"/></td></tr>
-                        <tr><td id="prodName" class="prodName"><asp:Label ID="lblProdName" runat="server"  class="rightCol"><%#Eval("prod_name") %></asp:Label><asp:TextBox ID="txtProdId" runat="server" Text='<%# Eval("prod_id").ToString()%>' Visible="false" Enabled="false" CssClass="txtProdId"></asp:TextBox></td></tr>
-                        <tr><td id="prodPrice"  class="prodPrice">RM <asp:Label ID="lblPrice" runat="server"><%#Eval ("prod_price") %></asp:Label></td></tr>
+        
+                        <tr><td id="prodName" class="prodName"><asp:LinkButton ID="lbtnProdName" runat="server" class="rightCol" OnClick="viewProdDetailName"><%#Eval("prod_name") %></asp:LinkButton><asp:TextBox ID="txtProdId" runat="server" Text='<%# Eval("prod_id").ToString()%>' Visible="false" Enabled="false" CssClass="txtProdId" ></asp:TextBox></td></tr>
+                        <tr><td id="prodPrice"  class="prodPrice">RM <asp:Label ID="lblPrice" runat="server"><%#DataBinder.Eval(Container.DataItem,"prod_price","{0:f}") %></asp:Label></td></tr>
                         <tr><td id="qty"  class="qty">Quantity: <asp:Button ID="btnMinusQty" runat="server" Text="-" OnClick="minusQty" />
-                            <asp:TextBox ID="txtQty" runat="server" Text='<%# Eval("quantity").ToString()%> ' onkeypress="numValid(event);" onfocusout="qtyValid();" CssClass="txtQty"></asp:TextBox>
+                            <asp:TextBox ID="txtQty" runat="server" Text='<%# Eval("quantity").ToString()%> ' onkeypress="numValid(event);" onfocusout="qtyValid();" CssClass="txtQty" AutoPostBack="true"  OnTextChanged="txtQtyChg"></asp:TextBox>
                             <asp:Button ID="btnPlusQty" runat="server" Text="+" OnClick="plusQty" CssClass="btnPlusQty" /><asp:RangeValidator ID="rvclass" runat="server" ControlToValidate="txtQty" ErrorMessage="Minimum = 1, Maximum = available quantity" MaximumValue='<%# Eval("prod_stock") %>' MinimumValue="1" Type="Integer" SetFocusOnError="True">
                             </asp:RangeValidator>                          
                            
-                            <tr><td  class="deliMethod">Delivery Method: <asp:DropDownList ID="ddlDeliveryMethod" CssClass="ddlDeliveryMethod" runat="server" DataSourceID="SqlDataSourceDeliver" DataTextField="deliver_type" DataValueField="id" SelectedValue='<%# Bind("deliver_id") %>' OnSelectedIndexChanged="ddlDeliverChg" AutoPostBack="True"></asp:DropDownList></td></tr>
+                            <tr><td  class="deliMethod">Delivery Method: <asp:DropDownList ID="ddlDeliveryMethod" CssClass="ddlDeliveryMethod" runat="server" DataSourceID="SqlDataSourceDeliver" DataTextField="deliver_type" DataValueField="id" SelectedValue='<%# Bind("deliver_id") %>' OnSelectedIndexChanged="ddlDeliverChg" AutoPostBack="True" ></asp:DropDownList></td></tr>
                             <asp:SqlDataSource ID="SqlDataSourceDeliver" runat="server" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security = True"
                         SelectCommand="Select id, deliver_type from delivery"></asp:SqlDataSource>
                             </td></tr>
-                        <tr><td id="subtotal" class="subtotal">Subtotal: RM <asp:Label ID="lblSubtotal" runat="server"><%#Eval ("subtotal") %></asp:Label></td></tr>
+                        <tr><td id="subtotal" class="subtotal">Subtotal: RM <asp:Label ID="lblSubtotal" runat="server"><%#DataBinder.Eval(Container.DataItem,"subtotal","{0:f}") %></asp:Label></td></tr>
                         <tr><td id="availableStock" class="availableStock">Available Stock: <asp:TextBox ID="txtAvailable" runat="server" CssClass="txtAvailable" Text='<%# Eval("prod_stock").ToString()%>' Enabled="false" onfocusout="ValidateQty();"></asp:TextBox></td></tr>
                     </table>
                 </div>
             </ItemTemplate>
+        <FooterTemplate>
+            <asp:Label ID="defaultItem" runat="server" 
+                Visible='<%# RepeaterCartInfo.Items.Count == 0 %>' Text="No items found" />
+        </FooterTemplate>
         </asp:Repeater>
-        <div id="totalPrice"><b>Total Price: <asp:Label ID="lblTotalPrice" runat="server"></asp:Label></b></div>
-        <div id="btnCheckout"><asp:Button ID="btnCheckout" runat="server" Text="Checkout" OnClick="btnCheckout_Click" /></div>
+        <div id="totalPrice"><b><asp:Label ID="lblTotalPriceTxt" runat="server" Text="Total Price: " Visible="false"></asp:Label><asp:Label ID="lblTotalPrice" runat="server" Visible="false"></asp:Label></b></div>
+        <div id="btnCheckout"><asp:Button ID="btnCheckout" runat="server" Text="Checkout" OnClick="btnCheckout_Click" Visible="false" /></div>
 
         <br />
 
@@ -140,3 +156,5 @@
     
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT C.id, C.product_id, C.quantity, C.user_id, P.id AS Expr1, P.prod_name, P.prod_image, P.prod_price, P.prod_stock, P.prod_sales, P.user_id AS Expr2, U.user_name, C.delivery_id, U.id AS Expr3 FROM CartItem AS C INNER JOIN Product AS P ON P.id = C.product_id INNER JOIN [User] AS U ON U.id = C.user_id WHERE (U.id = 1)"></asp:SqlDataSource>
  </asp:Content>
+
+

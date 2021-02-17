@@ -48,7 +48,7 @@ namespace ArtMoments.Sites.usermgmt
                 if (count == 1)
                 {
                     Session["UserName"] = txtUserName.Text.Trim();  //session is created for each user
-                    Response.Redirect("../artist/ProductList.aspx");
+                    Response.Redirect("BuyerSettingExtra.aspx");
                 }
                 else
                 {

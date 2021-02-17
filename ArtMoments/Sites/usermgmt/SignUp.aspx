@@ -34,7 +34,6 @@
                             <div class="form-group">
                                 <i class="fas fa-user"></i>                                
                                 <asp:TextBox class="myInput" placeholder="Username" ID="txtUserName" runat="server"></asp:TextBox>
-                                <asp:RegularExpressionValidator Display = "Dynamic" ControlToValidate = "txtUserName" ID="RegularExpressionValidator3" ValidationExpression = "^[\s\S]{25,}$" runat="server" ErrorMessage="Minimum 8 characters required."></asp:RegularExpressionValidator>
                             </div>
 
                             <div class="form-group">

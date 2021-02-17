@@ -16,25 +16,31 @@ namespace ArtMoments.Sites.client
     public partial class Cart : System.Web.UI.Page
     {
         string conString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
-        
+
         protected void Page_Load(object sender, EventArgs e)
         {
             Double total = 0;
             if (!IsPostBack)
             {
-                Session["CustId"] = 1;
                 if (!this.IsPostBack)
                 {
-                    
+
                     DataTable cartInfo = this.GetData("SELECT C.id, C.product_id, C.quantity as quantity, C.user_id, P.id AS prod_id, P.prod_name as prod_name, P.prod_image as prod_img, P.prod_price as prod_price, P.prod_stock as prod_stock, P.prod_sales, P.user_id AS author_id, U.user_name, C.delivery_id as deliver_id, U.id AS user_id, (P.prod_price*C.quantity) as subtotal FROM CartItems AS C INNER JOIN Product AS P ON P.id = C.product_id INNER JOIN [User] AS U ON U.id = C.user_id WHERE(C.user_id = @CustId)");
                     RepeaterCartInfo.DataSource = cartInfo;
                     RepeaterCartInfo.DataBind();
-                
+
 
                     foreach (DataRow row in cartInfo.Rows)
                     {
-                        total+= row.Field<Double>("subtotal");
-                        lblTotalPrice.Text = total.ToString();
+                        total += row.Field<Double>("subtotal");
+                        lblTotalPrice.Text = total.ToString("F");
+                    }
+
+                    if (total > 0)
+                    {
+                        lblTotalPrice.Visible = true;
+                        lblTotalPriceTxt.Visible = true;
+                        btnCheckout.Visible = true;
                     }
                 }
             }
@@ -49,7 +55,7 @@ namespace ArtMoments.Sites.client
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {
-                        sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["CustId"]);
+                        sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["UserName"]);
                         DataTable dt = new DataTable();
                         sda.Fill(dt);
                         return dt;
@@ -76,13 +82,13 @@ namespace ArtMoments.Sites.client
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(updateCartItemsQuery, conn);
-                    cmd.Parameters.AddWithValue("@CustId", (String)Session["CustId"].ToString());
+                    cmd.Parameters.AddWithValue("@CustId", (String)Session["UserName"].ToString());
                     cmd.Parameters.AddWithValue("@ProdId", prodId);
                     cmd.Parameters.AddWithValue("@UpdateQty", updateQty);
 
                     cmd.ExecuteNonQuery();
                     conn.Close();
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('UpdateCart')", true);
+                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('UpdateCart')", true);
                     Response.Redirect(Request.RawUrl);
 
                 }
@@ -110,13 +116,13 @@ namespace ArtMoments.Sites.client
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(updateCartItemsQuery, conn);
-                    cmd.Parameters.AddWithValue("@CustId", (String)Session["CustId"].ToString());
+                    cmd.Parameters.AddWithValue("@CustId", (String)Session["UserName"].ToString());
                     cmd.Parameters.AddWithValue("@ProdId", prodId);
                     cmd.Parameters.AddWithValue("@UpdateQty", updateQty);
 
                     cmd.ExecuteNonQuery();
                     conn.Close();
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('UpdateCart')", true);
+                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('UpdateCart')", true);
                     Response.Redirect(Request.RawUrl);
 
                 }
@@ -136,16 +142,15 @@ namespace ArtMoments.Sites.client
 
                     string createTransacQuery = "insert into [Transaction] (user_id, date_order) VALUES (@CustId, @DateOrder)";
                     SqlCommand cmd = new SqlCommand(createTransacQuery, con);
-                    cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
+                    cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
                     cmd.Parameters.AddWithValue("@DateOrder", DateTime.Now);
                     con.Open();
                     cmd.ExecuteNonQuery();
                     con.Close();
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Inserted')", true);
+                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Inserted')", true);
                 }
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
                 }
 
 
@@ -157,7 +162,7 @@ namespace ArtMoments.Sites.client
                     SqlConnection con = new SqlConnection(conString);
                     string getCartItemsQuery = "SELECT C.product_id as prod_id, C.quantity as cart_quantity, C.delivery_id as delivery_id, P.prod_stock as available_stock, P.prod_sales as prod_sales FROM CartItems AS C JOIN Product P on C.product_id = P.id where C.user_id = @CustId";
                     SqlDataAdapter sda = new SqlDataAdapter(getCartItemsQuery, con);
-                    sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["CustId"]);
+                    sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["UserName"]);
                     DataTable cartItem = new DataTable();
                     sda.Fill(cartItem);
 
@@ -200,7 +205,6 @@ namespace ArtMoments.Sites.client
                         }
                         catch (Exception ex)
                         {
-                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('fail update product info')", true);
                         }
                     }
 
@@ -210,8 +214,6 @@ namespace ArtMoments.Sites.client
                 }
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
-
                 }
             }
             else
@@ -237,7 +239,6 @@ namespace ArtMoments.Sites.client
                 }
                 catch (Exception ex)
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail')", true);
                 }
             }
         }
@@ -253,16 +254,14 @@ namespace ArtMoments.Sites.client
                 string removeCartItems = "Delete from [CartItems] where product_id like @ProdId and user_id like @CustId";
                 SqlCommand cmd = new SqlCommand(removeCartItems, con);
                 cmd.Parameters.AddWithValue("@ProdId", prodId);
-                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
+                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Deleted')", true);
                 Response.Redirect(Request.RawUrl);
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail Delete')", true);
             }
         }
 
@@ -274,16 +273,14 @@ namespace ArtMoments.Sites.client
 
                 string clearCartQuery = "Delete from [CartItems] where user_id like @CustId";
                 SqlCommand cmd = new SqlCommand(clearCartQuery, con);
-                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
+                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Deleted')", true);
                 Response.Redirect(Request.RawUrl);
             }
             catch (Exception ex)
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Fail Delete')", true);
             }
         }
 
@@ -295,24 +292,53 @@ namespace ArtMoments.Sites.client
             SqlConnection con = new SqlConnection(conString);
             con.Open();
             string updateDeliveryMethodQuery = "update [CartItems] set delivery_id = @DeliveryMethod where user_id like @CustId and product_id like @ProdId";
-            using (SqlCommand cmdSales = new SqlCommand(updateDeliveryMethodQuery, con))
+            using (SqlCommand cmd = new SqlCommand(updateDeliveryMethodQuery, con))
             {
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('success update product info')", true);
-
-                cmdSales.Parameters.AddWithValue("@DeliveryMethod", ddlDeliverId);
-                cmdSales.Parameters.AddWithValue("@ProdId", prodId);
-                cmdSales.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
-                cmdSales.ExecuteNonQuery();
+                cmd.Parameters.AddWithValue("@DeliveryMethod", ddlDeliverId);
+                cmd.Parameters.AddWithValue("@ProdId", prodId);
+                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
+                cmd.ExecuteNonQuery();
                 con.Close();
+            }
+
+        }
+
+        protected void txtQtyChg(object sender, EventArgs e)
+        {
+            RepeaterItem chgQtyItem = (sender as TextBox).NamingContainer as RepeaterItem;
+            int qtyInput = Convert.ToInt32((chgQtyItem.FindControl("txtQty") as TextBox).Text);
+            int prodId = Convert.ToInt32((chgQtyItem.FindControl("txtProdId") as TextBox).Text);
+            int qtyAvailable = Convert.ToInt32((chgQtyItem.FindControl("txtAvailable") as TextBox).Text);
+
+            if (qtyInput <= qtyAvailable && qtyInput != 0)
+            {
+                SqlConnection con = new SqlConnection(conString);
+                con.Open();
+                string updateQtyQuery = "update [CartItems] set quantity = @QtyInput where user_id like @CustId and product_id like @ProdId";
+                using (SqlCommand cmd = new SqlCommand(updateQtyQuery, con))
+                {
+                    cmd.Parameters.AddWithValue("@QtyInput", qtyInput);
+                    cmd.Parameters.AddWithValue("@ProdId", prodId);
+                    cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
+                    cmd.ExecuteNonQuery();
+                    con.Close();
+                }
+                Response.Redirect(Request.RawUrl);
             }
         }
 
-        protected void goToSpecificProd(object sender, RepeaterCommandEventArgs e)
+        protected void viewProdDetailImg(object sender, EventArgs e)
         {
-            if (e.CommandName == "viewArtDetail")
-            {
-                Response.Redirect("~/Sites/general/OrderArt.aspx.aspx?id=" + e.CommandArgument);
-            }
+            RepeaterItem clickImgItem = (sender as ImageButton).NamingContainer as RepeaterItem;
+            string prodId = (clickImgItem.FindControl("txtProdId") as TextBox).Text;
+            Response.Redirect("~/Sites/general/OrderArt.aspx?id=" + prodId);
+        }
+
+        protected void viewProdDetailName(object sender, EventArgs e)
+        {
+            RepeaterItem clickNameItem = (sender as LinkButton).NamingContainer as RepeaterItem;
+            string prodId = (clickNameItem.FindControl("txtProdId") as TextBox).Text;
+            Response.Redirect("~/Sites/general/OrderArt.aspx?id=" + prodId);
         }
     }
 }

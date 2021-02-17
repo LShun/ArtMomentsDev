@@ -5,9 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ArtMoments.Sites.general
+namespace ArtMoments.Sites.client
 {
-    public partial class OrderArtExtra : System.Web.UI.Page
+    public partial class OrderHistoryExtra : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
