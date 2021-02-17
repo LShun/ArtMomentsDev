@@ -58,14 +58,14 @@
             background-color: #A1DCF2;
             color: #000;
             border: 1px solid #3AC0F2;
-            margin:5px 5px 5px 5px;
+            margin:5px 5px 5px 5px; /* Add some space outside the box */
         }
         #ContentPlaceHolder1_txtSearch{
         background-image: url('../../Content/search--v2.png'); /* Add a search icon to input */
         background-position: 10px 10px; /* Position the search icon */
         background-repeat: no-repeat; /* Do not repeat the icon image */
         background-size: 25px 25px; /*adjust background image size*/
-        width: 50%; /* Full-width */
+        width: 50%; 
         font-size: 16px; /* Increase font-size */
         padding: 12px 20px 12px 40px; /* Add some padding */
         border: 1px solid #ddd; /* Add a grey border */
@@ -116,43 +116,7 @@
             border-radius: .25rem;
             transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
             float:right;
-        }
-        /*@media (min-width: 992px) {
-            .col-lg-10 {
-                flex: 0 0 83.333333%;
-                max-width: 83.333333%;
-            }
-
-            .col-lg-2 {
-                flex: 0 0 16.666667%;
-                max-width: 16.666667%;
-                padding-right:0;
-
-            }
-        }
-
-        @media (min-width: 768px){
-            .col-md-9 {
-                flex: 0 0 75%;
-                max-width: 75%;
-            }
-            .col-md-3 {
-                flex: 0 0 25%;
-                max-width: 25%;
-                padding-right:0;
-            }
-        }
-        @media (min-width: 576px){
-            .col-sm-8 {
-                flex: 0 0 66.666667%;
-                max-width: 66.666667%;
-            }
-            .col-sm-4 {
-                flex: 0 0 33.333333%;
-                max-width: 33.333333%;
-                padding-right:0;
-            }
-        }*/
+        }      
 
     </style>
 </asp:Content>
@@ -175,7 +139,7 @@
         <pagerstyle horizontalalign="Left" CssClass="pagination"/>
                 <Columns>
                 <asp:BoundField DataField="ID" HeaderText="Product ID" SortExpression="ID" HeaderStyle-ForeColor="White" >
-                    <ItemStyle Width="100" HorizontalAlign="Center" /> 
+                    <ItemStyle Width="80" HorizontalAlign="Center" /> 
                     <HeaderStyle HorizontalAlign="Center" />
                 </asp:boundfield>
 
