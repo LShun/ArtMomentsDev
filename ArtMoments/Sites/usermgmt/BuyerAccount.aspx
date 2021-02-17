@@ -34,7 +34,7 @@
                                         </td>
                                         <td class="auto-style4" style="padding:0px">
                                             <div style="margin-top: 0px">
-                                                <table style="margin:10px; width:60%">
+                                                <table style="margin:10px; width:100%">
                                                     <tr>
                                                         <td class="auto-style6">
                                                             <asp:Label runat="server" Text="Followed Artist"></asp:Label>
@@ -46,6 +46,12 @@
                                                             <asp:Label runat="server" Text="My favourite"></asp:Label>
                                                             <br/>
                                                             <asp:Label runat="server" Text="Start collecting art"></asp:Label>
+                                                        </td>
+														<td style="width:1%"></td>
+														<td class="auto-style6">
+                                                            <asp:Label runat="server" Text="Upload you arts"></asp:Label>
+                                                            <br/>
+                                                            <asp:Label runat="server" Text="Let others to have a look on your artwork"></asp:Label>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -69,7 +75,7 @@
 					</div>
 					<div class="flip-card-back">
 						<button></button><br><br><br>
-						<p>Best Seller --&gt; <br>Check out this picture ! ! </p>
+						<p>The only thing I know is that I paint because I need to. </p>
 					</div>
 				</div>
 			</div>
@@ -80,7 +86,7 @@
 					</div>
 					<div class="flip-card-back">
 						<button></button><br><br><br>
-						<p>Is this a panda or a tree??</p>
+						<p>Painting is self-discovery. Every good artist paints what he is. </p>
 					</div>
 				</div>
 			</div>
@@ -91,7 +97,7 @@
 					</div>
 					<div class="flip-card-back">
 						<button></button><br><br><br>
-						<p>Watch these beautiful and colorful leaves...imagine having this tree in you garden! 
+						<p>To draw you must close your eyes and sing. 
 						</p>
 					</div>
 				</div>
@@ -103,8 +109,7 @@
 					</div>
 					<div class="flip-card-back">
 						<button></button><br><br><br>
-						<p>Wonderful art offers up for grab...You MUST NOT miss it ! 
-						!</p>
+						<p>The best reason to paint is that there is no reason to paint. </p>
 					</div>
 				</div>
 			</div>
