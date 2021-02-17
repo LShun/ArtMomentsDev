@@ -19,10 +19,9 @@ namespace ArtMoments.Sites.general
         {
             if (!IsPostBack)
             {
-                Session["CustId"] = 1;
                 Session["ProdId"] = Request.QueryString["id"];
 
-                if (Session["CustId"] != null && Session["ProdId"] != null)
+                if (Session["UserName"] != null && Session["ProdId"] != null)
                 {
                     using (SqlConnection con = new SqlConnection(conString))
                     {
@@ -67,7 +66,7 @@ namespace ArtMoments.Sites.general
                         using (SqlConnection conn = new SqlConnection(conString))
                         {
                             SqlCommand cmd = new SqlCommand(wishlistQuery, conn);
-                            cmd.Parameters.Add("@CustId", (String)Session["CustId"].ToString());
+                            cmd.Parameters.Add("@CustId", (String)Session["UserName"].ToString());
                             cmd.Parameters.Add("@ProdId", (String)Session["ProdId"].ToString());
                             try
                             {
@@ -144,7 +143,7 @@ namespace ArtMoments.Sites.general
 
                 string addWishlistQuery = "insert into [Wishlist] (product_id, user_id) VALUES (@ProdId, @CustId)";
                 SqlCommand cmd = new SqlCommand(addWishlistQuery, con);
-                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
+                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
                 cmd.Parameters.AddWithValue("@ProdId", Convert.ToInt32(Session["ProdId"]));
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -168,7 +167,7 @@ namespace ArtMoments.Sites.general
 
                 string removeWishlistQuery = "Delete from [Wishlist] where user_id like @CustId and product_id like @ProdId";
                 SqlCommand cmd = new SqlCommand(removeWishlistQuery, con);
-                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
+                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
                 cmd.Parameters.AddWithValue("@ProdId", Convert.ToInt32(Session["ProdId"]));
                 con.Open();
                 cmd.ExecuteNonQuery();
@@ -186,7 +185,7 @@ namespace ArtMoments.Sites.general
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand(updateCartItemssQuery, conn);
-                cmd.Parameters.AddWithValue("@CustId", (String)Session["CustId"].ToString());
+                cmd.Parameters.AddWithValue("@CustId", (String)Session["UserName"].ToString());
                 cmd.Parameters.AddWithValue("@ProdId", (String)Session["ProdId"].ToString());
                 cmd.Parameters.AddWithValue("@UpdateQty", totalQty);
 
@@ -207,7 +206,7 @@ namespace ArtMoments.Sites.general
                 conn.Open();
                 cmdOrder.Parameters.AddWithValue("@ProdId", Convert.ToInt32(Session["ProdId"]));
                 cmdOrder.Parameters.AddWithValue("@Qty", Convert.ToInt32(txtboxQty.Text));
-                cmdOrder.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["CustId"]));
+                cmdOrder.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
                 cmdOrder.Parameters.AddWithValue("@DeliveryId", Convert.ToInt32(ddlDeliveryMethod.SelectedValue));
 
                 cmdOrder.ExecuteNonQuery();
@@ -226,7 +225,7 @@ namespace ArtMoments.Sites.general
             using (SqlConnection conn = new SqlConnection(conString))
             {
                 SqlCommand cmd = new SqlCommand(cartChkQuery, conn);
-                cmd.Parameters.Add("@CustId", (String)Session["CustId"].ToString());
+                cmd.Parameters.Add("@CustId", (String)Session["UserName"].ToString());
                 cmd.Parameters.Add("@ProdId", (String)Session["ProdId"].ToString());
                 try
                 {
