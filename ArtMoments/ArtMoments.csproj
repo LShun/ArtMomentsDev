@@ -90,6 +90,7 @@
   <ItemGroup>
     <Content Include="Content\14019785_00-129-spheroide-noire-01.jpg" />
     <Content Include="Content\187803-200.png" />
+    <Content Include="Content\2-flower-painting-magnolia-pieterwagemansa.jpg" />
     <Content Include="Content\8585-mur-africa-met.jpg" />
     <Content Include="Content\arrow-left.png" />
     <Content Include="Content\arrow-right.png" />
@@ -102,8 +103,10 @@
     <Content Include="Content\colorful-street.jpg" />
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\BuyerAcc.css" />
+    <Content Include="Content\css\DataList.css" />
     <Content Include="Content\css\DisplayImageHover.css" />
-    <Content Include="Content\css\DLProd.css" />
+    <Content Include="Content\css\DLProduct.css" />
     <Content Include="Content\css\LoginUser.css" />
     <Content Include="Content\css\PreLogin.css" />
     <Content Include="Content\css\OrderArtCss.css" />
@@ -118,6 +121,7 @@
     <Content Include="Content\il_570xN.1343115773_kxun.jpg" />
     <Content Include="Content\nancy-tillman-my-elephant-friend_u-l-q1awkyfo1zln.jpg" />
     <Content Include="Content\pixel-castle-mountain.png" />
+    <Content Include="Content\scripts\app.js" />
     <Content Include="Content\scripts\blank.js" />
     <Content Include="Content\scripts\bootstrap.bundle.min.js" />
     <Content Include="Content\scripts\jquery-3.0.0.slim.min.js" />
@@ -142,15 +146,12 @@
     <Content Include="Content\swing.jpg" />
     <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Sites\client\Cart.aspx" />
+    <Content Include="Sites\client\DisplayArt.aspx" />
+    <Content Include="Sites\client\DisplayArtProduct.aspx" />
     <Content Include="Sites\client\OrderHistory.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\general\Display.aspx" />
-    <Content Include="Sites\client\DisplayArtwork.aspx" />
-    <Content Include="Sites\client\DisplayArtworkProduct.aspx" />
     <Content Include="Sites\general\HomePage.aspx" />
-    <Content Include="Sites\general\OrderArtExtra.aspx" />
-    <Content Include="Sites\general\testing.aspx" />
     <Content Include="Sites\usermgmt\BuyerAccount.aspx" />
     <Content Include="Sites\usermgmt\BuyerPresentation.aspx" />
     <Content Include="Sites\usermgmt\BuyerSettingExtra.aspx" />
@@ -199,12 +200,19 @@
     <Compile Include="Sites\artist\ProductList.aspx.designer.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Sites\client\Cart.aspx.cs">
-      <DependentUpon>Cart.aspx</DependentUpon>
+    <Compile Include="Sites\client\DisplayArt.aspx.cs">
+      <DependentUpon>DisplayArt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Sites\client\Cart.aspx.designer.cs">
-      <DependentUpon>Cart.aspx</DependentUpon>
+    <Compile Include="Sites\client\DisplayArt.aspx.designer.cs">
+      <DependentUpon>DisplayArt.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\client\DisplayArtProduct.aspx.cs">
+      <DependentUpon>DisplayArtProduct.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\client\DisplayArtProduct.aspx.designer.cs">
+      <DependentUpon>DisplayArtProduct.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\client\OrderHistory.aspx.cs">
       <DependentUpon>OrderHistory.aspx</DependentUpon>
@@ -228,18 +236,6 @@
     <Compile Include="Sites\general\Display.aspx.designer.cs">
       <DependentUpon>Display.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Sites\client\DisplayArtwork.aspx.cs">
-      <DependentUpon>DisplayArtwork.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\client\DisplayArtwork.aspx.designer.cs">
-      <DependentUpon>DisplayArtwork.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\client\DisplayArtworkProduct.aspx.cs">
-      <DependentUpon>DisplayArtworkProduct.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\client\DisplayArtworkProduct.aspx.designer.cs">
-      <DependentUpon>DisplayArtworkProduct.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Sites\general\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -247,20 +243,9 @@
     <Compile Include="Sites\general\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\general\OrderArtExtra.aspx.designer.cs">
-      <DependentUpon>OrderArtExtra.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\general\testing.aspx.cs">
-      <DependentUpon>testing.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\general\testing.aspx.designer.cs">
-      <DependentUpon>testing.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Sites\usermgmt\BuyerAccount.aspx.cs">
       <DependentUpon>BuyerAccount.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sites\usermgmt\BuyerAccount.aspx.designer.cs">
       <DependentUpon>BuyerAccount.aspx</DependentUpon>

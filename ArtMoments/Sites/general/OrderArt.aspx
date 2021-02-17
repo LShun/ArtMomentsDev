@@ -58,7 +58,7 @@
             padding-top: 8px;
         }
 
-        .row.sizeCategoryAuthorDB, .row.lbldescriptionDivision, #availableStock {
+        .row.sizeCategoryAuthorDB, .row.lbldescriptionDivision {
            margin-top: -5px;
             font-size: 18px;
         }
@@ -252,7 +252,7 @@
                             <asp:Button ID="btnMinusQty" runat="server" Text="-" OnClick="btnMinus_Click" />
                             <asp:TextBox ID="txtboxQty" runat="server" Width="55px" onkeypress="numValid(event);" onfocusout="qtyValid();" class="txtboxQtyClass">1</asp:TextBox>
                             <asp:Button ID="btnPlusQty" runat="server" Text="+" OnClick="btnPlusQty_Click" />
-                            
+                            <asp:Label ID="lblHideStock" runat="server" Text="" Visible="true" CssClass ="lblHideStock"></asp:Label>
                         </div>
                     </div>
 
@@ -261,20 +261,20 @@
                     </div>
 
                     <div class="col-4" id="deliveryDivision">
-                        <asp:DropDownList ID="ddlDeliveryMethod" runat="server" DataSourceID="SqlDataSourceDelivery" DataTextField="deliver_type" DataValueField="id">
+                        <asp:DropDownList ID="ddlDeliveyMethod" runat="server">
+                            <asp:ListItem>Pos Laju</asp:ListItem>
+                            <asp:ListItem>Citylink</asp:ListItem>
+                            <asp:ListItem>Gdex</asp:ListItem>
+                            <asp:ListItem>ABX</asp:ListItem>
+                            <asp:ListItem>Ninja Van</asp:ListItem>
                         </asp:DropDownList>
-                        <asp:SqlDataSource ID="SqlDataSourceDelivery" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [id], [deliver_type] FROM [Delivery]"></asp:SqlDataSource>
                     </div>
-                </div>
-
-                <div class="col-12" id="availableStock">
-                    <asp:Label ID="lblStock" runat="server" Text="" Visible="true" CssClass ="lblStock"></asp:Label>
                 </div>
 
                 <!-- Buy now button -->
                 <div class="row">
                     <div class="col-12 btnBuyNowDivision" id="btnBuyNowDivision">
-                        <asp:LinkButton ID="btnBuyNow" runat="server" CssClass="btn btn-primary btn-block" OnClick="btnBuyNow_Click">ADD TO CART</asp:LinkButton>
+                        <asp:LinkButton ID="btnBuyNow" runat="server" CssClass="btn btn-primary btn-block" OnClick="btnBuyNow_Click">BUY NOW</asp:LinkButton>
                     </div>
                 </div>
             </div>
@@ -356,5 +356,5 @@
             //  var pricericparseFloat.e * qtyInput;;
            //   document.getElementsByClassName("txtboxQtyClass")[0].textContent = subprice           // }   
         </script>
-    <asp:Label ID="artworkPricePerPiece" runat="server" Text="" CssClass="artworkPricePerPiece" Visible="false"></asp:Label>
+    <asp:Label ID="artworkPricePerPiece" runat="server" Text="" CssClass="artworkPricePerPiece"></asp:Label>
 </asp:Content>
