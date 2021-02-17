@@ -49,9 +49,10 @@ namespace ArtMoments.Sites.client
                     if (!IsPostBack)
                     {
                         generalDisplay();
+                        ViewState["PageCount"] = 0;
                     }
 
-                    ViewState["PageCount"] = 0;
+                    
                 }
                 CurrentPage = (int)ViewState["PageCount"];
 
