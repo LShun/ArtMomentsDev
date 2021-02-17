@@ -54,22 +54,6 @@
                             </Fields>
                         </asp:DetailsView>
                         <asp:SqlDataSource ID="dsLatestArt" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [id], [prod_name], [prod_image] FROM [Product] ORDER BY [id] DESC"></asp:SqlDataSource>
-                        <div class="row">
-                            <div class="col-sm">
-                                <asp:ImageButton ID="ImageButton1" class="img-spotlight" runat="server" ImageUrl="~/Content/art-paint-brush.jpg" />
-                            </div>
-                            <div class="col-sm">
-                                <asp:ImageButton ID="ImageButton3" class="img-spotlight" runat="server" ImageUrl="~/Content/pixel-castle-mountain.png" />
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm">
-                                <asp:ImageButton ID="ImageButton2" class="img-spotlight" runat="server" ImageUrl="~/Content/waterfall-blue-petal.jpg" />
-                            </div>
-                            <div class="col-sm">
-                                <asp:ImageButton ID="ImageButton4" class="img-spotlight" runat="server" ImageUrl="~/Content/blue-man-waves.jpg" />
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
