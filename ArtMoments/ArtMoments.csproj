@@ -150,6 +150,7 @@
     <Content Include="Sites\client\DisplayArt.aspx" />
     <Content Include="Sites\client\DisplayArtProduct.aspx" />
     <Content Include="Sites\client\OrderHistory.aspx" />
+    <Content Include="Sites\client\OrderHistoryExtra.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\general\Display.aspx" />
     <Content Include="Sites\general\HomePage.aspx" />
@@ -228,6 +229,13 @@
     </Compile>
     <Compile Include="Sites\client\OrderHistory.aspx.designer.cs">
       <DependentUpon>OrderHistory.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\client\OrderHistoryExtra.aspx.cs">
+      <DependentUpon>OrderHistoryExtra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\client\OrderHistoryExtra.aspx.designer.cs">
+      <DependentUpon>OrderHistoryExtra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\client\WebImage.cs" />
     <Compile Include="Sites\client\Wishlist.aspx.cs">
