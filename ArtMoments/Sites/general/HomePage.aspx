@@ -34,8 +34,26 @@
                 <div class="col-sm">
                     <div class="table">
                         <div class="row">
-                            <h3 style="text-align: center;">Spotlight Artist</h3>
+                            <h3 style="text-align: center;">Latest Arts</h3>
                         </div>
+                        <asp:DetailsView ID="dvLatestArt" runat="server" Height="50px" Width="125px" AllowPaging="True" AutoGenerateRows="false" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="dsLatestArt" ForeColor="Black" GridLines="Horizontal">
+                            <EditRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                            <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+
+                            <Fields>
+                               <asp:BoundField  DataField="prod_name" HeaderText="Name" />
+                               <asp:TemplateField HeaderText="Image">
+                                    <ItemTemplate>
+                                        <asp:Image ID="prod_image" runat="server" 
+                                            Height="200px" Width="200px" 
+                                            ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>'  />
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                           </Fields>
+                        </asp:DetailsView>
+                        <asp:SqlDataSource ID="dsLatestArt" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [id], [prod_name], [prod_image] FROM [Product] ORDER BY [id] DESC"></asp:SqlDataSource>
                         <div class="row">
                             <div class="col-sm">
                                 <asp:ImageButton ID="ImageButton1" class="img-spotlight" runat="server" ImageUrl="~/Content/art-paint-brush.jpg" />
