@@ -49,13 +49,56 @@
           color: white;
           font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
         }
+        .brand {
+            width: 142px;
+            padding-right:20px;
+            padding-left: 20px;
+            background-color: black;
+            color:white;
+        }
+
+        .ParentMenu, .ParentMenu:hover {  
+            width: 100px;  
+            background-color: #fff;  
+            color: #333;  
+            text-align: center;  
+            height: 30px;  
+            line-height: 30px;  
+            margin-right: 5px;  
+        }  
+  
+            .ParentMenu:hover {  
+                background-color: #ccc;  
+            }  
+  
+        .ChildMenu, .ChildMenu:hover {  
+            width: 110px;  
+            background-color: #fff;  
+            color: #333;  
+            text-align: center;  
+            height: 30px;  
+            line-height: 30px;  
+            margin-top: 5px;  
+        }  
+  
+            .ChildMenu:hover {  
+                background-color: #ccc;  
+            }  
+  
+        .selected, .selected:hover {  
+            background-color: #A6A6A6 !important;  
+            color: #fff;  
+        }
+        /*#ArtworkMenu{
+           height:100px; 
+        }*/
     </style>
 </head>
 <body>
 
     <form id="form1" runat="server">
         <!-- Navbar -->
-        <div class="topnav">
+        <%--<div class="topnav">
           <a class="brand" href="#home">ArtMoments</a>
           <a href="#home">Home</a>
           <a href="#news">Browse</a>
@@ -64,7 +107,23 @@
             
           <a href="#login" style="float: right;">Login</a>
           <a href="#about" style="float: right;">Sign up</a>
-        </div>
+        </div>--%>
+        <table>
+            <tr>
+                <td class="brand"><h3>ArtMoments</h3></td>
+                <td class="menu">
+                    <asp:Menu ID="ArtworkMenu" runat="server" Orientation="Horizontal">            
+                        <LevelMenuItemStyles>  
+                            <asp:MenuItemStyle CssClass="ParentMenu" />  
+                            <asp:MenuItemStyle CssClass="ChildMenu" />  
+                            <asp:MenuItemStyle CssClass="ChildMenu" />  
+                        </LevelMenuItemStyles>  
+                        <StaticSelectedStyle CssClass="selected" />  
+                    </asp:Menu>  
+                </td>
+            </tr>
+
+        </table>
 
         <div id="sitemap">
             <asp:SiteMapPath ID="smArtMoments" runat="server">

@@ -65,6 +65,15 @@
         flex:0 0 16.666667%;
         max-width:16.666667%
     }
+    .col-4{
+        position:relative;
+        width:100%;
+        padding-right:15px;
+        padding-left:15px;
+        -ms-flex:0 0 33.333333%;
+        flex:0 0 33.333333%;
+        max-width:33.333333%;
+    }
     .col-10{
         position:relative;
         width:100%;
@@ -104,6 +113,9 @@
         border-radius: .25rem;
         transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
     }
+    .artworkWidth{
+       padding-right:0;
+    }
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -119,9 +131,14 @@
 			</div>
 			<div class="row">
 				<div class="col-2">
-					<label for="artworkSize">Artwork Size*:</label> </div>
-				<div class="col-10">
-					<asp:TextBox ID="txtArtworkSize" placeholder="122cm x 91cm" runat="server"></asp:TextBox>
+					<label for="artworkHeight">Artwork Height (cm)*:</label> </div>
+				<div class="col-4">
+					<asp:TextBox ID="txtArtworkHeight" onkeypress="return onlyNumberKey(event)" runat="server"></asp:TextBox>
+                </div>
+                <div class="col-2">
+					<label for="artworkWidth" class="artworkWidth">Artwork Width (cm)*:</label> </div>
+                <div class="col-4">
+                    <asp:TextBox ID="txtArtworkWidth" onkeypress="return onlyNumberKey(event)" runat="server"></asp:TextBox>
 				</div>
 			</div>
 			<div class="row">
