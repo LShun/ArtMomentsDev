@@ -49,9 +49,10 @@ namespace ArtMoments.Sites.client
                     if (!IsPostBack)
                     {
                         generalDisplay();
+                        ViewState["PageCount"] = 0;
                     }
 
-                    ViewState["PageCount"] = 0;
+                    
                 }
                 CurrentPage = (int)ViewState["PageCount"];
 
@@ -207,8 +208,9 @@ namespace ArtMoments.Sites.client
             protected void btnFirst_Click(object sender, EventArgs e)
             {
                 CurrentPage = 0;
-                dlProd.DataSource = (DataTable)ViewState["PagedDataSurce"];
-                dlProd.DataBind();
+            //dlProd.DataSource = (DataTable)ViewState["PagedDataSurce"];
+            //dlProd.DataBind();
+            DataListPaging((DataTable)ViewState["PagedDataSurce"]);
             }
 
             protected void btnPrevious_Click(object sender, EventArgs e)

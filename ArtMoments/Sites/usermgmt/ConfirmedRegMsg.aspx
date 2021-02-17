@@ -30,13 +30,10 @@
                     <div class="myLeftCtn" style="padding-left: 25px; text-align: center;"> 
                         <form class="myForm text-center">
                             <div class="form-group">
-                                <asp:Label ID="Label1" runat="server" Text="Registration successful!" CssClass="makecenter"></asp:Label>
+                                <asp:Label ID="lblRegSuccess" runat="server" Text="Registration successful!" CssClass="makecenter"></asp:Label>
                                </div>
 
-                            <div class="form-group">
-                                <asp:Label ID="Label2" runat="server" Text="Take a tour?" CssClass="makecenter"></asp:Label> 
-                            </div>
-                            <asp:Button class="butt" ID="Button2" OnClick="Button1_Click" runat="server" Text="Go to Login"></asp:Button>  
+                            <asp:Button class="butt" ID="btnLogin" runat="server" Text="Go to Login" OnClick="btnLogin_Click"></asp:Button>  
                             
                             <br />
                             <br />                            

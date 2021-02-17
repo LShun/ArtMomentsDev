@@ -5,18 +5,13 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ArtMoments.Sites.usermgmt
+namespace ArtMoments.Sites.client
 {
-    public partial class ConfirmedRegMsg : System.Web.UI.Page
+    public partial class OrderHistoryExtra : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
-
-        protected void btnLogin_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("LoginUser.aspx");
         }
     }
 }

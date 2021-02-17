@@ -33,13 +33,13 @@ namespace ArtMoments.Sites.usermgmt
         protected global::System.Web.UI.WebControls.TextBox txtUserPassword;
 
         /// <summary>
-        /// Button1 control.
+        /// btnLogin control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Button1;
+        protected global::System.Web.UI.WebControls.Button btnLogin;
 
         /// <summary>
         /// lblErrorLoginMsg control.
@@ -51,21 +51,21 @@ namespace ArtMoments.Sites.usermgmt
         protected global::System.Web.UI.WebControls.Label lblErrorLoginMsg;
 
         /// <summary>
-        /// noAccMsg control.
+        /// hlNoAccMsg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink noAccMsg;
+        protected global::System.Web.UI.WebControls.HyperLink hlNoAccMsg;
 
         /// <summary>
-        /// forgetPassword control.
+        /// hlForgetPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink forgetPassword;
+        protected global::System.Web.UI.WebControls.HyperLink hlForgetPassword;
     }
 }

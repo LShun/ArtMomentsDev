@@ -140,5 +140,26 @@ namespace ArtMoments.Sites.usermgmt
                 }
             }
         }
+
+        protected void lbMyAcc_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BuyerAccount.aspx");
+        }
+
+        protected void lbSetting_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BuyerSettingExtra.aspx");
+        }
+
+        protected void lbPresentation_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("BuyerPresentation.aspx");
+        }
+
+        protected void lbLogOut_Click(object sender, EventArgs e)
+        {
+            Session.RemoveAll();
+            Response.Redirect("../general/HomePage.aspx");
+        }
     }
 }

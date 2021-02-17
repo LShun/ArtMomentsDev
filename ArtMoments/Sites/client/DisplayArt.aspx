@@ -47,7 +47,7 @@
                </asp:DropDownList>
             </div>
              <div class="col-3 form-group search-form-group" style="margin-top:auto" >
-                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" PostBackUrl="~/Sites/general/DisplayArtworkProduct.aspx" />
+                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" PostBackUrl="~/Sites/client/DisplayArtProduct.aspx" />
             </div>
             </div>
 
@@ -58,33 +58,33 @@
                 <div class="col-7 form-group">
                     <div class="slider" id="slider-distance">
                           <div>
-                            <div class="inverse-left" style="width:30%;" id="LHSrange" runat="server"></div>
+                            <div class="inverse-left" style="width:0.01%;" id="LHSrange" runat="server"></div>
                             <div class="inverse-right"  style="width:70%;" id="RHSrange" runat="server"></div>
-                            <div class="range" style="left:30%;right:40%;" id="Pricerange" runat="server" ></div>
-                            <span class="thumb"  style="left:30%;" id="LHSthumb" runat="server"></span>
+                            <div class="range" style="left:0.01%;right:40%;" id="Pricerange" runat="server" ></div>
+                            <span class="thumb"  style="left:0.01%;" id="LHSthumb" runat="server"></span>
                             <span  class="thumb" style="left:60%;" id="RHSthumb" runat="server"></span>
-                            <div class="sign" style="left:30%;" onchange="ChangeLabel">
-                              <span class="value">30</span>
+                            <div class="sign" style="left:0.01%;" onchange="ChangeLabel">
+                              <span class="value">100</span>
                             </div>
                             <div class="sign" style="left:60%;">
-                              <span class="value">60</span>
+                              <span class="value">1000</span>
                             </div>
                               <asp:Label ID="lblMinPRange" runat="server" Text=""></asp:Label>
                               <asp:Label ID="lblMaxPRange" runat="server" Text=""></asp:Label>
                           </div>
-                           <input type="range" tabindex="0" value="30" max="100" min="0" step="1" runat="server" id="rangeMin" oninput="
+                           <input type="range" tabindex="0" value="100" max="9999" min="0" step="100" runat="server" id="rangeMin" oninput="
                               this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
-                              var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                              var value=(9999/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(9999/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
                               var children = this.parentNode.childNodes[1].childNodes;
-                              children[1].style.width=value+'%';
+                              children[1].style.width= value +'%';
                               children[5].style.left=value+'%';
                               children[7].style.left=value+'%';
                               children[11].style.left=value+'%';
                               children[11].childNodes[1].innerHTML=this.value;" />
 
-                          <input type="range" tabindex="0" value="60" max="100" min="0" step="1" runat="server" id="rangeMax" oninput="
+                          <input type="range" tabindex="0" value="1000" max="9999" min="0" step="100" runat="server" id="rangeMax" oninput="
                               this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
-                              var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
+                              var value=(9999/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(9999/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
                               var children = this.parentNode.childNodes[1].childNodes;
                               children[3].style.width=(100-value)+'%';
                               children[5].style.right=(100-value)+'%';
@@ -102,7 +102,7 @@
            <br/>
             
             <asp:Label ID="lblRecordMsg" runat="server" Text=""></asp:Label>
-            <asp:DataList ID="dlProdCat" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="321px" Width="1024px" OnItemCommand="dlProdCat_ItemCommand" 
+            <asp:DataList ID="dlProdCat" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="100%" Width="1024px" OnItemCommand="dlProdCat_ItemCommand" 
                 BackColor="#CCCCCC" CellPadding="2" ForeColor="Black" CssClass="auto-style3" >
                 <FooterStyle BackColor="#CCCCCC" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -131,7 +131,7 @@
                     </table>
                --%>
                 <div class="hovereffect">
-                    <asp:Image CssClass="img-responsive" ID="imgCategory_img" runat="server" Height="175px" Width="100%" 
+                    <asp:Image CssClass="img-responsive" ID="imgCategory_img" runat="server" Height="100%" Width="340px" 
                             ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("category_image")) %>'  />
                             
                         <div class="overlay">

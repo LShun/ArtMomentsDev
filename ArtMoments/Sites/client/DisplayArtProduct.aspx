@@ -104,7 +104,7 @@
         <div class="container" ID="display-img-container">
            <br/>
             <asp:Label ID="lblRecordMsg" runat="server" Text=""></asp:Label>
-            <asp:DataList ID="dlProd" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="321px" Width="1024px" OnItemCommand="dlProd_ItemCommand" 
+            <asp:DataList ID="dlProd" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="100%" Width="1024px" OnItemCommand="dlProd_ItemCommand" 
                 BackColor="#CCCCCC"  CellPadding="2" ForeColor="Black" GridLines="Both" CssClass="auto-style3" >
                 <FooterStyle BackColor="#CCCCCC" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />

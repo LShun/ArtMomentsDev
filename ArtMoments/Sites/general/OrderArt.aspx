@@ -58,7 +58,7 @@
             padding-top: 8px;
         }
 
-        .row.sizeCategoryAuthorDB, .row.lbldescriptionDivision {
+        .row.sizeCategoryAuthorDB, .row.lbldescriptionDivision, .lblStock {
            margin-top: -5px;
             font-size: 18px;
         }
@@ -153,6 +153,19 @@
 
         .col-7{-ms-flex:0 0 58.333333%;flex:0 0 58.333333%;max-width:58.333333%}
 
+        span.lblStock, span.lblStockTxt {
+            font-size: 12px;
+            color: darkgray;
+            font-style: italic;
+        }
+
+        span#ContentPlaceHolder1_lblauthorInfoName {
+            font-weight: bold;
+        }
+
+        blockquote {
+            font-size: 15px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -252,29 +265,25 @@
                             <asp:Button ID="btnMinusQty" runat="server" Text="-" OnClick="btnMinus_Click" />
                             <asp:TextBox ID="txtboxQty" runat="server" Width="55px" onkeypress="numValid(event);" onfocusout="qtyValid();" class="txtboxQtyClass">1</asp:TextBox>
                             <asp:Button ID="btnPlusQty" runat="server" Text="+" OnClick="btnPlusQty_Click" />
-                            <asp:Label ID="lblHideStock" runat="server" Text="" Visible="true" CssClass ="lblHideStock"></asp:Label>
                         </div>
                     </div>
 
                     <div class="col-4" id="priceDivision">
-                        <asp:Label ID="lblRM" runat="server" Text="RM "></asp:Label><asp:Label ID="lblartworkPrice" runat="server" Text="" CssClass="lblartworkPrice"></asp:Label>
+                        <asp:Label ID="lblRM" runat="server" Text="RM "></asp:Label><asp:Label ID="lblartworkPrice" runat="server" Text="" CssClass="lblartworkPrice" DataFormatString="{0:n}" ></asp:Label>
                     </div>
 
                     <div class="col-4" id="deliveryDivision">
-                        <asp:DropDownList ID="ddlDeliveyMethod" runat="server">
-                            <asp:ListItem>Pos Laju</asp:ListItem>
-                            <asp:ListItem>Citylink</asp:ListItem>
-                            <asp:ListItem>Gdex</asp:ListItem>
-                            <asp:ListItem>ABX</asp:ListItem>
-                            <asp:ListItem>Ninja Van</asp:ListItem>
+                        <asp:DropDownList ID="ddlDeliveryMethod" runat="server" DataSourceID="SqlDataSourceDelivery" DataTextField="deliver_type" DataValueField="id">
                         </asp:DropDownList>
+                        <asp:SqlDataSource ID="SqlDataSourceDelivery" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [id], [deliver_type] FROM [Delivery]"></asp:SqlDataSource>
                     </div>
                 </div>
+                <div><asp:Label ID="lblStockAvailableTxt" runat="server" Visible="true" CssClass ="lblStockTxt" Text="Available stock: "></asp:Label><asp:Label ID="lblStock" runat="server" Text="" Visible="true" CssClass ="lblStock"></asp:Label></div>
 
                 <!-- Buy now button -->
                 <div class="row">
                     <div class="col-12 btnBuyNowDivision" id="btnBuyNowDivision">
-                        <asp:LinkButton ID="btnBuyNow" runat="server" CssClass="btn btn-primary btn-block" OnClick="btnBuyNow_Click">BUY NOW</asp:LinkButton>
+                        <asp:LinkButton ID="btnBuyNow" runat="server" CssClass="btn btn-primary btn-block" OnClick="btnBuyNow_Click">ADD TO CART</asp:LinkButton>
                     </div>
                 </div>
             </div>
@@ -290,71 +299,68 @@
                 <div class="row authorInfoDivision" id="authorInfoDivision"> 
                     <div class="col-5 float-right">
                         <div class="author-pic-image" id="authorpicDivision">
-                            <img ID="authorImage" runat="server" src="../../Content/panda.jpg" alt="Author Profile Pic" />
+                            <img ID="authorImage" runat="server" src="" alt="Author Profile Pic" />
                         </div>
                     </div>
 
                     <div class="col-7 authorName" id="authorName">
-                        <asp:Label ID="lblauthorInfoName" runat="server" Text="authorName"></asp:Label>
-                        <asp:Label ID="lblauthorBibliography" runat="server" Text=""></asp:Label>
+                        <p><asp:Label ID="lblauthorInfoName" runat="server" Text="authorName"></p></asp:Label>
+                        <blockquote><asp:Label ID="lblauthorBibliography" runat="server" Text=""></asp:Label></blockquote>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <asp:Label ID="artworkPricePerPiece" runat="server" Text="" CssClass="artworkPricePerPiece" Visible="true" Style="font-size:0px"></asp:Label>
 
         <script type="text/javascript">
             function numValid(evt) {
                 var ch = String.fromCharCode(evt.which);
                 if (!(/[0-9]/.test(ch))) {
                     evt.preventDefault();
-                } 
+                }
             }
 
             function qtyValid() {
                 var qtyElement = document.getElementsByClassName("txtboxQtyClass")[0];
                 var qtyInput = parseInt(qtyElement.value);
-                var qtyAvailable = document.getElementsByClassName("lblHideStock")[0];
+                var qtyAvailable = document.getElementsByClassName("lblStock")[0];
                 var maxQty = parseInt(qtyAvailable.textContent);
-                
+
                 if (qtyInput > 1) {
                     if (qtyInput > maxQty) {
                         qtyInput = maxQty;
                         qtyElement.value = qtyInput.toString();
                         calcMax(maxQty);
-                        alert("The current available stock of this artwork is only " + maxQty + " pieces.");
+                        alert("The maximum stock available is " + maxQty + " piece(s).");
                     }
                 }
                 else {
                     qtyInput = 1;
                     qtyElement.value = qtyInput.toString();
                     calcMin();
-                    alert("Min stock = 1");
+                    alert("Minimum value is 1.");
                 }
                 var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
                 var artPiecePrice = parseFloat(onePiecePrice.textContent);
                 var subtotal = artPiecePrice * qtyInput;
-                document.getElementsByClassName("lblartworkPrice")[0].textContent = subtotal.toString();
-                
+                document.getElementsByClassName("lblartworkPrice")[0].textContent = (parseFloat(subtotal).toFixed(2)).toString();
             }
 
             function calcMin() {
                 var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
                 var artPiecePrice = parseFloat(onePiecePrice.textContent);
                 var subtotal = artPiecePrice * 1;
-                document.getElementsByClassName("lblartworkPrice")[0].textContent = subtotal.toString();
+                document.getElementsByClassName("lblartworkPrice")[0].textContent = (parseFloat(subtotal).toFixed(2)).toString();
             }
 
             function calcMax(maxQty) {
                 var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
                 var artPiecePrice = parseFloat(onePiecePrice.textContent);
                 var subtotal = artPiecePrice * maxQty;
-                document.getElementsByClassName("lblartworkPrice")[0].textContent = subtotal.toString();
+                document.getElementsByClassName("lblartworkPrice")[0].textContent = (parseFloat(subtotal).toFixed(2)).toString();
             }
-            //fution calcSubtotal(qtyInput) {
-            //  // vprrce = document.get.getElementById("lblartworkPrice")tContent;
-            //  var pricericparseFloat.e * qtyInput;;
-           //   document.getElementsByClassName("txtboxQtyClass")[0].textContent = subprice           // }   
+
         </script>
-    <asp:Label ID="artworkPricePerPiece" runat="server" Text="" CssClass="artworkPricePerPiece"></asp:Label>
+    
 </asp:Content>

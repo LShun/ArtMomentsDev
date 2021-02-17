@@ -4,18 +4,23 @@
         .auto-style1 {
             width: 183px;
         }
+        .auto-style2 {
+            left: 0px;
+            top: 0px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-<div class="container">
+    <div class="container">
 	<div class="row">
 		<div class="col-md-3 ">
 		     <div class="list-group ">
-              <a href="BuyerAccount.aspx"  class="list-group-item list-group-item-action">My Account</a>
-              <a href="BuyerSettingExtra.aspx" class="list-group-item list-group-item-action active">Setting</a>
-              <a href="BuyerPresentation.aspx"  class="list-group-item list-group-item-action">Presentation</a>              
-               <a href="HomePage.aspx"  class="list-group-item list-group-item-action">Log out</a>  
-            </div> 
+                  <asp:LinkButton class="list-group-item list-group-item-action" ID="lbMyAcc" runat="server" OnClick="lbMyAcc_Click" >My Account</asp:LinkButton>
+                  <asp:LinkButton class="list-group-item list-group-item-action active" ID="lbSetting" runat="server" OnClick="lbSetting_Click">Setting</asp:LinkButton>
+                  <asp:LinkButton class="list-group-item list-group-item-action" ID="lbPresentation" runat="server" OnClick="lbPresentation_Click" >Presentation</asp:LinkButton>
+                  <asp:LinkButton class="list-group-item list-group-item-action" ID="lbLogOut" runat="server" OnClick="lbLogOut_Click">Log out</asp:LinkButton>
+                  
+            </div>
 		</div>
 
         <div class="col-md-9">

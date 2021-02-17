@@ -38,7 +38,7 @@ namespace ArtMoments.Sites.usermgmt
             }
         }          
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnCreateAcc_Click(object sender, EventArgs e)
         {
             if (txtUserName.Text == "" || txtUserPassword.Text == "")
             {
@@ -73,7 +73,7 @@ namespace ArtMoments.Sites.usermgmt
                             //int tempID = GenerateAutoID();
 
                             int userType = 0;
-                            if (rbGender.SelectedValue.Equals("Buyer"))
+                            if (rblGender.SelectedValue.Equals("Buyer"))
                             {
                                 userType = 1;
                             }
@@ -103,7 +103,7 @@ namespace ArtMoments.Sites.usermgmt
                         lblMessage.Text = "This user name already exists";
                     }
                 }
-                
+
             }
         }
         //clear function
@@ -117,5 +117,6 @@ namespace ArtMoments.Sites.usermgmt
         {
 
         }
-    }    
+    }
+    
 }

@@ -7,47 +7,56 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArtMoments.Sites.usermgmt
+namespace ArtMoments.Sites.client
 {
 
 
-    public partial class BuyerAccount
+    public partial class Cart
     {
 
         /// <summary>
-        /// lbMyAcc control.
+        /// RepeaterCartInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbMyAcc;
+        protected global::System.Web.UI.WebControls.Repeater RepeaterCartInfo;
 
         /// <summary>
-        /// lbSetting control.
+        /// lblTotalPriceTxt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbSetting;
+        protected global::System.Web.UI.WebControls.Label lblTotalPriceTxt;
 
         /// <summary>
-        /// lbPresentation control.
+        /// lblTotalPrice control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbPresentation;
+        protected global::System.Web.UI.WebControls.Label lblTotalPrice;
 
         /// <summary>
-        /// lbLogOut control.
+        /// btnCheckout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lbLogOut;
+        protected global::System.Web.UI.WebControls.Button btnCheckout;
+
+        /// <summary>
+        /// SqlDataSource1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
     }
 }
