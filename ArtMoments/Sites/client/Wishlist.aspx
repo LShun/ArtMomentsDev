@@ -8,7 +8,9 @@
         <h1>Wishlist</h1>
         <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: "></asp:Label>
         <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
-        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click" />
+        <asp:Button ID="btnSearch" runat="server" Text="Button" OnClick="btnSearch_Click" />
+
+        <br />
         <%--<div class="table">
             <div class="row">
                 <div class="col">
@@ -46,13 +48,13 @@
         <asp:GridView CssClass="table" ID="gvWishlist" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id" OnRowDeleting="gvWishList_RowDeleting">
             <Columns>
                 
-                <asp:BoundField DataField="id" HeaderText="id" SortExpression="id" InsertVisible="False" ReadOnly="True"></asp:BoundField>
+                <asp:BoundField DataField="id" HeaderText="Wishlist ID" SortExpression="id" InsertVisible="False" ReadOnly="True" Visible="false"></asp:BoundField>
                 <asp:BoundField DataField="product_id" HeaderText="Product ID" SortExpression="product_id" />
                 <asp:BoundField DataField="prod_name" HeaderText="Name" SortExpression="prod_name" />
                 <asp:BoundField DataField="prod_price" HeaderText="Price (RM)" SortExpression="prod_price" />
                 <asp:BoundField DataField="prod_stock" HeaderText="Stock" SortExpression="prod_stock" />
                 <asp:BoundField DataField="prod_size" HeaderText="Size" SortExpression="prod_size" />
-                <asp:BoundField DataField="prod_description" HeaderText="Desc" SortExpression="prod_description" />
+                <asp:BoundField DataField="prod_description" HeaderText="Desc" SortExpression="prod_description" Visible="false" />
                 <asp:BoundField DataField="category_name" HeaderText="Category" SortExpression="category_name" />
 
                 <asp:TemplateField HeaderText="Image">
@@ -64,9 +66,12 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Actions">
                    <ItemTemplate>
-                    <asp:LinkButton ID="lbDelete" runat="server" CausesValidation="False" 
+                    <asp:LinkButton ID="lbtnDelete" runat="server" CausesValidation="False" 
                         CommandName="Delete" Text="Delete" OnClientClick="return confirm('Confirm delete?');"></asp:LinkButton>
+                    <asp:LinkButton ID="lbtnOrder" runat="server" CausesValidation="False" 
+                        CommandName="Order" Text="Order" OnClientClick="return confirm('Confirm delete?');"></asp:LinkButton>
                 </ItemTemplate>
+
                 </asp:TemplateField>
                 
             </Columns>
