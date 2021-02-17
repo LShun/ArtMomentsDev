@@ -19,10 +19,11 @@
 	<div class="row">
         <div class="col-md-3 ">
 		        <div class="list-group ">
-                    <a href="BuyerAccount.aspx"  class="list-group-item list-group-item-action">My Account</a>
-                    <a href="BuyerSettingExtra.aspx" class="list-group-item list-group-item-action">Setting</a>
-                    <a href="BuyerPresentation.aspx"  class="list-group-item list-group-item-action active">Presentation</a>   
-                     <a href="HomePage.aspx"  class="list-group-item list-group-item-action">Log out</a>  
+                    <asp:LinkButton class="list-group-item list-group-item-action" ID="lbMyAcc" runat="server" OnClick="lbMyAcc_Click" >My Account</asp:LinkButton>
+                    <asp:LinkButton class="list-group-item list-group-item-action " ID="lbSetting" runat="server" OnClick="lbSetting_Click" >Setting</asp:LinkButton>
+                    <asp:LinkButton class="list-group-item list-group-item-action active" ID="lbPresentation" runat="server" OnClick="lbPresentation_Click"  >Presentation</asp:LinkButton>
+                    <asp:LinkButton class="list-group-item list-group-item-action" ID="lbLogOut" runat="server" OnClick="lbLogOut_Click" >Log out</asp:LinkButton>
+                
                 </div> 
 		   </div>
            <div class="col-md-9">
