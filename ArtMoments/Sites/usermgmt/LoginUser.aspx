@@ -32,16 +32,16 @@
                                 <asp:Label Text="*" runat="server" ForeColor="Red" />
                             </div>
 
-                            <asp:Button class="butt" ID="Button1" OnClick="Button1_Click" runat="server" Text="LOGIN"></asp:Button>  
+                            <asp:Button class="butt" ID="btnLogin" runat="server" Text="LOGIN" OnClick="btnLogin_Click"></asp:Button>  
                             <br /> 
                             <br />                          
                         </form>
                         <div>
                         <asp:Label ID="lblErrorLoginMsg" runat="server" CssClass="errorMsg">Wrong User Name or Password!</asp:Label>
                         <br />
-                        <asp:HyperLink ID="noAccMsg" runat="server" NavigateUrl="~/Sites/usermgmt/SignUp.aspx" style="text-align:center;">No account yet? SignUp</asp:HyperLink>
+                        <asp:HyperLink ID="hlNoAccMsg" runat="server" NavigateUrl="~/Sites/usermgmt/SignUp.aspx" style="text-align:center;">No account yet? SignUp</asp:HyperLink>
                         <br />
-                        <asp:HyperLink ID="forgetPassword" runat="server" style="text-align:center;">Forget you password?</asp:HyperLink>
+                        <asp:HyperLink ID="hlForgetPassword" runat="server" style="text-align:center;">Forget you password?</asp:HyperLink>
                         </div>
                     </div>
                  </div>
