@@ -69,15 +69,6 @@ namespace ArtMoments.Sites.usermgmt
         protected global::System.Web.UI.WebControls.TextBox txtUserPassword;
 
         /// <summary>
-        /// RegularExpressionValidator2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator2;
-
-        /// <summary>
         /// txtConfirmedPassword control.
         /// </summary>
         /// <remarks>
@@ -87,22 +78,13 @@ namespace ArtMoments.Sites.usermgmt
         protected global::System.Web.UI.WebControls.TextBox txtConfirmedPassword;
 
         /// <summary>
-        /// rev1 control.
+        /// rblGender control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev1;
-
-        /// <summary>
-        /// rbGender control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rbGender;
+        protected global::System.Web.UI.WebControls.RadioButtonList rblGender;
 
         /// <summary>
         /// Button1 control.
