@@ -142,12 +142,14 @@
     <Content Include="Content\swing.jpg" />
     <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Sites\client\Cart.aspx" />
     <Content Include="Sites\client\DisplayArt.aspx" />
     <Content Include="Sites\client\DisplayArtProduct.aspx" />
     <Content Include="Sites\client\OrderHistory.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\general\Display.aspx" />
     <Content Include="Sites\general\HomePage.aspx" />
+    <Content Include="Sites\general\OrderArtExtra.aspx" />
     <Content Include="Sites\usermgmt\BuyerAccount.aspx" />
     <Content Include="Sites\usermgmt\BuyerPresentation.aspx" />
     <Content Include="Sites\usermgmt\BuyerSettingExtra.aspx" />
@@ -196,6 +198,13 @@
     <Compile Include="Sites\artist\ProductList.aspx.designer.cs">
       <DependentUpon>ProductList.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Sites\client\Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\client\Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sites\client\DisplayArt.aspx.cs">
       <DependentUpon>DisplayArt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -238,6 +247,13 @@
     </Compile>
     <Compile Include="Sites\general\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\general\OrderArtExtra.aspx.cs">
+      <DependentUpon>OrderArtExtra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\general\OrderArtExtra.aspx.designer.cs">
+      <DependentUpon>OrderArtExtra.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\usermgmt\BuyerAccount.aspx.cs">
       <DependentUpon>BuyerAccount.aspx</DependentUpon>
