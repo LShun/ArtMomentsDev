@@ -27,7 +27,7 @@
                         <h1 class="display-5">Welcome to ArtMoments Art Gallery</h1>
                         <p class="lead">We specialize in selling &quot;interesting arts&quot;</p>
                         <hr />
-                        <a class="btn btn-primary btn-lg" href="./DisplayArtwork.aspx" role="button">Browse Arts...</a>
+                        <a class="btn btn-primary btn-lg" href="./DisplayArt.aspx" role="button">Browse Arts...</a>
 
                     </div>
                 </div>
