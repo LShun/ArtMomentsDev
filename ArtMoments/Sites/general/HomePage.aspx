@@ -4,7 +4,7 @@
 
     <style>
         img {
-            width: 100px; 
+            width: 100px;
             height: 100px;
             object-fit: cover;
         }
@@ -43,15 +43,15 @@
                             <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
 
                             <Fields>
-                               <asp:BoundField  DataField="prod_name" HeaderText="Name" />
-                               <asp:TemplateField HeaderText="Image">
+                                <asp:BoundField DataField="prod_name" HeaderText="Name" />
+                                <asp:TemplateField HeaderText="Image">
                                     <ItemTemplate>
-                                        <asp:Image ID="prod_image" runat="server" 
-                                            Height="200px" Width="200px" 
-                                            ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>'  />
+                                        <asp:Image ID="prod_image" runat="server"
+                                            Height="200px" Width="200px"
+                                            ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                           </Fields>
+                            </Fields>
                         </asp:DetailsView>
                         <asp:SqlDataSource ID="dsLatestArt" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [id], [prod_name], [prod_image] FROM [Product] ORDER BY [id] DESC"></asp:SqlDataSource>
                         <div class="row">
@@ -156,7 +156,7 @@
 
 
 
-      <%--  <div class="table">
+        <%--  <div class="table">
             <div class="row">
                 <div class="col">
                     <div class="card" style="width: auto;">
