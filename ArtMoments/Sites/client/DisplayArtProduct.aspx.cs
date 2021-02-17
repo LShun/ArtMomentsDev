@@ -291,7 +291,7 @@ namespace ArtMoments.Sites.client
                     currentDdlProdSize = ddlProdSize.SelectedIndex;
                 }
 
-                if(!txtMinPR.Text.Equals(""))
+                if(!txtMinPR.Text.Equals("") && !txtMinPR.Text.Equals(" "))
                 {
                     if (countCriteria != 0)
                     {
@@ -302,7 +302,7 @@ namespace ArtMoments.Sites.client
                     currentTxtMinPRange = txtMinPR.Text;
                 }
 
-                if (!txtMaxPR.Text.Equals(""))
+                if (!txtMaxPR.Text.Equals("") && !txtMaxPR.Text.Equals(" "))
                 {
                     if (countCriteria != 0)
                     {
@@ -313,7 +313,7 @@ namespace ArtMoments.Sites.client
                     currentTxtMaxPRange = txtMaxPR.Text;
                 }
 
-                if(!txtProdName.Text.Equals(""))
+                if(!txtProdName.Text.Equals("") && !txtProdName.Text.Equals(" "))
                 {
                     if (countCriteria != 0)
                     {
