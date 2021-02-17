@@ -6,8 +6,8 @@
     position: relative;
     text-align: center;
     cursor: default;
-    background: -webkit-linear-gradient(45deg, #ff89e9 0%, #05abe0 100%);
-    background: linear-gradient(45deg, #ff89e9 0%,#05abe0 100%);
+    background: -webkit-linear-gradient(45deg, #ff89e9 0%, #E0FFFF 100%);
+    background: linear-gradient(45deg, #ff89e9 0%,#E0FFFF 100%);
 }
 
     .hovereffect .overlay {
@@ -85,16 +85,16 @@
 
 
 /*Button*/
-.btnPaging {
+/*.btnPaging {*/
     /* margin-top: calc(50% + 25px); */
-    position: relative;
+    /*position: relative;
     display: table-cell;
     width: 25%;
     height: 50px;
     font-size: 1em;
-    font-weight: bold;
+    font-weight: bold;*/
     /* line-height: 60px; */
-    text-align: center;
+    /*text-align: center;
     text-transform: uppercase;
     background-color: transparent;
     cursor: pointer;
@@ -134,4 +134,58 @@
         stroke-width: 4;
         stroke-dasharray: 196, 543;
         stroke-dashoffset: 437;
-    }
+    }*/
+
+.btnNav {
+    box-shadow: inset 0px 1px 0px 0px #dcecfb;
+    background: linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
+    background-color: #bddbfa;
+    border-radius: 6px;
+    border: 1px solid #84bbf3;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: bold;
+    padding: 6px 24px;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px #528ecc;
+}
+
+.btnNav:hover {
+    background: linear-gradient(to bottom, #80b5ea 5%, #bddbfa 100%);
+    background-color: #80b5ea;
+}
+
+.btnNav:active {
+    position: relative;
+    top: 1px;
+}
+
+.btnPaging {
+    box-shadow: 3px 4px 0px 0px #1564ad;
+    background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
+    background-color: #79bbff;
+    border-radius: 5px;
+    border: 1px solid #337bc4;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    font-size: 17px;
+    padding: 12px 44px;
+    text-shadow: 0px 1px 0px #528ecc;
+}
+
+.btnPaging:hover {
+    background: linear-gradient(to bottom, #378de5 5%, #79bbff 100%);
+    background-color: #378de5;
+}
+
+.btnPaging:active {
+    position: relative;
+    top: 1px;
+}
