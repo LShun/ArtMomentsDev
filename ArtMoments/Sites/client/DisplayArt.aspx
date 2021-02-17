@@ -1,9 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/General.Master"  CodeBehind="DisplayArtwork.aspx.cs" Inherits="ArtMoments.Sites.client.DisplayArtwork" %>
+﻿<%@ Page Language="C#" MasterPageFile="~/Masters/General.Master"  AutoEventWireup="true" CodeBehind="DisplayArt.aspx.cs" Inherits="ArtMoments.Sites.client.DisplayArt" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Display Artwork</title>
     <link href="../../Content/css/searchForm.css" rel="stylesheet" />
-    <link href="../../Content/css/DLProd.css" rel="stylesheet" />
+    <link href="../../Content/css/DLProduct.css" rel="stylesheet" />
     <style type="text/css">
         .btnImg{
             width:100%;
@@ -66,13 +66,13 @@
                             <div class="sign" style="left:30%;" onchange="ChangeLabel">
                               <span class="value">30</span>
                             </div>
-                            <div class="sign" style="left:%;">
+                            <div class="sign" style="left:60%;">
                               <span class="value">60</span>
                             </div>
                               <asp:Label ID="lblMinPRange" runat="server" Text="" Visible="false"></asp:Label>
                               <asp:Label ID="lblMaxPRange" runat="server" Text="" Visible="false"></asp:Label>
                           </div>
-                           <input type="range" tabindex="0" value="30" max="100" min="0" step="100" runat="server" id="rangeMin" oninput="
+                           <input type="range" tabindex="0" value="30" max="100" min="0" step="1" runat="server" id="rangeMin" oninput="
                               this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
                               var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
                               var children = this.parentNode.childNodes[1].childNodes;
@@ -82,7 +82,7 @@
                               children[11].style.left=value+'%';
                               children[11].childNodes[1].innerHTML=this.value;" />
 
-                          <input type="range" tabindex="0" value="60" max="100" min="0" step="100" runat="server" id="rangeMax" oninput="
+                          <input type="range" tabindex="0" value="60" max="100" min="0" step="1" runat="server" id="rangeMax" oninput="
                               this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
                               var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
                               var children = this.parentNode.childNodes[1].childNodes;
@@ -131,7 +131,7 @@
                     </table>
                --%>
                 <div class="hovereffect">
-                    <asp:Image CssClass="img-responsive" ID="ibtnCategory_img" runat="server" Height="175px" Width="100%" 
+                    <asp:Image CssClass="img-responsive" ID="imgCategory_img" runat="server" Height="175px" Width="100%" 
                             ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("category_image")) %>'  />
                             
                         <div class="overlay">
@@ -147,22 +147,22 @@
                 <SelectedItemStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
             </asp:DataList>
 
-            <table id="dlPaging" runat="server" style="width:100%; margin-left:3%; margin-top: 3%">  
+            <table id="dlPaging" runat="server" style="width:100%; margin:2% 0% 0% 5%">  
               <tr>  
                 <td>  
                     <asp:Button CssClass="btnPaging" ID="btnFirst" runat="server" Font-Bold="true" Text="First" OnClick="btnFirst_Click"/></td>  
                 <td>  
                     <asp:Button CssClass="btnPaging" ID="btnPrevious" runat="server" Font-Bold="true" Text="Previous" OnClick="btnPrevious_Click"/></td>  
                 <td>  
-                    <asp:Button CssClass="btnPaging" ID="btnNext" runat="server" Font-Bold="true" Text="Next" OnClick="btnNext_Click"/></td>  
+                    <asp:Button CssClass="btnPaging" ID="btnNext" runat="server" Font-Bold="true" Text="Next" OnClick="btnNext_Click" style="height: 48px"/></td>  
                 <td>  
                      <asp:Button CssClass="btnPaging" ID="btnLast" runat="server" Font-Bold="true" Text="Last" OnClick="btnLast_Click"/></td>  
                 </tr>  
                </table>  
 
-              <%--<table id="dlPaging" runat="server" style="width:100%">
+            <%--  <table id="dlPaging" runat="server" style="width:100%">
                <tr>  
-                <td class="btnPaging" onclick="btnFirst_Click">  
+                <td class="btnPaging">  
                     <svg width="100%" height="62">
                     <defs>
                         <linearGradient id="grad1">
@@ -228,4 +228,3 @@
                  </div>
 
 </asp:Content>
-
