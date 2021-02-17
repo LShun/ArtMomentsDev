@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ArtMoments.Sites.general
+namespace ArtMoments.Sites.client
 {
 
 
-    public partial class DisplayArtworkProduct
+    public partial class DisplayArtProduct
     {
 
         /// <summary>
@@ -168,13 +168,13 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.DataList dlProd;
 
         /// <summary>
-        /// dlPaging control.
+        /// tbPaging control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTable dlPaging;
+        protected global::System.Web.UI.HtmlControls.HtmlTable tbPaging;
 
         /// <summary>
         /// btnFirst control.

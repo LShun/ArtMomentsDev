@@ -11,7 +11,10 @@ namespace ArtMoments.Sites.usermgmt
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["UserName"] == null)
+            {
+                Response.Redirect("PreLogin.aspx");
+            }
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
@@ -21,7 +24,7 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void btnOnClickSetting(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerSetting.aspx");
+            Response.Redirect("BuyerSettingExtra.aspx");
         }
 
         protected void btnPresentation_Click(object sender, EventArgs e)

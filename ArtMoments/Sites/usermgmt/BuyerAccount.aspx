@@ -1,43 +1,9 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="BuyerAccount.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerAccount" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <title></title>
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
-    <style type="text/css">
-        .auto-style2 {
-            height: 6px;
-            width: 320px;
-        }
-        .auto-style3{
-            margin-left:170px; 
-            margin-top: 30px; 
-            width: 47%;
-        }
-        .auto-style4 {
-            height: 27px;
-            width: 100%;
-        }
-        .auto-style5 {
-            height: 27px;
-            width: 320px;
-        }
-        .auto-style6 {
-            padding:10px; 
-            width:10%; 
-            background-color:antiquewhite;
-        }
-        .auto-style7 {
-            width:130px;
-            height: 40px;
-        }
-        .auto-style8 {
-            width:130px;
-            height: 40px;
-            background-color: #FFFFFF; 
-            border-color: #FFFFFF;
-        }
-    </style>
+    <link href="../../Content/css/BuyerAcc.css" rel="stylesheet" />
+   
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 <div class="container">
@@ -45,8 +11,9 @@
 		<div class="col-md-3 ">
 		     <div class="list-group ">
               <a href="BuyerAccount.aspx"  class="list-group-item list-group-item-action active">My Account</a>
-              <a href="BuyerSetting.aspx" class="list-group-item list-group-item-action">Setting</a>
-              <a href="BuyerPresentation.aspx"  class="list-group-item list-group-item-action">Presentation</a>              
+              <a href="BuyerSettingExtra.aspx" class="list-group-item list-group-item-action">Setting</a>
+              <a href="BuyerPresentation.aspx"  class="list-group-item list-group-item-action">Presentation</a>  
+			  <a href="HomePage.aspx"  class="list-group-item list-group-item-action">Log out</a>               
               
             </div> 
 		</div>
@@ -92,7 +59,57 @@
 		            
 		        </div>
 		    </div>
-		</div>       
+		</div>    
+        <br /><br />
+        <div class="row">
+			<div class="flip-card col-25">
+				<div class="flip-card-inner">
+					<div class="flip-card-front">
+						<img alt="Avatar" src="../../Content/sea.jpg" style="width: 200px; height: 250px;">
+					</div>
+					<div class="flip-card-back">
+						<button></button><br><br><br>
+						<p>Best Seller --&gt; <br>Check out this picture ! ! </p>
+					</div>
+				</div>
+			</div>
+			<div class="flip-card col-25">
+				<div class="flip-card-inner">
+					<div class="flip-card-front">
+						<img alt="Avatar" src="../../Content/panda.jpg" style="width: 200px; height: 250px;">
+					</div>
+					<div class="flip-card-back">
+						<button></button><br><br><br>
+						<p>Is this a panda or a tree??</p>
+					</div>
+				</div>
+			</div>
+			<div class="flip-card col-25">
+				<div class="flip-card-inner">
+					<div class="flip-card-front">
+						<img alt="Avatar" src="../../Content/colorful-street.jpg" style="width: 200px; height: 250px;">
+					</div>
+					<div class="flip-card-back">
+						<button></button><br><br><br>
+						<p>Watch these beautiful and colorful leaves...imagine having this tree in you garden! 
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="flip-card col-25">
+				<div class="flip-card-inner">
+					<div class="flip-card-front">
+						<img alt="Avatar" src="../../Content/Black%20Deer2.png" style="width: 200px; height: 250px;">
+					</div>
+					<div class="flip-card-back">
+						<button></button><br><br><br>
+						<p>Wonderful art offers up for grab...You MUST NOT miss it ! 
+						!</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
         </div>
     </div>
 </asp:Content>

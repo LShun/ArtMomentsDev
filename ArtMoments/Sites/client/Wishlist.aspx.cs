@@ -16,7 +16,7 @@ namespace ArtMoments.Sites.client
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["UserName"] = "John";
         }
 
         protected void gvWishList_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -34,7 +34,7 @@ namespace ArtMoments.Sites.client
           
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void btnSearch_Click(object sender, EventArgs e)
         {
             SqlConnection conn = new SqlConnection(strCon);
             conn.Open();
