@@ -9,6 +9,14 @@
             object-fit: cover;
         }
 
+        .latest {
+            width:auto;
+            height:auto;
+            min-height: 200px;
+            max-width: 200px;
+            max-height: 200px;
+        }
+
         .paginate span {
             color: Highlight;
         }
@@ -55,8 +63,7 @@
 
                                 <asp:TemplateField HeaderText="Image">
                                     <ItemTemplate>
-                                        <asp:ImageButton ID="prod_image" runat="server"
-                                            Height="200px" Width="200px"
+                                        <asp:Image ID="imgLatestProduct" runat="server" CssClass="latest"
                                             ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
