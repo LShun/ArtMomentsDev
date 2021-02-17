@@ -20,7 +20,7 @@ namespace ArtMoments.Sites.general
             if (!IsPostBack)
             {
                 Session["CustId"] = 1;
-                Session["ProdId"] = 6;
+                Session["ProdId"] = Request.QueryString["id"];
 
                 if (Session["CustId"] != null && Session["ProdId"] != null)
                 {
