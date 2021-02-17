@@ -9,7 +9,7 @@ using System.Data;
 using System.Web.ModelBinding;
 using System.Configuration;
 
-namespace ArtMoments.Sites.general
+namespace ArtMoments.Sites.client
 {
     public partial class DisplayArtwork : System.Web.UI.Page
     {
