@@ -12,37 +12,45 @@ namespace ArtMoments.Sites.client
 {
     public partial class DisplayArtProduct : System.Web.UI.Page
     {
-        string strCon = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+            string strCon = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
             int CurrentPage;
-            protected void Page_Load(object sender, EventArgs e)
-            {
-                bindDDLprocCat();
-                bindDDLprocSize();
-                bindDDLartist();
+            int currentDdlProdCat;
+            int currentDdlArtist;
+            int currentDdlProdSize;
+            string currentTxtMinPRange;
+            string currentTxtMaxPRange;
+            string currentTxtProdName;
 
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            lblRecordMsg.Text = "";
                 if (PreviousPage != null && PreviousPage.IsCrossPagePostBack)
                 {
-                    DropDownList ProdCategory = PreviousPage.FindControl("ContentPlaceHolder1_ddlProdCat") as DropDownList;
-                    DropDownList Artist = PreviousPage.FindControl("ContentPlaceHolder1_ddlArtist") as DropDownList;
-                    DropDownList ProdSize = PreviousPage.FindControl("ContentPlaceHolder1_ddlProdSize") as DropDownList;
-                    Label MinPriceRange = PreviousPage.FindControl("ContentPlaceHolder1_lblMinPRange") as Label;
-                    Label MaxPriceRange = PreviousPage.FindControl("ContentPlaceHolder1_lblMaxPRange") as Label;
+                    bindDDLprocCat();
+                    bindDDLprocSize();
+                    bindDDLartist();
+                    ContentPlaceHolder cp = PreviousPage.Master.FindControl("ContentPlaceHolder1") as ContentPlaceHolder;
+                    if (cp != null)
+                    {
+                        DropDownList ProdCategory = cp.FindControl("ddlProdCat") as DropDownList;
+                        DropDownList Artist = cp.FindControl("ddlArtist") as DropDownList;
+                        DropDownList ProdSize = cp.FindControl("ddlProdSize") as DropDownList;
+                        TextBox MinPRange = cp.FindControl("txtMinPR") as TextBox;
+                        TextBox MaxPRange = cp.FindControl("txtMaxPR") as TextBox;
+                        TextBox ProdName = cp.FindControl("txtProdName") as TextBox;
 
-
-                    lblDetails.Text = ProdCategory.SelectedItem.Value + "<br/>" +
-                        Artist.SelectedItem.Value + "<br/>" +
-                        ProdSize.SelectedItem.Value + "<br/>" +
-                        MinPriceRange.Text + "<br/>" +
-                        MaxPriceRange.Text;
-
-                    //ddlProdCat.SelectedItem.Value.Equals(ProdCategory.SelectedItem.Value);
-                    //ddlArtist.SelectedItem.Value.Equals(Artist.SelectedItem.Value);
-                    //ddlProdSize.SelectedItem.Value.Equals(ProdSize.SelectedItem.Value);
-                    //lblMinPRange.Text = MinPriceRange.Text;
-                    //lblMaxPRange.Text = MaxPriceRange.Text;
-                    //rangeMin.Value.Equals(MinPriceRange.Text);
-                    //rangeMax.Value.Equals(MaxPriceRange.Text);
-
+                        ddlProdCat.SelectedItem.Value = ProdCategory.SelectedItem.Value;
+                        currentDdlProdCat = ddlProdCat.SelectedIndex = ProdCategory.SelectedIndex;
+                        ddlArtist.SelectedItem.Value = Artist.SelectedItem.Value;
+                        currentDdlArtist = ddlArtist.SelectedIndex = Artist.SelectedIndex;
+                        ddlProdSize.SelectedItem.Value = ProdSize.SelectedItem.Value;
+                        currentDdlProdSize = ddlProdSize.SelectedIndex = ProdSize.SelectedIndex;
+                        currentTxtMinPRange = txtMinPR.Text = MinPRange.Text;
+                        currentTxtMaxPRange = txtMaxPR.Text = MaxPRange.Text;
+                        currentTxtProdName = txtProdName.Text = ProdName.Text;
+                        ViewState["PageCount"] = 0;
+                        filterDLProd();
+                    }
                 }
                 else
                 {
@@ -50,9 +58,11 @@ namespace ArtMoments.Sites.client
                     {
                         generalDisplay();
                         ViewState["PageCount"] = 0;
+                        bindDDLprocCat();
+                        bindDDLprocSize();
+                        bindDDLartist();
                     }
 
-                    
                 }
                 CurrentPage = (int)ViewState["PageCount"];
 
@@ -60,21 +70,12 @@ namespace ArtMoments.Sites.client
             }
 
 
-            public void generalDisplay()
+            protected void generalDisplay()
             {
                 SqlConnection conn = new SqlConnection(strCon);
                 conn.Open();
 
                 string sqlCmd = "SELECT DISTINCT [id], [prod_name], [prod_image] FROM [Product] WHERE ([category_id] = @category_id) ORDER BY [prod_name]";
-
-                //using (SqlCommand cmd = new SqlCommand(sqlCmd, conn))
-                //{
-                //    cmd.CommandType = CommandType.Text;
-                //    cmd.Parameters.AddWithValue("@category_id", Request.QueryString["id"].ToString());
-                //    SqlDataReader dr = cmd.ExecuteReader();
-                //    dlProd.DataSource = dr;
-                //    dlProd.DataBind();
-                //}
 
                 using (SqlDataAdapter sda = new SqlDataAdapter(sqlCmd, conn))
                 {
@@ -97,7 +98,7 @@ namespace ArtMoments.Sites.client
 
             }
 
-            public void bindDDLprocCat()
+            protected void bindDDLprocCat()
             {
                 ddlProdCat.Items.Clear();
                 ddlProdCat.Items.Add("ALL");
@@ -121,7 +122,7 @@ namespace ArtMoments.Sites.client
                 conn.Close();
             }
 
-            public void bindDDLprocSize()
+             protected void bindDDLprocSize()
             {
                 ddlProdSize.Items.Clear();
                 ddlProdSize.Items.Add("ALL");
@@ -145,7 +146,7 @@ namespace ArtMoments.Sites.client
                 conn.Close();
             }
 
-            public void bindDDLartist()
+            protected void bindDDLartist()
             {
                 ddlArtist.Items.Clear();
                 ddlArtist.Items.Add("ALL");
@@ -174,8 +175,9 @@ namespace ArtMoments.Sites.client
                 ddlProdCat.ClearSelection();
                 ddlArtist.ClearSelection();
                 ddlProdSize.ClearSelection();
-                rangeMin.Value = "30";
-                rangeMax.Value = "60";
+                txtMinPR.Text = "";
+                txtMaxPR.Text = "";
+                txtProdName.Text = "";
                 generalDisplay();
             }
 
@@ -236,57 +238,126 @@ namespace ArtMoments.Sites.client
                 DataListPaging((DataTable)ViewState["PagedDataSurce"]);
             }
 
-            protected void btnSearch_Click(object sender, EventArgs e)
+            private void filterDLProd()
             {
                 SqlConnection conn = new SqlConnection(strCon);
                 conn.Open();
 
-                string sqlCmd = "SELECT DISTINCT [id], [prod_name], [prod_image]" +
-                    " FROM [Product],[Product_Category]" +
-                    "WHERE (";
-
-                int countCriteria = 0;
+                string sqlCmd = "SELECT DISTINCT Product.id, Product.prod_name, Product.prod_image" +
+                    " FROM Product";
 
                 if (!ddlProdCat.SelectedItem.Value.Equals("ALL"))
                 {
-                    sqlCmd += "[Product.category_id] = [Product_Category.id] " +
-                    "AND [Product_Category.category_name] = @CategoryName";
-                    countCriteria += 1;
+                    sqlCmd += ", Product_Category";
                 }
 
                 if (!ddlArtist.SelectedItem.Value.Equals("ALL"))
                 {
-                    if (countCriteria == 0)
+                    sqlCmd += ", [User]";
+                }
+
+                sqlCmd += " WHERE (";
+
+                int countCriteria = 0;
+                
+                if (!ddlProdCat.SelectedItem.Value.Equals("ALL"))
+                {
+                    sqlCmd += "Product.category_id = Product_Category.id " +
+                    "AND Product_Category.category_name = @CategoryName";
+                    countCriteria += 1;
+                    currentDdlProdCat = ddlProdCat.SelectedIndex;
+                }
+
+                if (!ddlArtist.SelectedItem.Value.Equals("ALL"))
+                {
+                    if (countCriteria != 0)
                     {
                         sqlCmd += " AND ";
                     }
-                    sqlCmd += "[Product.user_id] = @ArtistName";
+                    sqlCmd += "Product.user_id = [User].id " +
+                    "AND [User].user_name = @ArtistName";
                     countCriteria += 1;
+                    currentDdlArtist = ddlArtist.SelectedIndex;
                 }
 
                 if (!ddlProdSize.SelectedItem.Value.Equals("ALL"))
                 {
-                    if (countCriteria == 0)
+                    if (countCriteria != 0)
                     {
                         sqlCmd += " AND ";
                     }
-                    sqlCmd += "[Product.prod_size] = @ProductSize";
+                    sqlCmd += "Product.prod_size = @ProductSize";
                     countCriteria += 1;
+                    currentDdlProdSize = ddlProdSize.SelectedIndex;
                 }
 
-                if (countCriteria == 0)
+                if(!txtMinPR.Text.Equals(""))
                 {
-                    sqlCmd = "SELECT DISTINCT [id], [prod_name], [prod_image]" +
-                    " FROM [Product] ";
+                    if (countCriteria != 0)
+                    {
+                        sqlCmd += " AND ";
+                    }
+                    sqlCmd += "Product.prod_price >= " + (txtMinPR.Text);
+                    countCriteria += 1;
+                    currentTxtMinPRange = txtMinPR.Text;
+                }
+
+                if (!txtMaxPR.Text.Equals(""))
+                {
+                    if (countCriteria != 0)
+                    {
+                        sqlCmd += " AND ";
+                    }
+                    sqlCmd += "Product.prod_price <= " + (txtMaxPR.Text);
+                    countCriteria += 1;
+                    currentTxtMaxPRange = txtMaxPR.Text;
+                }
+
+                if(!txtProdName.Text.Equals(""))
+                {
+                    if (countCriteria != 0)
+                    {
+                        sqlCmd += " AND ";
+                    }
+                    sqlCmd += "Product.prod_name LIKE \'%" + (txtProdName.Text) + "%\'";
+                    countCriteria += 1;
+                    currentTxtProdName = txtProdName.Text;
+                }
+
+            if (countCriteria == 0)
+                {
+                    sqlCmd = "SELECT DISTINCT id, prod_name, prod_image" +
+                    " FROM Product" +
+                    " ORDER BY prod_name";
+                }
+                else
+                {
+                    sqlCmd += ")" +
+                    " ORDER BY [prod_name]";
                 }
 
 
                 using (SqlDataAdapter sda = new SqlDataAdapter(sqlCmd, conn))
                 {
                     sda.SelectCommand.CommandType = CommandType.Text;
-                    sda.SelectCommand.Parameters.AddWithValue("@CategoryName", ddlProdCat.SelectedItem.Value.ToString());
-                    sda.SelectCommand.Parameters.AddWithValue("@ArtistName", ddlArtist.SelectedItem.Value.ToString());
-                    sda.SelectCommand.Parameters.AddWithValue("@ProductSize", ddlProdSize.SelectedItem.Value.ToString());
+                    if (!ddlProdCat.SelectedItem.Value.Equals("ALL"))
+                    {
+                        sda.SelectCommand.Parameters.AddWithValue("@CategoryName", ddlProdCat.SelectedItem.Value.ToString());
+
+                    }
+
+                    if (!ddlArtist.SelectedItem.Value.Equals("ALL"))
+                    {
+                        sda.SelectCommand.Parameters.AddWithValue("@ArtistName", ddlArtist.SelectedItem.Value.ToString());
+
+                    }
+
+                    if (!ddlProdSize.SelectedItem.Value.Equals("ALL"))
+                    {
+                        sda.SelectCommand.Parameters.AddWithValue("@ProductSize", ddlProdSize.SelectedItem.Value.ToString());
+
+                    }
+
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
 
@@ -294,15 +365,24 @@ namespace ArtMoments.Sites.client
                     {
                         DataListPaging(dt);
                     }
-
                     else
                     {
                         lblRecordMsg.Text = "No Record is found";
                     }
                 }
+
+                ddlProdCat.SelectedIndex = currentDdlProdCat;
+                ddlArtist.SelectedIndex = currentDdlArtist;
+                ddlProdSize.SelectedIndex = currentDdlProdSize;
+                txtMinPR.Text = currentTxtMinPRange;
+                txtMaxPR.Text = currentTxtMaxPRange;
+                txtProdName.Text = currentTxtProdName;
                 conn.Close();
+            }
 
-
+            protected void btnSearch_Click1(object sender, EventArgs e)
+            {
+                filterDLProd();
             }
     }
 }
