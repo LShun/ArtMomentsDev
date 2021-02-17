@@ -38,10 +38,16 @@ namespace ArtMoments.Sites.artist
                         cmd.Parameters.AddWithValue("@ProdID", productID);
                         using (SqlDataReader sdr = cmd.ExecuteReader())
                         {
-        
+                            string artSize = "";
+                            string[] spearator = {"cm", "X", "cm", " "};
+
                             sdr.Read();
                             txtArtworkName.Text = sdr["prod_name"].ToString();
-                            txtArtworkSize.Text = sdr["prod_size"].ToString();
+                            artSize = sdr["prod_size"].ToString();
+                            string[] artSize1 = artSize.Split(spearator,
+           StringSplitOptions.RemoveEmptyEntries);
+                            txtArtworkHeight.Text = artSize1[0];
+                            txtArtworkWidth.Text = artSize1[1];
                             txtArtworkDesc.Text = sdr["prod_description"].ToString();
                             string categoryId = sdr["category_id"].ToString();
                             ddlArtworkCategory.SelectedValue = categoryId;           
@@ -60,7 +66,7 @@ namespace ArtMoments.Sites.artist
             string pricePattern = @"^\d{0,8}(\.\d{1,2})?$";
 
             bool isPriceValid = Regex.IsMatch(txtArtworkPrice.Text, pricePattern);
-            if (txtArtworkName.Text.Length == 0 || txtArtworkSize.Text.Length == 0 || txtArtworkDesc.Text.Length == 0 || txtArtworkPrice.Text.Length == 0 || txtArtworkStock.Text.Length == 0 || ImageUpload.HasFile == false)
+            if (txtArtworkName.Text.Length == 0 || txtArtworkHeight.Text.Length == 0 || txtArtworkWidth.Text.Length == 0 || txtArtworkDesc.Text.Length == 0 || txtArtworkPrice.Text.Length == 0 || txtArtworkStock.Text.Length == 0 || ImageUpload.HasFile == false)
             {
                 lblErrorMsg.Text = "The form is not completed!!!";
             }
@@ -71,7 +77,7 @@ namespace ArtMoments.Sites.artist
             else
             {
                 string artworkName = txtArtworkName.Text;
-                string artworkSize = txtArtworkSize.Text;
+                string artworkSize = txtArtworkHeight.Text + "cm X " + txtArtworkWidth.Text + "cm";
                 string artworkDesc = txtArtworkDesc.Text;
                 int categoryID = int.Parse(ddlArtworkCategory.SelectedValue);
                 double artworkPrice = double.Parse(txtArtworkPrice.Text);
