@@ -72,7 +72,7 @@ namespace ArtMoments.Sites.artist
             }
             else if (!isPriceValid)
             {
-                lblErrorMsg.Text = "The price is invalid!!!";
+                lblErrorMsg.Text = "Price only can decimal number with maximum 2 decimal places";
             }
             else
             {
