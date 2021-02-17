@@ -58,7 +58,7 @@
             padding-top: 8px;
         }
 
-        .row.sizeCategoryAuthorDB, .row.lbldescriptionDivision {
+        .row.sizeCategoryAuthorDB, .row.lbldescriptionDivision, #availableStock {
            margin-top: -5px;
             font-size: 18px;
         }
@@ -252,7 +252,7 @@
                             <asp:Button ID="btnMinusQty" runat="server" Text="-" OnClick="btnMinus_Click" />
                             <asp:TextBox ID="txtboxQty" runat="server" Width="55px" onkeypress="numValid(event);" onfocusout="qtyValid();" class="txtboxQtyClass">1</asp:TextBox>
                             <asp:Button ID="btnPlusQty" runat="server" Text="+" OnClick="btnPlusQty_Click" />
-                            <asp:Label ID="lblHideStock" runat="server" Text="" Visible="true" CssClass ="lblHideStock"></asp:Label>
+                            
                         </div>
                     </div>
 
@@ -265,6 +265,10 @@
                         </asp:DropDownList>
                         <asp:SqlDataSource ID="SqlDataSourceDelivery" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [id], [deliver_type] FROM [Delivery]"></asp:SqlDataSource>
                     </div>
+                </div>
+
+                <div class="col-12" id="availableStock">
+                    <asp:Label ID="lblStock" runat="server" Text="" Visible="true" CssClass ="lblStock"></asp:Label>
                 </div>
 
                 <!-- Buy now button -->
@@ -352,5 +356,5 @@
             //  var pricericparseFloat.e * qtyInput;;
            //   document.getElementsByClassName("txtboxQtyClass")[0].textContent = subprice           // }   
         </script>
-    <asp:Label ID="artworkPricePerPiece" runat="server" Text="" CssClass="artworkPricePerPiece"></asp:Label>
+    <asp:Label ID="artworkPricePerPiece" runat="server" Text="" CssClass="artworkPricePerPiece" Visible="false"></asp:Label>
 </asp:Content>

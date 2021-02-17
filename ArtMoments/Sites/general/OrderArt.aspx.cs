@@ -20,7 +20,7 @@ namespace ArtMoments.Sites.general
             if(!IsPostBack)
             {
                 Session["CustId"] = 1;
-                Session["ProdId"] = 6;
+                Session["ProdId"] = Request.QueryString["id"];
 
                 if (Session["CustId"] != null && Session["ProdId"] != null)
                 {
@@ -51,7 +51,7 @@ namespace ArtMoments.Sites.general
                                         artworkPricePerPiece.Text= ((Double)prodInfo.Rows[0]["prod-price"]).ToString();
                                         Session["ProdPrice"] = prodInfo.Rows[0].Field<System.Double>("prod-price");
                                         //artworkPrice = prodInfo.Rows[0].Field<System.Double>("prod-price");
-                                        lblHideStock.Text = prodInfo.Rows[0]["prod-stock"].ToString();
+                                        lblStock.Text = prodInfo.Rows[0]["prod-stock"].ToString();
                                         checkStock();
                                         byte[] imgBinUrlAuthor = (byte[])prodInfo.Rows[0]["author_profilePic"];
                                         authorImage.Src = string.Format("data:image/png;base64,{0}", Convert.ToBase64String(imgBinUrlAuthor));
@@ -91,7 +91,7 @@ namespace ArtMoments.Sites.general
 
         protected void checkStock()
         {
-            int availableStock = Convert.ToInt32(lblHideStock.Text);
+            int availableStock = Convert.ToInt32(lblStock.Text);
             if (availableStock == 0)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Found')", true);
@@ -382,7 +382,7 @@ namespace ArtMoments.Sites.general
         protected void btnPlusQty_Click(object sender, EventArgs e)
         {
             int custOrder = Convert.ToInt32(txtboxQty.Text);
-            int availableStock = Convert.ToInt32(lblHideStock.Text);
+            int availableStock = Convert.ToInt32(lblStock.Text);
             if (custOrder < availableStock)
             {
                 ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Success plus')", true);

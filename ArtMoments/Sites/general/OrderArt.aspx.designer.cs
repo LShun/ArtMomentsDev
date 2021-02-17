@@ -123,15 +123,6 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.Button btnPlusQty;
 
         /// <summary>
-        /// lblHideStock control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblHideStock;
-
-        /// <summary>
         /// lblRM control.
         /// </summary>
         /// <remarks>
@@ -166,6 +157,15 @@ namespace ArtMoments.Sites.general
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceDelivery;
+
+        /// <summary>
+        /// lblStock control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblStock;
 
         /// <summary>
         /// btnBuyNow control.

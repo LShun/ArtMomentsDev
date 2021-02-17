@@ -211,7 +211,7 @@ namespace ArtMoments.Sites.general
 
         protected void dlProdCat_ItemCommand(object source, DataListCommandEventArgs e)
         {
-            if(e.CommandName == "viewProd")
+            if(e.CommandName == "BtnProdImg")
             {
                 Response.Redirect("DisplayArtworkProduct.aspx?id=" + e.CommandArgument.ToString());
             }

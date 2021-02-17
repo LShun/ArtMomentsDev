@@ -305,7 +305,14 @@ namespace ArtMoments.Sites.client
                 cmdSales.ExecuteNonQuery();
                 con.Close();
             }
+        }
 
+        protected void goToSpecificProd(object sender, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "viewArtDetail")
+            {
+                Response.Redirect("~/Sites/general/OrderArt.aspx.aspx?id=" + e.CommandArgument);
+            }
         }
     }
 }
