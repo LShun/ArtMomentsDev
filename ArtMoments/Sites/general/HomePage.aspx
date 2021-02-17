@@ -3,7 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
     <style>
-        img {
+        .img-benefits  {
             width: 100px;
             height: 100px;
             object-fit: cover;
@@ -85,7 +85,7 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-4">
-                                <img src="../../Content/hp-wishlist-stars.jpg" />
+                                <img class="img-benefits" src="../../Content/hp-wishlist-stars.jpg" />
                             </div>
                             <div class="col-8">
                                 <div class="card-body">
@@ -100,7 +100,7 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-4">
-                                <img src="../../Content/hp-buy-art.jpg" />
+                                <img class="img-benefits" src="../../Content/hp-buy-art.jpg" />
                             </div>
                             <div class="col-8">
                                 <div class="card-body">
@@ -118,7 +118,7 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-4">
-                                <img src="../../Content/hp-additional-income.jpg" />
+                                <img class="img-benefits" src="../../Content/hp-additional-income.jpg" />
                             </div>
                             <div class="col-8">
                                 <div class="card-body">
@@ -133,7 +133,7 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-4">
-                                <img src="../../Content/hp-visibility.jpg" />
+                                <img class="img-benefits" src="../../Content/hp-visibility.jpg" />
                             </div>
                             <div class="col-8">
                                 <div class="card-body">
