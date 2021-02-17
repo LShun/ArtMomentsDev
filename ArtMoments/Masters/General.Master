@@ -79,7 +79,7 @@
             text-align: center;  
             height: 30px;  
             line-height: 30px;  
-            margin-top: 5px;  
+            margin-top: 5px;
         }  
   
         .ChildMenu:hover {  
@@ -134,6 +134,15 @@
             padding: 0.5vh 0.5vh;
         }
 
+        .span-menu :hover {
+            background-color: darkgrey;
+        }
+
+        .tv-menu {
+            padding-left: 2vh 2vh;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
         /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
         @media screen and (max-height: 450px) {
           .sidenav {padding-top: 15px;}
@@ -174,9 +183,9 @@
         <!-- sidebar COPY PASTE FIX LATER -->
         <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-          <asp:TreeView ID="TreeView1" runat="server" DataSourceID="SiteMapDataSource1" ImageSet="Arrows">
+          <asp:TreeView ID="TreeView1" CssClass="tv-menu" runat="server" DataSourceID="SiteMapDataSource1" ImageSet="Arrows">
               <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
-              <NodeStyle Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
+              <NodeStyle Font-Names="Helvetica" Font-Size="12pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
               <ParentNodeStyle Font-Bold="False" />
               <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" HorizontalPadding="0px" VerticalPadding="0px" />
             </asp:TreeView>
@@ -189,7 +198,7 @@
             <tr>
                 <!-- Careful sidebar menu -->
                 <td>
-                    <span onclick="openNav()">
+                    <span class="span-menu" onclick="openNav()">
                     <asp:Image ID="imgMenu" ImageUrl="~/Content/menu.svg" CssClass="img-menu" runat="server" /></span>
                 </td>
                 <td class="brand"><h3>ArtMoments</h3></td>
