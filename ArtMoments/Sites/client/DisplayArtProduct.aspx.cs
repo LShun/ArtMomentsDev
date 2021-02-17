@@ -185,9 +185,10 @@ namespace ArtMoments.Sites.client
             {
                 if (e.CommandName == "orderProd")
                 {
-                    Response.Redirect("OrderArt.aspx?id=" + e.CommandArgument.ToString());
+                    Response.Redirect("~/Sites/general/OrderArt.aspx?id=" + e.CommandArgument.ToString());
                 }
             }
+       
 
             private void DataListPaging(DataTable dt)
             {

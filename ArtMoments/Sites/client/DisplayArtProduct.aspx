@@ -124,7 +124,7 @@
                                 <asp:Label ID="lblProd_name" runat="server" Text='<%# Eval("prod_name") %>'></asp:Label>
                             </h2>
 				            <p>
-					            <asp:Button CssClass="btnNav" ID="btnNavProd" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="viewProd" Text="Order"/>
+					            <asp:Button CssClass="btnNav" ID="btnNavProd" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="orderProd" Text="Order"/>
 				            </p>
                         </div>
                    </div>
