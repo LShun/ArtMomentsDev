@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-namespace ArtMoments.Sites.general
+namespace ArtMoments.Sites.client
 {
     public partial class DisplayArtworkProduct : System.Web.UI.Page
     {

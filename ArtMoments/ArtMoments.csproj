@@ -151,7 +151,6 @@
     <Content Include="Sites\usermgmt\BuyerAccount.aspx" />
     <Content Include="Sites\usermgmt\BuyerPresentation.aspx" />
     <Content Include="Sites\usermgmt\BuyerSetting.aspx" />
-    <Content Include="Sites\usermgmt\BuyerSettingEdit.aspx" />
     <Content Include="Sites\usermgmt\ChangePassword.aspx" />
     <Content Include="Sites\usermgmt\ConfirmedRegMsg.aspx" />
     <Content Include="Sites\usermgmt\LoginUser.aspx" />
@@ -260,13 +259,6 @@
     </Compile>
     <Compile Include="Sites\usermgmt\BuyerSetting.aspx.designer.cs">
       <DependentUpon>BuyerSetting.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\usermgmt\BuyerSettingEdit.aspx.cs">
-      <DependentUpon>BuyerSettingEdit.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\usermgmt\BuyerSettingEdit.aspx.designer.cs">
-      <DependentUpon>BuyerSettingEdit.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\usermgmt\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
