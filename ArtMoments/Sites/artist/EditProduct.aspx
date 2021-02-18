@@ -31,7 +31,7 @@
     input[type=submit] {
         border: none;
         color: white;
-        opacity: 0.8;
+        opacity: 0.8;   /*the opacity of button is 0.8*/
         font-size: 17px;
         padding: 12px 20px;   /*top and bottom are 12px, right and left are 20px*/
         margin-right: 20px;
@@ -99,8 +99,8 @@
     }
     .btn-artwork {
         color: #fff;
-        background-color: #007bff;
-        border-color: #007bff;
+        background-color: #007bff;  /*blue color*/
+        border-color: #007bff;     /*blue color*/
         display: inline-block;
         font-weight: 400;
         text-align: center;
@@ -116,6 +116,17 @@
     .artworkWidth{
        padding-right:0;
     }
+    *, ::after, ::before {
+    box-sizing: border-box;
+    }
+
+    .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -165,7 +176,7 @@
 						<label for="artworkImage">Artwork Image*:</label> 
 					</div>
 					<div class="col-10">	
-                        <asp:fileupload id="ImageUpload" accept="image/*" runat="server" />	
+                        <asp:fileupload id="fuProdImage" accept="image/*" runat="server" />	
 					</div>
 					
 				</div>
@@ -205,6 +216,8 @@
                 return false;
             return true;
         }
+
+        //alert message when the form is not completed
         function alertMsg() {
             alert("The form is not completed!!!")
 
