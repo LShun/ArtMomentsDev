@@ -95,16 +95,16 @@ namespace ArtMoments.Sites.artist
             }
         }
 
-        protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e) //change to another page of table
         {
             productList.PageIndex = e.NewPageIndex;
             this.BindGrid();
         }
-        protected void OnSorting(object sender, GridViewSortEventArgs e)
+        protected void OnSorting(object sender, GridViewSortEventArgs e) //sorting the table
         {
             this.BindGrid(e.SortExpression);
         }
-        protected void addProdBtn_Click(Object sender, EventArgs e)
+        protected void addProdBtn_Click(Object sender, EventArgs e)  //add button is clicked
         {
             Response.Redirect("AddProduct.aspx");
         }
