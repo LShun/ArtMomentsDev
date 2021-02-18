@@ -16,22 +16,17 @@ namespace ArtMoments.Sites.usermgmt
 
     public partial class BuyerPresentationEdit : System.Web.UI.Page
     {
-        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
-
+        
+        string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
         protected void Page_PreInit(object sender, EventArgs e)
         {
-            if (Session["Username"] == null)
+            if (Session["UserType"].ToString().Equals("2"))
             {
-                MasterPageFile = "~/Masters/General.Master";
-
-            }
-            else if (Session["UserType"].ToString().Equals("2"))
-            {
-                MasterPageFile = "~/Masters/Artist.Master";
+                MasterPageFile = "~/Masters/Artist1.Master";
             }
             else if (Session["UserType"].ToString().Equals("1"))
             {
-                MasterPageFile = "~/Masters/Client.Master";
+                MasterPageFile = "~/Masters/Client1.Master";
             }
         }
 
@@ -104,12 +99,12 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void Upload(object sender, EventArgs e)
         {
-            if (FileUpload1.PostedFile != null)
+            if (fuProfilePic.PostedFile != null)
             {
                 byte[] bytes;
-                using (BinaryReader br = new BinaryReader(FileUpload1.PostedFile.InputStream))
+                using (BinaryReader br = new BinaryReader(fuProfilePic.PostedFile.InputStream))
                 {
-                    bytes = br.ReadBytes(FileUpload1.PostedFile.ContentLength);
+                    bytes = br.ReadBytes(fuProfilePic.PostedFile.ContentLength);
                 }
 
 

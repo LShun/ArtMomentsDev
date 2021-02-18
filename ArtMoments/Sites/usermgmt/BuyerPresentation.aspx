@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="BuyerPresentation.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerPresentationEdit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="BuyerPresentation.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerPresentationEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title></title>
     
@@ -38,7 +38,7 @@
 		                <div class="col-md-12">
 		                    <div>
                                 <div class="form-group row">
-                                <label for="website" class="col-4 col-form-label">Bibliography</label> 
+                                <label id="lblBibliography" for="website" class="col-4 col-form-label">Bibliography</label> 
                                 <div class="col-8">
                                   <asp:TextBox ID="tbBibliography" runat="server" OnTextChanged="tbBibliography_TextChanged" BorderStyle="Solid" CssClass="txtBoxBio"></asp:TextBox>
                                   <br /><br />
@@ -47,9 +47,9 @@
                                 </div>
                               </div>
                                 <div class="form-group row">
-                                <label for="website" class="col-4 col-form-label">Profile Picture</label> 
+                                <label id="lblProfilePic" for="website" class="col-4 col-form-label">Profile Picture</label> 
                                 <div class="col-8">
-                                    <asp:FileUpload ID="FileUpload1" runat="server"/>
+                                    <asp:FileUpload ID="fuProfilePic" runat="server"/>
                                     &nbsp;
                                     <asp:Button ID="btnUpload" class="btn btn-primary" runat="server" OnClick="Upload" Text="Upload" CssClass="buttonEditStyle"/>
                                     
@@ -58,7 +58,7 @@
                                         <Columns>            
                                             <asp:TemplateField HeaderText="Image">
                                                 <ItemTemplate>
-                                                    <asp:Image ID="Image1" runat="server" Width="200px" Height="300px" />
+                                                    <asp:Image ID="imgProfilePic" runat="server" Width="200px" Height="300px" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
