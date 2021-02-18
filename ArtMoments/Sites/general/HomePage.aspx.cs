@@ -23,5 +23,17 @@ namespace ArtMoments.Sites.general
         {
 
         }
+
+        protected void pnlInterested_Load(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(Session["UserType"] as string))
+            {
+                pnlInterested.Visible = true;
+            }
+            else
+            {
+                pnlInterested.Visible = false;
+            }
+        }
     }
 }
