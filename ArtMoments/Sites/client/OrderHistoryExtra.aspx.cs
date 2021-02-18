@@ -15,7 +15,8 @@ namespace ArtMoments.Sites.client
         string conString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserName"] != null)
+            Session["Username"] = 2;
+            if (Session["Username"] != null)
             {
                 DataTable transacTable = getTransacTable();
                 int transacRow = 0;
@@ -41,7 +42,7 @@ namespace ArtMoments.Sites.client
             {
                 using (SqlCommand cmd = new SqlCommand("select id as [transac-id], user_id as [user-id], date_order as [order-date] from [Transaction] where user_id like @CustId ORDER BY [order-date] DESC"))
                 {
-                    cmd.Parameters.AddWithValue("@CustId", (String)Session["UserName"].ToString());
+                    cmd.Parameters.AddWithValue("@CustId", (String)Session["Username"].ToString());
                     using (SqlDataAdapter sda = new SqlDataAdapter())
                     {
                         cmd.Connection = con;
