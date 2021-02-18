@@ -104,11 +104,14 @@
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\BuyerAcc.css" />
+    <Content Include="Content\css\DataList.css" />
+    <Content Include="Content\css\DisplayImageHover.css" />
     <Content Include="Content\css\DLProduct.css" />
     <Content Include="Content\css\LoginUser.css" />
     <Content Include="Content\css\PreLogin.css" />
     <Content Include="Content\css\OrderArtCss.css" />
     <Content Include="Content\css\OrderHistoryCss.css" />
+    <Content Include="Content\css\DisplayArt.css" />
     <Content Include="Content\css\searchForm.css" />
     <Content Include="Content\css\SignUp.css" />
     <Content Include="Content\hp-additional-income.jpg" />
@@ -151,9 +154,9 @@
     <Content Include="Sites\client\OrderHistoryExtra.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\general\HomePage.aspx" />
-    <Content Include="Sites\usermgmt\BuyerAccount.aspx" />
-    <Content Include="Sites\usermgmt\BuyerPresentation.aspx" />
-    <Content Include="Sites\usermgmt\BuyerSettingExtra.aspx" />
+    <Content Include="Sites\usermgmt\Account.aspx" />
+    <Content Include="Sites\usermgmt\AccountPresentation.aspx" />
+    <Content Include="Sites\usermgmt\AccountSetting.aspx" />
     <Content Include="Sites\usermgmt\ChangePassword.aspx" />
     <Content Include="Sites\usermgmt\ConfirmedRegMsg.aspx" />
     <Content Include="Sites\usermgmt\LoginUser.aspx" />
@@ -263,26 +266,26 @@
     <Compile Include="Sites\general\HomePage.aspx.designer.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Sites\usermgmt\BuyerAccount.aspx.cs">
-      <DependentUpon>BuyerAccount.aspx</DependentUpon>
+    <Compile Include="Sites\usermgmt\Account.aspx.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Sites\usermgmt\BuyerAccount.aspx.designer.cs">
-      <DependentUpon>BuyerAccount.aspx</DependentUpon>
+    <Compile Include="Sites\usermgmt\Account.aspx.designer.cs">
+      <DependentUpon>Account.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Sites\usermgmt\BuyerPresentation.aspx.cs">
-      <DependentUpon>BuyerPresentation.aspx</DependentUpon>
+    <Compile Include="Sites\usermgmt\AccountPresentation.aspx.cs">
+      <DependentUpon>AccountPresentation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Sites\usermgmt\BuyerPresentation.aspx.designer.cs">
-      <DependentUpon>BuyerPresentation.aspx</DependentUpon>
+    <Compile Include="Sites\usermgmt\AccountPresentation.aspx.designer.cs">
+      <DependentUpon>AccountPresentation.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Sites\usermgmt\BuyerSettingExtra.aspx.cs">
-      <DependentUpon>BuyerSettingExtra.aspx</DependentUpon>
+    <Compile Include="Sites\usermgmt\AccountSetting.aspx.cs">
+      <DependentUpon>AccountSetting.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Sites\usermgmt\BuyerSettingExtra.aspx.designer.cs">
-      <DependentUpon>BuyerSettingExtra.aspx</DependentUpon>
+    <Compile Include="Sites\usermgmt\AccountSetting.aspx.designer.cs">
+      <DependentUpon>AccountSetting.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\usermgmt\ChangePassword.aspx.cs">
       <DependentUpon>ChangePassword.aspx</DependentUpon>
