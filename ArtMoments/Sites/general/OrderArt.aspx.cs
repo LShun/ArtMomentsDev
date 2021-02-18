@@ -37,10 +37,8 @@ namespace ArtMoments.Sites.general
         {
             if (!IsPostBack)
             {
-                Session["Username"] = 1;
-                Session["UserType"] = 1;
+                // get product id from other page
                 Session["ProdId"] = Request.QueryString["id"];
-                Session["ProdId"] = 8;
 
                 if (Session["ProdId"] != null)
                 {
