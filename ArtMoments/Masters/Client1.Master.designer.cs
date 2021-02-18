@@ -78,7 +78,7 @@ namespace ArtMoments.Masters
         protected global::System.Web.UI.WebControls.SiteMapPath smpArtMoments;
 
         /// <summary>
-        /// ContentPlaceHolder1 control.
+        /// cphBody control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.

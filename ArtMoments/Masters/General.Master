@@ -83,7 +83,7 @@
 
         <div>
             <!-- Body Content goes here -->
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <asp:ContentPlaceHolder ID="cphBody" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </form>
