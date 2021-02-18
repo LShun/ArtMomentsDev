@@ -23,13 +23,9 @@ namespace ArtMoments.Sites.client
                 MasterPageFile = "~/Masters/General.Master";
 
             }
-            else if (Session["UserType"].ToString().Equals("2"))
-            {
-                MasterPageFile = "~/Masters/Artist.Master";
-            }
             else if (Session["UserType"].ToString().Equals("1"))
             {
-                MasterPageFile = "~/Masters/Client.Master";
+                MasterPageFile = "~/Masters/Client1.Master";
             }
         }
 
