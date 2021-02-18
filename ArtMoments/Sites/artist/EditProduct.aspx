@@ -126,7 +126,11 @@
             padding-left: 15px;
             margin-right: auto;
             margin-left: auto;
-        }
+    }
+    @media (min-width: 1200px){
+    .container {
+        max-width: 1140px;
+    }
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -200,8 +204,8 @@
 
             </div>
 				<div class="row">		
-					<asp:Button ID="submitAddProdBtn" class="btn btn-primary" runat="server" Text="Save & Create" OnClientClick="return validate()" OnClick="saveProdBtn_Click"/>
-					<asp:Button ID="cancelAddProdBtn" class="btn btn-primary" runat="server" Text="Cancel" OnClick="cancelProdBtn_Click"/>
+					<asp:Button ID="submitAddProdBtn" class="button btn-artwork" runat="server" Text="Save & Create" OnClientClick="return validate()" OnClick="saveProdBtn_Click"/>
+					<asp:Button ID="cancelAddProdBtn" class="button btn-artwork" runat="server" Text="Cancel" OnClick="cancelProdBtn_Click"/>
 				</div>
             
             </div>
