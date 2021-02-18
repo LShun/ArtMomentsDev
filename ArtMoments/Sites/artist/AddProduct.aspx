@@ -120,7 +120,10 @@
    *, ::after, ::before {
         box-sizing: border-box;
     }
-
+   @media (min-width: 1200px){
+    .container {
+        max-width: 1140px;
+    }
    .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
             width: 100%;
             padding-right: 15px;
