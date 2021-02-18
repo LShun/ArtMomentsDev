@@ -1,11 +1,11 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="BuyerAccount.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerAccount" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="BuyerAccount.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerAccount" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <title></title>
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
     <link href="../../Content/css/BuyerAcc.css" rel="stylesheet" />
    
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphBody" runat="server">
     <div class="container">
 	<div class="row">
 		<div class="col-md-3 ">
@@ -38,25 +38,25 @@
                                                     <tr>
                                                         <td class="auto-style6">
                                                             <asp:Panel ID="pblShowForBuyer1" runat="server">
-																<asp:Label runat="server" Text="Followed Artist"></asp:Label>
+																<asp:Label ID="lblText" runat="server" Text="Followed Artist"></asp:Label>
 																<br/>
-																<asp:Label runat="server" Text="Start following your favourite artist"></asp:Label>
+																<asp:Label ID="lblText2" runat="server" Text="Start following your favourite artist"></asp:Label>
 														</asp:Panel>
                                                             
                                                         </td>
                                                         <td style="width:1%"></td>
                                                         <td class="auto-style6">
                                                             <asp:Panel ID="pblShowForBuyer2" runat="server">
-																<asp:Label runat="server" Text="My favourite"></asp:Label>
+																<asp:Label ID="lblText3" runat="server" Text="My favourite"></asp:Label>
 																<br/>
-																<asp:Label runat="server" Text="Start collecting art"></asp:Label>
+																<asp:Label ID="lblText4" runat="server" Text="Start collecting art"></asp:Label>
 															</asp:Panel>
                                                         </td>
 
 														<td style="width:1%"></td>
 														<td class="auto-style6">
                                                             <asp:Panel ID="pnlShowForSeller" runat="server">
-																<asp:Label runat="server" Text="Upload you arts"></asp:Label>
+																<asp:Label ID="lblText5" runat="server" Text="Upload you arts"></asp:Label>
 																	<br/>
 																		<asp:LinkButton ID="lbUpload" runat="server" OnClick="lbUpload_Click">Upload now</asp:LinkButton>
 																</asp:Panel>                                                            
@@ -82,7 +82,7 @@
 						<img alt="Avatar" src="../../Content/sea.jpg" style="width: 200px; height: 250px;">
 					</div>
 					<div class="flip-card-back">
-						<button></button><br><br><br>
+						<button id="btnFlipcard1"></button><br><br><br>
 						<p>The only thing I know is that I paint because I need to. </p>
 					</div>
 				</div>
@@ -93,7 +93,7 @@
 						<img alt="Avatar" src="../../Content/panda.jpg" style="width: 200px; height: 250px;">
 					</div>
 					<div class="flip-card-back">
-						<button></button><br><br><br>
+						<button id="btnFlipcard2"></button><br><br><br>
 						<p>Painting is self-discovery. Every good artist paints what he is. </p>
 					</div>
 				</div>
@@ -104,7 +104,7 @@
 						<img alt="Avatar" src="../../Content/colorful-street.jpg" style="width: 200px; height: 250px;">
 					</div>
 					<div class="flip-card-back">
-						<button></button><br><br><br>
+						<button id="btnFlipcard3"></button><br><br><br>
 						<p>To draw you must close your eyes and sing. 
 						</p>
 					</div>
@@ -116,7 +116,7 @@
 						<img alt="Avatar" src="../../Content/Black%20Deer2.png" style="width: 200px; height: 250px;">
 					</div>
 					<div class="flip-card-back">
-						<button></button><br><br><br>
+						<button id="btnFlipcard4"></button><br><br><br>
 						<p>The best reason to paint is that there is no reason to paint. </p>
 					</div>
 				</div>

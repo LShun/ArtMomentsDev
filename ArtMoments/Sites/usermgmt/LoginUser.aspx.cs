@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Configuration;
 
 namespace ArtMoments.Sites.usermgmt
 {
@@ -30,8 +31,8 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
-
+            //string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
+            string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();

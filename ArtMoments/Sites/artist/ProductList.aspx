@@ -120,7 +120,7 @@
 
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphBody" runat="server">
     <div class="container">
         <div class="artworkListHeader">
             <div class="col-lg-10 col-md-9 col-sm-8">

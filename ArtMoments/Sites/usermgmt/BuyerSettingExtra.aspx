@@ -11,7 +11,7 @@
     </style>
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphBody" runat="server">
     <div class="container">
 	<div class="row">
 		<div class="col-md-3 ">
@@ -41,26 +41,26 @@
                                                                 <tr>
                                                                     <td class="auto-style1">User ID</td>
                                                                     <td>
-                                                                        <asp:Label ID="idLabel1" runat="server" Text='<%# Eval("id") %>' />
+                                                                        <asp:Label ID="lblID" runat="server" Text='<%# Eval("id") %>' />
                                                                     </td>
     
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="auto-style1">User Name</td>
                                                                     <td>
-                                                                        <asp:TextBox ID="user_nameTextBox" runat="server" BorderStyle="None" ReadOnly="True" Text='<%# Bind("user_name") %>' />
+                                                                        <asp:TextBox ID="tbUser_name" runat="server" BorderStyle="None" ReadOnly="True" Text='<%# Bind("user_name") %>' />
                                                                     </td>           
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="auto-style1">User Email</td>
                                                                     <td>
-                                                                        <asp:TextBox ID="user_emailTextBox" runat="server" Text='<%# Bind("user_email") %>' />
+                                                                        <asp:TextBox ID="tbUser_email" runat="server" Text='<%# Bind("user_email") %>' />
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
                                                                     <td class="auto-style1">Contact No</td>
                                                                     <td>
-                                                                        <asp:TextBox ID="user_contactnoTextBox" runat="server" Text='<%# Bind("user_contactno") %>' />
+                                                                        <asp:TextBox ID="tbUser_contactno" runat="server" Text='<%# Bind("user_contactno") %>' />
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -70,39 +70,39 @@
                                                         </EditItemTemplate>
                                                         <InsertItemTemplate>
                                                             user_name:
-                                                            <asp:TextBox ID="user_nameTextBox" runat="server" Text='<%# Bind("user_name") %>' />
+                                                            <asp:TextBox ID="tbUser_name1" runat="server" Text='<%# Bind("user_name") %>' />
                                                             <br />
                                                             user_email:
-                                                            <asp:TextBox ID="user_emailTextBox" runat="server" Text='<%# Bind("user_email") %>' />
+                                                            <asp:TextBox ID="tbUser_email1" runat="server" Text='<%# Bind("user_email") %>' />
                                                             <br />
                                                             user_contactno:
-                                                            <asp:TextBox ID="user_contactnoTextBox" runat="server" Text='<%# Bind("user_contactno") %>' />
+                                                            <asp:TextBox ID="tbUser_contactno1" runat="server" Text='<%# Bind("user_contactno") %>' />
                                                             <br />
 
-                                                            <asp:LinkButton ID="InsertButton" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
-                                                            &nbsp;<asp:LinkButton ID="InsertCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                                                            <asp:LinkButton ID="lbInsert" runat="server" CausesValidation="True" CommandName="Insert" Text="Insert" />
+                                                            &nbsp;<asp:LinkButton ID="lbCancel" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
                                                         </InsertItemTemplate>
                                                         <ItemTemplate>
                                                             user_name:
-                                                            <asp:Label ID="user_nameLabel" runat="server" Text='<%# Bind("user_name") %>' />
+                                                            <asp:Label ID="lblUser_name" runat="server" Text='<%# Bind("user_name") %>' />
                                                             <br />
                                                             user_email:
-                                                            <asp:Label ID="user_emailLabel" runat="server" Text='<%# Bind("user_email") %>' />
-                                                            <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="user_emailLabel"
+                                                            <asp:Label ID="lblUser_emai" runat="server" Text='<%# Bind("user_email") %>' />
+                                                            <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="user_emailLabel"
                                 ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
                                 Display="Dynamic" ErrorMessage="Invalid email address" CssClass="invalidMsgMargin"/>
-                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="user_emailLabel"
+                                <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="user_emailLabel"
                                 ForeColor="Red" Display="Dynamic" ErrorMessage="Required" CssClass="invalidMsgMargin"/>
                                                             <br />
                                                             user_contactno:
-                                                            <asp:Label ID="user_contactnoLabel" runat="server" Text='<%# Bind("user_contactno") %>' />
+                                                            <asp:Label ID="lblUser_contactno" runat="server" Text='<%# Bind("user_contactno") %>' />
                                                             <br />
                                                             id:
-                                                            <asp:Label ID="idLabel" runat="server" Text='<%# Eval("id") %>' />
+                                                            <asp:Label ID="lblID1" runat="server" Text='<%# Eval("id") %>' />
                                                             <br />
-                                                            <asp:LinkButton ID="EditButton" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
-                                                            &nbsp;<asp:LinkButton ID="DeleteButton" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
-                                                            &nbsp;<asp:LinkButton ID="NewButton" runat="server" CausesValidation="False" CommandName="New" Text="New" />
+                                                            <asp:LinkButton ID="btnEdit" runat="server" CausesValidation="False" CommandName="Edit" Text="Edit" />
+                                                            &nbsp;<asp:LinkButton ID="btnDelete" runat="server" CausesValidation="False" CommandName="Delete" Text="Delete" />
+                                                            &nbsp;<asp:LinkButton ID="btnNew" runat="server" CausesValidation="False" CommandName="New" Text="New" />
                                                         </ItemTemplate>
                                                     </asp:FormView>
 

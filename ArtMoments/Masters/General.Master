@@ -32,7 +32,6 @@
 <body>
 
     <form id="form1" runat="server">
-        <!-- sidebar COPY PASTE FIX LATER -->
         <div id="mySidenav" class="sidenav">
           <a href="javascript:void(0)" class="btn-close" onclick="hideNav()">&times;</a>
           <asp:TreeView ID="tvSideBar" CssClass="tv-menu" runat="server" DataSourceID="smdsTreeView" ImageSet="Arrows">
@@ -44,11 +43,8 @@
             <asp:SiteMapDataSource ID="smdsTreeView" runat="server" />
         </div>
 
-        
-        <!-- END OF sidebar COPY PASTE FIX LATER -->
         <table>
             <tr>
-                <!-- Careful sidebar menu -->
                 <td>
                     <span class="span-menu" onclick="showNav()">
                     <asp:Image ID="imgMenu" ImageUrl="~/Content/menu.svg" CssClass="img-menu" runat="server" /></span>
@@ -89,7 +85,7 @@
 
         <div>
             <!-- Body Content goes here -->
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+            <asp:ContentPlaceHolder ID="cphBody" runat="server">
             </asp:ContentPlaceHolder>
         </div>
     </form>
