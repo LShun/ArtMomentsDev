@@ -9,6 +9,7 @@ namespace ArtMoments.Sites.usermgmt
 {
     public partial class BuyerAccount : System.Web.UI.Page
     {
+        //check is user is artist or buyer (buyer = 1, artist = 2)
         protected void Page_PreInit(object sender, EventArgs e)
         {
             if (Session["UserType"].ToString().Equals("2"))
@@ -23,11 +24,13 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            //check if there is any user log in when load this page
             if (Session["UserName"] == null)
             {
                 Response.Redirect("PreLogin.aspx");
             }
 
+            //if is buyer then display first two box
             if (Session["UserType"].ToString().Equals("1"))
             {
                 pblShowForBuyer1.Visible = true;
@@ -37,6 +40,7 @@ namespace ArtMoments.Sites.usermgmt
             }
             else
             {
+                //if is artist then direct artist to add product 
                 pblShowForBuyer1.Visible = false;
                 pblShowForBuyer2.Visible = false;
                 pnlShowForSeller.Visible = true;
@@ -44,42 +48,32 @@ namespace ArtMoments.Sites.usermgmt
             }
         }
 
-        protected void btnHome_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("BuyerAccount.aspx");
-        }
-
-        protected void btnOnClickSetting(object sender, EventArgs e)
-        {
-            Response.Redirect("BuyerSettingExtra.aspx");
-        }
-
-        protected void btnPresentation_Click(object sender, EventArgs e)
-        {
-            Response.Redirect("BuyerPresentation.aspx");
-        }
-
+        //direct user to Account when click on "My Account"
         protected void lbMyAcc_Click(object sender, EventArgs e)
         {
             Response.Redirect("Account.aspx");
         }
 
+        //direct user to Setting when click on "Setting" to edit the personal info
         protected void lbSetting_Click(object sender, EventArgs e)
         {
             Response.Redirect("AccountSetting.aspx");
         }
 
+        //direct user to presentation page when click on the "Presentation"  to edit bibliography and profile pic
         protected void lbPresentation_Click(object sender, EventArgs e)
         {
             Response.Redirect("AccountPresentation.aspx");
         }
 
+        //allow user to log out and clear the session, then dircet to home page
         protected void lbLogOut_Click(object sender, EventArgs e)
         {
             Session.RemoveAll();
             Response.Redirect("../general/HomePage.aspx");
         }
 
+        //direct artist to add product when click on the link
         protected void lbUpload_Click(object sender, EventArgs e)
         {
             Response.Redirect("../artist/AddProduct.aspx");
