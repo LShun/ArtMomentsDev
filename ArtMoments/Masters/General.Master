@@ -11,66 +11,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link href="../Content/css/topnavbar.css" rel="stylesheet" />
-    <style>
-        /* Style for sidebar */
-        /* The side navigation menu */
-        .sidenav {
-          height: 100%; /* 100% Full-height */
-          width: 0; /* 0 width - change this with JavaScript */
-          position: fixed; /* Stay in place */
-          z-index: 10; /* Stay on top */
-          top: 0; /* Stay at the top */
-          left: 0;
-          background-color: seashell;
-          overflow-x: hidden; /* Disable horizontal scroll */
-          padding-top: 60px; /* Place content 60px from the top */
-          transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
-        }
-
-        /* The navigation menu links */
-        .sidenav a {
-          text-decoration: none;
-          color: black;
-          display: block;
-          transition: 0.3s;
-        }
-
-        /* When you mouse over the navigation links, change their color */
-        .sidenav a:hover {
-          color: highlight;
-        }
-
-        /* Position and style the close button (top right corner) */
-        .sidenav .closebtn {
-          position: absolute;
-          top: 0;
-          right: 25px;
-          font-size: 36px;
-          margin-left: 50px;
-        }
-
-        /* Image on the sidebar icon */
-        .img-menu {
-            height: 3vh;
-            width: 3vh;
-            padding: 0.5vh 0.5vh;
-        }
-
-        .span-menu :hover {
-            background-color: darkgrey;
-        }
-
-        .tv-menu {
-            padding-left: 2vh 2vh;
-            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-        }
-
-        /* When height of screen < 400px, reduce font size & padding */
-        @media screen and (max-height: 400px) {
-          .sidenav {padding-top: 14px;}
-          .sidenav a {font-size: 16px;}
-        }
-    </style>
+    <link href="../Content/css/treeViewSideBar.css" rel="stylesheet" />
 
     <script>
         /** Scripts for Sidenav for Tree View **/

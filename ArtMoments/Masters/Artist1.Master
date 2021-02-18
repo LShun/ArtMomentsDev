@@ -7,8 +7,9 @@
     <script src="../Content/scripts/jquery-3.0.0.slim.min.js"></script>
     <script src="../Content/scripts/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/15509eb2b9.js" crossorigin="anonymous"></script>
-    <link href="../Content/css/bootstrap.min.css" rel="stylesheet" 
+    <link href="../Content/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../Content/css/topnavbar.css" rel="stylesheet" />
+    <link href="../Content/css/treeViewSideBar.css" rel="stylesheet" />
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -17,11 +18,13 @@
     <form id="form1" runat="server">
         <table>
             <tr>
-                <td class="brand"><h1>ArtMoments</h1></td>
+                <td class="brand">
+                    <h1>ArtMoments</h1>
+                </td>
                 <td class="menu">
-                        <asp:Menu ID="ArtworkMenu" CssClass="artistMenu" runat="server" Orientation="Horizontal" OnMenuItemClick="ArtworkMenu_MenuItemClick">            
-                        
-                            <Items>
+                    <asp:Menu ID="ArtworkMenu" CssClass="artistMenu" runat="server" Orientation="Horizontal" OnMenuItemClick="ArtworkMenu_MenuItemClick">
+
+                        <Items>
                             <asp:MenuItem NavigateUrl="~/Sites/general/HomePage.aspx" Text="Home" Value="Home"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Sites/artist/ProductList.aspx" Text="Product" Value="Product">
                                 <asp:MenuItem NavigateUrl="~/Sites/artist/AddProduct.aspx" Text="Add Product" Value="Add Product"></asp:MenuItem>
@@ -35,11 +38,11 @@
                             </asp:MenuItem>
                         </Items>
                         <StaticSelectedStyle CssClass="selected" />
-                        <LevelMenuItemStyles>  
-                            <asp:MenuItemStyle CssClass="ParentMenu" />  
-                            <asp:MenuItemStyle CssClass="ChildMenu" />   
-                        </LevelMenuItemStyles>    
-                    </asp:Menu>  
+                        <LevelMenuItemStyles>
+                            <asp:MenuItemStyle CssClass="ParentMenu" />
+                            <asp:MenuItemStyle CssClass="ChildMenu" />
+                        </LevelMenuItemStyles>
+                    </asp:Menu>
                 </td>
             </tr>
 

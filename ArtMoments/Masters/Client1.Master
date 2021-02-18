@@ -12,6 +12,7 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
     <link href="../Content/css/topnavbar.css" rel="stylesheet" />
+    <link href="../Content/css/treeViewSideBar.css" rel="stylesheet" />
     
 </head>
 <body>
