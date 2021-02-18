@@ -99,7 +99,7 @@
             <tr>
                 <td class="brand"><h1>ArtMoments</h1></td>
                 <td class="menu">
-                    <asp:Menu ID="ArtworkMenu" runat="server" Orientation="Horizontal">
+                    <asp:Menu ID="ArtworkMenu" runat="server" Orientation="Horizontal" OnMenuItemClick="ArtworkMenu_MenuItemClick">
                         <LevelMenuItemStyles>  
                             <asp:MenuItemStyle CssClass="ParentMenu" />  
                             <asp:MenuItemStyle CssClass="ChildMenu" />            

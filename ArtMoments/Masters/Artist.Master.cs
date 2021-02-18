@@ -17,5 +17,15 @@ namespace ArtMoments.Masters
                 item.Selected = item.NavigateUrl.Equals(path, StringComparison.InvariantCultureIgnoreCase);
             }
         }
+
+        protected void ArtworkMenu_MenuItemClick(object sender, MenuEventArgs e)
+        {
+            if((sender as Menu).SelectedItem.Text.Equals("Log Out"))
+            {
+                Session.RemoveAll();
+                Response.Redirect("../general/HomePage.aspx");
+            }
+           
+        }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="Wishlist.aspx.cs" Inherits="ArtMoments.Sites.client.Wishlist" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Client.Master" AutoEventWireup="true" CodeBehind="Wishlist.aspx.cs" Inherits="ArtMoments.Sites.client.Wishlist" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
