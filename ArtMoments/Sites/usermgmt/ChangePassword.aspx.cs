@@ -13,7 +13,6 @@ namespace ArtMoments.Sites.usermgmt
 {
     public partial class ChangePassword : System.Web.UI.Page
     {
-        //string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
         string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
 
         protected void Page_PreInit(object sender, EventArgs e)
@@ -100,23 +99,23 @@ namespace ArtMoments.Sites.usermgmt
                 //lblSuccessMessage.Text = "Changed to new password successfully";
                 //RedirectAfterDelayFn();
                 sqlCon.Close();
-                Response.Redirect("BuyerSetting.aspx");
+                Response.Redirect("AccountSetting.aspx");
             }
         }
 
         protected void lbMyAcc_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerAccount.aspx");
+            Response.Redirect("Account.aspx");
         }
 
         protected void lbSetting_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerSettingExtra.aspx");            
+            Response.Redirect("AccountSetting.aspx");            
         }
 
         protected void lbPresentation_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerPresentation.aspx");
+            Response.Redirect("AccountPresentation.aspx");
         }
 
         protected void lbLogOut_Click(object sender, EventArgs e)
