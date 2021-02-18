@@ -2,6 +2,67 @@
 /* -----------------------
   Form 
 ----------------------- */
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+
+.container {
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-3 {
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+.form-control {
+    color: #555555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    display: block;
+    width: 100%;
+    height: calc(1.5em + .75rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+.form-control:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
 
 #search-form-container {
     box-shadow: rgba(0, 0, 0, 0.24) 0em 0.03em 0.08em;
@@ -11,234 +72,47 @@
     border-radius: 0;
 }
 
-    .search-form-control :focus {
-        box-shadow: none;
-    }
+.search-form-control :focus {
+    box-shadow: none;
+}
 
 
 .search-form-group {
     position: relative;
 }
 
-    .search-form-group label {
-        text-transform: uppercase;
-        font-size:60%;
-        color: #a1a2a3;
-        transform-origin: 0 0;
-        transform: scale(1.4);
-        pointer-events: none;
-        position: relative;
-        z-index: 5;
-    }
+.search-form-group label {
+    text-transform: uppercase;
+    font-size:60%;
+    color: #a1a2a3;
+    transform-origin: 0 0;
+    transform: scale(1.4);
+    pointer-events: none;
+    position: relative;
+    z-index: 5;
+}
 
-    .search-form-group input {
-        width: 100%
-    }
-
-   /* .search-form-group label {
-        transition: transform .4s;
-        transform-origin: 0 0;
-        transform: scale(1.4) translateY(20px);
-    }*/
+.search-form-group input {
+    width: 100%
+}
 
 
-    .search-form-group.not-empty label {
-        transform: none;
-    }
+.search-form-group.not-empty label {
+    transform: none;
+}
 
 .search-form-control {
     border: 0;
     border-bottom: 0.01em solid #a1a2a3;
 }
 
-    .search-form-control, .search-form-control :focus, .search-form-control :focus :hover {
-        color: #73B5FF;
-        background: none;
-        outline: none;
-    }
-
-        .search-form-control :focus, .search-form-control :focus :hover {
-            border-bottom: 0.01em solid #73B5FF;
-        }
-
-
-.slider {
-    position: relative;
-    height: 100%;
-    border-radius: 50%;
-    text-align: left;
-    margin: 2% 0 0.5% 0;
+.search-form-control, .search-form-control :focus, .search-form-control :focus :hover {
+    color: #73B5FF;
+    background: none;
+    outline: none;
 }
 
-    .slider div .inverse-left {
-        position: absolute;
-        left: 0;
-        height: 50%;
-        border-radius: 0.5em;
-        background-color: #CCC;
-        margin: 0 0.7%;
-    }
-
-    .slider div .inverse-right {
-        position: absolute;
-        right: 0;
-        height: 50%;
-        border-radius: 0.5em;
-        background-color: #CCC;
-        margin: 0 0.7%;
-    }
-
-    .slider div .range {
-        position: absolute;
-        left: 0;
-        height: 50%;
-        border-radius: 0.5em;
-        background-color: #1ABC9C;
-    }
-
-    .slider div .thumb  
-    {
-        position: absolute;
-        top: 0em;
-        z-index: 2;
-        height: 50%;
-        width: 3%;
-        text-align: left;
-        margin-left: -2%;
-        cursor: pointer;
-        box-shadow: 0 0.03em 0.08em rgb(0 0 0 40%);
-        background-color: #FFF;
-        border-radius: 50%;
-        outline: none;
-    }
-
-.slider > div > .sign {
-    opacity: 0;
-    position: absolute;
-    margin-left: -2.5%;
-    top: -1.3em;
-    z-index: 3;
-    background-color: #1ABC9C;
-    color: #fff;
-    width: 4%;
-    height: 55%;
-    border-radius: 20%;
-    -webkit-border-radius: 50%;
-    align-items: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    text-align: center;
+.search-form-control :focus, .search-form-control :focus :hover {
+    border-bottom: 0.01em solid #73B5FF;
 }
 
-    .slider > div > .sign > span {
-        font-size: 0.6rem;
-    }
-
-    .slider > div > .sign:after {
-        position: absolute;
-        content: '';
-        left: 0.17em;
-        top: 1.2em;
-        border-left: 0.3em solid transparent;
-        border-right: 0.3em solid transparent;
-        border-top-width: 0.3em;
-        border-top-style: solid;
-        border-top-color: #1ABC9C;
-    }
-    .slider input[type=range] 
-    {
-        position: absolute;
-        pointer-events: none;
-        -webkit-appearance: none;
-        z-index: 3;
-        height: 100%;
-        top: -0.2em;
-        width: 100%;
-        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-        filter: alpha(opacity=0);
-        -moz-opacity: 0;
-        -khtml-opacity: 0;
-        opacity: 0;
-    }
-
-        .slider input[type=range]::-ms-track {
-            -webkit-appearance: none;
-            background: transparent;
-            color: transparent;
-        }
-
-        .slider input[type=range]::-moz-range-track {
-            -moz-appearance: none;
-            background: transparent;
-            color: transparent;
-        }
-
-        .slider input[type=range]:focus::-webkit-slider-runnable-track {
-            background: transparent;
-            border: transparent;
-        }
-
-        .slider input[type=range]:focus {
-            outline: none;
-        }
-
-        .slider input[type=range]::-ms-thumb {
-            pointer-events: all;
-            width: 28px;
-            height: 28px;
-            border-radius: 0px;
-            border: 0 none;
-            background: red;
-        }
-
-        .slider input[type=range]::-moz-range-thumb {
-            pointer-events: all;
-            width: 28px;
-            height: 28px;
-            border-radius: 0px;
-            border: 0 none;
-            background: red;
-        }
-
-        .slider input[type=range]::-webkit-slider-thumb {
-            pointer-events: all;
-            width: 28px;
-            height: 28px;
-            border-radius: 0px;
-            border: 0 none;
-            background: red;
-            -webkit-appearance: none;
-        }
-
-        .slider input[type=range]::-ms-fill-lower {
-            background: transparent;
-            border: 0 none;
-        }
-
-        .slider input[type=range]::-ms-fill-upper {
-            background: transparent;
-            border: 0 none;
-        }
-
-        .slider input[type=range]::-ms-tooltip {
-            display: none;
-            background-image: url('../8585-mur-africa-met.jpg');
-        }
-
-
-   
-    .slider:hover > div > .sign {
-        opacity: 1;
-    }
-
-
-#ContentPlaceHolder1_Image1:hover {
-    visibility: hidden;
-}
-
-.auto-style2 {
-    margin-left: 50%;
-    margin-right: 0%;
-    width: 25%;
-    height: 75%;
-}
