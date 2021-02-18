@@ -13,8 +13,6 @@ namespace ArtMoments.Sites.client
     public partial class OrderHistoryExtra : System.Web.UI.Page
     {
         string conString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
-
-       
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["UserName"] != null)
