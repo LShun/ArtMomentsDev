@@ -31,9 +31,10 @@ namespace ArtMoments.Sites.usermgmt
 
         }
 
+        //validate the username and password entered
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            
+
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
@@ -113,6 +114,7 @@ namespace ArtMoments.Sites.usermgmt
                         }
                     }
 
+                    //direct to user account if successfully login
                     Response.Redirect("Account.aspx");
                 }
                 else
