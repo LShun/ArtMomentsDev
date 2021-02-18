@@ -2,7 +2,7 @@
 
 <asp:Content ID="cphHead" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
-<asp:Content ID="cphBody" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="cphBody" ContentPlaceHolderID="cphBody" runat="server">
     <div class="container">
         <h1>Wishlist</h1>
         <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: "></asp:Label>

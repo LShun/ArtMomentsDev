@@ -6,7 +6,7 @@
     <link href="../../Content/css/PreLogin.css" rel="stylesheet" />
 </asp:Content>
 
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphBody" runat="server">
 
     <form id="container" class="container">
         <div id="left" class="split left">        

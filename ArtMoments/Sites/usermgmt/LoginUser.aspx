@@ -12,7 +12,7 @@
         }
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="cphBody" runat="server">
     <div ID="Content4">
     <div class="container" ID="Content6">
         
