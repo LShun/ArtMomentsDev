@@ -3,22 +3,26 @@
 <asp:Content ID="cphHead" ContentPlaceHolderID="head" runat="server">
 
     <style>
+        /*benefits pictures */
         .img-benefits  {
             width: 100px;
             height: 100px;
             object-fit: cover;
         }
 
+        /* latest pictures settings (in the detailsview) */
         .latest {
             width: auto;
             max-width: 30vh;
             height: 15vh;
         }
 
+        /* pagination, make blue when mouseover */
         .paginate span {
             color: Highlight;
         }
     </style>
+
 </asp:Content>
 <asp:Content ID="cphBody" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
@@ -29,7 +33,7 @@
                 <div class="col-sm">
                     <div class="jumbotron">
                         <h1 class="display-5">Welcome to ArtMoments Art Gallery</h1>
-                        <p class="lead">We specialize in selling &quot;interesting arts&quot;</p>
+                        <p class="lead">We specialize in selling interesting artworks</p>
                         <hr />
                         <a class="btn btn-primary btn-lg" href="../client/DisplayArt.aspx" role="button">Browse Arts...</a>
 
@@ -47,26 +51,26 @@
                             <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" Font-Bold="true" CssClass="paginate" />
                             <PagerSettings Mode="NumericFirstLast"/>
                             <Fields>
+                                <%-- Name + link to the products --%>
                                 <asp:HyperLinkField
                                     DataNavigateUrlFields="id"
                                     DataNavigateUrlFormatString="./OrderArt.aspx?id={0}"
                                     DataTextField="prod_name"
                                     HeaderText="Name" />
-
+                                <%-- Image of the product --%>
                                 <asp:TemplateField HeaderText="Image">
                                     <ItemTemplate>
                                         <asp:Image ID="imgLatestProduct" runat="server" CssClass="latest"
                                             ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>' />
                                     </ItemTemplate>
                                 </asp:TemplateField>
-
-
                             </Fields>
                         </asp:DetailsView>
                         <asp:SqlDataSource ID="dsLatestArt" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT TOP 50 [id], SUBSTRING([prod_name], 0, 35) AS prod_name, [prod_image] FROM [Product] ORDER BY [id] DESC"></asp:SqlDataSource>
                     </div>
                 </div>
             </div>
+
             <!-- Benefits -->
             <h1>Benefits of Signing Up</h1>
 
@@ -138,6 +142,7 @@
                 </div>
             </div>
         </div>
+
         <!-- Sign up & Login Buttons -->
         <asp:Panel CssClass="alert alert-primary" Id="pnlInterested" RunAt="server" role="alert" Visible="true" OnLoad="pnlInterested_Load">
             <h2>Interested?
