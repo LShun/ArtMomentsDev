@@ -102,7 +102,7 @@
             margin-left: -15px;
         }
 
-        img#imgdbArtwork {
+        #ibimgdbArtwork {
             max-width: 200px;
             max-height: 200px;
         }
@@ -117,7 +117,31 @@
             padding-right:5px;
         }
        
+        .lblTransacTotalPrice{
+            float:right;
+        }
 
+        .row.artNameRow {
+            font-size: 25px;
+            font-weight: bold;
+        }
+
+        .btn-primary {
+            color: #fff;
+            background-color: #007bff;
+            border-color: #007bff;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 3px;
+            padding-bottom: 3px;
+            border-radius: 40px;
+            font-weight: 400;
+            cursor: pointer
+        }
+
+        h4 {
+            padding-left: 25px;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -299,4 +323,6 @@
             </div>
         </div>
     </div>--%>
+    
+
 </asp:Content>

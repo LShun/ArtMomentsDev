@@ -23,7 +23,7 @@ namespace ArtMoments.Sites.client
         {
             if (!IsPostBack)
             {
-                Session["CustId"] = 1;
+                Session["CustId"] = 2;
                 if (Session["CustId"] != null)
                 {
                     DataTable transacTable = getTransacTable();
@@ -52,7 +52,7 @@ namespace ArtMoments.Sites.client
         {
             using (SqlConnection con = new SqlConnection(conString))
             {
-                using (SqlCommand cmd = new SqlCommand("select id as [transac-id], user_id as [user-id], date_order as [order-date] from [Transaction] where user_id like @CustId"))
+                using (SqlCommand cmd = new SqlCommand("select id as [transac-id], user_id as [user-id], date_order as [order-date] from [Transaction] where user_id like @CustId ORDER BY [order-date] DESC"))
                 {
                     cmd.Parameters.AddWithValue("@CustId", (String)Session["CustId"].ToString());
                     using (SqlDataAdapter sda = new SqlDataAdapter())
@@ -74,7 +74,7 @@ namespace ArtMoments.Sites.client
         {
             using (SqlConnection con = new SqlConnection(conString))
             {
-                using (SqlCommand cmd = new SqlCommand("select id as [order-id], product_id as [order-id], quantity as [order-qty], delivery_id as [order-deliverId], date_delivery as [order-deliverDate], order_status as [order-status], date_received as [order-dateReceive], O.transaction_id as [transac-id] from [Order] O where O.transaction_id like @TransacId"))
+                using (SqlCommand cmd = new SqlCommand("select id as [order-id], product_id as [prod-id], quantity as [order-qty], delivery_id as [order-deliverId], date_delivery as [order-deliverDate], order_status as [order-status], date_received as [order-dateReceive], O.transaction_id as [transac-id] from [Order] O where O.transaction_id like @TransacId"))
                 {
                     cmd.Parameters.AddWithValue("@TransacId", TransacId);
                     using (SqlDataAdapter sda = new SqlDataAdapter())
@@ -167,6 +167,14 @@ namespace ArtMoments.Sites.client
             Double subtotal = (qty * price);
             return subtotal.ToString("0.00");
         }
+
+        protected void viewProd(object sender, EventArgs e)
+        {
+            RepeaterItem clickNameItem = (sender as LinkButton).NamingContainer as RepeaterItem;
+            string prodId = (clickNameItem.FindControl("ibimgdbArtwork") as TextBox).Text;
+            Response.Redirect("~/Sites/general/OrderArt.aspx?id=" + prodId);
+        }
+
         protected void displayInHTML(int transacId, DataTable orderTable)
         {
             Double total = 0;
@@ -175,10 +183,11 @@ namespace ArtMoments.Sites.client
             html.Append("<div class='container transactionHistoryContainer'>");
             html.Append("<div class='row'>");
             // Transaction
-            html.Append("<h2><asp:Label ID='lbltransacId' runat='server'>");
+            html.Append("<h4><asp:Label ID='lbltransacId' runat='server'>" + "Transaction ID: ");
+
             // transactionID
             html.Append(transacId);
-            html.Append("</asp:Label></h2></div>");
+            html.Append("</asp:Label></h4></div>");
             html.Append("<div class='container align-content-sm-center orderHistoryContainer'>");
 
             // ORDERS
@@ -210,6 +219,7 @@ namespace ArtMoments.Sites.client
 
                 //String file = "data:image/png;base64," + Convert.ToBase64String(prodImg, Base64FormattingOptions.None);
                 //System.Drawing.Image img = (System.Drawing.Image)new Bitmap(file);
+                int prodId = rows.Field<int>("prod-id");
                 string orderStatus = rows.Field<string>("order-status");
                 string prodName = rows.Field<string>("prod-name");
                 string prodSize = rows.Field<string>("prod-size");
@@ -219,7 +229,6 @@ namespace ArtMoments.Sites.client
                 Double prodPrice = rows.Field<System.Double>("prod-price");
                 //calculate price
                 Double subtotal = (qty * prodPrice);
-                string viewMore = "View More Details";
                 string buyAgain = "BUY AGAIN";
                 total += subtotal;
 
@@ -228,27 +237,15 @@ namespace ArtMoments.Sites.client
                 html.Append("<div class='col-lg-4 col-md-12 col-sm-12 orderHistoryRowDiv'>");
                 html.Append("<div class='col justify-content-center orderNumnArt'>");
                 html.Append("<div class='row'>");
-                html.Append("<h3><asp:Label ID='lbladorderNum' runat='server'>");
+                html.Append("<h5><asp:Label ID='lbladorderNum' runat='server'>" + "Order ID:");
                 // orderNum
                 html.Append(orderId);
-                html.Append("</ asp:Label ></h3></div>");
-
+                html.Append("</ asp:Label ></h5></div>");
                 // ORDER IMG
                 string imgArt = "data:Image/png;base64,Convert.ToBase64String((byte[])prodImg";
                 var imageString = string.Format("data:image/png;base64,{0}", Convert.ToBase64String(prodImg));
-                //html.Append("<asp:Repeater ID = 'Repeater1' runat = 'server' OnItemDataBound = 'repeater_ItemDataBound' >");
 
-
-                //html.Append("<img src=\"/path/to/image/" +  + "\"></div>")
-                //"data:Image/png;base64," + Convert.ToBase64String((byte[])prodImg);
-                //ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                //yourbitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                ////this will convert image to byte[] 
-                //byte[] byteArrayImage = baos.toByteArray();
-                //// this will convert byte[] to string
-                //String encodedImage = Base64.encodeToString(byteArrayImage, Base64.DEFAULT);
-
-                html.AppendFormat("<img id=\'imgdbArtwork\' u=\'image\' src=\'{0}\' />", ResolveUrl(imageString));
+                html.AppendFormat("<asp:ImageButton id='ibimgdbArtwork' ImageUrl='{0}' runat='server' OnClick = 'viewProd' />", ResolveUrl(imageString));
 
                 html.Append("</div></div>");
                 // ORDER DETAIL
@@ -282,9 +279,9 @@ namespace ArtMoments.Sites.client
                 html.Append("'>" + author + "</asp:Label></div></div>");
                 // Qty, Price, view more details label
                 html.Append("<div class='row qtyPriceMore'><div class='col' id='qtyDivision'><label id = 'qtyTxt' > Quantity </label></div><div class='col' id='priceDivision'>"
-                            + "<label id = 'priceTxt'> RM </label></div><div class='col' id='modeDetailsRow'><a href =# '");
+                            + "<label id = 'priceTxt'> RM </label></div><div class='col' id='modeDetailsRow'>");
                 //more details -> src
-                html.Append("'><asp:Label ID = 'lblMoreDetail' runat='server'>" + viewMore + "</asp:Label></a></div></div>");
+                html.Append("</div></div>");
 
                 //-Qty, Price, view more details label from db
                 html.Append("<div class='row qtyPriceMoreDB'>");
@@ -294,12 +291,18 @@ namespace ArtMoments.Sites.client
                 html.Append("'>" + qty + "</asp:Label></div><div class='col' id='lblpriceDivision'><asp:Label ID = 'lblTotalPrice' runat='server' Text='");
                 // Total Price
                 html.Append("'>" + calcPrice(qty, prodPrice) + "</asp:Label></div><div class='col' id='btnBuyAgainDivision'>");
-                html.Append("<asp:Button  runat=\"server\" ID=\"btnBuyAgain\" class='btn-primary rounded'>" + buyAgain + "</asp:Button>");
+                html.Append("<form action = '~/Sites/general/OrderArt.aspx?id='" + prodId + "'method = 'post' >");
+         
+                html.Append("<asp: Button  runat=\"server\" ID=\"btnBuyAgain\" class='btn-primary rounded'>" + buyAgain + "</Button></form>");
                 html.Append("</div></div></div></div>");
 
                 // OnClick=\"Button1_Click\"
             }
-            html.Append("</div></div>");
+            html.Append("</div>");
+            html.Append("<div class='lblTransacTotalPrice'><asp:Label ID = 'lblTotalPrice' runat='server' Text='");
+            // Total Price
+            html.Append("'> Total: RM" + total.ToString("F") + "</asp:Label></div></div>");
+
             // can display total
             //Append the HTML string to Placeholder.
             ContentPlaceHolder conPlaceHolder = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");

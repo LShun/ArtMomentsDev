@@ -1,13 +1,12 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="ArtMoments.Sites.client.Cart" UnobtrusiveValidationMode="None"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-<style>
+    <style>
     .heading {
             margin-top: 40px;
             margin-bottom: 30px;
-            background-color: paleturquoise;
-            color: white;
-            text-shadow: 1px 1px black;
+            color: black;
+            text-align:center;
         }
 
     input.btnDelete {
@@ -102,7 +101,7 @@
     
     <header>
         <div class="row justify-content-center heading">
-            <h1 class="orderHistoryHeader">Order History</h1>
+            <h1 class="orderHistoryHeader">Cart</h1>
         </div>
     </header>
 
