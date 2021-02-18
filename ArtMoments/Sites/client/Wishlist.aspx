@@ -6,8 +6,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <h1>Wishlist</h1>
-        <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: "></asp:Label>
-        <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
+        <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: " ></asp:Label>
+        <asp:TextBox ID="txtSearch" runat="server" OnLoad="txtSearch_Load" ></asp:TextBox>
         <asp:Button ID="btnSearch" runat="server" Text="Button" OnClick="btnSearch_Click" />
 
         <br />
@@ -45,7 +45,7 @@
                 </div>
             </div>
         </div>--%>
-        <asp:GridView CssClass="table" ID="gvWishlist" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id" OnRowDeleting="gvWishList_RowDeleting">
+        <asp:GridView CssClass="table" ID="gvWishlist" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id" OnRowDeleting="gvWishList_RowDeleting" OnRowCommand="gvWishlist_RowCommand">
             <Columns>
                 
                 <asp:BoundField DataField="id" HeaderText="Wishlist ID" SortExpression="id" InsertVisible="False" ReadOnly="True" Visible="false"></asp:BoundField>
@@ -68,8 +68,8 @@
                    <ItemTemplate>
                     <asp:LinkButton ID="lbtnDelete" runat="server" CausesValidation="False" 
                         CommandName="Delete" Text="Delete" OnClientClick="return confirm('Confirm delete?');"></asp:LinkButton>
-                    <asp:LinkButton ID="lbtnOrder" runat="server" CausesValidation="False" 
-                        CommandName="Order" Text="Order" OnClientClick="return confirm('Confirm delete?');"></asp:LinkButton>
+                    <asp:LinkButton ID="lbtnView" runat="server" CausesValidation="False" 
+                        CommandName="View" Text="View"></asp:LinkButton>
                 </ItemTemplate>
 
                 </asp:TemplateField>

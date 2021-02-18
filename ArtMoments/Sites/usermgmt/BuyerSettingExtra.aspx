@@ -7,8 +7,9 @@
         .auto-style2 {
             left: 0px;
             top: 0px;
-        }
+        }        
     </style>
+    <link href="../../Content/css/SignUp.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">

@@ -16,9 +16,9 @@ namespace ArtMoments.Sites.client
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["UserName"] = "John";
+            
         }
-
+        
         protected void gvWishList_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             dsWishlist.DeleteCommand = "DELETE FROM Wishlist Where id=@wishlist_id";
@@ -62,6 +62,21 @@ namespace ArtMoments.Sites.client
                 }
             }
             conn.Close();
+        }
+
+        protected void gvWishlist_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "View")
+            {
+                GridViewRow gvr = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+                int rowIndex = gvr.RowIndex;
+                Response.Redirect("~/Sites/general/OrderArt.aspx?id=" + gvr.Cells[1].Text);
+            }
+        }
+
+        protected void txtSearch_Load(object sender, EventArgs e)
+        {
+            txtSearch.MaxLength = 49;
         }
     }
 }

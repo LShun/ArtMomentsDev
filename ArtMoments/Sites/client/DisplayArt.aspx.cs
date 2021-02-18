@@ -31,7 +31,7 @@ namespace ArtMoments.Sites.client
 
             }
 
-            public void generalDisplay()
+             protected void generalDisplay()
             {
                 SqlConnection conn = new SqlConnection(strCon);
                 conn.Open();
@@ -66,7 +66,13 @@ namespace ArtMoments.Sites.client
 
             }
 
-            public void bindDDLprocCat()
+            //protected void ChangeLblPRange()
+            //{
+            //    lblMinPRange.Text = rangeMin.Value;
+            //    lblMaxPRange.Text = rangeMax.Value;
+            //}
+
+            protected void bindDDLprocCat()
             {
                 ddlProdCat.Items.Clear();
                 ddlProdCat.Items.Add("ALL");
@@ -90,7 +96,7 @@ namespace ArtMoments.Sites.client
                 conn.Close();
             }
 
-            public void bindDDLprocSize()
+            protected void bindDDLprocSize()
             {
                 ddlProdSize.Items.Clear();
                 ddlProdSize.Items.Add("ALL");
@@ -114,7 +120,7 @@ namespace ArtMoments.Sites.client
                 conn.Close();
             }
 
-            public void bindDDLartist()
+            protected void bindDDLartist()
             {
                 ddlArtist.Items.Clear();
                 ddlArtist.Items.Add("ALL");
@@ -138,36 +144,17 @@ namespace ArtMoments.Sites.client
                 conn.Close();
             }
 
-            public void Item_Created(Object sender, DataListItemEventArgs e)
-            {
-                string imageUrl = "";
-
-                if (e.Item.ItemType == ListItemType.Item)
-                {
-                    DataRowView dr = (DataRowView)e.Item.DataItem;
-                    if (!DBNull.Value.Equals(dr["category_image"]))
-                        imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])dr["category_image"]);
-                    else
-                        imageUrl = String.Empty;
-
-                    (e.Item.FindControl("ibtnCategory_img") as ImageButton).ImageUrl = imageUrl;
-                }
-            }
-
-            protected void ChangeLabel()
-            {
-                lblMinPRange.Text = rangeMin.Value;
-                lblMaxPRange.Text = rangeMax.Value;
-            }
-
             //sda.SelectCommand.Parameters.AddWithValue("@User_ID", ddlArtist.Text);
             protected void btnClear_Click(object sender, EventArgs e)
             {
                 ddlProdCat.ClearSelection();
                 ddlArtist.ClearSelection();
                 ddlProdSize.ClearSelection();
-                rangeMin.Value = "30";
-                rangeMax.Value = "60";
+                txtMinPR.Text = "";
+                txtMaxPR.Text = "";
+                txtProdName.Text = "";
+                //rangeMin.Value = "30";
+                //rangeMax.Value = "60";
                 generalDisplay();
             }
 
@@ -225,6 +212,7 @@ namespace ArtMoments.Sites.client
                 CurrentPage = (int)ViewState["TotalCount"] - 1;
                 DataListPaging((DataTable)ViewState["PagedDataSurce"]);
             }
-        }
+
+    }
 
 }

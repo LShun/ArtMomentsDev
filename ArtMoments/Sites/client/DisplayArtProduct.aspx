@@ -27,7 +27,6 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <h2>Display Artwork</h2>
-        <asp:Label ID="lblDetails" runat="server" Text=""></asp:Label>
                              
         <div class="container" ID="search-form-container">
             <div class="row">
@@ -50,55 +49,43 @@
                </asp:DropDownList>
             </div>
              <div class="col-3 form-group search-form-group" style="margin-top:auto" >
-                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click" />
-            </div>
+                 <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-primary" OnClick="btnClear_Click" CausesValidation="false" />
+                  
+             </div>
             </div>
 
             <div class="row">
-                <div class="col-2 form-group search-form-group">
-                    <label>Price Range</label>
+                <div class="col-3 form-group search-form-group">
+                    <label>Price Range : Min (RM) </label>
+                    <asp:TextBox ID="txtMinPR"  runat="server" CssClass="form-control search-form-control"
+                        MaxLength="10" MinLines="1" MaxLines="1" autocomplete="off"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="revTxtMinPR" runat="server" 
+                        ErrorMessage="Minimum Price Range only accept integer value"
+                        ValidationExpression="^[1-9]\d*(\.\d+)?$" ControlToValidate="txtMinPR" ForeColor="Red"></asp:RegularExpressionValidator>
                 </div>
-                <div class="col-7 form-group">
-                    <div class="slider" id="slider-distance">
-                          <div>
-                            <div class="inverse-left" style="width:30%;" id="LHSrange" runat="server"></div>
-                            <div class="inverse-right"  style="width:70%;" id="RHSrange" runat="server"></div>
-                            <div class="range" style="left:30%;right:40%;" id="Pricerange" runat="server" ></div>
-                            <span class="thumb"  style="left:30%;" id="LHSthumb" runat="server"></span>
-                            <span  class="thumb" style="left:60%;" id="RHSthumb" runat="server"></span>
-                            <div class="sign" style="left:30%;">
-                              <span class="value">30</span>
-                            </div>
-                            <div class="sign" style="left:60%;">
-                              <span class="value">60</span>
-                            </div>
-                            <asp:Label ID="lblMinPRange" runat="server" Text=""></asp:Label>
-                              <asp:Label ID="lblMaxPRange" runat="server" Text=""></asp:Label>
-                          </div>
-                           <input type="range" tabindex="0" value="30" max="100" min="0" step="1" runat="server" id="rangeMin" oninput="
-                              this.value=Math.min(this.value,this.parentNode.childNodes[5].value-1);
-                              var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
-                              var children = this.parentNode.childNodes[1].childNodes;
-                              children[1].style.width=value+'%';
-                              children[5].style.left=value+'%';
-                              children[7].style.left=value+'%';
-                              children[11].style.left=value+'%';
-                              children[11].childNodes[1].innerHTML=this.value;" />
-
-                          <input type="range" tabindex="0" value="60" max="100" min="0" step="1" runat="server" id="rangeMax" oninput="
-                              this.value=Math.max(this.value,this.parentNode.childNodes[3].value-(-1));
-                              var value=(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.value)-(100/(parseInt(this.max)-parseInt(this.min)))*parseInt(this.min);
-                              var children = this.parentNode.childNodes[1].childNodes;
-                              children[3].style.width=(100-value)+'%';
-                              children[5].style.right=(100-value)+'%';
-                              children[9].style.left=value+'%';
-                              children[13].style.left=value+'%';
-                              children[13].childNodes[1].innerHTML=this.value;" />
-                        </div>
+                <div class="col-3 form-group search-form-group">
+                    <label>Price Range : Max (RM) </label>
+                    <asp:TextBox ID="txtMaxPR" runat="server" CssClass="form-control search-form-control"
+                        MaxLength="10" MinLines="1" MaxLines="1" autocomplete="off"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="revTxtMaxPR" runat="server" 
+                        ErrorMessage="Maximum Price Range only accept integer value"
+                        ValidationExpression="^[1-9]\d*(\.\d+)?$" ControlToValidate="txtMaxPR" ForeColor="Red"></asp:RegularExpressionValidator>
+               
                 </div>
-                <div class="col-3 form-group search-form-group" style="margin-top:auto" >
-                     <asp:Button ID="btnClear" runat="server" Text="Clear" CssClass="btn btn-primary" OnClick="btnClear_Click" />
+                <div class="col-3 form-group search-form-group">
+                    <label>Product Name </label>
+                    <asp:TextBox ID="txtProdName" runat="server" CssClass="form-control search-form-control"
+                        MaxLength="10" MinLines="1" MaxLines="1" autocomplete="off"></asp:TextBox>
+                    <asp:RegularExpressionValidator ID="revTxtProdName" runat="server" 
+                        ErrorMessage="Only alphabet is allowed for Product Name"
+                        ValidationExpression="^[a-zA-Z]+$" ControlToValidate="txtProdName" ForeColor="Red"></asp:RegularExpressionValidator>
+               
                 </div>
+          
+                <div class="col-3 form-group search-form-group" >
+                     <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn btn-primary" OnClick="btnSearch_Click1"/>
+                     <asp:ValidationSummary ID="revSummary" runat="server"  ShowMessageBox="true" ShowSummary="false" ForeColor="Red"/>
+               </div>
             </div>
         </div>
         <div class="container" ID="display-img-container">
@@ -132,7 +119,7 @@
                         </tr>
                     </table>--%>
                     <div class="hovereffect">
-                    <asp:Image CssClass="img-responsive" ID="imgProd_img" runat="server" Height="100%" Width="340px" 
+                    <asp:Image CssClass="img-responsive" ID="imgProd_img" runat="server" Height="100%" Width="340px"
                                     ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>'/>
                                  
                         <div class="overlay">
@@ -140,7 +127,7 @@
                                 <asp:Label ID="lblProd_name" runat="server" Text='<%# Eval("prod_name") %>'></asp:Label>
                             </h2>
 				            <p>
-					            <asp:Button CssClass="btnNav" ID="btnNavProd" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="viewProd" Text="Order"/>
+					            <asp:Button CssClass="btnNav" ID="btnNavProd" runat="server" CommandArgument='<%# Eval("id") %>' CommandName="orderProd" Text="Order"/>
 				            </p>
                         </div>
                    </div>

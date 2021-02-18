@@ -57,6 +57,7 @@
             color:white;
         }
 
+        /* Sidebar */
         .ParentMenu, .ParentMenu:hover {  
             width: 150px;  
             background-color: #fff;  
@@ -80,7 +81,9 @@
             height: 30px;  
             line-height: 30px;  
             margin-top: 5px;
+
             border:1px solid black;
+
         }  
   
         .ChildMenu:hover {  
@@ -92,7 +95,79 @@
             color: #fff;  
         }
 
+        /* Style for sidebar */
+        /* The side navigation menu */
+        .sidenav {
+          height: 100%; /* 100% Full-height */
+          width: 0; /* 0 width - change this with JavaScript */
+          position: fixed; /* Stay in place */
+          z-index: 1; /* Stay on top */
+          top: 0; /* Stay at the top */
+          left: 0;
+          background-color: lightgray;
+          overflow-x: hidden; /* Disable horizontal scroll */
+          padding-top: 60px; /* Place content 60px from the top */
+          transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+        }
+
+        /* The navigation menu links */
+        .sidenav a {
+          text-decoration: none;
+          color: black;
+          display: block;
+          transition: 0.3s;
+        }
+
+        /* When you mouse over the navigation links, change their color */
+        .sidenav a:hover {
+          color: #f1f1f1;
+        }
+
+        /* Position and style the close button (top right corner) */
+        .sidenav .closebtn {
+          position: absolute;
+          top: 0;
+          right: 25px;
+          font-size: 36px;
+          margin-left: 50px;
+        }
+
+        .img-menu {
+            height: 3vh;
+            width: 3vh;
+            padding: 0.5vh 0.5vh;
+        }
+
+        .span-menu :hover {
+            background-color: darkgrey;
+        }
+
+        .tv-menu {
+            padding-left: 2vh 2vh;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+        @media screen and (max-height: 450px) {
+          .sidenav {padding-top: 15px;}
+          .sidenav a {font-size: 18px;}
+        }
+        /*#ArtworkMenu{
+           height:100px; 
+        }*/
     </style>
+
+    <script>
+        /* Set the width of the side navigation to 250px */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+    </script>
 </head>
 <body>
 
@@ -108,8 +183,28 @@
           <a href="#login" style="float: right;">Login</a>
           <a href="#about" style="float: right;">Sign up</a>
         </div>--%>
+
+        <!-- sidebar COPY PASTE FIX LATER -->
+        <div id="mySidenav" class="sidenav">
+          <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+          <asp:TreeView ID="TreeView1" CssClass="tv-menu" runat="server" DataSourceID="SiteMapDataSource1" ImageSet="Arrows">
+              <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
+              <NodeStyle Font-Names="Helvetica" Font-Size="12pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
+              <ParentNodeStyle Font-Bold="False" />
+              <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" HorizontalPadding="0px" VerticalPadding="0px" />
+            </asp:TreeView>
+            <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
+        </div>
+
+        
+        <!-- END OF sidebar COPY PASTE FIX LATER -->
         <table>
             <tr>
+                <!-- Careful sidebar menu -->
+                <td>
+                    <span class="span-menu" onclick="openNav()">
+                    <asp:Image ID="imgMenu" ImageUrl="~/Content/menu.svg" CssClass="img-menu" runat="server" /></span>
+                </td>
                 <td class="brand"><h3>ArtMoments</h3></td>
                 <td class="menu">
                     <asp:Menu ID="ArtworkMenu" runat="server" Orientation="Horizontal">            

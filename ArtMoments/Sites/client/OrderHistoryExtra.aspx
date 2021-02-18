@@ -2,21 +2,31 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT T.id AS transaction_id, O.id AS order_id, P.prod_name, P.prod_size, P.prod_image, P.prod_price, A.user_name, C.category_name, O.quantity, O.order_status FROM [Transaction] AS T INNER JOIN [Order] AS O ON T.id = O.transaction_id INNER JOIN Product AS P ON P.id = O.product_id INNER JOIN [User] AS A ON A.id = P.user_id INNER JOIN Product_Category AS C ON C.id = P.category_id WHERE (T.user_id = 1) ORDER BY T.date_order DESC"></asp:SqlDataSource>
+    <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>">
+        <SelectParameters>
+            <asp:SessionParameter DefaultValue="1" Name="TransacId" SessionField="TransacId" />
+        </SelectParameters>
+    </asp:SqlDataSource>
+    
+    <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [id], [user_id] FROM [Transaction] WHERE ([user_id] = @user_id)">
+        <SelectParameters>
+            <asp:SessionParameter DefaultValue="1" Name="user_id" SessionField="@UserName" Type="Int32" />
+        </SelectParameters>
+    </asp:SqlDataSource>
     <header>
     <div class="row justify-content-center">
         <h1 class="orderHistoryHeader">Order History</h1>
     </div>
     </header>
 
-    <asp:ListView ID="ListView1" runat="server" DataSourceID="SqlDataSource1">
-        <ItemTemplate>
-
-            <div class="container transactionHistoryContainer">
+    <div class="container transactionHistoryContainer">
             <div class="row">
-                <h2><asp:Label ID="transaction_idLabel" runat="server" Text='<%# Eval("transaction_id") %>' /></asp:Label></h2>
+                <h2><asp:Label ID="lblTransacId" runat="server" Text='<%# Eval("transaction_id") %>'/></asp:Label></h2>
             </div>
 
+    <asp:ListView ID="ListViewTransactionDetails" runat="server" DataSourceID="SqlDataSource1">
+        <ItemTemplate>
+      
             <div class="container align-content-sm-center orderHistoryContainer">
                 <div class="row">
                     <div class="col-lg-4 col-md-12 col-sm-12 orderHistoryRowDiv">
@@ -27,7 +37,7 @@
                                 <asp:Label ID="order_idLabel" runat="server" Text='<%# Eval("order_id") %>' />
                             </div>
                             <!-- Artwork -->
-                                <asp:Image ID="Image1" runat="server" Text='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>'  height="200"/>
+                                <asp:ImageButton ID="BtnProdImg" runat="server" style="max-height:200px; max-width:200px" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>' />
                         </div>
                     </div>
                     <!-- Orderhistory Details -->
@@ -57,7 +67,7 @@
                     <!-- Size, Category, Author from db -->
                     <div class="row sizeCategoryAuthorDB">
                         <div class="col" id="lblsizeDivision">
-                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("prod_size") %>' />
+                            <asp:Label ID="Label3" runat="server" Text='<%# Eval("prod_price") %>' />
                         </div>
                         <div class="col" id="lblcategorryDivision">
                             <asp:Label ID="category_nameLabel" runat="server" Text='<%# Eval("category_name") %>' />
@@ -86,7 +96,7 @@
                             <asp:Label ID="quantityLabel" runat="server" Text='<%# Eval("quantity") %>' />
                         </div>
                         <div class="col" id="lblpriceDivision">
-                            <asp:Label ID="prod_priceLabel" runat="server" Text='<%# Eval("prod_price") %>' />
+                            <asp:Label ID="prod_priceLabel" runat="server" Text='<%# Eval("subtotal") %>' />
                         </div>
                         <div class="col" id="btnBuyAgainDivision">
                             <asp:Button ID="btnBuyAgain" runat="server" Text="BUY AGAIN" class="btn-primary rounded"/>
@@ -95,8 +105,11 @@
                 </div>
             </div>
         </div>
-    </div>
+   </div>
+             
         </ItemTemplate>
+        
+
         <LayoutTemplate>
             <div id="itemPlaceholderContainer" runat="server" style="font-family: Verdana, Arial, Helvetica, sans-serif;">
                 <span runat="server" id="itemPlaceholder" />
@@ -111,4 +124,5 @@
         </LayoutTemplate>
         
     </asp:ListView>
+   
 </asp:Content>
