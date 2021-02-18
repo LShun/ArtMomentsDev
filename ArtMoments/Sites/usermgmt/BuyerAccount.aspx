@@ -34,24 +34,32 @@
                                         </td>
                                         <td class="auto-style4" style="padding:0px">
                                             <div style="margin-top: 0px">
-                                                <table style="margin:10px; width:100%">
+                                                <table style="width:100%">
                                                     <tr>
                                                         <td class="auto-style6">
-                                                            <asp:Label runat="server" Text="Followed Artist"></asp:Label>
-                                                            <br/>
-                                                            <asp:Label runat="server" Text="Start following your favourite artist"></asp:Label>
+                                                            <asp:Panel ID="pblShowForBuyer1" runat="server">
+																<asp:Label runat="server" Text="Followed Artist"></asp:Label>
+																<br/>
+																<asp:Label runat="server" Text="Start following your favourite artist"></asp:Label>
+														</asp:Panel>
+                                                            
                                                         </td>
                                                         <td style="width:1%"></td>
                                                         <td class="auto-style6">
-                                                            <asp:Label runat="server" Text="My favourite"></asp:Label>
-                                                            <br/>
-                                                            <asp:Label runat="server" Text="Start collecting art"></asp:Label>
+                                                            <asp:Panel ID="pblShowForBuyer2" runat="server">
+																<asp:Label runat="server" Text="My favourite"></asp:Label>
+																<br/>
+																<asp:Label runat="server" Text="Start collecting art"></asp:Label>
+															</asp:Panel>
                                                         </td>
+
 														<td style="width:1%"></td>
 														<td class="auto-style6">
-                                                            <asp:Label runat="server" Text="Upload you arts"></asp:Label>
-                                                            <br/>
-                                                            <asp:Label runat="server" Text="Let others to have a look on your artwork"></asp:Label>
+                                                            <asp:Panel ID="pnlShowForSeller" runat="server">
+																<asp:Label runat="server" Text="Upload you arts"></asp:Label>
+																	<br/>
+																		<asp:LinkButton ID="lbUpload" runat="server" OnClick="lbUpload_Click">Upload now</asp:LinkButton>
+																</asp:Panel>                                                            
                                                         </td>
                                                     </tr>
                                                 </table>
