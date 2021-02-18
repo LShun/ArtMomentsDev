@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="EditProduct.aspx.cs" Inherits="ArtMoments.Sites.artist.EditProduct" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist.Master" AutoEventWireup="true" CodeBehind="EditProduct.aspx.cs" Inherits="ArtMoments.Sites.artist.EditProduct" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <style type="text/css">
      .h1, h1 {
@@ -33,7 +33,7 @@
         color: white;
         opacity: 0.8;
         font-size: 17px;
-        padding: 12px 20px;
+        padding: 12px 20px;   /*top and bottom are 12px, right and left are 20px*/
         margin-right: 20px;
         border-radius: 4px;
         cursor: pointer;
@@ -56,8 +56,8 @@
         display: table;
         clear: both;
     }
-    .col-2{
-        position:relative;
+    .col-2{ 
+        position:relative;         /*relative position*/
         width:100%;
         padding-right:15px;
         padding-left:15px;
@@ -66,7 +66,7 @@
         max-width:16.666667%
     }
     .col-4{
-        position:relative;
+        position:relative;        /*relative position*/
         width:100%;
         padding-right:15px;
         padding-left:15px;
@@ -75,7 +75,7 @@
         max-width:33.333333%;
     }
     .col-10{
-        position:relative;
+        position:relative;        /*relative position*/
         width:100%;
         padding-right:15px;
         padding-left:15px;
