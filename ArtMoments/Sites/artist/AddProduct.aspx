@@ -100,7 +100,7 @@
     }
     .btn-artwork {
         color: #fff;
-        background-color: #007bff;
+        background-color: #007bff;  /*blue*/
         border-color: #007bff;   /*blue*/
         display: inline-block;
         font-weight: 400;
@@ -117,6 +117,17 @@
    .artworkWidth{
        padding-right:0;
    }
+   *, ::after, ::before {
+        box-sizing: border-box;
+    }
+
+   .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+        }
 </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -167,7 +178,7 @@
 						<label for="artworkImage">Artwork Image*:</label> 
 					</div>
 					<div class="col-10">	
-                        <asp:fileupload id="ImageUpload" accept="image/*" runat="server" />	
+                        <asp:fileupload id="fuProdImage" accept="image/*" runat="server" />	
 					</div>
 					
 				</div>
