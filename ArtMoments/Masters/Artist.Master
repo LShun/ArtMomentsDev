@@ -98,7 +98,7 @@
             <tr>
                 <td class="brand"><h1>ArtMoments</h1></td>
                 <td class="menu">
-                        <asp:Menu ID="ArtworkMenu" CssClass="artistMenu" runat="server" Orientation="Horizontal">            
+                        <asp:Menu ID="ArtworkMenu" CssClass="artistMenu" runat="server" Orientation="Horizontal" OnMenuItemClick="ArtworkMenu_MenuItemClick">            
                         
                             <Items>
                             <asp:MenuItem NavigateUrl="~/Sites/general/HomePage.aspx" Text="Home" Value="Home"></asp:MenuItem>

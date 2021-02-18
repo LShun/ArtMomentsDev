@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="AddProduct.aspx.cs" Inherits="ArtMoments.Sites.artist.AddProduct" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist.Master" AutoEventWireup="true" CodeBehind="AddProduct.aspx.cs" Inherits="ArtMoments.Sites.artist.AddProduct" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <style type="text/css">
     .h1, h1 {
@@ -33,7 +33,7 @@
         color: white;
         opacity: 0.8;
         font-size: 17px;
-        padding: 12px 20px;
+        padding: 12px 20px;   /*top and bottom are 12px, right and left are 20px*/
         margin-right: 20px;
         border-radius: 4px;
         cursor: pointer;
@@ -57,7 +57,7 @@
         clear: both;
     }
     .col-2{
-        position:relative;
+        position:relative;  /*relative position*/
         width:100%;
         padding-right:15px;
         padding-left:15px;
@@ -67,7 +67,7 @@
     }
     
    .col-4{
-        position:relative;
+        position:relative;    /*relative position*/
         width:100%;
         padding-right:15px;
         padding-left:15px;
@@ -76,7 +76,7 @@
         max-width:33.333333%;
     }
     .col-10{
-        position:relative;
+        position:relative;     /*relative position*/
         width:100%;
         padding-right:15px;
         padding-left:15px;
@@ -96,18 +96,18 @@
         cursor: pointer;
     }
     .button:hover{
-        color: #212529;
+        color: #212529; /*Blue Charcoal*/
     }
     .btn-artwork {
         color: #fff;
         background-color: #007bff;
-        border-color: #007bff;
+        border-color: #007bff;   /*blue*/
         display: inline-block;
         font-weight: 400;
         text-align: center;
         vertical-align: middle;
         user-select: none;
-        border: 1px solid transparent;
+        border: 1px solid transparent;   /*border transparent*/
         padding: .375rem .75rem;
         font-size: 1rem;
         line-height: 1.5;

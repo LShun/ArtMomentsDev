@@ -205,7 +205,7 @@
                 </td>
                 <td class="brand"><h3>ArtMoments</h3></td>
                 <td class="menu">
-                    <asp:Menu ID="ArtworkMenu" runat="server" Orientation="Horizontal">            
+                    <asp:Menu ID="ArtworkMenu" runat="server" Orientation="Horizontal" >            
                         <Items>
                             <asp:MenuItem NavigateUrl="~/Sites/general/HomePage.aspx" Text="Home" Value="Home"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArt.aspx" Text="Artwork" Value="Artwork">
