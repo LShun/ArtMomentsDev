@@ -12,6 +12,7 @@ namespace ArtMoments.Sites.usermgmt
     public partial class SignUp : System.Web.UI.Page
     {
         string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
+
         protected void Page_Load(object sender, EventArgs e)
         {
             ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
