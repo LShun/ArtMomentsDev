@@ -151,46 +151,5 @@
                 <a href="../usermgmt/PreLogin.aspx" type="button" class="btn btn-outline-primary">Login!</a>
             </h2>
         </asp:Panel>
-
-<%--        <h2>Categories</h2>
---%>
-
-
-        <%--  <div class="table">
-            <div class="row">
-                <div class="col">
-                    <div class="card" style="width: auto;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Category 1</h5>
-                            <p class="card-text">Category 1 Text</p>
-                            <a href="#" class="btn btn-primary">Link to first Category</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card" style="width: auto;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Category 2</h5>
-                            <p class="card-text">Category 2 Text</p>
-                            <a href="#" class="btn btn-primary">Link to second category</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card" style="width: auto;">
-                        <img src="..." class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Category 3</h5>
-                            <p class="card-text">Category 3 Description</p>
-                            <a href="#" class="btn btn-primary">Link to 3rd category</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>--%>
     </div>
 </asp:Content>
