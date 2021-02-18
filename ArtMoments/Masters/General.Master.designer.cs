@@ -33,22 +33,22 @@ namespace ArtMoments.Masters
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
-        /// TreeView1 control.
+        /// tvSideBar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TreeView TreeView1;
+        protected global::System.Web.UI.WebControls.TreeView tvSideBar;
 
         /// <summary>
-        /// SiteMapDataSource1 control.
+        /// smdsTreeView control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapDataSource SiteMapDataSource1;
+        protected global::System.Web.UI.WebControls.SiteMapDataSource smdsTreeView;
 
         /// <summary>
         /// imgMenu control.
@@ -69,13 +69,13 @@ namespace ArtMoments.Masters
         protected global::System.Web.UI.WebControls.Menu ArtworkMenu;
 
         /// <summary>
-        /// smArtMoments control.
+        /// smpArtMoments control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SiteMapPath smArtMoments;
+        protected global::System.Web.UI.WebControls.SiteMapPath smpArtMoments;
 
         /// <summary>
         /// ContentPlaceHolder1 control.
