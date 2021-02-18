@@ -13,10 +13,13 @@
 			<siteMapNode url="~/Sites/client/OrderHistoryExtra.aspx" title="Order History"  description=""/>
 			<siteMapNode url="~/Sites/client/Wishlist.aspx" title="Wishlist"  description="" />
 		</siteMapNode>
-		<siteMapNode url="" title="User Management"  description=""  roles="ClientArtist">
+		<siteMapNode url="" title="User Management" description="" roles="Client,Artist">
 			<siteMapNode url="~/Sites/usermgmt/BuyerAccount.aspx" title="Account Management"  description=""/>
 		</siteMapNode>
-		<siteMapNode url="~/Sites/usermgmt/PreLogin.aspx" title="Login"  description="" roles="*"/>
-		<siteMapNode url="~/Sites/usermgmt/SignUp.aspx" title="Sign-up"  description="" roles="*"/>
+		<siteMapNode url="" title="Account"  description="" roles="Guest">
+			<siteMapNode url="~/Sites/usermgmt/PreLogin.aspx" title="Login"  description=""/>
+			<siteMapNode url="~/Sites/usermgmt/SignUp.aspx" title="Sign-up"  description=""/>
+		</siteMapNode>
+		
 	</siteMapNode>
 </siteMap>
