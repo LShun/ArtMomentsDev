@@ -127,9 +127,10 @@
             margin-right: auto;
             margin-left: auto;
     }
-    @media (min-width: 1200px){
-    .container {
-        max-width: 1140px;
+    @media (min-width: 1200px) {
+        .container {
+            max-width: 1140px;
+        }
     }
 </style>
 </asp:Content>
