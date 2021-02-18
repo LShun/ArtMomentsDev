@@ -35,8 +35,6 @@
                         <h1 class="display-5">Welcome to ArtMoments Art Gallery</h1>
                         <p class="lead">We specialize in selling interesting artworks</p>
                         <hr />
-                        <a class="btn btn-primary btn-lg" href="../client/DisplayArt.aspx" role="button">Browse Arts...</a>
-
                     </div>
                 </div>
                 <div class="col-sm">
@@ -52,10 +50,8 @@
                             <PagerSettings Mode="NumericFirstLast"/>
                             <Fields>
                                 <%-- Name + link to the products --%>
-                                <asp:HyperLinkField
-                                    DataNavigateUrlFields="id"
-                                    DataNavigateUrlFormatString="./OrderArt.aspx?id={0}"
-                                    DataTextField="prod_name"
+                                <asp:BoundField
+                                    DataField="prod_name"
                                     HeaderText="Name" />
                                 <%-- Image of the product --%>
                                 <asp:TemplateField HeaderText="Image">

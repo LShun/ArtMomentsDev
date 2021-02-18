@@ -69,13 +69,13 @@ namespace ArtMoments.Sites.artist
         protected global::System.Web.UI.WebControls.SqlDataSource test;
 
         /// <summary>
-        /// ImageUpload control.
+        /// fuProdImage control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload ImageUpload;
+        protected global::System.Web.UI.WebControls.FileUpload fuProdImage;
 
         /// <summary>
         /// txtArtworkPrice control.

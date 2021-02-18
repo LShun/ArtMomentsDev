@@ -152,6 +152,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!-- header -->
     <header>
         <div class="row justify-content-center">
             <h1 class="orderHistoryHeader">Order History</h1>
@@ -161,6 +162,7 @@
         <ItemTemplate>
             <div class="container transactionHistoryContainer">
                 <div class="row">
+                    <!-- Transaction id -->
                     <h2><asp:Label ID="lblTransacTxt" runat="server" Text='Transaction ID:'/></asp:Label><asp:Label ID="lblTransacId" runat="server" Text='<%# Eval("transaction_id") %>'/></asp:Label></h2>
                 </div>
               
@@ -215,7 +217,7 @@
                             </div>
                         </div>   
 
-                        <!-- Qty, Price, view more details label -->
+                        <!-- Qty, Price, order date label -->
                         <div class="row qtyPriceMore">
                             <div class="col" id="qtyDivision">
                                 <label id="lblQtyTxt">Quantity</label>
@@ -245,7 +247,7 @@
             </div>
         </div>
     </ItemTemplate>
-        
+    <!-- display if there is no history for the buyer -->
     <EmptyDataTemplate>
             <asp:Label ID="defaultItem" runat="server" 
                 Visible='<%# ListViewOrderHistory.Items.Count == 0 %>' Text="No items found" />
