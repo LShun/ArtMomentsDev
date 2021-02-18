@@ -66,7 +66,7 @@ namespace ArtMoments.Sites.artist
             string pricePattern = @"^\d{0,8}(\.\d{1,2})?$";
 
             bool isPriceValid = Regex.IsMatch(txtArtworkPrice.Text, pricePattern);
-            if (txtArtworkName.Text.Length == 0 || txtArtworkHeight.Text.Length == 0 || txtArtworkWidth.Text.Length == 0 || txtArtworkDesc.Text.Length == 0 || txtArtworkPrice.Text.Length == 0 || txtArtworkStock.Text.Length == 0 || ImageUpload.HasFile == false)
+            if (txtArtworkName.Text.Length == 0 || txtArtworkHeight.Text.Length == 0 || txtArtworkWidth.Text.Length == 0 || txtArtworkDesc.Text.Length == 0 || txtArtworkPrice.Text.Length == 0 || txtArtworkStock.Text.Length == 0 || fuProdImage.HasFile == false)
             {
                 lblErrorMsg.Text = "The form is not completed!!!";
             }
@@ -85,9 +85,9 @@ namespace ArtMoments.Sites.artist
 
                 //int userID = getUserID();
                 byte[] bytes;
-                using (BinaryReader br = new BinaryReader(ImageUpload.PostedFile.InputStream))
+                using (BinaryReader br = new BinaryReader(fuProdImage.PostedFile.InputStream))
                 {
-                    bytes = br.ReadBytes(ImageUpload.PostedFile.ContentLength);
+                    bytes = br.ReadBytes(fuProdImage.PostedFile.ContentLength);
                 }
 
                 using (SqlConnection sqlcon = new SqlConnection(connectionString))

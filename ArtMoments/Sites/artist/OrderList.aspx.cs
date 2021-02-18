@@ -32,8 +32,8 @@ namespace ArtMoments.Sites.artist
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlDataAdapter sda = new SqlDataAdapter("SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], O.deliver_channel as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] " +
-                    "FROM Product P, Product_Category C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T " +
+                using (SqlDataAdapter sda = new SqlDataAdapter("SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], D.deliver_type as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] " +
+                    "FROM [ArtMomentsDb].[dbo].[Product] P, [ArtMomentsDb].[dbo].[Delivery] D, [ArtMomentsDb].[dbo].[Product_Category] C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T " +
                     "WHERE A.id = P.user_id AND A.user_name = @name  AND P.category_id = C.id AND O.product_id = P.id AND T.id = O.transaction_id AND T.user_id = u.id", conn))
                 {
                     sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
@@ -64,12 +64,12 @@ namespace ArtMoments.Sites.artist
 
         }
 
-        private void SearchProduct()
+        private void SearchProduct()   //search product
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                using (SqlDataAdapter sda = new SqlDataAdapter("SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], O.deliver_channel as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] " +
-                    "FROM Product P, Product_Category C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T " +
+                using (SqlDataAdapter sda = new SqlDataAdapter("SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], D.deliver_type as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] " +
+                    "FROM Product P, Product_Category C, [ArtMomentsDb].[dbo].[Delivery] D, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T " +
                     "WHERE A.id = P.user_id AND A.user_name = @name  AND P.category_id = C.id AND O.product_id = P.id AND T.id = O.transaction_id AND T.user_id = u.id AND P.prod_name like '%' + @productName + '%'", conn))
                 {
                     sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
@@ -89,12 +89,12 @@ namespace ArtMoments.Sites.artist
                 }
             }
         }
-        protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e)
+        protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e) //change to another page of table
         {
             orderList.PageIndex = e.NewPageIndex;
             this.BindGrid();
         }
-        protected void OnSorting(object sender, GridViewSortEventArgs e)
+        protected void OnSorting(object sender, GridViewSortEventArgs e)  //sorting the table
         {
             this.BindGrid(e.SortExpression);
         }
@@ -119,9 +119,7 @@ namespace ArtMoments.Sites.artist
 
         protected void OnSelectedIndexChanged(Object sender, EventArgs e)
         {
-            string prodID = orderList.SelectedRow.Cells[0].Text;
-            Application["prodID"] = prodID;
-            Response.Redirect("EditProduct.aspx");
+          
         }
     }
 }

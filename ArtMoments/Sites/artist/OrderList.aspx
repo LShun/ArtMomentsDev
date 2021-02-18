@@ -25,7 +25,7 @@
 
             }
         }
-        .contaner{
+        .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
             width: 100%;
             padding-right: 15px;
             padding-left: 15px;
@@ -69,15 +69,15 @@
             justify-content: space-between!important;
         }
         #ContentPlaceHolder1_txtSearch{
-        background-image: url('../../Content/search--v2.png'); /* Add a search icon to input */
-        background-position: 10px 10px; 
-        background-repeat: no-repeat; /* Do not repeat the icon image */
-        background-size: 25px 25px; /*adjust background image size*/
-        width: 50%;
-        font-size: 16px; /* Increase font-size */
-        padding: 12px 20px 12px 40px; /* Add some padding */
-        border: 1px solid #ddd; 
-        margin-bottom: 12px; /* Add some space below the input */
+            background-image: url('../../Content/search--v2.png'); /* Add a search icon to input */
+            background-position: 10px 10px; 
+            background-repeat: no-repeat; /* Do not repeat the icon image */
+            background-size: 25px 25px; /*adjust background image size*/
+            width: 50%;
+            font-size: 16px; /* Increase font-size */
+            padding: 12px 20px 12px 40px; /* Add some padding */
+            border: 1px solid #ddd; 
+            margin-bottom: 12px; /* Add some space below the input */
 		}
         .orderListTable{
             margin-bottom:10px;
@@ -90,6 +90,7 @@
         *, ::after, ::before {
             box-sizing: border-box;
         }
+
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -102,7 +103,7 @@
         
         <%--OrderList--%>
         <div class="orderListTable"> 
-            <asp:GridView ID="orderList" runat="server" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" OnSorting="OnSorting" OnPageIndexChanging="OnPageIndexChanging" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged = "OnSelectedIndexChanged">
+            <asp:GridView ID="orderList" runat="server" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" OnSorting="OnSorting" OnPageIndexChanging="OnPageIndexChanging" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged = "OnSelectedIndexChanged" PageSize="10">
             <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" FirstPageText="First" LastPageText="Last"/>       
             <pagerstyle horizontalalign="Left" CssClass="pagination"/>
                 <Columns>
