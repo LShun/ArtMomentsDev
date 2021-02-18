@@ -10,11 +10,9 @@
         }
 
         .latest {
-            width:auto;
-            height:auto;
-            min-height: 200px;
-            max-width: 200px;
-            max-height: 200px;
+            width: auto;
+            max-width: 30vh;
+            height: 15vh;
         }
 
         .paginate span {
