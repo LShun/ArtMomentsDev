@@ -20,8 +20,9 @@ namespace ArtMoments.Sites.general
             if (!IsPostBack)
             {
                 Session["ProdId"] = Request.QueryString["id"];
+                Session["ProdId"] = 3;
 
-                if (Session["UserName"] != null && Session["ProdId"] != null)
+                if (Session["ProdId"] != null)
                 {
                     using (SqlConnection con = new SqlConnection(conString))
                     {
@@ -62,25 +63,49 @@ namespace ArtMoments.Sites.general
                             }
                         }
                         //check wishlist
-                        string wishlistQuery = "select W.id as [wishlist-id] from [Wishlist] W where W.user_id like @CustId and W.product_id like @ProdId";
-                        using (SqlConnection conn = new SqlConnection(conString))
+                        if(Session["UserName"] != null && Session["UserType"].Equals(1))
                         {
-                            SqlCommand cmd = new SqlCommand(wishlistQuery, conn);
-                            cmd.Parameters.Add("@CustId", (String)Session["UserName"].ToString());
-                            cmd.Parameters.Add("@ProdId", (String)Session["ProdId"].ToString());
-                            try
-                            {
-                                conn.Open();
+                            btnwishlistOff.Enabled = true;
+                            btnwishlistOn.Enabled = true;
 
-                                if (cmd.ExecuteScalar() != null)
+                            btnMinusQty.Enabled = true;
+                            btnPlusQty.Enabled = true;
+                            txtboxQty.Enabled = true;
+                            btnBuyNow.Enabled = true; 
+
+                            string wishlistQuery = "select W.id as [wishlist-id] from [Wishlist] W where W.user_id like @CustId and W.product_id like @ProdId";
+                            using (SqlConnection conn = new SqlConnection(conString))
+                            {
+                                SqlCommand cmd = new SqlCommand(wishlistQuery, conn);
+                                cmd.Parameters.Add("@CustId", (String)Session["UserName"].ToString());
+                                cmd.Parameters.Add("@ProdId", (String)Session["ProdId"].ToString());
+                                try
                                 {
-                                    btnwishlistOn.Visible = true;
-                                    btnwishlistOff.Visible = false;
+                                    conn.Open();
+
+                                    if (cmd.ExecuteScalar() != null)
+                                    {
+                                        btnwishlistOn.Visible = true;
+                                        btnwishlistOff.Visible = false;
+                                    }
+                                }
+                                catch (Exception ex)
+                                {
                                 }
                             }
-                            catch (Exception ex)
-                            {
-                            }
+                        }
+                        else
+                        {
+                            btnwishlistOn.Visible = false;
+                            btnwishlistOff.Visible = true;
+                            btnwishlistOff.Enabled = false;
+                            btnwishlistOn.Enabled = false;
+
+                            btnMinusQty.Enabled = false;
+                            btnPlusQty.Enabled = false;
+                            txtboxQty.Enabled = false;
+                            btnBuyNow.Enabled = false;
+                            btnBuyNow.Text = "Login As Buyer To Buy";
                         }
                     }
                 }
