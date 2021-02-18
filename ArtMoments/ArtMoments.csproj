@@ -126,6 +126,7 @@
     <Content Include="Content\scripts\blank.js" />
     <Content Include="Content\scripts\bootstrap.bundle.min.js" />
     <Content Include="Content\scripts\jquery-3.0.0.slim.min.js" />
+    <Content Include="Content\scripts\treeViewSideBar.js" />
     <Content Include="Content\search--v2.png" />
     <Content Include="Content\Sky.jpg" />
     <Content Include="Content\tetons-and-the-snake-river-grand-teton-national-park-c-1942_u-l-f3p8uj0.jpg" />
