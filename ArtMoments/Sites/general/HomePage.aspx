@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="ArtMoments.Sites.general.HomePage2" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="cphHead" ContentPlaceHolderID="head" runat="server">
 
     <style>
         .img-benefits  {
@@ -26,7 +26,7 @@
         }*/
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="cphBody" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container">
         <!-- Welcome -->
@@ -69,7 +69,7 @@
 
                             </Fields>
                         </asp:DetailsView>
-                        <asp:SqlDataSource ID="dsLatestArt" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [id], SUBSTRING([prod_name], 0, 35) AS prod_name, [prod_image] FROM [Product] ORDER BY [id] DESC"></asp:SqlDataSource>
+                        <asp:SqlDataSource ID="dsLatestArt" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT TOP 50 [id], SUBSTRING([prod_name], 0, 35) AS prod_name, [prod_image] FROM [Product] ORDER BY [id] DESC"></asp:SqlDataSource>
                     </div>
                 </div>
             </div>

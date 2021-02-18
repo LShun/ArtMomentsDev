@@ -15,39 +15,21 @@ namespace ArtMoments.Sites.client
     {
 
         /// <summary>
-        /// SqlDataSource1 control.
+        /// ListViewOrderHistory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource1;
+        protected global::System.Web.UI.WebControls.ListView ListViewOrderHistory;
 
         /// <summary>
-        /// SqlDataSource2 control.
+        /// SqlDataSourceOrderHistory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSource2;
-
-        /// <summary>
-        /// lblTransacId control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblTransacId;
-
-        /// <summary>
-        /// ListViewTransactionDetails control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.ListView ListViewTransactionDetails;
+        protected global::System.Web.UI.WebControls.SqlDataSource SqlDataSourceOrderHistory;
     }
 }

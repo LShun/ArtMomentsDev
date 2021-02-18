@@ -47,9 +47,6 @@
         .heading {
             margin-top: 40px;
             margin-bottom: 30px;
-            background-color: paleturquoise;
-            color: white;
-            text-shadow: 1px 1px black;
         }
 
         .row.sizeCategoryAuthor, .row.descriptionDevision, .row.sizeCategoryAuthor {
@@ -166,18 +163,16 @@
         blockquote {
             font-size: 15px;
         }
+        .auto-style1 {
+            color: black;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Heading -->
-    <header>
-        <div class="row justify-content-center heading">
-            <h1 class="orderHistoryHeader">Order History</h1>
-        </div>
-    </header>
-    
-    <div class="container" id="artOrder">
-        <div class="row">
+    <header><h1 style="text-align:center; " class="auto-style1">Art Details</h1></header>
+    <div class="container" id="artOrder">    
+    <div class="row">
             <div class="col artImgDiv">
                <!-- ArtWork Image -->
                 <div class="justify-content-center align-self-center col-12">
