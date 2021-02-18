@@ -60,6 +60,24 @@ namespace ArtMoments.Sites.usermgmt
         protected global::System.Web.UI.WebControls.Panel pblShowForBuyer1;
 
         /// <summary>
+        /// lblText control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblText;
+
+        /// <summary>
+        /// lblText2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblText2;
+
+        /// <summary>
         /// pblShowForBuyer2 control.
         /// </summary>
         /// <remarks>
@@ -69,6 +87,24 @@ namespace ArtMoments.Sites.usermgmt
         protected global::System.Web.UI.WebControls.Panel pblShowForBuyer2;
 
         /// <summary>
+        /// lblText3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblText3;
+
+        /// <summary>
+        /// lblText4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblText4;
+
+        /// <summary>
         /// pnlShowForSeller control.
         /// </summary>
         /// <remarks>
@@ -76,6 +112,15 @@ namespace ArtMoments.Sites.usermgmt
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlShowForSeller;
+
+        /// <summary>
+        /// lblText5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblText5;
 
         /// <summary>
         /// lbUpload control.
