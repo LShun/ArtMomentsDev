@@ -5,7 +5,7 @@
     <link href="../../Content/css/BuyerAcc.css" rel="stylesheet" />
    
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphBody" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
 	<div class="row">
 		<div class="col-md-3 ">
