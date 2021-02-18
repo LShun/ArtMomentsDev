@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="ProductList.aspx.cs" Inherits="ArtMoments.Sites.artist.ProductList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist.Master" AutoEventWireup="true" CodeBehind="ProductList.aspx.cs" Inherits="ArtMoments.Sites.artist.ProductList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         th {
@@ -57,7 +57,7 @@
         {
             background-color: #A1DCF2;
             color: #000;
-            border: 1px solid #3AC0F2;
+            border: 1px solid #3AC0F2;   /* Add a blue border */
             margin:5px 5px 5px 5px; /* Add some space outside the box */
         }
         #ContentPlaceHolder1_txtSearch{
@@ -131,8 +131,9 @@
                 
             </div>
          </div>          
-            
-        <asp:TextBox ID="txtSearch" class="auto-style28" OnTextChanged="Search" AutoPostBack="true" placeholder="Search for Product names.." runat="server"></asp:TextBox>
+         <%--search textbox--%>   
+        <asp:TextBox ID="txtSearch" class="auto-style28" OnTextChanged="Search" AutoPostBack="true" placeholder="Search for Product names.." autocomplete="off" runat="server"></asp:TextBox>
+       <%--Product List--%>
         <div class="productListTable"> 
             <asp:GridView ID="productList" runat="server" AutoGenerateColumns="false" AllowPaging="true" AllowSorting="true" OnSorting="OnSorting" OnPageIndexChanging="OnPageIndexChanging" PageSize="5" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged = "OnSelectedIndexChanged">
             <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" FirstPageText="First" LastPageText="Last"/>       
