@@ -164,9 +164,24 @@
     <Content Include="Sites\usermgmt\PreLogin.aspx" />
     <Content Include="Sites\usermgmt\SignUp.aspx" />
     <Content Include="Sites\general\OrderArt.aspx" />
+    <Content Include="Sites\WebForm1.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Masters\Artist.Master.cs">
+      <DependentUpon>Artist.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Masters\Artist.Master.designer.cs">
+      <DependentUpon>Artist.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Masters\Client.Master.cs">
+      <DependentUpon>Client.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Masters\Client.Master.designer.cs">
+      <DependentUpon>Client.Master</DependentUpon>
+    </Compile>
     <Compile Include="Masters\General.Master.cs">
       <DependentUpon>General.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -323,6 +338,13 @@
     <Compile Include="Sites\general\OrderArt.aspx.designer.cs">
       <DependentUpon>OrderArt.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Sites\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fonts\glyphicons-halflings-regular.eot" />
@@ -333,6 +355,8 @@
     <Content Include="Content\css\bootstrap.min.css.map" />
     <Content Include="Content\scripts\bootstrap.bundle.min.js.map" />
     <Content Include="App_Data\ArtMomentsDb.mdf-RENAME" />
+    <Content Include="Masters\Client.Master" />
+    <Content Include="Masters\Artist.Master" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

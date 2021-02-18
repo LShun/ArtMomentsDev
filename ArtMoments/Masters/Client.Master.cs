@@ -11,7 +11,7 @@ using System.Configuration;
 
 namespace ArtMoments.Masters
 {
-    public partial class General : System.Web.UI.MasterPage
+    public partial class Client : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {

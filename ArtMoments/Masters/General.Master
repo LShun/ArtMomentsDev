@@ -59,13 +59,14 @@
 
         /* Sidebar */
         .ParentMenu, .ParentMenu:hover {  
-            width: 100px;  
+            width: 150px;  
             background-color: #fff;  
             color: #333;  
             text-align: center;  
             height: 30px;  
             line-height: 30px;  
-            margin-right: 5px;  
+            margin-right: 5px;
+            
         }  
   
         .ParentMenu:hover {  
@@ -73,13 +74,14 @@
         }  
   
         .ChildMenu, .ChildMenu:hover {  
-            width: 110px;  
-            background-color: #fff;  
+            width: 150px;  
+            background-color: #e0e0e0;  
             color: #333;  
             text-align: center;  
             height: 30px;  
             line-height: 30px;  
             margin-top: 5px;
+            border:1px solid black;
         }  
   
         .ChildMenu:hover {  
@@ -87,7 +89,7 @@
         }  
   
         .selected, .selected:hover {  
-            background-color: #A6A6A6 !important;  
+            background-color: #007bff;  
             color: #fff;  
         }
 
@@ -204,12 +206,25 @@
                 <td class="brand"><h3>ArtMoments</h3></td>
                 <td class="menu">
                     <asp:Menu ID="ArtworkMenu" runat="server" Orientation="Horizontal">            
+                        <Items>
+                            <asp:MenuItem NavigateUrl="~/Sites/general/HomePage.aspx" Text="Home" Value="Home"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArt.aspx" Text="Artwork" Value="Artwork">
+                                <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArtProduct.aspx?id=1" Text="Painting" Value="Painting"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArtProduct.aspx?id=2" Text="Photography" Value="Photography"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArtProduct.aspx?id=3" Text="Digital Arts" Value="Digital Arts"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArtProduct.aspx?id=4" Text="Drawing" Value="Drawing"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArtProduct.aspx?id=5" Text="Prints" Value="Prints"></asp:MenuItem>
+                            </asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Sites/usermgmt/PreLogin.aspx" Text="Log In" Value="Log In"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Sites/usermgmt/SignUp.aspx" Text="Sign Up" Value="Sign Up"></asp:MenuItem>
+                        </Items>
+                        <StaticSelectedStyle CssClass="selected" />
                         <LevelMenuItemStyles>  
                             <asp:MenuItemStyle CssClass="ParentMenu" />  
                             <asp:MenuItemStyle CssClass="ChildMenu" />  
-                            <asp:MenuItemStyle CssClass="ChildMenu" />  
+                            <%--<asp:MenuItemStyle CssClass="ChildMenu" />--%>  
                         </LevelMenuItemStyles>  
-                        <StaticSelectedStyle CssClass="selected" />  
+
                     </asp:Menu>  
                 </td>
             </tr>

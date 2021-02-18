@@ -4,14 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using System.IO;
-using System.Data;
-using System.Data.SqlClient;
-using System.Configuration;
 
 namespace ArtMoments.Masters
 {
-    public partial class General : System.Web.UI.MasterPage
+    public partial class Artist : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -21,6 +17,5 @@ namespace ArtMoments.Masters
                 item.Selected = item.NavigateUrl.Equals(path, StringComparison.InvariantCultureIgnoreCase);
             }
         }
-
     }
 }

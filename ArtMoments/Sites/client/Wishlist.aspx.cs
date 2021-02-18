@@ -16,7 +16,7 @@ namespace ArtMoments.Sites.client
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["UserName"] = "John";
+            
         }
         
         protected void gvWishList_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -72,6 +72,11 @@ namespace ArtMoments.Sites.client
                 int rowIndex = gvr.RowIndex;
                 Response.Redirect("~/Sites/general/OrderArt.aspx?id=" + gvr.Cells[1].Text);
             }
+        }
+
+        protected void txtSearch_Load(object sender, EventArgs e)
+        {
+            txtSearch.MaxLength = 49;
         }
     }
 }
