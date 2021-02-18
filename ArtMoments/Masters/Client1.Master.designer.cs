@@ -11,7 +11,7 @@ namespace ArtMoments.Masters
 {
 
 
-    public partial class Client
+    public partial class Client1
     {
 
         /// <summary>

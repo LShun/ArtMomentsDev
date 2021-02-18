@@ -10,7 +10,7 @@
 		<siteMapNode url="" title="Client"  description="" roles="Client">
 			<siteMapNode url="~/Sites/client/Cart.aspx" title="Shopping Cart"  description="" />
 			<siteMapNode url="~/Sites/client/DisplayArt.aspx" title="Browse/Display Artworks"  description="" />
-			<siteMapNode url="~/Sites/client/OrderHistory.aspx" title="Order History"  description=""/>
+			<siteMapNode url="~/Sites/client/OrderHistoryExtra.aspx" title="Order History"  description=""/>
 			<siteMapNode url="~/Sites/client/Wishlist.aspx" title="Wishlist"  description="" />
 		</siteMapNode>
 		<siteMapNode url="" title="User Management"  description=""  roles="ClientArtist">

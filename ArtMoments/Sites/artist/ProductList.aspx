@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist.Master" AutoEventWireup="true" CodeBehind="ProductList.aspx.cs" Inherits="ArtMoments.Sites.artist.ProductList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="ProductList.aspx.cs" Inherits="ArtMoments.Sites.artist.ProductList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         th {

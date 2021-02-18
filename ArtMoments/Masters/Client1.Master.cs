@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace ArtMoments.Masters
 {
-    public partial class Artist : System.Web.UI.MasterPage
+    public partial class Client1 : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -17,15 +17,14 @@ namespace ArtMoments.Masters
                 item.Selected = item.NavigateUrl.Equals(path, StringComparison.InvariantCultureIgnoreCase);
             }
         }
-
         protected void ArtworkMenu_MenuItemClick(object sender, MenuEventArgs e)
         {
-            if((sender as Menu).SelectedItem.Text.Equals("Log Out"))
+            if ((sender as Menu).SelectedItem.Text.Equals("Log Out"))
             {
                 Session.RemoveAll();
                 Response.Redirect("../general/HomePage.aspx");
             }
-           
+
         }
     }
 }

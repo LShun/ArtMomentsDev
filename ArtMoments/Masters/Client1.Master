@@ -1,4 +1,4 @@
-﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Client.master.cs" Inherits="ArtMoments.Masters.Client" %>
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Client1.master.cs" Inherits="ArtMoments.Masters.Client1" %>
 
 <!DOCTYPE html>
 
@@ -10,7 +10,6 @@
     <link href="../Content/css/bootstrap.min.css" rel="stylesheet" />
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
-        
     </asp:ContentPlaceHolder>
     <style>
 
@@ -95,7 +94,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-          <table>
+        <table>
             <tr>
                 <td class="brand"><h1>ArtMoments</h1></td>
                 <td class="menu">
@@ -133,8 +132,6 @@
             </tr>
 
         </table>
-
-
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
