@@ -18,11 +18,11 @@ namespace ArtMoments.Sites.general
             }
             else if(Session["UserType"].ToString().Equals("2"))
             {
-                MasterPageFile = "~/Masters/Artist.Master";
+                MasterPageFile = "~/Masters/Artist1.Master";
             }
             else if (Session["UserType"].ToString().Equals("1"))
             {
-                MasterPageFile = "~/Masters/Client.Master";
+                MasterPageFile = "~/Masters/Client1.Master";
             }
         }
 
