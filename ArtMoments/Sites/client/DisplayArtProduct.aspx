@@ -15,7 +15,7 @@
         </style>
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="cphBody" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <h2>Display Artwork</h2>
             
@@ -82,6 +82,7 @@
         <div class="container" ID="display-img-container">
             <br/>
             <asp:Label ID="lblRecordMsg" runat="server" Text=""></asp:Label>
+            
             <asp:DataList ID="dlProd" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="100%" Width="1024px" OnItemCommand="dlProd_ItemCommand" 
                 BackColor="#CCCCCC"  CellPadding="2" ForeColor="Black" GridLines="Both" CssClass="auto-style3" >
                 <FooterStyle BackColor="#CCCCCC" />

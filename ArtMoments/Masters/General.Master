@@ -68,7 +68,7 @@
                         <LevelMenuItemStyles>  
                             <asp:MenuItemStyle CssClass="ParentMenu" />  
                             <asp:MenuItemStyle CssClass="ChildMenu" />  
-                            <%--<asp:MenuItemStyle CssClass="ChildMenu" />--%>  
+                            <asp:MenuItemStyle CssClass="ChildMenu" />
                         </LevelMenuItemStyles>  
 
                     </asp:Menu>  

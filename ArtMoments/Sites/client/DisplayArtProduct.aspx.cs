@@ -28,10 +28,6 @@ namespace ArtMoments.Sites.client
                 MasterPageFile = "~/Masters/General.Master";
 
             }
-            else if (Session["UserType"].ToString().Equals("2"))
-            {
-                MasterPageFile = "~/Masters/Artist.Master";
-            }
             else if (Session["UserType"].ToString().Equals("1"))
             {
                 MasterPageFile = "~/Masters/Client.Master";
@@ -112,8 +108,8 @@ namespace ArtMoments.Sites.client
                 }
             }
             conn.Close();
-
         }
+
 
         //Get the dropdown item for product category from database
         protected void BindDDLprocCat()
@@ -369,7 +365,7 @@ namespace ArtMoments.Sites.client
                 if (!ddlProdCat.SelectedItem.Value.Equals("ALL"))
                 {
                     sda.SelectCommand.Parameters.AddWithValue("@CategoryName", ddlProdCat.SelectedItem.Value.ToString());
-
+                   
                 }
 
                 if (!ddlArtist.SelectedItem.Value.Equals("ALL"))

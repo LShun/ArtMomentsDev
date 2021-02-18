@@ -14,7 +14,7 @@
     </style>
 
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="cphBody" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <h2>Display Artwork</h2>
 
@@ -74,7 +74,7 @@
                 </div>
           
                 <div class="col-3 form-group search-form-group" >
-                     <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btnPaging" PostBackUrl="~/Sites/client/DisplayArtProduct.aspx" />
+                     <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btnPaging" PostBackUrl="~/Sites/client/DisplayArtProduct.aspx?id=1" />
                      <asp:ValidationSummary ID="revSummary" runat="server"  ShowMessageBox="true" ShowSummary="false" ForeColor="Red"/>
                </div>
             </div>

@@ -3,6 +3,8 @@
     <title>Login Form Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
+    <link href="../../Content/css/LoginUser.css" rel="stylesheet" />
+    <link href="../../Content/css/UserMangementStyle.css" rel="stylesheet" />
     <style>
         .radioButtonStyle{
             padding:2em;
