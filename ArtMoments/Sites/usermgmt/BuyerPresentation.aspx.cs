@@ -16,8 +16,9 @@ namespace ArtMoments.Sites.usermgmt
 
     public partial class BuyerPresentationEdit : System.Web.UI.Page
     {
-        
+
         string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             if (Session["UserType"].ToString().Equals("2"))
