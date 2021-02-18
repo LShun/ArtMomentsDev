@@ -117,8 +117,38 @@
             border-radius: .25rem;
             transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
             float:right;
-        }      
-
+        }
+        @media (min-width: 992px) {
+            .col-lg-10 {
+                -ms-flex: 0 0 83.333333%;
+                flex: 0 0 83.333333%;
+                max-width: 83.333333%;
+            }
+        }
+        @media (min-width: 768px) {
+            .col-md-9 {
+                -ms-flex: 0 0 75%;
+                flex: 0 0 75%;
+                max-width: 75%;
+            }
+        }
+        @media (min-width: 576px) {
+            .col-sm-8 {
+                -ms-flex: 0 0 66.666667%;
+                flex: 0 0 66.666667%;
+                max-width: 66.666667%;
+            }
+        }
+        .col, .col-lg-10, .col-md-8, .col-sm-8{
+            position: relative;
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+        a {           
+            text-decoration: none;
+            background-color: transparent;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
