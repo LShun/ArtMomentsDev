@@ -136,8 +136,9 @@
                     </table>
                 </div>
             </ItemTemplate>
-        <!-- display when no item in the cart -->
+       
         <FooterTemplate>
+             <!-- display when no item in the cart -->
             <asp:Label ID="defaultItem" runat="server" 
                 Visible='<%# RepeaterCartInfo.Items.Count == 0 %>' Text="No items found" />
         </FooterTemplate>
