@@ -11,86 +11,9 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <style>
-
-        .topnav {
-          background-color: lightgray;
-          overflow: hidden;
-        }
-
-        #sitemap {
-          background-color: black;
-          overflow: hidden;
-          margin-bottom: 1em;
-          padding-left: 14px;
-          color: white;
-        }
-
-        /* Other links */
-        .topnav a {
-          float: left;
-          color: black;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-          font-size: 17px;
-        }
-
-        /* Change color on hover */
-        .topnav a:hover {
-          background-color: Highlight;
-          color: black;
-        }
-
-        /* Branding */
-        .topnav a.brand {
-          background-color: black;
-          color: white;
-          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
-        }
-        .brand {
-            width: 142px;
-            padding-right:20px;
-            padding-left: 20px;
-            background-color: black;
-            color:white;
-        }
-
-        .ParentMenu, .ParentMenu:hover {  
-            width: 150px;  
-            background-color: #fff;  
-            color: #333;  
-            text-align: center;  
-            height: 30px;  
-            line-height: 30px;  
-            margin-right: 5px;
-            
-        }  
-  
-        .ParentMenu:hover {  
-            background-color: #ccc;  
-        }  
-  
-        .ChildMenu, .ChildMenu:hover {  
-            width: 150px;  
-            background-color: #e0e0e0;  
-            color: #333;  
-            text-align: center;  
-            height: 30px;  
-            line-height: 30px;  
-            margin-top: 5px;
-            border:1px solid black;
-        }  
-  
-        .ChildMenu:hover {  
-            background-color: #ccc;  
-        }  
-  
-        .selected, .selected:hover {  
-            background-color: #007bff;  
-            color: #fff;  
-        }
-   </style>
+    <link href="../Content/css/topnavbar.css" rel="stylesheet" />
+    <link href="../Content/css/treeViewSideBar.css" rel="stylesheet" />
+    
 </head>
 <body>
     <form id="form1" runat="server">
