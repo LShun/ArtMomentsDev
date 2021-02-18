@@ -114,6 +114,7 @@
     <Content Include="Content\css\DisplayArt.css" />
     <Content Include="Content\css\searchForm.css" />
     <Content Include="Content\css\SignUp.css" />
+    <Content Include="Content\css\UserMangementStyle.css" />
     <Content Include="Content\hp-additional-income.jpg" />
     <Content Include="Content\hp-buy-art.jpg" />
     <Content Include="Content\hp-visibility.jpg" />
