@@ -7,90 +7,11 @@
     <script src="../Content/scripts/jquery-3.0.0.slim.min.js"></script>
     <script src="../Content/scripts/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/15509eb2b9.js" crossorigin="anonymous"></script>
-    <link href="../Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/css/bootstrap.min.css" rel="stylesheet" 
+    <link href="../Content/css/topnavbar.css" rel="stylesheet" />
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-    <style>
-        /* Nav BG color */
-        .topnav {
-          background-color: lightgray;
-          overflow: hidden;
-        }
-
-        #sitemap {
-          background-color: black;
-          overflow: hidden;
-          margin-bottom: 1em;
-          padding-left: 14px;
-          color: white;
-        }
-
-        /* Other links */
-        .topnav a {
-          float: left;
-          color: black;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-          font-size: 17px;
-        }
-
-        /* Change color on hover */
-        .topnav a:hover {
-          background-color: Highlight;
-          color: black;
-        }
-
-        /* Branding */
-        .topnav a.brand {
-          background-color: black;
-          color: white;
-          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
-        }
-        .brand {
-            width: 142px;
-            padding-right:20px;
-            padding-left: 20px;
-            background-color: black;
-            color:white;
-        }
-
-        .ParentMenu, .ParentMenu:hover {  
-            width: 150px;  
-            background-color: #fff;  
-            color: #333;  
-            text-align: center;  
-            height: 30px;  
-            line-height: 30px;  
-            margin-right: 5px;
-            
-        }  
-  
-        .ParentMenu:hover {  
-            background-color: #ccc;  
-        }  
-  
-        .ChildMenu, .ChildMenu:hover {  
-            width: 150px;  
-            background-color: #e0e0e0;  
-            color: #333;  
-            text-align: center;  
-            height: 30px;  
-            line-height: 30px;  
-            margin-top: 5px;
-            border:1px solid black;
-        }  
-  
-        .ChildMenu:hover {  
-            background-color: #ccc;  
-        }  
-
-        .artistMenu a.static.selected, .artistMenu a.static.selected:hover {  
-            background-color: #007bff;  
-            color: #fff;  
-        }
-   </style>
 </head>
 <body>
     <form id="form1" runat="server">
