@@ -107,6 +107,7 @@
     <Content Include="Content\css\DataList.css" />
     <Content Include="Content\css\DisplayImageHover.css" />
     <Content Include="Content\css\DLProduct.css" />
+    <Content Include="Content\css\Homepage.css" />
     <Content Include="Content\css\LoginUser.css" />
     <Content Include="Content\css\PreLogin.css" />
     <Content Include="Content\css\OrderArtCss.css" />
