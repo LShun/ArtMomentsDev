@@ -46,7 +46,7 @@ namespace ArtMoments.Sites.client
                 BindDDLprocCat();
                 BindDDLprocSize();
                 BindDDLartist();
-                ContentPlaceHolder cp = PreviousPage.Master.FindControl("cphBody") as ContentPlaceHolder;
+                ContentPlaceHolder cp = PreviousPage.Master.FindControl("ContentPlaceHolder1") as ContentPlaceHolder;
                 if (cp != null)
                 {
                     DropDownList ProdCategory = cp.FindControl("ddlProdCat") as DropDownList;

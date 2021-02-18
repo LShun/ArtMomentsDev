@@ -167,7 +167,7 @@
         }
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphBody" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <!-- Heading -->
     <header><h1 style="text-align:center; " class="auto-style1">Art Details</h1></header>
     <div class="container" id="artOrder">    

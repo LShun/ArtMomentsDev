@@ -24,7 +24,7 @@
     </style>
 
 </asp:Content>
-<asp:Content ID="cphBody" ContentPlaceHolderID="cphBody" runat="server">
+<asp:Content ID="cphBody" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container">
         <!-- Welcome -->
