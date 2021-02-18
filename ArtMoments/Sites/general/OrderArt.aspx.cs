@@ -16,6 +16,7 @@ namespace ArtMoments.Sites.general
     {
         string conString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
 
+        // Master page switch according to user type 
         protected void Page_PreInit(object sender, EventArgs e)
         {
             if (Session["Username"] == null)
