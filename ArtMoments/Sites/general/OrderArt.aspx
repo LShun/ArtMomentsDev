@@ -215,12 +215,6 @@
             display:block;
         }
 
-        .btn-primary{
-            color:#fff;
-            background-color:#007bff;
-            border-color:#007bff
-        }
-
         .btn-block{
             display:block;
             width:100%;
@@ -233,12 +227,6 @@
 
         .rounded {
             border-radius: .25rem!important;
-        }
-
-        .btn-primary {
-            color: #fff;
-            background-color: #007bff;
-            border-color: #007bff;
         }
 
         .justify-content-center {
@@ -309,7 +297,7 @@
             text-align: center;
         }
 
-        a#ContentPlaceHolder1_btnBuyNow {
+        #ContentPlaceHolder1_btnBuyNow {
             padding-top: 7px;
             padding-bottom: 7px;
             border-radius: 30px;
@@ -318,8 +306,11 @@
             font-family: system-ui;
         }
 
-        .col-5.float-right {
-            width: 50%;
+        a#ContentPlaceHolder1_lbBuyNow {
+            padding-top: 7px;
+            padding-bottom: 7px;
+            border-radius: 30px;
+            text-decoration: none;
         }
 
         div#authorName {

@@ -18,17 +18,18 @@ namespace ArtMoments.Sites.client
             Session["Username"] = 2;
             if (Session["Username"] != null)
             {
+                // retrieve all transaction details from buyer
                 DataTable transacTable = getTransacTable();
                 int transacRow = 0;
+                // retrieve all the order under particular transaction
                 foreach (DataRow row in transacTable.Rows)
                 {
                     int TransacId = row.Field<int>("transac-id");
                     DateTime TransacDate = row.Field<DateTime>("order-date");
-
-
+                    // retrieve particular transaction's order
                     DataTable orderTable = getOrderTable(TransacId);
 
-                    //update delivery details
+                    // check and update delivery details
                     chkDispatchOrder(orderTable, TransacDate, TransacId);
 
                     transacRow++;
@@ -36,6 +37,7 @@ namespace ArtMoments.Sites.client
             }
         }
 
+        // retrieve all transaction of buyer and store it in a datatable
         protected DataTable getTransacTable()
         {
             using (SqlConnection con = new SqlConnection(conString))
@@ -58,6 +60,7 @@ namespace ArtMoments.Sites.client
             }
         }
 
+        // retrieve all orders under particular transaction of buyer and store it in a datatable
         protected DataTable getOrderTable(int TransacId)
         {
             using (SqlConnection con = new SqlConnection(conString))
@@ -79,6 +82,7 @@ namespace ArtMoments.Sites.client
             }
         }
 
+        // calculate and check the order date whether it reached the date for dispatched or delivered
         protected void chkDispatchOrder(DataTable orderTable, DateTime TransacDate, int TransacId)
         {
             int rowCount = 0;
@@ -86,19 +90,19 @@ namespace ArtMoments.Sites.client
             {
                 DateTime todayDT = DateTime.Now;
                 DateTime orderDT = TransacDate;
-                //DateTime orderDT = transacTable.Rows[rowCount].Field<DateTime>(3);
-                DateTime deliveredDT = orderDT.AddDays(8);
-                DateTime dispatchDT = orderDT.AddDays(3);
+
+                DateTime deliveredDT = orderDT.AddDays(8); // more or equal 8 days = delivered
+                DateTime dispatchDT = orderDT.AddDays(3); // more or equal 3 days = dispatched
                 int updateDeliveryInfo = 0;
                 // if more than 8 days and null 2-> process 2 if null 1, process 1. if not null -> no need to process
                 // if more than 3 days and null -> process 1 
 
                 if (dispatchDT <= todayDT)
                 {
-                    updateDeliveryInfo = 1;
+                    updateDeliveryInfo = 1; // 1 = chg to dispatch
                     if (deliveredDT <= todayDT)
                     {
-                        updateDeliveryInfo = 2;
+                        updateDeliveryInfo = 2; // 2 = chg to delivered
                     }
                     updateDeliveryStatus(orderTable, updateDeliveryInfo, dispatchDT, deliveredDT, TransacId);
                 }
@@ -106,6 +110,7 @@ namespace ArtMoments.Sites.client
             }
         }
 
+        // update delivery status & delivery date & date received
         protected void updateDeliveryStatus(DataTable orderTable, int delivery2Update, DateTime dispatchDT, DateTime deliveredDT, int TransacId)
         {
             int rowCount = 0;
@@ -114,6 +119,7 @@ namespace ArtMoments.Sites.client
                 DateTime? dbdeliveredDT = row.Field<DateTime?>("order-deliverDate");
                 DateTime? dbdispatchDT = row.Field<DateTime?>("order-dateReceive");
 
+                // only more or equal 3 days -> update delivery status to dispatched & update date of delivery
                 if (!dbdeliveredDT.HasValue && delivery2Update == 1)
                 {
                     SqlConnection conn = new SqlConnection(conString);
@@ -128,6 +134,7 @@ namespace ArtMoments.Sites.client
                         conn.Close();
                     }
                 }
+                // more or equal 8 days -> update delivery status to delivered & update delivered date
                 if (!dbdispatchDT.HasValue && delivery2Update == 2)
                 {
                     SqlConnection conn = new SqlConnection(conString);
@@ -150,6 +157,7 @@ namespace ArtMoments.Sites.client
             }
         }
 
+        // go to the order art page of particular item when usr click on the img
         protected void viewProdImg(object sender, EventArgs e)
         {
             ImageButton clickImgItem = sender as ImageButton;
@@ -157,6 +165,7 @@ namespace ArtMoments.Sites.client
             Response.Redirect("~/Sites/general/OrderArt.aspx?id=" + prodId);
         }
 
+        // go to the order art page of particular item when usr click on the buy again button
         protected void viewProdBtn(object sender, EventArgs e)
         {
             Button clickBtnItem = sender as Button;
