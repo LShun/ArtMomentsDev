@@ -90,7 +90,10 @@
         *, ::after, ::before {
             box-sizing: border-box;
         }
-
+        a {           
+            text-decoration: none;
+            background-color: transparent;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -107,7 +110,7 @@
             <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" FirstPageText="First" LastPageText="Last"/>       
             <pagerstyle horizontalalign="Left" CssClass="pagination"/>
                 <Columns>
-                    <asp:BoundField DataField="ID" HeaderText="Order ID" SortExpression="ID" HeaderStyle-ForeColor="White" >
+                    <asp:BoundField DataField="ID" HeaderText="Order ID" SortExpression="ID" HeaderStyle-ForeColor="White">
                         <ItemStyle Width="80" HorizontalAlign="Center" /> 
                         <HeaderStyle HorizontalAlign="Center" />
                     </asp:boundfield>
