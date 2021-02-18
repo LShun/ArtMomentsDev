@@ -3,8 +3,7 @@
     <title>Login Form Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
-    <link href="../../Content/css/UserMangementStyle.css" rel="stylesheet" />
-    
+    <link href="../../Content/css/UserMangementStyle.css" rel="stylesheet" />    
 
     <style>
         .errorMsg{
@@ -12,16 +11,17 @@
             font-style:italic;
             font-size:15px;
         }
+        body{
+            background-image: url("../../Content/209971-abstract-flowers-white-pink-paint_splatter.jpg")
+        }
+        
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div ID="Content4">
-    <div class="container" ID="Content6">
-        
-        <div class="myCard">
-            
-                <div class="col-md-10">
-                    
+    <div class="container" ID="Content6">        
+        <div class="myCard">            
+                <div class="col-md-10">                    
                         <div class="myLeftCtn" style="height:0px"> 
                         <form class="myForm text-center">
                             <header style="text-align:center; margin-left:30px">Login your Account</header>
@@ -48,7 +48,7 @@
                     </div>
                  </div>
             </div>
-       
+       </div>
     </div>
 </div>
 </asp:Content>
