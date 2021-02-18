@@ -118,7 +118,7 @@
 
         /* When you mouse over the navigation links, change their color */
         .sidenav a:hover {
-          color: #f1f1f1;
+          color: highlight;
         }
 
         /* Position and style the close button (top right corner) */
@@ -187,9 +187,9 @@
           <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
           <asp:TreeView ID="TreeView1" CssClass="tv-menu" runat="server" DataSourceID="SiteMapDataSource1" ImageSet="Arrows">
               <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
-              <NodeStyle Font-Names="Helvetica" Font-Size="12pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
-              <ParentNodeStyle Font-Bold="False" />
-              <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" HorizontalPadding="0px" VerticalPadding="0px" />
+              <NodeStyle Font-Names="Helvetica" Font-Size="12pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px"/>
+              <ParentNodeStyle Font-Bold="False" Font-Underline="true"/>
+              <SelectedNodeStyle Font-Underline="True" ForeColor="blue" HorizontalPadding="0px" VerticalPadding="0px" />
             </asp:TreeView>
             <asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" />
         </div>
