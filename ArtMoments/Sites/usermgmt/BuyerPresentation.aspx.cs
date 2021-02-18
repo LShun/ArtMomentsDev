@@ -49,6 +49,7 @@ namespace ArtMoments.Sites.usermgmt
                             }
                         }
                     }
+                    sqlCon.Close();
                 }
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -57,7 +58,6 @@ namespace ArtMoments.Sites.usermgmt
 
                     using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM [User] WHERE user_name = @UserName", conn))
                     {
-                        //sqlDa.SelectCommand.Parameters.AddWithValue("@UserID", userID);
                         sda.SelectCommand.Parameters.AddWithValue("@UserName", UserName);
                         DataTable dt = new DataTable();
                         sda.Fill(dt);
@@ -103,15 +103,13 @@ namespace ArtMoments.Sites.usermgmt
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@UserName", UserName);
-                        //cmd.Parameters.AddWithValue("@Name", Path.GetFileName(FileUpload1.PostedFile.FileName));
-                        //cmd.Parameters.AddWithValue("@ContentType", FileUpload1.PostedFile.ContentType);
                         cmd.Parameters.AddWithValue("@Data", bytes);
                         conn.Open();
                         cmd.ExecuteNonQuery();
                         conn.Close();
                     }
                 }
-
+                
                 Response.Redirect(Request.Url.AbsoluteUri);
                 Response.Redirect("BuyerPresentation.aspx");
             }
@@ -131,8 +129,6 @@ namespace ArtMoments.Sites.usermgmt
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     cmd.Parameters.AddWithValue("@UserName", UserName);
-                    //cmd.Parameters.AddWithValue("@Name", Path.GetFileName(FileUpload1.PostedFile.FileName));
-                    //cmd.Parameters.AddWithValue("@ContentType", FileUpload1.PostedFile.ContentType);
                     cmd.Parameters.AddWithValue("@Bibliography", tbBibliography.Text.ToString());
                     conn.Open();
                     cmd.ExecuteNonQuery();

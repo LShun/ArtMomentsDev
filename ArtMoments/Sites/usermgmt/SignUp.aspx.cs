@@ -33,6 +33,8 @@ namespace ArtMoments.Sites.usermgmt
                         txtUserPassword.Text = dtbl.Rows[0][2].ToString();
                         txtConfirmedPassword.Attributes.Add("value", dtbl.Rows[0][2].ToString());
                         txtUserEmail.Text = dtbl.Rows[0][3].ToString();
+
+                        sqlCon.Close();
                     }
                 }
             }
@@ -102,6 +104,7 @@ namespace ArtMoments.Sites.usermgmt
                     {
                         lblMessage.Text = "This user name already exists";
                     }
+                    conn.Close();
                 }
 
             }
