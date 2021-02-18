@@ -3,7 +3,9 @@
     <title>Login Form Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
-    <link href="https://mdbootstrap.com/docs/b4/jquery/content/icons-list/" rel="stylesheet"/>
+    <link href="../../Content/css/UserMangementStyle.css" rel="stylesheet" />
+    
+
     <style>
         .errorMsg{
             color:red;
