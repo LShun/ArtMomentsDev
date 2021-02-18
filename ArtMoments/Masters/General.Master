@@ -10,88 +10,8 @@
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
-
+    <link href="../Content/css/topnavbar.css" rel="stylesheet" />
     <style>
-        /* Nav BG color */
-        .topnav {
-          background-color: lightgray;
-          overflow: hidden;
-        }
-
-        #sitemap {
-          background-color: black;
-          overflow: hidden;
-          margin-bottom: 1em;
-          padding-left: 14px;
-          color: white;
-        }
-
-        /* Other links */
-        .topnav a {
-          float: left;
-          color: black;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-          font-size: 17px;
-        }
-
-        /* Change color on hover */
-        .topnav a:hover {
-          background-color: Highlight;
-          color: black;
-        }
-
-        /* Branding */
-        .topnav a.brand {
-          background-color: black;
-          color: white;
-          font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
-        }
-        .brand {
-            width: 142px;
-            padding-right:20px;
-            padding-left: 20px;
-            background-color: black;
-            color:white;
-        }
-
-        /* Sidebar */
-        .ParentMenu, .ParentMenu:hover {  
-            width: 150px;  
-            background-color: #fff;  
-            color: #333;  
-            text-align: center;  
-            height: 30px;  
-            line-height: 30px;  
-            margin-right: 5px;
-            
-        }  
-  
-        .ParentMenu:hover {  
-            background-color: #ccc;  
-        }  
-  
-        .ChildMenu, .ChildMenu:hover {  
-            width: 150px;  
-            background-color: #e0e0e0;  
-            color: #333;  
-            text-align: center;  
-            height: 30px;  
-            line-height: 30px;  
-            margin-top: 5px;
-            border:1px solid black;
-        }  
-  
-        .ChildMenu:hover {  
-            background-color: #ccc;  
-        }  
-  
-        .selected, .selected:hover {  
-            background-color: #007bff;  
-            color: #fff;  
-        }
-
         /* Style for sidebar */
         /* The side navigation menu */
         .sidenav {
@@ -129,6 +49,7 @@
           margin-left: 50px;
         }
 
+        /* Image on the sidebar icon */
         .img-menu {
             height: 3vh;
             width: 3vh;
@@ -144,24 +65,23 @@
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         }
 
-        /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
-        @media screen and (max-height: 450px) {
-          .sidenav {padding-top: 15px;}
-          .sidenav a {font-size: 18px;}
+        /* When height of screen < 400px, reduce font size & padding */
+        @media screen and (max-height: 400px) {
+          .sidenav {padding-top: 14px;}
+          .sidenav a {font-size: 16px;}
         }
-        /*#ArtworkMenu{
-           height:100px; 
-        }*/
     </style>
 
     <script>
+        /** Scripts for Sidenav for Tree View **/
+
         /* Set the width of the side navigation to 250px */
-        function openNav() {
+        function showNav() {
             document.getElementById("mySidenav").style.width = "250px";
         }
 
         /* Set the width of the side navigation to 0 */
-        function closeNav() {
+        function hideNav() {
             document.getElementById("mySidenav").style.width = "0";
         }
     </script>
@@ -171,7 +91,7 @@
     <form id="form1" runat="server">
         <!-- sidebar COPY PASTE FIX LATER -->
         <div id="mySidenav" class="sidenav">
-          <a href="javascript:void(0)" class="btn-close" onclick="closeNav()">&times;</a>
+          <a href="javascript:void(0)" class="btn-close" onclick="hideNav()">&times;</a>
           <asp:TreeView ID="tvSideBar" CssClass="tv-menu" runat="server" DataSourceID="smdsTreeView" ImageSet="Arrows">
               <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
               <NodeStyle Font-Names="Helvetica" Font-Size="12pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px"/>
@@ -187,7 +107,7 @@
             <tr>
                 <!-- Careful sidebar menu -->
                 <td>
-                    <span class="span-menu" onclick="openNav()">
+                    <span class="span-menu" onclick="showNav()">
                     <asp:Image ID="imgMenu" ImageUrl="~/Content/menu.svg" CssClass="img-menu" runat="server" /></span>
                 </td>
                 <td class="brand"><h3>ArtMoments</h3></td>
