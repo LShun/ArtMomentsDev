@@ -14,10 +14,10 @@
         }
 
         img#ContentPlaceHolder1_authorImage {
-        max-width: 200px;
-        max-height: 200px;
-        object-fit: cover;
-        border: 2px solid black;
+            max-width: 200px;
+            max-height: 200px;
+            object-fit: cover;
+            border: 2px solid black;
         }
 
         div#artworkNameDivision {
@@ -70,10 +70,9 @@
 
         .row.justify-content-center.align-self-center {
             margin-bottom: 30px;
-            background-color: gainsboro;
-            text-shadow: 1px 1px black;
-            color: white;
+            color: black;
             margin-top: 30px;
+            text-align:center;
         }
         
         div#authorName {
