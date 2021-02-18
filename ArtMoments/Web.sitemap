@@ -13,7 +13,7 @@
 			<siteMapNode url="~/Sites/client/OrderHistoryExtra.aspx" title="Order History"  description=""/>
 			<siteMapNode url="~/Sites/client/Wishlist.aspx" title="Wishlist"  description="" />
 		</siteMapNode>
-		<siteMapNode url="" title="User Management"  description=""  roles="ClientArtist">
+		<siteMapNode url="" title="User Management"  description=""  roles="Client, Artist">
 			<siteMapNode url="~/Sites/usermgmt/Account.aspx" title="Account Management"  description=""/>
 		</siteMapNode>
 		<siteMapNode url="" title="Account"  description="" roles="Guest">
