@@ -42,18 +42,43 @@ namespace ArtMoments.Sites.usermgmt
                 sqlCmd.Parameters.AddWithValue("@UserPassword", txtUserPassword.Text.Trim());
                 int count = 0;
                 count = Convert.ToInt16(sqlCmd.ExecuteScalar());
-                //var result = sqlCmd.ExecuteScalar();
-                //int count = result != null ? int.Parse(result) : 0;
+
+                sqlCon.Close();
 
                 if (count == 1)
                 {
                     Session["UserName"] = txtUserName.Text.Trim();  //session is created for each user
+
+                    //get user_type
+                    using (SqlConnection sqlConn = new SqlConnection(connectionString))
+                    {
+                        sqlConn.Open();
+                        String query1 = "SELECT user_type FROM [User] WHERE user_name = @UserName";
+                        SqlCommand sql2 = new SqlCommand(query1, sqlConn);
+
+                        sql2.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
+
+                        SqlDataReader dr = sql2.ExecuteReader();
+                        String userType = "";
+
+                        if (dr.HasRows)
+                        {
+                            while (dr.Read())
+                            {
+                                userType = dr["user_type"].ToString();
+                            }
+                        }
+                        Session["UserType"] = userType;  //session is created for each user
+                        sqlConn.Close();
+                    }
+
                     Response.Redirect("BuyerSettingExtra.aspx");
                 }
                 else
                 {
                     lblErrorLoginMsg.Visible = true;
                 }
+                
             }
         }
     }
