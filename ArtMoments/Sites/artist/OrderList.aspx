@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="OrderList.aspx.cs" Inherits="ArtMoments.Sites.artist.OrderList" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist.Master" AutoEventWireup="true" CodeBehind="OrderList.aspx.cs" Inherits="ArtMoments.Sites.artist.OrderList" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         th {
@@ -51,14 +51,14 @@
         {
             background-color: #f5f5f5;
             color: #969696;
-            border: 1px solid #969696;
+            border: 1px solid #969696; /* Add a grey border */
         }
         .pagination span
         {
             background-color: #A1DCF2;
             color: #000;
-            border: 1px solid #3AC0F2;
-            margin:5px 5px 5px 5px;
+            border: 1px solid #3AC0F2;   /* Add a blue border */
+            margin:5px 5px 5px 5px; /* Add some space outside the box */
         }
         div.orderListHeader{
             margin-top:10px;
@@ -70,13 +70,13 @@
         }
         #ContentPlaceHolder1_txtSearch{
         background-image: url('../../Content/search--v2.png'); /* Add a search icon to input */
-        background-position: 10px 10px; /* Position the search icon */
+        background-position: 10px 10px; 
         background-repeat: no-repeat; /* Do not repeat the icon image */
         background-size: 25px 25px; /*adjust background image size*/
-        width: 50%; /* Full-width */
+        width: 50%;
         font-size: 16px; /* Increase font-size */
         padding: 12px 20px 12px 40px; /* Add some padding */
-        border: 1px solid #ddd; /* Add a grey border */
+        border: 1px solid #ddd; 
         margin-bottom: 12px; /* Add some space below the input */
 		}
         .orderListTable{
@@ -97,8 +97,10 @@
         <div class="row justify-content-md-between orderListHeader">
 			<h1>Artwork Order</h1>
 	    </div>
-
-	    <asp:TextBox ID="txtSearch" OnTextChanged="Search" AutoPostBack="true" placeholder="Search for Artwork names.." runat="server"></asp:TextBox>
+        <%--search textbox--%>
+	    <asp:TextBox ID="txtSearch" OnTextChanged="Search" AutoPostBack="true" autocomplete="off" placeholder="Search for Artwork names.." runat="server"></asp:TextBox>
+        
+        <%--OrderList--%>
         <div class="orderListTable"> 
             <asp:GridView ID="orderList" runat="server" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" OnSorting="OnSorting" OnPageIndexChanging="OnPageIndexChanging" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged = "OnSelectedIndexChanged">
             <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" FirstPageText="First" LastPageText="Last"/>       
