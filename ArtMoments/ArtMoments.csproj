@@ -153,7 +153,6 @@
     <Content Include="Sites\client\OrderHistory.aspx" />
     <Content Include="Sites\client\OrderHistoryExtra.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
-    <Content Include="Sites\general\Display.aspx" />
     <Content Include="Sites\general\HomePage.aspx" />
     <Content Include="Sites\usermgmt\BuyerAccount.aspx" />
     <Content Include="Sites\usermgmt\BuyerPresentation.aspx" />
@@ -259,12 +258,6 @@
     </Compile>
     <Compile Include="Sites\client\Wishlist.aspx.designer.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\general\Display.aspx.cs">
-      <DependentUpon>Display.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\general\Display.aspx.designer.cs">
-      <DependentUpon>Display.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\general\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>
