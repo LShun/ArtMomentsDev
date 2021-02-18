@@ -7,13 +7,14 @@
 			<siteMapNode url="~/Sites/artist/ProductList.aspx" title="Product List"  description="" />
 			<siteMapNode url="~/Sites/artist/OrderList.aspx" title="Order List"  description=""/>
 		</siteMapNode>
+		<siteMapNode url="~/Sites/client/DisplayArt.aspx" title="Browse Artworks"  description="">
+			<siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=1" title="Search"  description="" />
+		</siteMapNode>
 		<siteMapNode url="" title="Client"  description="" roles="Client">
 			<siteMapNode url="~/Sites/client/Cart.aspx" title="Shopping Cart"  description="" />
-			<siteMapNode url="~/Sites/client/DisplayArt.aspx" title="Browse Artworks Category"  description="">
-				<siteMapNode url="~/Sites/client/DisplayArtProduct.aspx" title="Artworks"  description="" />
-			</siteMapNode>
-			<siteMapNode url="~/Sites/client/OrderHistoryExtra.aspx" title="Order History"  description=""/>
-			<siteMapNode url="~/Sites/client/Wishlist.aspx" title="Wishlist"  description="" />
+			
+			<siteMapNode url="~/Sites/client/OrderHistoryExtra.aspx" title="Order History"  description="" roles="Client"/>
+			<siteMapNode url="~/Sites/client/Wishlist.aspx" title="Wishlist"  description="" roles="Client"  />
 		</siteMapNode>
 		<siteMapNode url="" title="User Management"  description=""  roles="Client, Artist">
 			<siteMapNode url="~/Sites/usermgmt/Account.aspx" title="Account Management"  description=""/>
