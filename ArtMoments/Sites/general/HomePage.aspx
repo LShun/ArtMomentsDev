@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="ArtMoments.Sites.general.HomePage2" %>
 
-<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+<asp:Content ID="cphHead" ContentPlaceHolderID="head" runat="server">
 
     <style>
         .img-benefits  {
@@ -26,7 +26,7 @@
         }*/
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="cphBody" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
     <div class="container">
         <!-- Welcome -->
