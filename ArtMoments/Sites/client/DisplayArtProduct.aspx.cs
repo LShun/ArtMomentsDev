@@ -30,7 +30,7 @@ namespace ArtMoments.Sites.client
             }
             else if (Session["UserType"].ToString().Equals("1"))
             {
-                MasterPageFile = "~/Masters/Client.Master";
+                MasterPageFile = "~/Masters/Client1.Master";
             }
         }
 
