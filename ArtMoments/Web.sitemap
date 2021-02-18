@@ -9,10 +9,10 @@
 		</siteMapNode>
 		<siteMapNode url="~/Sites/client/DisplayArt.aspx" title="Browse Artworks"  description="">
 			<siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=1" title="Search"  description="" />
+			<siteMapNode url="~/Sites//general/OrderArt.aspx" title="Order Art"  description="" roles=""/>
 		</siteMapNode>
 		<siteMapNode url="" title="Client"  description="" roles="Client">
 			<siteMapNode url="~/Sites/client/Cart.aspx" title="Shopping Cart"  description="" />
-			
 			<siteMapNode url="~/Sites/client/OrderHistoryExtra.aspx" title="Order History"  description="" roles="Client"/>
 			<siteMapNode url="~/Sites/client/Wishlist.aspx" title="Wishlist"  description="" roles="Client"  />
 		</siteMapNode>
@@ -25,7 +25,7 @@
 		</siteMapNode>
     
     <siteMapNode url="" title="Art"  description="" roles="Guest">
-      <siteMapNode url="~/Sites//general/OrderArt.aspx" title="Order Art"  description=""/>
+      
     </siteMapNode>
     
 	</siteMapNode>
