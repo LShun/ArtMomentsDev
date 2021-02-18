@@ -14,7 +14,7 @@ namespace ArtMoments.Sites.artist
 {
     public partial class OrderList : System.Web.UI.Page
     {
-        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
+        string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
@@ -70,7 +70,7 @@ namespace ArtMoments.Sites.artist
                 {
                     sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
                     string emptyValue = "";
-                    if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))
+                    if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
                     {
 
                         sda.SelectCommand.Parameters.AddWithValue("@productName", txtSearch.Text.Trim());
