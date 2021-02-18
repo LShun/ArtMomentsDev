@@ -13,7 +13,19 @@
     </asp:ContentPlaceHolder>
     <link href="../Content/css/topnavbar.css" rel="stylesheet" />
     <link href="../Content/css/treeViewSideBar.css" rel="stylesheet" />
-    
+     <script>
+        /** Scripts for Sidenav for Tree View **/
+
+        /* Set the width of the side navigation to 250px */
+        function showNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function hideNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }
+     </script>
 </head>
 <body>
     <form id="form1" runat="server">

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -16,6 +17,9 @@ namespace ArtMoments.Masters
             {
                 item.Selected = item.NavigateUrl.Equals(path, StringComparison.InvariantCultureIgnoreCase);
             }
+
+            string[] role = { "Artist" };
+            HttpContext.Current.User = new GenericPrincipal(HttpContext.Current.User.Identity, role);
         }
 
         protected void ArtworkMenu_MenuItemClick(object sender, MenuEventArgs e)

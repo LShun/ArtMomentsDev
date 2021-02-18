@@ -8,6 +8,7 @@ using System.IO;
 using System.Data;
 using System.Data.SqlClient;
 using System.Configuration;
+using System.Security.Principal;
 
 namespace ArtMoments.Masters
 {
@@ -20,6 +21,9 @@ namespace ArtMoments.Masters
             {
                 item.Selected = item.NavigateUrl.Equals(path, StringComparison.InvariantCultureIgnoreCase);
             }
+
+            string[] role = { "Guest" };
+            HttpContext.Current.User = new GenericPrincipal(HttpContext.Current.User.Identity, role);
         }
 
     }
