@@ -58,7 +58,7 @@
                                         <Columns>            
                                             <asp:TemplateField HeaderText="Image">
                                                 <ItemTemplate>
-                                                    <asp:Image ID="Image1" runat="server" />
+                                                    <asp:Image ID="Image1" runat="server" Width="200px" Height="300px" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
