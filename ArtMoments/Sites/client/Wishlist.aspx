@@ -6,8 +6,8 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
         <h1>Wishlist</h1>
-        <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: "></asp:Label>
-        <asp:TextBox ID="txtSearch" runat="server"></asp:TextBox>
+        <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: " ></asp:Label>
+        <asp:TextBox ID="txtSearch" runat="server" OnLoad="txtSearch_Load" ></asp:TextBox>
         <asp:Button ID="btnSearch" runat="server" Text="Button" OnClick="btnSearch_Click" />
 
         <br />
