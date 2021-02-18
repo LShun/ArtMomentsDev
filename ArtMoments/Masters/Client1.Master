@@ -82,6 +82,12 @@
             </tr>
 
         </table>
+
+        <div id="sitemap">
+            <asp:SiteMapPath ID="smpArtMoments" runat="server">
+        </asp:SiteMapPath>
+        </div>
+
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
