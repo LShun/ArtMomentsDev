@@ -18,12 +18,6 @@
         .paginate span {
             color: Highlight;
         }
-/*
-        .img-spotlight {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-        }*/
     </style>
 </asp:Content>
 <asp:Content ID="cphBody" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
