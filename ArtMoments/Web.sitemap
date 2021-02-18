@@ -20,6 +20,10 @@
 			<siteMapNode url="~/Sites/usermgmt/PreLogin.aspx" title="Login"  description=""/>
 			<siteMapNode url="~/Sites/usermgmt/SignUp.aspx" title="Sign-up"  description=""/>
 		</siteMapNode>
-		
+    
+    <siteMapNode url="" title="Art"  description="" roles="Guest">
+      <siteMapNode url="~/Sites//general/OrderArt.aspx" title="Order Art"  description=""/>
+    </siteMapNode>
+    
 	</siteMapNode>
 </siteMap>
