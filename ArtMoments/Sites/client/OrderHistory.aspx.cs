@@ -305,7 +305,7 @@ namespace ArtMoments.Sites.client
 
             // can display total
             //Append the HTML string to Placeholder.
-            ContentPlaceHolder conPlaceHolder = (ContentPlaceHolder)Master.FindControl("cphBody");
+            ContentPlaceHolder conPlaceHolder = (ContentPlaceHolder)Master.FindControl("ContentPlaceHolder1");
             conPlaceHolder.Controls.Add(new Literal { Text = html.ToString() });
         }
     }

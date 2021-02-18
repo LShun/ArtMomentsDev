@@ -118,7 +118,7 @@
     }
 </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphBody" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="editArtwork">  
 		<div class="container">
 			<h1>Edit Artwork</h1>

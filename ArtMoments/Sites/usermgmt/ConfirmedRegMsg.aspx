@@ -24,7 +24,7 @@
         }
     </style>
 </asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="cphBody" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div id ="Content8">
     <div class="container" id="Content7" >  
                     <div class="myLeftCtn" style="padding-left: 25px; text-align: center;"> 
