@@ -73,7 +73,7 @@ namespace ArtMoments.Sites.usermgmt
                         sqlConn.Close();
                     }
 
-                    Response.Redirect("BuyerSettingExtra.aspx");
+                    Response.Redirect("Account.aspx");
                 }
                 else
                 {
