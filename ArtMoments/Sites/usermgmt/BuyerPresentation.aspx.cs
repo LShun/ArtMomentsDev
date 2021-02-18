@@ -16,7 +16,7 @@ namespace ArtMoments.Sites.usermgmt
 
     public partial class BuyerPresentationEdit : System.Web.UI.Page
     {
-        string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
+        string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
 
         protected void Page_PreInit(object sender, EventArgs e)
         {

@@ -165,6 +165,8 @@
         .auto-style1 {
             color: black;
         }
+
+        .container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
