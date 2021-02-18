@@ -5,16 +5,18 @@
 		<siteMapNode url="" title="Artist"  description="">
 			<siteMapNode url="~/Sites/artist/AddProduct.aspx" title="Add Product"  description="" />
 			<siteMapNode url="~/Sites/artist/ProductList.aspx" title="Product List"  description="" />
+			<siteMapNode url="~/Sites/artist/OrderList.aspx" title="Order List"  description="" />
 		</siteMapNode>
 		<siteMapNode url="" title="Client"  description="">
-			<siteMapNode url="~/Sites/general/DisplayArtwork.aspx" title="Browse/Display Artworks"  description="" />
-			<siteMapNode url="~/Sites/general/OrderArt.aspx" title="Order Artwork"  description="" />
-			<siteMapNode url="~/Sites/artist/OrderList.aspx" title="Order List"  description="" />
+			<siteMapNode url="~/Sites/client/Cart.aspx" title="Shopping Cart"  description="" />
+			<siteMapNode url="~/Sites/client/DisplayArt.aspx" title="Browse/Display Artworks"  description="" />
 			<siteMapNode url="~/Sites/client/OrderHistory.aspx" title="Order History"  description="" />
 			<siteMapNode url="~/Sites/client/Wishlist.aspx" title="Wishlist"  description="" />
 		</siteMapNode>
 		<siteMapNode url="" title="User Management"  description="">
-			<siteMapNode url="~/Sites/usermgmt/BuyerAccount.aspx" title="Account"  description="" />
+			<siteMapNode url="~/Sites/usermgmt/BuyerAccount.aspx" title="Account Management"  description="" />
 		</siteMapNode>
+		<siteMapNode url="~/Sites/usermgmt/PreLogin.aspx" title="Login"  description="" />
+		<siteMapNode url="~/Sites/usermgmt/SignUp.aspx" title="Sign-up"  description="" />
 	</siteMapNode>
 </siteMap>
