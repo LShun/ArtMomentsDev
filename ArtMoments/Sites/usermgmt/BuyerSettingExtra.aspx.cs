@@ -29,9 +29,13 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["UserName"] == null)
+            if (Session["UserType"].ToString().Equals("2"))
             {
-                Response.Redirect("PreLogin.aspx");
+                MasterPageFile = "~/Masters/Artist1.Master";
+            }
+            else if (Session["UserType"].ToString().Equals("1"))
+            {
+                MasterPageFile = "~/Masters/Client1.Master";
             }
 
         }
