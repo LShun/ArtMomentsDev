@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="BuyerSettingExtra.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerSettingNew" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="AccountSetting.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerSettingNew" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style1 {
@@ -55,6 +55,11 @@
                                                                     <td class="auto-style1">User Email</td>
                                                                     <td>
                                                                         <asp:TextBox ID="tbUser_email" runat="server" Text='<%# Bind("user_email") %>' />
+                                                                        <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="tbUser_email"
+                                ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
+                                Display="Dynamic" ErrorMessage="Invalid email address" CssClass="invalidMsgMargin"/>
+                                <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="tbUser_email"
+                                ForeColor="Red" Display="Dynamic" ErrorMessage="Required" CssClass="invalidMsgMargin"/>
                                                                     </td>
                                                                 </tr>
                                                                 <tr>
@@ -65,15 +70,16 @@
                                                                 </tr>
                                                             </table>
                                                             <br />
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" />
-                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" />
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:LinkButton ID="UpdateButton" runat="server" CausesValidation="True" CommandName="Update" Text="Update" OnClick="UpdateButton_Click" />
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:LinkButton ID="UpdateCancelButton" runat="server" CausesValidation="False" CommandName="Cancel" Text="Cancel" OnClick="UpdateCancelButton_Click" />
+                                                            <br />                                                            
                                                         </EditItemTemplate>
                                                         <InsertItemTemplate>
                                                             user_name:
                                                             <asp:TextBox ID="tbUser_name1" runat="server" Text='<%# Bind("user_name") %>' />
                                                             <br />
                                                             user_email:
-                                                            <asp:TextBox ID="tbUser_email1" runat="server" Text='<%# Bind("user_email") %>' />
+                                                            <asp:TextBox ID="tbUser_email1" runat="server" Text='<%# Bind("user_email") %>' />                                                            
                                                             <br />
                                                             user_contactno:
                                                             <asp:TextBox ID="tbUser_contactno1" runat="server" Text='<%# Bind("user_contactno") %>' />
@@ -87,12 +93,7 @@
                                                             <asp:Label ID="lblUser_name" runat="server" Text='<%# Bind("user_name") %>' />
                                                             <br />
                                                             user_email:
-                                                            <asp:Label ID="lblUser_emai" runat="server" Text='<%# Bind("user_email") %>' />
-                                                            <asp:RegularExpressionValidator ID="revEmail" runat="server" ControlToValidate="user_emailLabel"
-                                ForeColor="Red" ValidationExpression="^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$"
-                                Display="Dynamic" ErrorMessage="Invalid email address" CssClass="invalidMsgMargin"/>
-                                <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="user_emailLabel"
-                                ForeColor="Red" Display="Dynamic" ErrorMessage="Required" CssClass="invalidMsgMargin"/>
+                                                            <asp:Label ID="lblUser_email" runat="server" Text='<%# Bind("user_email") %>' />                                                            
                                                             <br />
                                                             user_contactno:
                                                             <asp:Label ID="lblUser_contactno" runat="server" Text='<%# Bind("user_contactno") %>' />
@@ -105,6 +106,7 @@
                                                             &nbsp;<asp:LinkButton ID="btnNew" runat="server" CausesValidation="False" CommandName="New" Text="New" />
                                                         </ItemTemplate>
                                                     </asp:FormView>
+                                                    <asp:Label ID="lblSuccessMsg" runat="server"></asp:Label>
 
 												<div />
 

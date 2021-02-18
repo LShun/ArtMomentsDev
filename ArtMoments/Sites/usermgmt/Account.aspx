@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="BuyerAccount.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerAccount" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerAccount" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
      <title></title>
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />

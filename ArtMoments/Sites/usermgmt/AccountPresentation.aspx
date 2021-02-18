@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="BuyerPresentation.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerPresentationEdit" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="AccountPresentation.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerPresentationEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title></title>
     
@@ -63,6 +63,7 @@
                                             </asp:TemplateField>
                                         </Columns>
                                     </asp:GridView>
+                                    <asp:Label ID="lblSuccessMsg" runat="server" Text=""></asp:Label>
                                     <div id="dialog" style="display: none">
                                     </div>
                                     </div>

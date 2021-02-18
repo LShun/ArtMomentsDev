@@ -29,23 +29,33 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void lbSetting_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerSettingExtra.aspx");
+            Response.Redirect("AccountSetting.aspx");
         }
 
         protected void lbMyAcc_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerAccount.aspx");
+            Response.Redirect("Account.aspx");
         }
 
         protected void lbPresentation_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerPresentation.aspx");
+            Response.Redirect("AccountPresentation.aspx");
         }
 
         protected void lbLogOut_Click(object sender, EventArgs e)
         {
             Session.RemoveAll();
             Response.Redirect("../general/HomePage.aspx");
+        }
+
+        protected void UpdateButton_Click(object sender, EventArgs e)
+        {
+            lblSuccessMsg.Text = "Your personal information has been successfully updated!";
+        }
+
+        protected void UpdateCancelButton_Click(object sender, EventArgs e)
+        {
+            lblSuccessMsg.Text = "No updates on personal information!";
         }
     }
 }

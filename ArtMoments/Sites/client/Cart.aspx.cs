@@ -15,11 +15,11 @@ namespace ArtMoments.Sites.client
 {
     public partial class Cart : System.Web.UI.Page
     {
-        string conString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
-        
+        string conString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["UserName"] = 1;
+            Session["Username"] = 1;
             Double total = 0;
             if (!IsPostBack)
             {
@@ -54,7 +54,7 @@ namespace ArtMoments.Sites.client
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {
-                        sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["UserName"]);
+                        sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["Username"]);
                         DataTable dt = new DataTable();
                         sda.Fill(dt);
                         return dt;
@@ -81,7 +81,7 @@ namespace ArtMoments.Sites.client
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(updateCartItemsQuery, conn);
-                    cmd.Parameters.AddWithValue("@CustId", (String)Session["UserName"].ToString());
+                    cmd.Parameters.AddWithValue("@CustId", (String)Session["Username"].ToString());
                     cmd.Parameters.AddWithValue("@ProdId", prodId);
                     cmd.Parameters.AddWithValue("@UpdateQty", updateQty);
 
@@ -115,7 +115,7 @@ namespace ArtMoments.Sites.client
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(updateCartItemsQuery, conn);
-                    cmd.Parameters.AddWithValue("@CustId", (String)Session["UserName"].ToString());
+                    cmd.Parameters.AddWithValue("@CustId", (String)Session["Username"].ToString());
                     cmd.Parameters.AddWithValue("@ProdId", prodId);
                     cmd.Parameters.AddWithValue("@UpdateQty", updateQty);
 
@@ -141,7 +141,7 @@ namespace ArtMoments.Sites.client
 
                     string createTransacQuery = "insert into [Transaction] (user_id, date_order) VALUES (@CustId, @DateOrder)";
                     SqlCommand cmd = new SqlCommand(createTransacQuery, con);
-                    cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
+                    cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["Username"]));
                     cmd.Parameters.AddWithValue("@DateOrder", DateTime.Now);
                     con.Open();
                     cmd.ExecuteNonQuery();
@@ -161,7 +161,7 @@ namespace ArtMoments.Sites.client
                     SqlConnection con = new SqlConnection(conString);
                     string getCartItemsQuery = "SELECT C.product_id as prod_id, C.quantity as cart_quantity, C.delivery_id as delivery_id, P.prod_stock as available_stock, P.prod_sales as prod_sales FROM CartItems AS C JOIN Product P on C.product_id = P.id where C.user_id = @CustId";
                     SqlDataAdapter sda = new SqlDataAdapter(getCartItemsQuery, con);
-                    sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["UserName"]);
+                    sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["Username"]);
                     DataTable cartItem = new DataTable();
                     sda.Fill(cartItem);
 
@@ -253,7 +253,7 @@ namespace ArtMoments.Sites.client
                 string removeCartItems = "Delete from [CartItems] where product_id like @ProdId and user_id like @CustId";
                 SqlCommand cmd = new SqlCommand(removeCartItems, con);
                 cmd.Parameters.AddWithValue("@ProdId", prodId);
-                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
+                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["Username"]));
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -272,7 +272,7 @@ namespace ArtMoments.Sites.client
 
                 string clearCartQuery = "Delete from [CartItems] where user_id like @CustId";
                 SqlCommand cmd = new SqlCommand(clearCartQuery, con);
-                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
+                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["Username"]));
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -295,7 +295,7 @@ namespace ArtMoments.Sites.client
             {
                 cmd.Parameters.AddWithValue("@DeliveryMethod", ddlDeliverId);
                 cmd.Parameters.AddWithValue("@ProdId", prodId);
-                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
+                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["Username"]));
                 cmd.ExecuteNonQuery();
                 con.Close();
             }
@@ -318,7 +318,7 @@ namespace ArtMoments.Sites.client
                 {
                     cmd.Parameters.AddWithValue("@QtyInput", qtyInput);
                     cmd.Parameters.AddWithValue("@ProdId", prodId);
-                    cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserName"]));
+                    cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["Username"]));
                     cmd.ExecuteNonQuery();
                     con.Close();
                 }

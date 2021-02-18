@@ -15,9 +15,9 @@ namespace ArtMoments.Sites.usermgmt
 {
 
     public partial class BuyerPresentationEdit : System.Web.UI.Page
-    {
-        
+    {        
         string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+
         protected void Page_PreInit(object sender, EventArgs e)
         {
             if (Session["UserType"].ToString().Equals("2"))
@@ -92,8 +92,8 @@ namespace ArtMoments.Sites.usermgmt
                 else
                     imageUrl = String.Empty;
 
-                (e.Row.FindControl("Image1") as Image).ImageUrl = imageUrl;
-                (e.Row.FindControl("Image1") as Image).ImageUrl = imageUrl;
+                (e.Row.FindControl("imgProfilePic") as Image).ImageUrl = imageUrl;
+                (e.Row.FindControl("imgProfilePic") as Image).ImageUrl = imageUrl;
             }
         }
 
@@ -147,21 +147,22 @@ namespace ArtMoments.Sites.usermgmt
                     conn.Close();
                 }
             }
+            lblSuccessMsg.Text = "Your personal information has been successfully updated!";
         }
 
         protected void lbMyAcc_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerAccount.aspx");
+            Response.Redirect("Account.aspx");
         }
 
         protected void lbSetting_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerSettingExtra.aspx");
+            Response.Redirect("AccountSetting.aspx");
         }
 
         protected void lbPresentation_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerPresentation.aspx");
+            Response.Redirect("AccountPresentation.aspx");
         }
 
         protected void lbLogOut_Click(object sender, EventArgs e)

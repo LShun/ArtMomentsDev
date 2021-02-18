@@ -15,13 +15,13 @@ namespace ArtMoments.Sites.general
     {
 
         /// <summary>
-        /// artworkImage control.
+        /// Imgartwork control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage artworkImage;
+        protected global::System.Web.UI.HtmlControls.HtmlImage Imgartwork;
 
         /// <summary>
         /// lblartworkName control.
@@ -177,22 +177,22 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.Label lblStock;
 
         /// <summary>
-        /// btnBuyNow control.
+        /// lbBuyNow control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btnBuyNow;
+        protected global::System.Web.UI.WebControls.LinkButton lbBuyNow;
 
         /// <summary>
-        /// authorImage control.
+        /// imgAuthorProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlImage authorImage;
+        protected global::System.Web.UI.HtmlControls.HtmlImage imgAuthorProfile;
 
         /// <summary>
         /// lblauthorInfoName control.

@@ -61,17 +61,17 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void lbMyAcc_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerAccount.aspx");
+            Response.Redirect("Account.aspx");
         }
 
         protected void lbSetting_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerSettingExtra.aspx");
+            Response.Redirect("AccountSetting.aspx");
         }
 
         protected void lbPresentation_Click(object sender, EventArgs e)
         {
-            Response.Redirect("BuyerPresentation.aspx");
+            Response.Redirect("AccountPresentation.aspx");
         }
 
         protected void lbLogOut_Click(object sender, EventArgs e)

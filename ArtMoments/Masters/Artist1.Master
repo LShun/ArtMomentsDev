@@ -57,9 +57,9 @@
                             </asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Sites/artist/OrderList.aspx" Text="Order" Value="Order"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Sites/usermgmt/PreLogin.aspx" Text="User Management" Value="User Management">
-                                <asp:MenuItem NavigateUrl="~/Sites/usermgmt/BuyerAccount.aspx" Text="My Account" Value="My Account"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Sites/usermgmt/BuyerSettingExtra.aspx" Text="Setting" Value="Setting"></asp:MenuItem>
-                                <asp:MenuItem NavigateUrl="~/Sites/usermgmt/BuyerPresentation.aspx" Text="Presentation" Value="Presentation"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Sites/usermgmt/Account.aspx" Text="My Account" Value="My Account"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Sites/usermgmt/AccountSetting.aspx" Text="Setting" Value="Setting"></asp:MenuItem>
+                                <asp:MenuItem NavigateUrl="~/Sites/usermgmt/AccountPresentation.aspx" Text="Presentation" Value="Presentation"></asp:MenuItem>
                                 <asp:MenuItem Text="Log Out" Value="Log Out"></asp:MenuItem>
                             </asp:MenuItem>
                         </Items>
@@ -73,6 +73,12 @@
             </tr>
 
         </table>
+
+        <div id="sitemap">
+            <asp:SiteMapPath ID="smpArtMoments" runat="server">
+        </asp:SiteMapPath>
+        </div>
+
         <div>
             <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
             </asp:ContentPlaceHolder>
