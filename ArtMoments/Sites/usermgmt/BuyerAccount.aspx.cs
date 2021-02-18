@@ -15,6 +15,21 @@ namespace ArtMoments.Sites.usermgmt
             {
                 Response.Redirect("PreLogin.aspx");
             }
+
+            if (Session["UserType"].ToString().Equals("1"))
+            {
+                pblShowForBuyer1.Visible = true;
+                pblShowForBuyer2.Visible = true;
+                pnlShowForSeller.Visible = false;
+                pnlShowForSeller.Enabled = false;
+            }
+            else
+            {
+                pblShowForBuyer1.Visible = false;
+                pblShowForBuyer2.Visible = false;
+                pnlShowForSeller.Visible = true;
+                pnlShowForSeller.Enabled = true;
+            }
         }
 
         protected void btnHome_Click(object sender, EventArgs e)
@@ -51,6 +66,11 @@ namespace ArtMoments.Sites.usermgmt
         {
             Session.RemoveAll();
             Response.Redirect("../general/HomePage.aspx");
+        }
+
+        protected void lbUpload_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../artist/AddProduct.aspx");
         }
     }
 }
