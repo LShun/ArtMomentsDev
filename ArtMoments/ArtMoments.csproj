@@ -104,14 +104,11 @@
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\BuyerAcc.css" />
-    <Content Include="Content\css\DataList.css" />
-    <Content Include="Content\css\DisplayImageHover.css" />
     <Content Include="Content\css\DLProduct.css" />
     <Content Include="Content\css\LoginUser.css" />
     <Content Include="Content\css\PreLogin.css" />
     <Content Include="Content\css\OrderArtCss.css" />
     <Content Include="Content\css\OrderHistoryCss.css" />
-    <Content Include="Content\css\DisplayArt.css" />
     <Content Include="Content\css\searchForm.css" />
     <Content Include="Content\css\SignUp.css" />
     <Content Include="Content\hp-additional-income.jpg" />
