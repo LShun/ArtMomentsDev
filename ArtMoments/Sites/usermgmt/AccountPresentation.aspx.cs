@@ -13,7 +13,7 @@ using System.Data.SqlClient;
 
 namespace ArtMoments.Sites.usermgmt
 {
-
+    //check is user is artist or buyer (buyer = 1, artist = 2)
     public partial class BuyerPresentationEdit : System.Web.UI.Page
     {        
         string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
@@ -32,8 +32,10 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            lblSuccessMsg.Text = "";
             if (!this.IsPostBack)
             {
+                //check if there is any user log in when load this page
                 if (Session["UserName"] == null)
                 {
                     Response.Redirect("PreLogin.aspx");
@@ -64,6 +66,7 @@ namespace ArtMoments.Sites.usermgmt
                     sqlCon.Close();
                 }
 
+                //display the profile pic extracted from database of the specific user in gridview 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     string UserName = Session["UserName"].ToString();
@@ -80,6 +83,7 @@ namespace ArtMoments.Sites.usermgmt
             }
         }
 
+        //display the profile pic extracted from database of the specific user in gridview after picture is uploaded
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             string imageUrl = "";
@@ -97,6 +101,7 @@ namespace ArtMoments.Sites.usermgmt
             }
         }
 
+        //update the uploaded profile pic into the users database.
         protected void Upload(object sender, EventArgs e)
         {
             if (fuProfilePic.PostedFile != null)
@@ -123,7 +128,7 @@ namespace ArtMoments.Sites.usermgmt
                 }
                 
                 Response.Redirect(Request.Url.AbsoluteUri);
-                Response.Redirect("BuyerPresentation.aspx");
+                lblSuccessMsg.Text = "Profile picture successfully uploaded!";
             }
         }
 
@@ -132,6 +137,7 @@ namespace ArtMoments.Sites.usermgmt
 
         }
 
+        //update the user's bibliography into the users database.
         protected void btnSave_Click(object sender, EventArgs e)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
@@ -150,21 +156,25 @@ namespace ArtMoments.Sites.usermgmt
             lblSuccessMsg.Text = "Your personal information has been successfully updated!";
         }
 
+        //direct user to Account when click on "My Account"
         protected void lbMyAcc_Click(object sender, EventArgs e)
         {
             Response.Redirect("Account.aspx");
         }
 
+        //direct user to Setting when click on "Setting" to edit the personal info
         protected void lbSetting_Click(object sender, EventArgs e)
         {
             Response.Redirect("AccountSetting.aspx");
         }
 
+        //direct user to presentation page when click on the "Presentation"  to edit bibliography and profile pic
         protected void lbPresentation_Click(object sender, EventArgs e)
         {
             Response.Redirect("AccountPresentation.aspx");
         }
 
+        //allow user to log out and clear the session, then dircet to home page
         protected void lbLogOut_Click(object sender, EventArgs e)
         {
             Session.RemoveAll();
