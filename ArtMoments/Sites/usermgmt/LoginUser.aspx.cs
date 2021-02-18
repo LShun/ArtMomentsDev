@@ -29,9 +29,9 @@ namespace ArtMoments.Sites.usermgmt
 
         }
 
+        //validate the username and password entered
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            //string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
             string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
@@ -73,6 +73,7 @@ namespace ArtMoments.Sites.usermgmt
                         sqlConn.Close();
                     }
 
+                    //direct to user account if successfully login
                     Response.Redirect("Account.aspx");
                 }
                 else
