@@ -14,7 +14,7 @@
 			<siteMapNode url="~/Sites/client/Wishlist.aspx" title="Wishlist"  description="" />
 		</siteMapNode>
 		<siteMapNode url="" title="User Management"  description=""  roles="ClientArtist">
-			<siteMapNode url="~/Sites/usermgmt/BuyerAccount.aspx" title="Account Management"  description=""/>
+			<siteMapNode url="~/Sites/usermgmt/Account.aspx" title="Account Management"  description=""/>
 		</siteMapNode>
 		<siteMapNode url="~/Sites/usermgmt/PreLogin.aspx" title="Login"  description="" roles="*"/>
 		<siteMapNode url="~/Sites/usermgmt/SignUp.aspx" title="Sign-up"  description="" roles="*"/>
