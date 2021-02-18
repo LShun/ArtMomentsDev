@@ -35,6 +35,7 @@ button, input, optgroup, select, textarea {
         font-size: 24px;
         font-weight: 700;
         margin-bottom: 20px;
+        margin-right: 50px;
     }
 
 * {
@@ -49,7 +50,7 @@ element.style {
     font-family: 'Book Antiqua';
 }
 
-.myLeftCtn .myInput {
+    .myLeftCtn .myInput {
     width: 230px;
     border-radius: 25px;
     padding: 10px;
