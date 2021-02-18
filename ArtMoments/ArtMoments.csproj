@@ -164,7 +164,6 @@
     <Content Include="Sites\usermgmt\PreLogin.aspx" />
     <Content Include="Sites\usermgmt\SignUp.aspx" />
     <Content Include="Sites\general\OrderArt.aspx" />
-    <Content Include="Sites\WebForm1.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -337,13 +336,6 @@
     </Compile>
     <Compile Include="Sites\general\OrderArt.aspx.designer.cs">
       <DependentUpon>OrderArt.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
