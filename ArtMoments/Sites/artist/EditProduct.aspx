@@ -126,26 +126,26 @@
 				<div class="col-2">
 					<label for="artworkName">Artwork Title*:</label> </div>
 				<div class="col-10">
-					<asp:TextBox ID="txtArtworkName" runat="server" MaxLength="50"></asp:TextBox>
+					<asp:TextBox ID="txtArtworkName" runat="server" MaxLength="50" autocomplete="off"></asp:TextBox>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-2">
 					<label for="artworkHeight">Artwork Height (cm)*:</label> </div>
 				<div class="col-4">
-					<asp:TextBox ID="txtArtworkHeight" MaxLength="4" onkeypress="return onlyNumberKey(event)" runat="server"></asp:TextBox>
+					<asp:TextBox ID="txtArtworkHeight" MaxLength="4" onkeypress="return onlyNumberKey(event)" runat="server" autocomplete="off"></asp:TextBox>
                 </div>
                 <div class="col-2">
 					<label for="artworkWidth" class="artworkWidth">Artwork Width (cm)*:</label> </div>
                 <div class="col-4">
-                    <asp:TextBox ID="txtArtworkWidth" MaxLength="4" onkeypress="return onlyNumberKey(event)" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="txtArtworkWidth" MaxLength="4" onkeypress="return onlyNumberKey(event)" runat="server" autocomplete="off"></asp:TextBox>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-2">
 					<label for="artworkDesc">Artwork Description*:</label> </div>
 				<div class="col-10">
-					<asp:TextBox id="txtArtworkDesc" TextMode="MultiLine" style="height: 200px" runat="server"></asp:TextBox>
+					<asp:TextBox id="txtArtworkDesc" TextMode="MultiLine" style="height: 200px" runat="server" autocomplete="off"></asp:TextBox>
 				</div>
 			</div>
 			<div class="row">
@@ -173,7 +173,7 @@
 					<div class="col-2">
 						<label for="artworkPrice">Artwork Price (RM)*:</label> </div>
 					<div class="col-10">
-                        <asp:TextBox ID="txtArtworkPrice" MaxLength="20" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtArtworkPrice" MaxLength="20" runat="server" autocomplete="off"></asp:TextBox>
 					</div>
 
 				</div>
@@ -181,7 +181,7 @@
 					<div class="col-2">
 						<label for="artworkStock">Artwork Stock*:</label> </div>
 					<div class="col-10">
-                        <asp:TextBox ID="txtArtworkStock" MaxLength="20" onkeypress="return onlyNumberKey(event)" runat="server"></asp:TextBox>
+                        <asp:TextBox ID="txtArtworkStock" MaxLength="20" autocomplete="off" onkeypress="return onlyNumberKey(event)" runat="server"></asp:TextBox>
 					</div>
 				</div>
              <div class="row">
