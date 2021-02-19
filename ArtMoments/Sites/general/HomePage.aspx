@@ -26,7 +26,7 @@
                         <div class="row">
                             <h3 style="text-align: center;">Latest Arts</h3>
                         </div>
-                        <asp:DetailsView ID="dvLatestArt" runat="server" Height="50px" Width="125px" AllowPaging="True" AutoGenerateRows="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="dsLatestArt" ForeColor="Black" GridLines="Horizontal">
+                        <asp:DetailsView ID="dvLatestArt" runat="server" AllowPaging="True" AutoGenerateRows="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="dsLatestArt" ForeColor="Black" GridLines="Horizontal">
                             <EditRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                             <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                             <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
