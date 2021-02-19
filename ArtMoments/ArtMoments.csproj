@@ -102,6 +102,7 @@
     <Content Include="Content\Black Deer2.png" />
     <Content Include="Content\boat.jpg" />
     <Content Include="Content\colorful-street.jpg" />
+    <Content Include="Content\css\Art_Moments\artmoments-fonts.css" />
     <Content Include="Content\css\backgroundMaster.css" />
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\bootstrap.min.css" />
