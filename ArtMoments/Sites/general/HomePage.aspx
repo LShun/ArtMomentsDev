@@ -88,7 +88,7 @@
                     </div>
                 </div>
             </div>
-            <h3>Artists</h3>
+            <h2>Artists</h2>
             <div class="row">
                 <div class="col-6">
                     <div class="card">
