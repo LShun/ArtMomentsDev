@@ -60,6 +60,15 @@ namespace ArtMoments.Sites.usermgmt
         protected global::System.Web.UI.WebControls.TextBox tbPassword;
 
         /// <summary>
+        /// revOldPassword control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revOldPassword;
+
+        /// <summary>
         /// tbNewPassword control.
         /// </summary>
         /// <remarks>
@@ -69,13 +78,13 @@ namespace ArtMoments.Sites.usermgmt
         protected global::System.Web.UI.WebControls.TextBox tbNewPassword;
 
         /// <summary>
-        /// rev1 control.
+        /// revPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator rev1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revPassword;
 
         /// <summary>
         /// tbNewConPassword control.
@@ -87,13 +96,13 @@ namespace ArtMoments.Sites.usermgmt
         protected global::System.Web.UI.WebControls.TextBox tbNewConPassword;
 
         /// <summary>
-        /// RegularExpressionValidator1 control.
+        /// revConPassword control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegularExpressionValidator1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revConPassword;
 
         /// <summary>
         /// btnSave control.
