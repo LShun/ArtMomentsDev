@@ -2,7 +2,7 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
   <siteMapNode url="~/Sites/general/HomePage.aspx" title="Home"  description="" roles="Client">
 
-    <siteMapNode url="~/Sites/client/DisplayArt.aspx" title="Browse (Only members)"  description="" roles="Client">
+    <siteMapNode url="~/Sites/client/DisplayArt.aspx" title="Browse"  description="" roles="Client">
       <siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=1" title="Painting"  description="" />
       <siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=2" title="Photography"  description="" />
       <siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=3" title="Digital Arts"  description="" />
