@@ -103,6 +103,8 @@
     <Content Include="Content\boat.jpg" />
     <Content Include="Content\colorful-street.jpg" />
     <Content Include="Content\css\AccountCss.css" />
+    <Content Include="Content\css\AccPresentation.css" />
+    <Content Include="Content\css\backgroundMaster.css" />
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\BuyerAcc.css" />
     <Content Include="Content\css\DLProduct.css" />

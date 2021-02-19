@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="ConfirmedRegMsg.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.ConfirmedRegMsg" %>
+﻿<%@ Page Title="Confirm Registration Message" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="ConfirmedRegMsg.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.ConfirmedRegMsg" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title></title>
+    <title>Confirmed Message Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
     <link href="https://mdbootstrap.com/docs/b4/jquery/content/icons-list/" rel="stylesheet"/>

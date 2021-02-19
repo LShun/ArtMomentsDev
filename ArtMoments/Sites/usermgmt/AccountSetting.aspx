@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="AccountSetting.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerSettingNew" %>
+﻿<%@ Page Title="Account Settings" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="AccountSetting.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerSettingNew" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         .auto-style1 {
