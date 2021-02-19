@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+  <siteMapNode url="~/Sites/general/HomePage.aspx" title="Home"  description="" roles="Client">
+
+    <siteMapNode url="~/Sites/client/DisplayArt.aspx" title="Browse (Only members)"  description="" roles="Client">
+      <siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=1" title="Painting"  description="" />
+      <siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=2" title="Photography"  description="" />
+      <siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=3" title="Digital Arts"  description="" />
+      <siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=4" title="Drawing"  description="" />
+      <siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=5" title="Prints"  description="" />
+      <siteMapNode url="~/Sites/general/OrderArt.aspx" title="Order Art"  description="" />
+    </siteMapNode>
+    <siteMapNode url="" title="Client"  description="" roles="Client">
+      <siteMapNode url="~/Sites/client/Cart.aspx" title="Shopping Cart"  description="" />
+      <siteMapNode url="~/Sites/client/OrderHistoryExtra.aspx" title="Order History"  description="" roles="Client"/>
+      <siteMapNode url="~/Sites/client/Wishlist.aspx" title="Wishlist"  description="" roles="Client"  />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>
