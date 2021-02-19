@@ -77,8 +77,8 @@
                                 <asp:MenuItem NavigateUrl="~/Sites/usermgmt/Account.aspx" Text="My Account" Value="My Account"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Sites/usermgmt/AccountSetting.aspx" Text="Setting" Value="Setting"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Sites/usermgmt/AccountPresentation.aspx" Text="Presentation" Value="Presentation"></asp:MenuItem>
-                                <asp:MenuItem Text="Log Out" Value="Log Out"></asp:MenuItem>
                             </asp:MenuItem>
+                            <asp:MenuItem Text="Log Out" Value="Log Out"></asp:MenuItem>
                         </Items>
 
                           
