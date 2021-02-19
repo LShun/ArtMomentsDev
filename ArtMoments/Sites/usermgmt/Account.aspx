@@ -58,20 +58,12 @@
                                             <div style="margin-top: 0px">
                                                 <table style="width:100%">
                                                     <tr>
-                                                        <td class="auto-style6">
-                                                            <asp:Panel ID="pblShowForBuyer1" runat="server">
-																<asp:Label ID="lblText" runat="server" Text="Followed Artist"></asp:Label>
-																<br/>
-																<asp:Label ID="lblText2" runat="server" Text="Start following your favourite artist"></asp:Label>
-														</asp:Panel>
-                                                            
-                                                        </td>
-                                                        <td style="width:1%"></td>
+                                                        
                                                         <td class="auto-style6">
                                                             <asp:Panel ID="pblShowForBuyer2" runat="server">
-																<asp:Label ID="lblText3" runat="server" Text="My favourite"></asp:Label>
+																<asp:Label ID="lblText3" runat="server" Text="">My favourite</asp:Label>
 																<br/>
-																<asp:Label ID="lblText4" runat="server" Text="Start collecting art"></asp:Label>
+                                                                <asp:LinkButton ID="lbWishList" runat="server" OnClick="lbWishList_Click">Viwe Collected Art</asp:LinkButton>
 															</asp:Panel>
                                                         </td>
 
@@ -83,6 +75,7 @@
 																		<asp:LinkButton ID="lbUpload" runat="server" OnClick="lbUpload_Click">Upload now</asp:LinkButton>
 																</asp:Panel>                                                            
                                                         </td>
+														
                                                     </tr>
                                                 </table>
                                             </div>
