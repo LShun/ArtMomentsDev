@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Title" Language="C#" MasterPageFile="~/Masters/General.Master" CodeBehind="AccessDenied.aspx.cs" Inherits="ArtMoments.Sites.general.AccessDenied" %>
+﻿<%@ Page Title="Access Denied" Language="C#" MasterPageFile="~/Masters/General.Master" CodeBehind="AccessDenied.aspx.cs" Inherits="ArtMoments.Sites.general.AccessDenied" %>
 
 <asp:Content ID="cHead" ContentPlaceHolderID="head" runat="server">
 

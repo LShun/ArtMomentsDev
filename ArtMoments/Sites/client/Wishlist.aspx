@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Client1.Master" AutoEventWireup="true" CodeBehind="Wishlist.aspx.cs" Inherits="ArtMoments.Sites.client.Wishlist" %>
+﻿<%@ Page Title="Wishlist" Language="C#" MasterPageFile="~/Masters/Client1.Master" AutoEventWireup="true" CodeBehind="Wishlist.aspx.cs" Inherits="ArtMoments.Sites.client.Wishlist" %>
 
 <asp:Content ID="cphHead" ContentPlaceHolderID="head" runat="server">
     <link href="../../Content/css/HomePage.css" rel="stylesheet" />
