@@ -14,7 +14,7 @@ namespace ArtMoments.Sites.usermgmt
         {
             if (Session["UserName"] == null)
             {
-                Response.Redirect("PreLogin.aspx");
+                Response.Redirect("LoginUser.aspx");
             }
 
             if (Session["UserType"].ToString().Equals("2"))
