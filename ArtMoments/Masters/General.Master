@@ -77,7 +77,7 @@
 
         </table>
 
-        <div id="sitemap">
+        <div id="sitemap" style="word-wrap: break-word;">
             <asp:SiteMapPath ID="smpArtMoments" runat="server">
         </asp:SiteMapPath>
         </div>
