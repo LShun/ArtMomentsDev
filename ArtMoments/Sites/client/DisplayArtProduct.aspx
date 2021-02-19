@@ -20,7 +20,7 @@
         <h2>Display Artwork</h2>
             
         <%-- Searching Form (Product Category, Product Size, Artist Name, Price Range and Product Name) --%>
-        <div class="container" ID="search-form-container">
+        <div ID="search-form-container">
             <div class="row">
                 <div class="col-3 form-group search-form-group">
                     <label>Category</label>
@@ -79,11 +79,11 @@
         </div>
 
         <%-- Datalist to display product category data from database --%>
-        <div class="container" ID="display-img-container">
+        <div ID="display-img-container">
             <br/>
             <asp:Label ID="lblRecordMsg" runat="server" Text=""></asp:Label>
             
-            <asp:DataList ID="dlProd" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="100%" Width="1024px" OnItemCommand="dlProd_ItemCommand" 
+            <asp:DataList ID="dlProd" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="100%" Width="100%" OnItemCommand="dlProd_ItemCommand" 
                 BackColor="#CCCCCC"  CellPadding="2" ForeColor="Black" GridLines="Both" CssClass="auto-style3" >
                 <FooterStyle BackColor="#CCCCCC" />
                 <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
@@ -91,7 +91,7 @@
                     Font-Strikeout="False" Font-Underline="False" HorizontalAlign="Center" VerticalAlign="Middle" />
                 <ItemTemplate>
                     <div class="hovereffect">
-                        <asp:Image CssClass="img-responsive" ID="imgProd_img" runat="server" Height="100%" Width="340px"
+                        <asp:Image CssClass="img-responsive" ID="imgProd_img" runat="server" Height="100%" Width="100%"
                            ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>'/>
                                  
                         <div class="overlay">
