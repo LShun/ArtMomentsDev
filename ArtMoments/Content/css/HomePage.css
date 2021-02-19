@@ -166,8 +166,9 @@ p {
 /* latest pictures settings (in the detailsview) */
 .latest {
     width: auto;
-    max-width: 45vh;
-    height: 20vh;
+    max-width: 18rem;
+    height: 14rem;
+    margin: 0 0;
 }
 
 /* pagination, make blue when mouseover */
