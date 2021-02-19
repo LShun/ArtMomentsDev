@@ -14,7 +14,11 @@
     </asp:ContentPlaceHolder>
     <link href="../Content/css/topnavbar.css" rel="stylesheet" />
     <link href="../Content/css/treeViewSideBar.css" rel="stylesheet" />
-
+    <style>
+        #sitemap {
+            margin-left: 2rem;
+        }
+    </style>
     <script>
         /** Scripts for Sidenav for Tree View **/
 

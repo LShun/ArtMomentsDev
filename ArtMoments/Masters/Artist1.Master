@@ -20,7 +20,11 @@
             document.getElementById("mySidenav").style.width = "0";
         }
     </script>
-    
+    <style>
+        #sitemap {
+            margin-left: 2rem;
+        }
+    </style>
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>

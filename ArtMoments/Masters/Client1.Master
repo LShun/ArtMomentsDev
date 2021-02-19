@@ -4,10 +4,10 @@
 
 <html>
 <head runat="server">
-    <script src="../Content/scripts/jquery-3.0.0.slim.min.js"></script>
+    <%--<script src="../Content/scripts/jquery-3.0.0.slim.min.js"></script>
     <script src="../Content/scripts/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/15509eb2b9.js" crossorigin="anonymous"></script>
-    <link href="../Content/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../Content/css/bootstrap.min.css" rel="stylesheet" />--%>
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
@@ -15,7 +15,7 @@
     <link href="../Content/css/treeViewSideBar.css" rel="stylesheet" />
     <style>
         #sitemap {
-            margin-left: 1rem;
+            margin-left: 2rem;
         }
     </style>
      <script>
