@@ -20,8 +20,8 @@
             </div>
             <div class="row">
                 <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: "></asp:Label>
-                <asp:TextBox ID="txtSearch" runat="server" OnLoad="txtSearch_Load"></asp:TextBox>
-                <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn-primary" />
+                <asp:TextBox ID="txtSearch" runat="server" Text=""></asp:TextBox>
+                <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn-primary" />
             </div>
             <div class="row">
                 <p>Click on the blue headers to sort by that column</p>
@@ -64,9 +64,10 @@
             </Columns>
         </asp:GridView>
         <br />
-        <asp:SqlDataSource ID="dsWishlist" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT DISTINCT Wishlist.id, Wishlist.product_id, Product.prod_name, Product.prod_price, Product.prod_stock, Product.prod_size, Product.prod_description, Product_Category.category_name, Product.prod_image FROM Wishlist, Product, Product_Category, [User] WHERE Wishlist.user_id = [User].id AND Wishlist.product_id = Product.id AND Product_Category.id = Product.category_id AND [User].user_name = @user_name">
+        <asp:SqlDataSource ID="dsWishlist" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT DISTINCT Wishlist.id, Wishlist.product_id, Product.prod_name, Product.prod_price, Product.prod_stock, Product.prod_size, Product.prod_description, Product_Category.category_name, Product.prod_image FROM Wishlist, Product, Product_Category, [User] WHERE Wishlist.user_id = [User].id AND Wishlist.product_id = Product.id AND Product_Category.id = Product.category_id AND [User].user_name = @user_name AND Product.prod_name LIKE CONCAT('%', @prod_name, '%')" CancelSelectOnNullParameter="False">
             <SelectParameters>
                 <asp:SessionParameter Name="user_name" SessionField="UserName" />
+                <asp:ControlParameter ControlID="txtSearch" DefaultValue="" Name="prod_name" PropertyName="Text" />
             </SelectParameters>
         </asp:SqlDataSource>
             </div>
