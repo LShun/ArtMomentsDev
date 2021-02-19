@@ -87,6 +87,8 @@ namespace ArtMoments.Sites.usermgmt
                             userId = Convert.ToInt32(cmdGetId.ExecuteScalar());
                         }
                         Session["UserId"] = userId;  //session is created for each user
+
+
                         sqlConn.Close();
 
 
