@@ -215,12 +215,6 @@
             display:block;
         }
 
-        .btn-primary{
-            color:#fff;
-            background-color:#007bff;
-            border-color:#007bff
-        }
-
         .btn-block{
             display:block;
             width:100%;
@@ -233,12 +227,6 @@
 
         .rounded {
             border-radius: .25rem!important;
-        }
-
-        .btn-primary {
-            color: #fff;
-            background-color: #007bff;
-            border-color: #007bff;
         }
 
         .justify-content-center {
@@ -309,7 +297,7 @@
             text-align: center;
         }
 
-        a#ContentPlaceHolder1_btnBuyNow {
+        #ContentPlaceHolder1_btnBuyNow {
             padding-top: 7px;
             padding-bottom: 7px;
             border-radius: 30px;
@@ -318,8 +306,11 @@
             font-family: system-ui;
         }
 
-        .col-5.float-right {
-            width: 50%;
+        a#ContentPlaceHolder1_lbBuyNow {
+            padding-top: 7px;
+            padding-bottom: 7px;
+            border-radius: 30px;
+            text-decoration: none;
         }
 
         div#authorName {
@@ -334,6 +325,7 @@
             position: relative;
             right: 0;
             margin-top: -40px;
+            margin-left: 150px;
         }
 
         input#ContentPlaceHolder1_btnwishlistOff {
@@ -346,6 +338,17 @@
 
         div#wishlistBtnDivision {
             padding-left: 278px;
+        }
+
+        div#wishlistOn {
+            margin-left: 223px;
+        }
+
+        div#authorName {
+            float: left;
+            width: 50%;
+            margin-left: auto;
+            text-align: -webkit-match-parent;
         }
     </style>
 </asp:Content>
@@ -487,7 +490,8 @@
 
                     <div class="col-7 authorName" id="authorName">
                         <!-- author name -->
-                        <p><asp:Label ID="lblauthorInfoName" runat="server" Text="authorName"></p></asp:Label>
+                        <asp:Label ID="lblauthorInfoName" runat="server" Text="authorName"></asp:Label>
+                        <hr />
                         <!-- author bibliography -->
                         <blockquote><asp:Label ID="lblauthorBibliography" runat="server" Text=""></asp:Label></blockquote>
                     </div>

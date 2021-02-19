@@ -15,6 +15,7 @@ namespace ArtMoments.Sites.usermgmt
     {
         string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
 
+        //check is user is artist or buyer (buyer = 1, artist = 2)
         protected void Page_PreInit(object sender, EventArgs e)
         {
             if (Session["UserType"].ToString().Equals("2"))
@@ -33,6 +34,7 @@ namespace ArtMoments.Sites.usermgmt
 
             if (!IsPostBack)
             {
+                //check if there is any user log in when load this page
                 if (Session["UserName"] == null)
                 {
                     Response.Redirect("PreLogin.aspx");
@@ -55,10 +57,12 @@ namespace ArtMoments.Sites.usermgmt
 
         }
 
+        
         protected void btnSave_Click(object sender, EventArgs e)
         {
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
+                //compare if the user input the correct current password
                 sqlCon.Open();
 
                 String tbUserName = Session["UserName"].ToString();
@@ -80,10 +84,9 @@ namespace ArtMoments.Sites.usermgmt
 
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
+                //update the user new password
                 sqlCon.Open();
-                //String query1 = "UPDATE [dboAMUserData] SET [UserPassword] = @NewPassword, [UserConfirmedPassword] = @NewConPassword " +
-                //    "WHERE (SELECT UserPassword FROM  dboAMUserData  WHERE UserName = @UserName AND UserPassword= @Password)";
-                String tbUserName = Session["UserName"].ToString();
+                 String tbUserName = Session["UserName"].ToString();
                 String query1 = "UPDATE [User] SET [user_password] = @NewPassword" +
                    "WHERE user_name = @UserName AND user_password = @Password";
 
@@ -96,28 +99,31 @@ namespace ArtMoments.Sites.usermgmt
                 sqlCmd.Parameters.AddWithValue("@NewConPassword", tbNewConPassword.Text);
 
                 sqlCmd.ExecuteNonQuery();
-                //lblSuccessMessage.Text = "Changed to new password successfully";
-                //RedirectAfterDelayFn();
+
                 sqlCon.Close();
                 Response.Redirect("AccountSetting.aspx");
             }
         }
 
+        //direct user to Account when click on "My Account"
         protected void lbMyAcc_Click(object sender, EventArgs e)
         {
             Response.Redirect("Account.aspx");
         }
 
+        //direct user to Setting when click on "Setting" to edit the personal info
         protected void lbSetting_Click(object sender, EventArgs e)
         {
             Response.Redirect("AccountSetting.aspx");            
         }
 
+        //direct user to presentation page when click on the "Presentation"  to edit bibliography and profile pic
         protected void lbPresentation_Click(object sender, EventArgs e)
         {
             Response.Redirect("AccountPresentation.aspx");
         }
 
+        //allow user to log out and clear the session, then dircet to home page
         protected void lbLogOut_Click(object sender, EventArgs e)
         {
             Session.RemoveAll();

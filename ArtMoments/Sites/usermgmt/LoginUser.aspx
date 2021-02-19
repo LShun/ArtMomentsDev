@@ -26,11 +26,11 @@
                         <form class="myForm text-center">
                             <header style="text-align:center; margin-left:30px">Login your Account</header>
                             <div class="form-group">                                                               
-                                <asp:TextBox class="myInput" placeholder="Username" ID="txtUserName" runat="server" OnTextChanged="txtUserName_TextChanged"></asp:TextBox>
+                                <asp:TextBox class="myInput" placeholder="Username" ID="txtUserName" runat="server" OnTextChanged="txtUserName_TextChanged" AutoCompleteType="Disabled"></asp:TextBox>
                             </div>
 
                             <div class="form-group">                                
-                                <asp:TextBox class="myInput" placeholder="Password" ID="txtUserPassword" runat="server" OnTextChanged="txtUserPassword_TextChanged" TextMode="Password"></asp:TextBox>
+                                <asp:TextBox class="myInput" placeholder="Password" ID="txtUserPassword" runat="server" OnTextChanged="txtUserPassword_TextChanged" TextMode="Password" AutoCompleteType="Disabled"></asp:TextBox>
                                 <asp:Label Text="*" runat="server" ForeColor="Red" />
                             </div>
 

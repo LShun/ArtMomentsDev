@@ -114,6 +114,7 @@
     <Content Include="Content\css\SignUp.css" />
     <Content Include="Content\css\treeViewSideBar.css" />
     <Content Include="Content\css\UserMangementStyle.css" />
+    <Content Include="Content\css\UserMgmtSignUp.css" />
     <Content Include="Content\hp-additional-income.jpg" />
     <Content Include="Content\hp-buy-art.jpg" />
     <Content Include="Content\hp-visibility.jpg" />

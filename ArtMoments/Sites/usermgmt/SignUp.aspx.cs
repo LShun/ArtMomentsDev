@@ -10,46 +10,26 @@ using System.Configuration;
 
 namespace ArtMoments.Sites.usermgmt
 {
+
     public partial class SignUp : System.Web.UI.Page
     {
-        //string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
         string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ValidationSettings.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
-            if (!IsPostBack)
-            {
-                Clear();
-
-                if (!String.IsNullOrEmpty(Request.QueryString["id"]))
-                {                    
-                    using (SqlConnection sqlCon = new SqlConnection(connectionString))
-                    {
-                        sqlCon.Open();
-                        SqlDataAdapter sqlDa = new SqlDataAdapter("UserViewByID", sqlCon);
-                        sqlDa.SelectCommand.CommandType = CommandType.StoredProcedure;
-                        DataTable dtbl = new DataTable();
-                        sqlDa.Fill(dtbl);
-
-                        txtUserName.Text = dtbl.Rows[0][1].ToString();
-                        txtUserPassword.Text = dtbl.Rows[0][2].ToString();
-                        txtConfirmedPassword.Attributes.Add("value", dtbl.Rows[0][2].ToString());
-                        txtUserEmail.Text = dtbl.Rows[0][3].ToString();
-
-                        sqlCon.Close();
-                    }
-                }
-            }
+           
         }          
 
+        //insert the user data into user database
         protected void btnCreateAcc_Click(object sender, EventArgs e)
         {
+            //check if user name and password is entered
             if (txtUserName.Text == "" || txtUserPassword.Text == "")
             {
                 lblMessage.Text = "Please Fill Mandatory Fields";
             }
             else if (txtUserPassword.Text != txtConfirmedPassword.Text)
             {
+                //check is password and confirmed password match
                 lblMessage.Text = "Password do not match";
             }
             else
@@ -79,10 +59,12 @@ namespace ArtMoments.Sites.usermgmt
                             int userType = 0;
                             if (rblGender.SelectedValue.Equals("Buyer"))
                             {
+                                //if register as buyer then userType is 1
                                 userType = 1;
                             }
                             else
                             {
+                                //if register as artist then userType is 2
                                 userType = 2;
                             }
 

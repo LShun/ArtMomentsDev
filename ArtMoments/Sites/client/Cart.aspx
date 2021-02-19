@@ -109,40 +109,47 @@
             <ItemTemplate>
                 <div>
                     <table>
-
-                        <!--<tr><th id="author"><asp:Label ID="lblAuthor" runat="server" class="lblAuthor"><%#Eval ("author_id") %></asp:Label></th></tr>-->
-                        
+                        <!-- Artwork Img -->
                         <td id="btnArtImg" rowspan="8" class="imgTr"><asp:ImageButton ID="BtnProdImg" runat="server" style="max-height:200px;max-width:200px" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_img")) %>' OnClick="viewProdDetailImg" /></td>
 
+                        <!-- Button to delete particular artwork -->
                         <tr><td class="rightCol">
                             <asp:Button ID="btnDelete" runat="server" Text="Delete" OnClick="deleteItem" CssClass="btnDelete"/></td></tr>
-        
+                        <!-- Artwork Name & Invisivible artwork id-->
                         <tr><td id="prodName" class="prodName"><asp:LinkButton ID="lbtnProdName" runat="server" class="rightCol" OnClick="viewProdDetailName"><%#Eval("prod_name") %></asp:LinkButton><asp:TextBox ID="txtProdId" runat="server" Text='<%# Eval("prod_id").ToString()%>' Visible="false" Enabled="false" CssClass="txtProdId" ></asp:TextBox></td></tr>
+                        <!-- Artwork price per piece -->
                         <tr><td id="prodPrice"  class="prodPrice">RM <asp:Label ID="lblPrice" runat="server"><%#DataBinder.Eval(Container.DataItem,"prod_price","{0:f}") %></asp:Label></td></tr>
+                        <!-- Artwork qty (plus, minus btn & txt box)-->
                         <tr><td id="qty"  class="qty">Quantity: <asp:Button ID="btnMinusQty" runat="server" Text="-" OnClick="minusQty" />
                             <asp:TextBox ID="txtQty" runat="server" Text='<%# Eval("quantity").ToString()%> ' onkeypress="numValid(event);" onfocusout="qtyValid();" CssClass="txtQty" AutoPostBack="true"  OnTextChanged="txtQtyChg"></asp:TextBox>
                             <asp:Button ID="btnPlusQty" runat="server" Text="+" OnClick="plusQty" CssClass="btnPlusQty" /><asp:RangeValidator ID="rvQty" runat="server" ControlToValidate="txtQty" ErrorMessage="Minimum = 1, Maximum = available quantity" MaximumValue='<%# Eval("prod_stock") %>' MinimumValue="1" Type="Integer" SetFocusOnError="True">
                             </asp:RangeValidator>                          
-                           
+                           <!-- Artwork delivery method (dropdownlist) & Range validator-->
                             <tr><td  class="deliMethod">Delivery Method: <asp:DropDownList ID="ddlDeliveryMethod" CssClass="ddlDeliveryMethod" runat="server" DataSourceID="SqlDataSourceDeliver" DataTextField="deliver_type" DataValueField="id" SelectedValue='<%# Bind("deliver_id") %>' OnSelectedIndexChanged="ddlDeliverChg" AutoPostBack="True" ></asp:DropDownList></td></tr>
                             <asp:SqlDataSource ID="SqlDataSourceDeliver" runat="server" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security = True"
                         SelectCommand="Select id, deliver_type from delivery"></asp:SqlDataSource>
                             </td></tr>
-                        <tr><td id="subtotal" class="subtotal">Subtotal: RM <asp:Label ID="lblSubtotal" runat="server"><%#DataBinder.Eval(Container.DataItem,"subtotal","{0:f}") %></asp:Label></td></tr>
+                        <!-- Subtotal for each artwork column-->
+                        <tr><td id="subtotal" class="subtotal">Subtotal: RM<asp:Label ID="lblSubtotal" runat="server"><%#DataBinder.Eval(Container.DataItem,"subtotal","{0:f}") %></asp:Label></td></tr>
+                        <!-- Available stock of artwork -->
                         <tr><td id="availableStock" class="availableStock">Available Stock: <asp:TextBox ID="txtAvailable" runat="server" CssClass="txtAvailable" Text='<%# Eval("prod_stock").ToString()%>' Enabled="false" onfocusout="ValidateQty();"></asp:TextBox></td></tr>
                     </table>
                 </div>
             </ItemTemplate>
+       
         <FooterTemplate>
+             <!-- display when no item in the cart -->
             <asp:Label ID="defaultItem" runat="server" 
                 Visible='<%# RepeaterCartInfo.Items.Count == 0 %>' Text="No items found" />
         </FooterTemplate>
         </asp:Repeater>
-        <div id="totalPrice"><b><asp:Label ID="lblTotalPriceTxt" runat="server" Text="Total Price: " Visible="false"></asp:Label><asp:Label ID="lblTotalPrice" runat="server" Visible="false"></asp:Label></b></div>
+        <!-- display total price of all item in the cart -->
+        <div id="totalPrice"><b><asp:Label ID="lblTotalPriceTxt" runat="server" Text="Total Price: RM" Visible="false"></asp:Label><asp:Label ID="lblTotalPrice" runat="server" Visible="false"></asp:Label></b></div>
+        <!-- checkout button -->
         <div id="btnCheckout"><asp:Button ID="btnCheckout" runat="server" Text="Checkout" OnClick="btnCheckout_Click" Visible="false" /></div>
 
         <br />
-
+        <!-- restrict user input to only number-->
         <script type="text/javascript">
             function numValid(evt) {
                 var ch = String.fromCharCode(evt.which);

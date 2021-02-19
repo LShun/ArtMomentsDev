@@ -4,7 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
     <link href="../../Content/css/LoginUser.css" rel="stylesheet" />
-    <link href="../../Content/css/UserMangementStyle.css" rel="stylesheet" />
+    <link href="../../Content/css/UserMgmtSignUp.css" rel="stylesheet" />
+
     <style>
         .radioButtonStyle{
             padding:2em;
@@ -73,7 +74,7 @@
 
                             <div class="form-group" id="textRemoveMargin">
                                 <label>
-                                    <input id="check_1" name="check_1"  type="checkbox" required><small> I read and agree to Terms & Conditions</small></input> 
+                                    <input id="check_1" name="check_1"  type="checkbox" required><small> I agree to the Terms & Conditions</small></input> 
                                     <div class="invalid-feedback">You must check the box.</div>
                                 </label>
                             </div>

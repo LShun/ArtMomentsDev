@@ -152,6 +152,7 @@
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <!-- header -->
     <header>
         <div class="row justify-content-center">
             <h1 class="orderHistoryHeader">Order History</h1>
@@ -161,6 +162,7 @@
         <ItemTemplate>
             <div class="container transactionHistoryContainer">
                 <div class="row">
+                    <!-- Transaction id -->
                     <h2><asp:Label ID="lblTransacTxt" runat="server" Text='Transaction ID:'/></asp:Label><asp:Label ID="lblTransacId" runat="server" Text='<%# Eval("transaction_id") %>'/></asp:Label></h2>
                 </div>
               
@@ -215,7 +217,7 @@
                             </div>
                         </div>   
 
-                        <!-- Qty, Price, view more details label -->
+                        <!-- Qty, Price, order date label -->
                         <div class="row qtyPriceMore">
                             <div class="col" id="qtyDivision">
                                 <label id="lblQtyTxt">Quantity</label>
@@ -224,7 +226,7 @@
                                 <label id="lblPriceTxt">RM </label>
                             </div>
                             <div class="col" id="modeDetailsRow">
-                                <asp:Label ID="lblOrderDateTxt" runat="server" Text='Order by: ' /><asp:Label ID="lblOrderDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"order_date","{0:MM/dd/yyyy}") %>' />
+                                <asp:Label ID="lblOrderDateTxt" runat="server" Text='Order by: ' /><asp:Label ID="lblOrderDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"order_date","{0:dd/MM/yyyy}") %>' />
                             </div>
                         </div>
 
@@ -245,8 +247,9 @@
             </div>
         </div>
     </ItemTemplate>
-        
+    
     <EmptyDataTemplate>
+        <!-- display if there is no history for the buyer -->
             <asp:Label ID="defaultItem" runat="server" 
                 Visible='<%# ListViewOrderHistory.Items.Count == 0 %>' Text="No items found" />
     </EmptyDataTemplate>
@@ -266,9 +269,9 @@
                
 </asp:ListView>
 
-    <asp:SqlDataSource ID="SqlDataSourceOrderHistory" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT T.id as transaction_id, T.date_order as order_date, O.id AS order_id, P.id as prod_id , P.prod_name as prod_name, P.prod_size as prod_size, P.prod_image as prod_image, P.prod_price as prod_price, A.user_name as user_name, C.category_name as category_name,  O.quantity as quantity, O.order_status as order_status, (O.quantity*P.prod_price) as subtotal FROM [Transaction] AS T INNER JOIN [Order] AS O ON T.id = O.transaction_id INNER JOIN Product AS P ON P.id = O.product_id INNER JOIN [User] AS A ON A.id = P.user_id INNER JOIN Product_Category AS C ON C.id = P.category_id WHERE T.user_id = @UserName ORDER BY T.id DESC">
+    <asp:SqlDataSource ID="SqlDataSourceOrderHistory" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT T.id as transaction_id, T.date_order as order_date, O.id AS order_id, P.id as prod_id , P.prod_name as prod_name, P.prod_size as prod_size, P.prod_image as prod_image, P.prod_price as prod_price, A.user_name as user_name, C.category_name as category_name,  O.quantity as quantity, O.order_status as order_status, (O.quantity*P.prod_price) as subtotal FROM [Transaction] AS T INNER JOIN [Order] AS O ON T.id = O.transaction_id INNER JOIN Product AS P ON P.id = O.product_id INNER JOIN [User] AS A ON A.id = P.user_id INNER JOIN Product_Category AS C ON C.id = P.category_id WHERE T.user_id = @UserId ORDER BY T.id DESC">
         <SelectParameters>
-            <asp:SessionParameter DefaultValue="4" Name="UserName" SessionField="UserName" />
+            <asp:SessionParameter DefaultValue="4" Name="UserId" SessionField="UserId" />
         </SelectParameters>
     </asp:SqlDataSource>
 
