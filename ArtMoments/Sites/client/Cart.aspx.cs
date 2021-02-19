@@ -43,6 +43,9 @@ namespace ArtMoments.Sites.client
                 }
          
             }
+            else
+            {
+            }
 
         }
 
@@ -197,14 +200,14 @@ namespace ArtMoments.Sites.client
                         cmdSales.ExecuteNonQuery();
                         con.Close();
                     }
-
-                    //remove all from cart & minus the stock
-                    clearCart();
                 }
+                //remove all from cart & minus the stock
+                clearCart();
             }
             else
             {
                 // do not allow user to checkout if the qty of item entered is invalid
+
                 btnCheckout.Enabled = false;
             }
         }
@@ -301,6 +304,7 @@ namespace ArtMoments.Sites.client
                     con.Close();
                 }
             }
+
             else
             {
             }

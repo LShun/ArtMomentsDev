@@ -78,6 +78,12 @@ namespace ArtMoments.Sites.general
                                         lblauthorInfoName.Text = prodInfo.Rows[0]["author"].ToString();
                                         lblauthorBibliography.Text = prodInfo.Rows[0]["bibliography"].ToString();
                                         Session["CurrentSales"] = prodInfo.Rows[0]["prod-sales"];
+
+                                        if(prodInfo.Rows[0].Field<System.Double>("prod-price") == 0)
+                                        {
+                                            lbBuyNow.Enabled = false;
+                                            lbBuyNow.Text = "OUT OF STOCK";
+                                        }
                                     }
                                 }
                             }
@@ -214,9 +220,9 @@ namespace ArtMoments.Sites.general
         }
 
         // if the current art is already added by buyer previously, increae the art quantity which previously in the cart
-        protected void updateCartItemss(int totalQty)
+        protected void updateCartItems(int totalQty)
         {
-            string updateCartItemssQuery = "update [CartItems] set [quantity_int] = @UpdateQty where user_id like @CustId and product_id like @ProdId";
+            string updateCartItemssQuery = "update [CartItems] set [quantity] = @UpdateQty where user_id like @CustId and product_id like @ProdId";
             using (SqlConnection conn = new SqlConnection(conString))
             {
                 conn.Open();
@@ -266,12 +272,13 @@ namespace ArtMoments.Sites.general
                 {
                     // update
                     int totalQty = Convert.ToInt32(txtboxQty.Text) + (Int32)cmd.ExecuteScalar();
-                    updateCartItemss(totalQty);
+                    updateCartItems(totalQty);
                 }
                 else
                 {
                     addNewIntoCart();
                 }
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('Added to cart successfully.')", true);
                 conn.Close();
 
             }
