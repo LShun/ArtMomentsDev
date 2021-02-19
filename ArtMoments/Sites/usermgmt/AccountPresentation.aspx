@@ -5,11 +5,22 @@
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
     <link href="../../Content/css/AccPresentation.css" rel="stylesheet" />
     <link href="../../Content/css/AccountCss.css" rel="stylesheet" />
+    <style>
+        .row1 {
+    position: relative;
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: 15px;
+}
+    </style>
     </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-	<div class="row">
+	<div class="row1">
         <div class="col-md-3 ">
 		        <div class="list-group ">
                     <asp:LinkButton class="list-group-item list-group-item-action" ID="lbMyAcc" runat="server" OnClick="lbMyAcc_Click" >My Account</asp:LinkButton>
@@ -22,12 +33,12 @@
            <div class="col-md-9">
 		    <div class="card">
 		        <div class="card-body">
-		            <div class="row">
+		            <div class="row1">
 		                <div class="col-md-12">
 		                    <hr>
 		                </div>
 		            </div>
-		            <div class="row">
+		            <div class="row1">
 		                <div class="col-md-12">
 		                    <div>
                                 <div class="form-group row">

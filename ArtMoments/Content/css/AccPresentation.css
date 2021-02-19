@@ -39,7 +39,7 @@ button, input, optgroup, select, textarea {
 }
 
 .buttonEditStyle {
-    margin-left: 70%;
+    margin-left: 100%;
     width: 100px;
     height: 30px;
     border-radius: 10px;
