@@ -8,7 +8,7 @@
 			<siteMapNode url="~/Sites/artist/ProductList.aspx" title="Product List"  description="" roles="Artist" />
 			<siteMapNode url="~/Sites/artist/OrderList.aspx" title="Order List"  description="" roles="Artist" />
 		</siteMapNode>
-		<siteMapNode url="~/Sites/client/DisplayArt.aspx" title="Browse Artworks"  description="" roles="Client">
+		<siteMapNode url="~/Sites/client/DisplayArt.aspx" title="Browse (Only members)"  description="" roles="Client">
 			<siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=1" title="Painting"  description="" />
 			<siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=2" title="Photography"  description="" />
 			<siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=3" title="Digital Arts"  description="" />
