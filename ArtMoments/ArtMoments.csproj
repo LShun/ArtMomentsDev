@@ -102,6 +102,7 @@
     <Content Include="Content\Black Deer2.png" />
     <Content Include="Content\boat.jpg" />
     <Content Include="Content\colorful-street.jpg" />
+    <Content Include="Content\css\backgroundMaster.css" />
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\BuyerAcc.css" />
@@ -113,6 +114,7 @@
     <Content Include="Content\css\OrderHistoryCss.css" />
     <Content Include="Content\css\searchForm.css" />
     <Content Include="Content\css\SignUp.css" />
+    <Content Include="Content\site-bg-grey.png" />
     <Content Include="Content\css\topnavbar.css" />
     <Content Include="Content\css\treeViewSideBar.css" />
     <Content Include="Content\css\UserMangementStyle.css" />

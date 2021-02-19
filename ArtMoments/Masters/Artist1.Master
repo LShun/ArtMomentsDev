@@ -10,6 +10,7 @@
     <link href="../Content/css/bootstrap.min.css" rel="stylesheet" />--%>
     <link href="../Content/css/topnavbar.css" rel="stylesheet" />
     <link href="../Content/css/treeViewSideBar.css" rel="stylesheet" />
+    <link href="../Content/css/backgroundMaster.css" rel="stylesheet" />
     <script>
         function showNav() {
             document.getElementById("mySidenav").style.width = "250px";
