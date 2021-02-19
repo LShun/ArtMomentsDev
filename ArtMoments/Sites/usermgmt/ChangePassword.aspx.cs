@@ -88,8 +88,7 @@ namespace ArtMoments.Sites.usermgmt
                 //update the user new password
                 sqlCon.Open();
                  String tbUserName = Session["UserName"].ToString();
-                String query1 = "UPDATE [User] SET [user_password] = @NewPassword" +
-                   "WHERE user_name = @UserName AND user_password = @Password";
+                String query1 = "UPDATE [User] SET [user_password] = @NewPassword WHERE user_name = @UserName AND user_password = @Password";
 
 
                 SqlCommand sqlCmd = new SqlCommand(query1, sqlCon);
