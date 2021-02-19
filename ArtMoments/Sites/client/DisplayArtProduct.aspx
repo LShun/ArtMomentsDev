@@ -10,8 +10,9 @@
         }
 
         .auto-style3 {
-            margin-left: 50px;
+            margin-left: 0px;
         }
+
         </style>
 
 </asp:Content>
@@ -91,7 +92,7 @@
                     Font-Strikeout="False" Font-Underline="False" HorizontalAlign="Center" VerticalAlign="Middle" />
                 <ItemTemplate>
                     <div class="hovereffect">
-                        <asp:Image CssClass="img-responsive" ID="imgProd_img" runat="server" Height="100%" Width="100%"
+                        <asp:Image CssClass="img-responsive" ID="imgProd_img" runat="server" Height="100%" Width="222px"
                            ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>'/>
                                  
                         <div class="overlay">
