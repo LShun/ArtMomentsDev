@@ -7,10 +7,11 @@
     z-index: 10; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: seashell;
+    background-color: grey;
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    transition: 0.4s; /* 0.4 second transition effect to slide in the sidenav */
+    
 }
 
     /* The navigation menu links */
@@ -49,6 +50,7 @@
 .tv-menu {
     padding: 2vh 2vh;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    word-wrap: break-word;
 }
 
 /* When height of screen < 400px, reduce font size & padding */
