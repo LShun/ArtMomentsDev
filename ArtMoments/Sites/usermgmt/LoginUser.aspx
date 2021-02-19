@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="LoginUser.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.LoginUser" %>
+﻿<%@ Page Title="Login Page" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="LoginUser.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.LoginUser" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Login Form Design</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
