@@ -8,6 +8,16 @@
             left: 0px;
             top: 0px;
         }
+        .row {
+    position: relative;
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: unset;
+    margin-right: -15px;
+    margin-left: 15px;
+}
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -38,6 +48,10 @@
                                 <div class="col-8">
                                      <asp:TextBox ID="tbPassword" runat="server" OnTextChanged="TextBox1_TextChanged" TextMode="Password"></asp:TextBox>
                                      <asp:Label Text="*" runat="server" ForeColor="Red" />  
+                                    <asp:RegularExpressionValidator ID="revOldPassword" runat="server" 
+                                ControlToValidate="tbPassword"
+                                ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character"
+                                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%_*#?&])[A-Za-z\d$@$!_%*#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
                                  </div>
                               </div>
                               <div class="form-group row"> 
@@ -46,10 +60,10 @@
                                      <asp:TextBox ID="tbNewPassword" runat="server" OnTextChanged="TextBox2_TextChanged" TextMode="Password"></asp:TextBox>
                                       <asp:Label Text="*" runat="server" ForeColor="Red" />  
                                       <br />
-                                        <asp:RegularExpressionValidator ID="rev1" runat="server" 
-                                        ControlToValidate="tbNewPassword"
-                                        ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character"
-                                        ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
+                                        <asp:RegularExpressionValidator ID="revPassword" runat="server" 
+                                ControlToValidate="tbNewPassword"
+                                ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character"
+                                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*_#?&])[A-Za-z\d$@$!%*_#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
                               </div>
                               </div>
                               <div class="form-group row">   
@@ -58,10 +72,10 @@
                                   <asp:TextBox ID="tbNewConPassword" runat="server" OnTextChanged="TextBox3_TextChanged" TextMode="Password"></asp:TextBox>
                                   <asp:Label Text="*" runat="server" ForeColor="Red" />  
                                     <br />
-                                    <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" 
-                                    ControlToValidate="tbNewConPassword"
-                                    ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character"
-                                    ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
+                                    <asp:RegularExpressionValidator ID="revConPassword" runat="server" 
+                                ControlToValidate="tbNewConPassword"
+                                ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character"
+                                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%_*#?&])[A-Za-z\d$@$!%_*#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
                               </div>
                               </div>
 
