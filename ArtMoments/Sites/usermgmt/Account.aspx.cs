@@ -35,18 +35,9 @@ namespace ArtMoments.Sites.usermgmt
             //if is buyer then display first two box
             if (Session["UserType"].ToString().Equals("1"))
             {
-                pblShowForBuyer1.Visible = true;
-                pblShowForBuyer2.Visible = true;
-                pnlShowForSeller.Visible = false;
-                pnlShowForSeller.Enabled = false;
-            }
-            else
-            {
-                //if is artist then direct artist to add product 
-                pblShowForBuyer1.Visible = false;
-                pblShowForBuyer2.Visible = false;
-                pnlShowForSeller.Visible = true;
-                pnlShowForSeller.Enabled = true;
+                lblText5.Text = "Grab an artwork!";
+                lbUpload.Visible = false;
+                lbUpload.Enabled = false;
             }
         }
 
@@ -79,6 +70,11 @@ namespace ArtMoments.Sites.usermgmt
         protected void lbUpload_Click(object sender, EventArgs e)
         {
             Response.Redirect("../artist/AddProduct.aspx");
+        }
+
+        protected void lbWishList_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("../client/Wishlist.aspx");
         }
     }
 }
