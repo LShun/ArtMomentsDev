@@ -127,7 +127,7 @@ namespace ArtMoments.Sites.usermgmt
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("select id as [transac-id], user_id as [user-id], date_order as [order-date] from [Transaction] where user_id like @CustId ORDER BY [order-date] DESC"))
+                using (SqlCommand cmd = new SqlCommand("select id as [transac-id], user_id as [user-id], date_order as [order-date] from [Transaction]"))
                 {
                     cmd.Parameters.AddWithValue("@CustId", (String)Session["UserId"].ToString());
                     using (SqlDataAdapter sda = new SqlDataAdapter())
@@ -205,7 +205,7 @@ namespace ArtMoments.Sites.usermgmt
                 DateTime? dbdispatchDT = row.Field<DateTime?>("order-dateReceive");
 
                 // only more or equal 3 days -> update delivery status to dispatched & update date of delivery
-                if (!dbdeliveredDT.HasValue && delivery2Update == 1)
+                if (!dbdeliveredDT.HasValue && delivery2Update >= 1)
                 {
                     SqlConnection conn = new SqlConnection(connectionString);
                     conn.Open();
