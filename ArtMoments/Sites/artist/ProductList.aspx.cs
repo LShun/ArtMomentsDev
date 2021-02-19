@@ -46,50 +46,152 @@ namespace ArtMoments.Sites.artist
                         }
                     }
                 }
-
+                //Session["SortedProductView"] = null;
+                //Session["SearchProductView"] = null;
+                //Session["SortedSearchProductView"] = null;
             }
         }
 
 
         private void SearchProduct()
         {
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            if (Session["SortedProductView"] != null)
             {
-                using (SqlDataAdapter sda = new SqlDataAdapter("select P.id as [ID], P.prod_name as [Name], P.prod_size [Size], P.prod_description as [Description], C.category_name as [CategoryName], P.prod_image as [Image], P.prod_price as [Price] " +
-                     ", P.prod_stock as [Stock], P.prod_sales as [Sales] from Product P , Product_Category C , [ArtMomentsDb].[dbo].[User] U where U.id = P.user_id AND U.user_name = @name AND P.category_id = C.id and P.prod_name like '%' + @productName + '%'", conn))
+                if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
                 {
-                    sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
-                    string emptyValue = "";
-                    if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
-                    {
-
-                        sda.SelectCommand.Parameters.AddWithValue("@productName", txtSearch.Text.Trim());
-                    }
-                    else
-                        sda.SelectCommand.Parameters.AddWithValue("@productName", emptyValue);
-
+                    productList.DataSource = Session["SortedProductView"];
                     DataTable dt = new DataTable();
-                    sda.Fill(dt);
-                    Session["searchView"] = dt;
+                    dt = (DataTable)productList.DataSource;
+                    DataTable newProdTable = CreateNewTable();
+                    string searchText = txtSearch.Text.ToString().ToLower();
+                    foreach (DataRow productTableRow in dt.Rows)
+                    {
+                        string prodName = productTableRow.Field<string>("Name").ToLower();
+                        if (prodName.Contains(searchText))
+                        {
+                            newProdTable.Rows.Add(productTableRow.ItemArray);
+                        }
 
-                    productList.DataSource = dt;
+                    }
+                    productList.DataSource = newProdTable;
+                    Session["searchProductView"] = newProdTable;
+                    productList.DataBind();
+                }
+                else
+                {
+
+                    productList.DataSource = Session["SortedProductView"];
                     productList.DataBind();
                 }
             }
-
-            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
+            else
             {
-                Session["SortedView"] = null;
-            }
-        }
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    using (SqlDataAdapter sda = new SqlDataAdapter("select P.id as [ID], P.prod_name as [Name], P.prod_size [Size], P.prod_description as [Description], C.category_name as [CategoryName], P.prod_image as [Image], P.prod_price as [Price] " +
+                         ", P.prod_stock as [Stock], P.prod_sales as [Sales] from Product P , Product_Category C , [ArtMomentsDb].[dbo].[User] U where U.id = P.user_id AND U.user_name = @name AND P.category_id = C.id and P.prod_name like '%' + @productName + '%'", conn))
+                    {
+                        sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
+                        string emptyValue = "";
+                        if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
+                        {
 
+                            sda.SelectCommand.Parameters.AddWithValue("@productName", txtSearch.Text.Trim());
+                        }
+                        else
+                            sda.SelectCommand.Parameters.AddWithValue("@productName", emptyValue);
+
+                        DataTable dt = new DataTable();
+                        sda.Fill(dt);
+                        Session["searchProductView"] = dt;
+                        productList.DataSource = dt;
+                        productList.DataBind();
+                    }
+                }
+                if (string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
+                {
+                    Session["SortedProductView"] = null;
+                }
+            }
+ 
+        }
+        private DataTable CreateNewTable()
+        {
+            DataTable newProductTable = new DataTable();
+            // Declare DataColumn and DataRow variables.
+            DataColumn column;
+
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.Int32");
+            column.ColumnName = "ID";
+            newProductTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Name";
+            newProductTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Size";
+            newProductTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Description";
+            newProductTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "CategoryName";
+            newProductTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.Byte[]");
+            column.ColumnName = "Image";
+            newProductTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Price";
+            newProductTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Stock";
+            newProductTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Sales";
+            newProductTable.Columns.Add(column);
+
+            return newProductTable;
+        }
         protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e) //change to another page of table
         {
             productList.PageIndex = e.NewPageIndex;
-            if (Session["SortedView"] != null)
+            if (Session["SortedProductView"] != null)
             {
-                productList.DataSource = Session["SortedView"];
+                productList.DataSource = Session["SortedProductView"];
+                productList.DataBind();
+            }
+            else if (Session["SearchProductView"] != null)
+            {
+                productList.DataSource = Session["SearchProductView"];
+                productList.DataBind();
+            }
+            else if (Session["SortedSearchProductView"] != null)
+            {
+                productList.DataSource = Session["SortedSearchProductView"];
                 productList.DataBind();
             }
             else
@@ -117,7 +219,7 @@ namespace ArtMoments.Sites.artist
             {
                 if (sortExpression != null)
                 {
-                    productList.DataSource = Session["searchView"];
+                    productList.DataSource = Session["searchProductView"];
                     DataTable dt = productList.DataSource as DataTable;
                     DataView dataview = dt.AsDataView();
                     if (this.SortDirection == "ASC")
@@ -128,13 +230,13 @@ namespace ArtMoments.Sites.artist
                         this.SortDirection = "ASC";
 
                     dataview.Sort = sortExpression + " " + this.SortDirection;
-                    Session["SortedView"] = dataview;
+                    Session["SortedSearchProductView"] = dataview.ToTable();
                     productList.DataSource = dataview;
                 }
                 else
                 {
-                    Session["SortedView"] = null;
-                    productList.DataSource = Session["searchView"];
+                    
+                    productList.DataSource = Session["searchProductView"];
                 }
                 productList.DataBind();
             }
@@ -160,12 +262,12 @@ namespace ArtMoments.Sites.artist
                                     this.SortDirection = "ASC";
 
                                 dataview.Sort = sortExpression + " " + this.SortDirection;
-                                Session["SortedView"] = dataview;
+                                Session["SortedProductView"] = dataview.ToTable();
                                 productList.DataSource = dataview;
                             }
                             else
                             {
-                                Session["SortedView"] = null;
+                                Session["SortedProductView"] = null;
                                 productList.DataSource = dt;
                             }
                             productList.DataBind();
