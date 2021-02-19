@@ -102,10 +102,8 @@
     <Content Include="Content\Black Deer2.png" />
     <Content Include="Content\boat.jpg" />
     <Content Include="Content\colorful-street.jpg" />
-    <Content Include="Content\css\Art_Moments\artMomentsFonts.css" />
-    <Content Include="Content\css\backgroundMaster.css" />
+    <Content Include="Content\css\AccountCss.css" />
     <Content Include="Content\css\blank.css" />
-    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\BuyerAcc.css" />
     <Content Include="Content\css\DLProduct.css" />
     <Content Include="Content\css\HomePage.css" />

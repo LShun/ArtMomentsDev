@@ -18,6 +18,11 @@ namespace ArtMoments.Sites.usermgmt
         //check is user is artist or buyer (buyer = 1, artist = 2)
         protected void Page_PreInit(object sender, EventArgs e)
         {
+            //check if there is any user log in when load this page
+            if (Session["UserName"] == null)
+            {
+                Response.Redirect("PreLogin.aspx");
+            }
             if (Session["UserType"].ToString().Equals("2"))
             {
                 MasterPageFile = "~/Masters/Artist1.Master";
@@ -34,11 +39,7 @@ namespace ArtMoments.Sites.usermgmt
 
             if (!IsPostBack)
             {
-                //check if there is any user log in when load this page
-                if (Session["UserName"] == null)
-                {
-                    Response.Redirect("PreLogin.aspx");
-                }
+                
             }
         }
 

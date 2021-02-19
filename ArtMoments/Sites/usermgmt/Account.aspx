@@ -3,7 +3,8 @@
      <title></title>
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
     <link href="../../Content/css/BuyerAcc.css" rel="stylesheet" />
-   
+    <link href="../../Content/css/AccountCss.css" rel="stylesheet" />
+	
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">

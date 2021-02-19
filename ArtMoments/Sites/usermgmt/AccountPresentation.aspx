@@ -2,15 +2,49 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title></title>
     
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
-    <link href="../../Content/css/SignUp.css" rel="stylesheet" />
+    <link href="../../Content/css/AccountCss.css" rel="stylesheet" />
+
     <style>
         .txtBoxBio{
             width:80%;
             height:60%;
         }
+        .form-group {
+    margin-bottom: 1rem;
+}
+        .col-form-label {
+    padding-top: calc(.375rem + 1px);
+    padding-bottom: calc(.375rem + 1px);
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.5;
+}
+        .col-4 {
+    -ms-flex: 0 0 33.333333%;
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+}
+        .col-8 {
+    -ms-flex: 0 0 66.666667%;
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+}
+        button, input {
+    overflow: visible;
+}
+        button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
+        .buttonEditStyle {
+    margin-left: 70%;
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+}
     </style>
     </asp:Content>
 
@@ -58,7 +92,7 @@
                                         <Columns>            
                                             <asp:TemplateField HeaderText="Image">
                                                 <ItemTemplate>
-                                                    <asp:Image ID="imgProfilePic" runat="server" Width="200px" Height="300px" />
+                                                    <asp:Image ID="imgProfilePic" runat="server" Width="220px" Height="250px" />
                                                 </ItemTemplate>
                                             </asp:TemplateField>
                                         </Columns>
