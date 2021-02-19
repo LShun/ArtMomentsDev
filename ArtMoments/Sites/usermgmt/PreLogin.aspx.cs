@@ -11,18 +11,13 @@ namespace ArtMoments.Sites.usermgmt
     {
         protected void Page_PreInit(object sender, EventArgs e)
         {
-            if (Session["Username"] == null)
+            if (Session["UserType"].ToString().Equals("2"))
             {
-                MasterPageFile = "~/Masters/General.Master";
-
-            }
-            else if (Session["UserType"].ToString().Equals("2"))
-            {
-                MasterPageFile = "~/Masters/Artist.Master";
+                MasterPageFile = "~/Masters/Artist1.Master";
             }
             else if (Session["UserType"].ToString().Equals("1"))
             {
-                MasterPageFile = "~/Masters/Client.Master";
+                MasterPageFile = "~/Masters/Client1.Master";
             }
         }
 
