@@ -112,6 +112,7 @@
     <Content Include="Content\css\OrderHistoryCss.css" />
     <Content Include="Content\css\searchForm.css" />
     <Content Include="Content\css\SignUp.css" />
+    <Content Include="Content\css\treeViewSideBar.css" />
     <Content Include="Content\css\UserMangementStyle.css" />
     <Content Include="Content\css\UserMgmtSignUp.css" />
     <Content Include="Content\hp-additional-income.jpg" />
@@ -153,6 +154,7 @@
     <Content Include="Sites\client\OrderHistory.aspx" />
     <Content Include="Sites\client\OrderHistoryExtra.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
+    <Content Include="Sites\general\AccessDenied.aspx" />
     <Content Include="Sites\general\HomePage.aspx" />
     <Content Include="Sites\usermgmt\Account.aspx" />
     <Content Include="Sites\usermgmt\AccountPresentation.aspx" />
@@ -258,6 +260,10 @@
     </Compile>
     <Compile Include="Sites\client\Wishlist.aspx.designer.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\general\AccessDenied.aspx.cs">
+      <DependentUpon>AccessDenied.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Sites\general\HomePage.aspx.cs">
       <DependentUpon>HomePage.aspx</DependentUpon>

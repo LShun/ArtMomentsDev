@@ -79,17 +79,12 @@ namespace ArtMoments.Sites.usermgmt
                         SqlCommand cmdGetId = new SqlCommand(getIdQuery, sqlConn);
 
                         cmdGetId.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
-
-                        SqlDataReader datareader = cmdGetId.ExecuteReader();
                         
                         int userId = 0;
 
-                        if (datareader.HasRows)
+                        if (cmdGetId.ExecuteScalar()!= null)
                         {
-                            while (datareader.Read())
-                            {
-                                userId = Convert.ToInt32(datareader["id"]);
-                            }
+                            userId = Convert.ToInt32(cmdGetId.ExecuteScalar());
                         }
                         Session["UserId"] = userId;  //session is created for each user
                         sqlConn.Close();

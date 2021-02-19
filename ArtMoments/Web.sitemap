@@ -3,33 +3,35 @@
 	<siteMapNode url="~/Sites/general/HomePage.aspx" title="Home"  description="" roles="*">
 		
 		<siteMapNode url="" title="Artist"  description="" roles="Artist">
-			<siteMapNode url="~/Sites/artist/AddProduct.aspx" title="Add Product"  description="" />
-			<siteMapNode url="~/Sites/artist/ProductList.aspx" title="Product List"  description="" />
-			<siteMapNode url="~/Sites/artist/OrderList.aspx" title="Order List"  description=""/>
+			<siteMapNode url="~/Sites/artist/AddProduct.aspx" title="Add Product"  description="" roles="Artist" />
+			<siteMapNode url="~/Sites/artist/EditProduct.aspx" title="Edit Product"  description=""/>
+			<siteMapNode url="~/Sites/artist/ProductList.aspx" title="Product List"  description="" roles="Artist" />
+			<siteMapNode url="~/Sites/artist/OrderList.aspx" title="Order List"  description="" roles="Artist" />
 		</siteMapNode>
-		<siteMapNode url="~/Sites/client/DisplayArt.aspx" title="Browse Artworks"  description="">
+		<siteMapNode url="~/Sites/client/DisplayArt.aspx" title="Browse (Only members)"  description="" roles="Client">
 			<siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=1" title="Painting"  description="" />
 			<siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=2" title="Photography"  description="" />
 			<siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=3" title="Digital Arts"  description="" />
 			<siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=4" title="Drawing"  description="" />
 			<siteMapNode url="~/Sites/client/DisplayArtProduct.aspx?id=5" title="Prints"  description="" />
+			<siteMapNode url="~/Sites/general/OrderArt.aspx" title="Order Art"  description="" />
 		</siteMapNode>
 		<siteMapNode url="" title="Client"  description="" roles="Client">
 			<siteMapNode url="~/Sites/client/Cart.aspx" title="Shopping Cart"  description="" />
 			<siteMapNode url="~/Sites/client/OrderHistoryExtra.aspx" title="Order History"  description="" roles="Client"/>
 			<siteMapNode url="~/Sites/client/Wishlist.aspx" title="Wishlist"  description="" roles="Client"  />
 		</siteMapNode>
-		<siteMapNode url="" title="User Management"  description=""  roles="Client, Artist">
-			<siteMapNode url="~/Sites/usermgmt/Account.aspx" title="Account Management"  description=""/>
-		</siteMapNode>
-		<siteMapNode url="" title="Account"  description="" roles="Guest">
-			<siteMapNode url="~/Sites/usermgmt/PreLogin.aspx" title="Login"  description=""/>
+		<siteMapNode url="" title="Account Sign-up/Login"  description="" roles="Guest">
+			<siteMapNode url="~/Sites/usermgmt/PreLogin.aspx" title="Login Role Selection"  description=""/>
+			<siteMapNode url="~/Sites/usermgmt/LoginUser.aspx" title="Login Page"  description=""/>
 			<siteMapNode url="~/Sites/usermgmt/SignUp.aspx" title="Sign-up"  description=""/>
 		</siteMapNode>
-    
-    <siteMapNode url="" title="Art"  description="" roles="Guest">
-      
-    </siteMapNode>
+		<siteMapNode url="" title="Account"  description="" roles="Artist; Client">
+			<siteMapNode url="~/Sites/usermgmt/Account.aspx" title="Account Management"  description="" roles="Guest"/>
+			<siteMapNode url="~/Sites/usermgmt/AccountPresentation.aspx" title="Account Presentation"  description=""/>
+			<siteMapNode url="~/Sites/usermgmt/AccountSetting.aspx" title="Account Settings"  description=""/>
+			<siteMapNode url="~/Sites/usermgmt/ChangePassword.aspx" title="Change Password"  description=""/>
+		</siteMapNode>
     
 	</siteMapNode>
 </siteMap>

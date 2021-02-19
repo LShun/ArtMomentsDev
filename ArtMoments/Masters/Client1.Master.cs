@@ -10,6 +10,14 @@ namespace ArtMoments.Masters
 {
     public partial class Client1 : System.Web.UI.MasterPage
     {
+        protected void Page_Init(object sender, EventArgs e)
+        {
+            if (Session["UserType"] == null || !Session["UserType"].ToString().Equals("1"))
+            {
+                Response.Redirect("~/Sites/general/AccessDenied.aspx", true);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             string path = Request.AppRelativeCurrentExecutionFilePath;
