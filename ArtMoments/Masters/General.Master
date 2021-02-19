@@ -55,8 +55,7 @@
                 <td class="menu">
                     <asp:Menu ID="ArtworkMenu" runat="server" Orientation="Horizontal" >            
                         <Items>
-                            <asp:MenuItem NavigateUrl="~/Sites/general/HomePage.aspx" Text="Home" Value="Home"></asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/Sites/usermgmt/PreLogin.aspx" Text="Log In" Value="Log In"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Sites/general/HomePage.aspx" Text="Home" Value="Home"></asp:MenuItem>           
                             <asp:MenuItem NavigateUrl="~/Sites/usermgmt/SignUp.aspx" Text="Sign Up" Value="Sign Up"></asp:MenuItem>
                         </Items>
                         <StaticSelectedStyle CssClass="selected" />
