@@ -13,6 +13,12 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
+            //check if there is any user log in when load this page
+            if (Session["UserName"] == null)
+            {
+                Response.Redirect("LoginUser.aspx");
+            }
+
             if (Session["UserType"].ToString().Equals("2"))
             {
                 MasterPageFile = "~/Masters/Artist1.Master";
@@ -26,11 +32,7 @@ namespace ArtMoments.Sites.usermgmt
         //check if there is any user log in when load this page
         protected void Page_Load(object sender, EventArgs e)
         {
-            //check if there is any user log in when load this page
-            if (Session["UserName"] == null)
-            {
-                Response.Redirect("PreLogin.aspx");
-            }
+            
             lblSuccessMsg.Text = "";
         }
 

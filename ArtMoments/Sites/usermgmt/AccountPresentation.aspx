@@ -1,56 +1,26 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="AccountPresentation.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerPresentationEdit" %>
+﻿<%@ Page Title="Account Presentation" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="AccountPresentation.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerPresentationEdit" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title></title>
+    <title>Account Presentation Design</title>
     
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
+    <link href="../../Content/css/AccPresentation.css" rel="stylesheet" />
     <link href="../../Content/css/AccountCss.css" rel="stylesheet" />
-
     <style>
-        .txtBoxBio{
-            width:80%;
-            height:60%;
-        }
-        .form-group {
-    margin-bottom: 1rem;
-}
-        .col-form-label {
-    padding-top: calc(.375rem + 1px);
-    padding-bottom: calc(.375rem + 1px);
-    margin-bottom: 0;
-    font-size: inherit;
-    line-height: 1.5;
-}
-        .col-4 {
-    -ms-flex: 0 0 33.333333%;
-    flex: 0 0 33.333333%;
-    max-width: 33.333333%;
-}
-        .col-8 {
-    -ms-flex: 0 0 66.666667%;
-    flex: 0 0 66.666667%;
-    max-width: 66.666667%;
-}
-        button, input {
-    overflow: visible;
-}
-        button, input, optgroup, select, textarea {
-    margin: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-}
-        .buttonEditStyle {
-    margin-left: 70%;
-    width: 100px;
-    height: 30px;
-    border-radius: 10px;
+        .row1 {
+    position: relative;
+    width: 100%;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: 15px;
 }
     </style>
     </asp:Content>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-	<div class="row">
+	<div class="row1">
         <div class="col-md-3 ">
 		        <div class="list-group ">
                     <asp:LinkButton class="list-group-item list-group-item-action" ID="lbMyAcc" runat="server" OnClick="lbMyAcc_Click" >My Account</asp:LinkButton>
@@ -63,12 +33,12 @@
            <div class="col-md-9">
 		    <div class="card">
 		        <div class="card-body">
-		            <div class="row">
+		            <div class="row1">
 		                <div class="col-md-12">
 		                    <hr>
 		                </div>
 		            </div>
-		            <div class="row">
+		            <div class="row1">
 		                <div class="col-md-12">
 		                    <div>
                                 <div class="form-group row">

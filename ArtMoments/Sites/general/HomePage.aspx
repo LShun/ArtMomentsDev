@@ -127,7 +127,7 @@
         <asp:Panel CssClass="alert alert-primary" Id="pnlInterested" RunAt="server" role="alert" Visible="true" OnLoad="pnlInterested_Load">
             <h2>Interested?
              <a href="../usermgmt/SignUp.aspx" type="button" class="btn btn-primary">Sign up!</a>
-                <a href="../usermgmt/PreLogin.aspx" type="button" class="btn btn-outline-primary">Login!</a>
+                <a href="../usermgmt/LoginUser.aspx" type="button" class="btn btn-outline-primary">Login!</a>
             </h2>
         </asp:Panel>
     </div>

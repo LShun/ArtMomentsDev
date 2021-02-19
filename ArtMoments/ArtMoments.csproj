@@ -103,6 +103,10 @@
     <Content Include="Content\boat.jpg" />
     <Content Include="Content\colorful-street.jpg" />
     <Content Include="Content\css\AccountCss.css" />
+    <Content Include="Content\css\AccPresentation.css" />
+    <Content Include="Content\css\Art_Moments\artMomentsFonts.css" />
+    <Content Include="Content\css\searchForm.css" />
+    <Content Include="Content\css\backgroundMaster.css" />
     <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\BuyerAcc.css" />
     <Content Include="Content\css\DLProduct.css" />
@@ -111,8 +115,8 @@
     <Content Include="Content\css\PreLogin.css" />
     <Content Include="Content\css\OrderArtCss.css" />
     <Content Include="Content\css\OrderHistoryCss.css" />
-    <Content Include="Content\css\searchForm.css" />
     <Content Include="Content\css\SignUp.css" />
+    <Content Include="Content\favicon.ico" />
     <Content Include="Content\site-bg-grey.png" />
     <Content Include="Content\css\topnavbar.css" />
     <Content Include="Content\css\treeViewSideBar.css" />
@@ -165,7 +169,6 @@
     <Content Include="Sites\usermgmt\ChangePassword.aspx" />
     <Content Include="Sites\usermgmt\ConfirmedRegMsg.aspx" />
     <Content Include="Sites\usermgmt\LoginUser.aspx" />
-    <Content Include="Sites\usermgmt\PreLogin.aspx" />
     <Content Include="Sites\usermgmt\SignUp.aspx" />
     <Content Include="Sites\general\OrderArt.aspx" />
     <Content Include="Web.config" />
@@ -317,13 +320,6 @@
     <Compile Include="Sites\usermgmt\LoginUser.aspx.designer.cs">
       <DependentUpon>LoginUser.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Sites\usermgmt\PreLogin.aspx.cs">
-      <DependentUpon>PreLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\usermgmt\PreLogin.aspx.designer.cs">
-      <DependentUpon>PreLogin.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Sites\usermgmt\SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -357,7 +353,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Web.sitemap" />
+    <Content Include="Guest.sitemap" />
+    <Content Include="Customer.sitemap" />
+    <Content Include="Artist.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
