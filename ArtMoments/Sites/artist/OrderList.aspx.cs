@@ -38,6 +38,9 @@ namespace ArtMoments.Sites.artist
                         }
                     }
                 }
+                //Session["SortedOrderView"] = null;
+                //Session["SearchOrderView"] = null;
+                //Session["SortedSearchOrderView"] = null;
 
             }
 
@@ -45,31 +48,37 @@ namespace ArtMoments.Sites.artist
 
         private void SearchProduct()   //search product
         {
-            //if (Session["SortedView"] != null)
-            //{
-            //    orderList.DataSource = Session["SortedView"];
-            //    DataTable orderTable = new DataTable();
-            //    orderTable = orderList.DataSource as DataTable;
-            //    DataTable newOrderTable = new DataTable();
-            //    if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
-            //    {
-            //        string searchText = txtSearch.Text.ToString();
-            //        foreach (DataRow orderTableRow in orderTable.Rows)
-            //        {
-            //            string prodName = orderTableRow.Field<string>("ProdName");
-            //            if (prodName.Contains(searchText))
-            //            {
-            //                newOrderTable.Rows.Add(orderTableRow);
-            //            }
+            if (Session["SortedOrderView"] != null)
+            {
+                if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
+                {
+                    orderList.DataSource = Session["SortedOrderView"];
+                    DataTable dt = new DataTable();
+                    dt = (DataTable)orderList.DataSource;
+                    DataTable newOrderTable = CreateNewTable();
+                    string searchText = txtSearch.Text.ToString().ToLower();
+                    foreach (DataRow orderTableRow in dt.Rows)
+                    {
+                        string prodName = orderTableRow.Field<string>("ProdName").ToLower();
+                        if (prodName.Contains(searchText))
+                        {
+                            newOrderTable.Rows.Add(orderTableRow.ItemArray);
+                        }
 
-            //        }
-            //        orderList.DataSource = newOrderTable;
-            //        orderList.DataBind();
-            //    }
-            //    orderList.DataBind();
-            //}
-            //else
-            //{
+                    }
+                    orderList.DataSource = newOrderTable;
+                    Session["searchOrderView"] = newOrderTable;
+                    orderList.DataBind();
+                }
+                else
+                {
+
+                    orderList.DataSource = Session["SortedOrderView"];
+                    orderList.DataBind();
+                }
+            }
+            else
+            {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter("SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], D.deliver_type as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] FROM[ArtMomentsDb].[dbo].[Product] P, [ArtMomentsDb].[dbo].[Delivery] D, [ArtMomentsDb].[dbo].[Product_Category] C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T WHERE P.category_id = C.id AND O.product_id = P.id AND T.id = O.transaction_id AND O.delivery_id = D.id AND T.user_id = u.id AND A.id = P.user_id AND A.user_name = @name AND P.prod_name like '%' + @productName + '%'", conn))
@@ -86,23 +95,96 @@ namespace ArtMoments.Sites.artist
 
                         DataTable dt = new DataTable();
                         sda.Fill(dt);
-                        Session["searchView"] = dt;
+                        Session["searchOrderView"] = dt;
                         orderList.DataSource = dt;
                         orderList.DataBind();
                     }
                 }
-            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
-            {
-                Session["SortedView"] = null;
+                if (string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
+                {
+                    Session["SortedOrderView"] = null;
+                    Session["searchOrderView"] = null;
+                    Session["SortedSearchOrderView"] = null;
+                }
             }
-            //}
+        }
+        private DataTable CreateNewTable()
+        {
+            DataTable newOrderTable = new DataTable();
+            // Declare DataColumn and DataRow variables.
+            DataColumn column;
+
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.Int32");
+            column.ColumnName = "ID";
+            newOrderTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "ProdName";
+            newOrderTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Category";
+            newOrderTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.Int32");
+            column.ColumnName = "Qty";
+            newOrderTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "Customer";
+            newOrderTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.DateTime");
+            column.ColumnName = "DateOrder";
+            newOrderTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "DeliveryChannel";
+            newOrderTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.DateTime");
+            column.ColumnName = "DateDelivery";
+            newOrderTable.Columns.Add(column);
+
+            // Create second column.
+            column = new DataColumn();
+            column.DataType = Type.GetType("System.String");
+            column.ColumnName = "OrderStatus";
+            newOrderTable.Columns.Add(column);
+
+            return newOrderTable;
         }
         protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e) //change to another page of table
         {
             orderList.PageIndex = e.NewPageIndex;
-            if (Session["SortedView"] != null)
+            if (Session["SortedOrderView"] != null)
             {
-                orderList.DataSource = Session["SortedView"];
+                orderList.DataSource = Session["SortedOrderView"];
+                orderList.DataBind();
+            }
+            else if(Session["SearchOrderView"] != null)
+            {
+                orderList.DataSource = Session["SearchOrderView"];
+                orderList.DataBind();
+            }
+            else if (Session["SortedSearchOrderView"] != null)
+            {
+                orderList.DataSource = Session["SortedSearchOrderView"];
                 orderList.DataBind();
             }
             else
@@ -129,7 +211,7 @@ namespace ArtMoments.Sites.artist
             {
                 if (sortExpression != null)
                 {
-                    orderList.DataSource = Session["searchView"];
+                    orderList.DataSource = Session["searchOrderView"];
                     DataTable dt = orderList.DataSource as DataTable;
                     DataView dataview = dt.AsDataView();
                     if (this.SortDirection == "ASC")
@@ -140,13 +222,14 @@ namespace ArtMoments.Sites.artist
                         this.SortDirection = "ASC";
 
                     dataview.Sort = sortExpression + " " + this.SortDirection;
-                    Session["SortedView"] = dataview;
+                    Session["SortedSearchOrderView"] = dataview.ToTable();
                     orderList.DataSource = dataview;
                 }
                 else
                 {
-                    Session["SortedView"] = null;
-                    orderList.DataSource = Session["searchView"];
+                    //Session["SortedOrderView"] = null;
+                   // Session["SortedSearchOrderView"] = null;
+                    orderList.DataSource = Session["searchOrderView"];
                 }
                 orderList.DataBind();
             }
@@ -171,12 +254,14 @@ namespace ArtMoments.Sites.artist
                                     this.SortDirection = "ASC";
 
                                 dataview.Sort = sortExpression + " " + this.SortDirection;
-                                Session["SortedView"] = dataview;
+                                Session["SortedOrderView"] = dataview.ToTable();
                                 orderList.DataSource = dataview;
                             }
                             else
                             {
-                                Session["SortedView"] = null;
+                                Session["SortedOrderView"] = null;
+                                Session["SortedSearchOrderView"] = null;
+                                Session["SearchOrderView"] = null;
                                 orderList.DataSource = dt;
                             }
                             orderList.DataBind();
