@@ -62,7 +62,7 @@
                                       <br />
                                         <asp:RegularExpressionValidator ID="revPassword" runat="server" 
                                 ControlToValidate="tbNewPassword"
-                                ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character"
+                                ErrorMessage="Minimum 8 characters at least 1 Alphabet, 1 Number and 1 special character"
                                 ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*_#?&])[A-Za-z\d$@$!%*_#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
                               </div>
                               </div>
@@ -74,7 +74,7 @@
                                     <br />
                                     <asp:RegularExpressionValidator ID="revConPassword" runat="server" 
                                 ControlToValidate="tbNewConPassword"
-                                ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character"
+                                ErrorMessage="Minimum 8 characters at least 1 Alphabet, 1 Number and 1 special character"
                                 ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%_*#?&])[A-Za-z\d$@$!%_*#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
                               </div>
                               </div>
