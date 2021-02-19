@@ -35,7 +35,7 @@
                                 <asp:Label Text="*" runat="server" ForeColor="Red" />
                                <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
                                 ControlToValidate="txtUserPassword"
-                                ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character: $%@"
+                                ErrorMessage="Minimum 8 characters at least 1 Alphabet, 1 Number and 1 special character: $%@"
                                 ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!_%*#?&])[A-Za-z\d$@$!%_*#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
                               
                             </div>
