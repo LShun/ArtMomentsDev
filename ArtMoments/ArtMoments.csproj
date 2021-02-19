@@ -361,6 +361,8 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <Content Include="Web.sitemap" />
+    <Content Include="Web1.sitemap" />
+    <Content Include="Web2.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
