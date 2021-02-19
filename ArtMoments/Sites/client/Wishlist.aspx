@@ -6,6 +6,10 @@
         .container {
             display: flex;
         }
+
+        .gv-wishlist td {
+            padding: 0.5rem 0.5rem;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="cphBody" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -23,7 +27,7 @@
                 <p>Click on the blue headers to sort by that column</p>
             </div>
             <div class="row">
-                <asp:GridView CssClass="table" ID="gvWishlist" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id" OnRowDeleting="gvWishList_RowDeleting" OnRowCommand="gvWishlist_RowCommand">
+                <asp:GridView CssClass="table gv-wishlist" ID="gvWishlist" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id" OnRowDeleting="gvWishList_RowDeleting" OnRowCommand="gvWishlist_RowCommand">
             <Columns>
                 <asp:BoundField DataField="id" HeaderText="Wishlist ID" SortExpression="id" InsertVisible="False" ReadOnly="True" Visible="false"></asp:BoundField>
                 <asp:BoundField DataField="product_id" HeaderText="Product ID" SortExpression="product_id" />
@@ -42,12 +46,17 @@
                     </ItemTemplate>
                     <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Actions">
+                <asp:TemplateField HeaderText="View">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lbtnView" runat="server" CausesValidation="False"
+                            CommandName="View" CssClass="btn btn-primary" Text="View"></asp:LinkButton>
+                    </ItemTemplate>
+
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Delete">
                     <ItemTemplate>
                         <asp:LinkButton ID="lbtnDelete" runat="server" CausesValidation="False"
-                            CommandName="Delete" Text="Delete" CssClass="btn btn-danger" OnClientClick="return confirm('Confirm delete?');"></asp:LinkButton>
-                        <asp:LinkButton ID="lbtnView" runat="server" CausesValidation="False"
-                            CommandName="View" CssClass="btn btn-primary" Text=" View "></asp:LinkButton>
+                                        CommandName="Delete" Text="Delete" CssClass="btn btn-danger" OnClientClick="return confirm('Confirm delete?');"></asp:LinkButton>
                     </ItemTemplate>
 
                 </asp:TemplateField>
