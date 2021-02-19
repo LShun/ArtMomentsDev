@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerAccount" %>
+﻿<%@ Page Title="Account Management" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="Account.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.BuyerAccount" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-     <title></title>
+     <title>Account Management Design</title>
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
     <link href="../../Content/css/BuyerAcc.css" rel="stylesheet" />
     <link href="../../Content/css/AccountCss.css" rel="stylesheet" />
