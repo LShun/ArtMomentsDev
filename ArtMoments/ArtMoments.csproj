@@ -169,7 +169,6 @@
     <Content Include="Sites\usermgmt\ChangePassword.aspx" />
     <Content Include="Sites\usermgmt\ConfirmedRegMsg.aspx" />
     <Content Include="Sites\usermgmt\LoginUser.aspx" />
-    <Content Include="Sites\usermgmt\PreLogin.aspx" />
     <Content Include="Sites\usermgmt\SignUp.aspx" />
     <Content Include="Sites\general\OrderArt.aspx" />
     <Content Include="Web.config" />
@@ -320,13 +319,6 @@
     </Compile>
     <Compile Include="Sites\usermgmt\LoginUser.aspx.designer.cs">
       <DependentUpon>LoginUser.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\usermgmt\PreLogin.aspx.cs">
-      <DependentUpon>PreLogin.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\usermgmt\PreLogin.aspx.designer.cs">
-      <DependentUpon>PreLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\usermgmt\SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
