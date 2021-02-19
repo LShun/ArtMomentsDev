@@ -94,7 +94,7 @@ namespace ArtMoments.Sites.artist
         }
         protected void OnSorting(object sender, GridViewSortEventArgs e)  //sorting the table
         {
-            string sortExpression = e.SortExpression;
+            sortExpression = e.SortExpression;
             if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
             {
                 if (sortExpression != null)
@@ -140,6 +140,7 @@ namespace ArtMoments.Sites.artist
                                     this.SortDirection = "ASC";
 
                                 dataview.Sort = sortExpression + " " + this.SortDirection;
+                                Session["SortedView"] = dataview;
                                 orderList.DataSource = dataview;
                             }
                             else
