@@ -344,6 +344,10 @@
             float: left;
             display: contents;
         }
+
+        element.style {
+            padding-left: 17rem;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

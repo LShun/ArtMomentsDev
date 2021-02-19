@@ -154,8 +154,7 @@
         }
 
         h1.orderHistoryHeader {
-            margin-left: auto;
-            margin-right: auto;
+            padding-left: 17rem;
         }
 
         div#sizeDivision, div#categoryDivision, div#authorDivision,div#lblsizeDivision,div#lblcategorryDivision,div#lblauthorDivision,div#qtyDivision,div#priceDivision, div#modeDetailsRow,div#lblqtyDivision, div#lblpriceDivision, div#btnBuyAgainDivision {
@@ -184,6 +183,10 @@
             justify-content: right;
             display: list-item;
             list-style: none;
+        }
+
+        span#ContentPlaceHolder1_ListViewOrderHistory_defaultItem {
+            padding-left: 17rem;
         }
     </style>
 </asp:Content>

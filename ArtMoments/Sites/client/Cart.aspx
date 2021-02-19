@@ -8,7 +8,7 @@
             margin-top: 40px;
             margin-bottom: 30px;
             color: black;
-            text-align:center;
+            padding-left: 17rem;
         }
 
     input.btnDelete {
@@ -99,6 +99,10 @@
 
     div#totalPrice {
         margin-right: 200px;
+    }
+
+    span#ContentPlaceHolder1_RepeaterCartInfo_defaultItem {
+        padding-left: 17rem;
     }
 </style>
 </asp:Content>
