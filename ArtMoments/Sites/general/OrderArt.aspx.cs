@@ -79,10 +79,21 @@ namespace ArtMoments.Sites.general
                                         lblauthorBibliography.Text = prodInfo.Rows[0]["bibliography"].ToString();
                                         Session["CurrentSales"] = prodInfo.Rows[0]["prod-sales"];
 
-                                        if(prodInfo.Rows[0].Field<System.Double>("prod-price") == 0)
+                                        if(prodInfo.Rows[0]["prod-stock"].ToString().Equals("0"))
                                         {
                                             lbBuyNow.Enabled = false;
+                                            btnMinusQty.Enabled = false;
+                                            btnPlusQty.Enabled = false;
+                                            txtboxQty.Enabled = false;
                                             lbBuyNow.Text = "OUT OF STOCK";
+                                        }
+                                        else
+                                        {
+                                            btnMinusQty.Enabled = true;
+                                            btnPlusQty.Enabled = true;
+                                            txtboxQty.Enabled = true;
+                                            lbBuyNow.Enabled = true;
+                                            lbBuyNow.Text = "BUY NOW";
                                         }
                                     }
                                 }
@@ -94,13 +105,7 @@ namespace ArtMoments.Sites.general
                         if(Session["UserId"] != null && Session["UserType"].Equals("1"))
                         {
                             // Enable all the button and textbox for buyer accessibility to buy
-                            btnwishlistOff.Enabled = true;
-                            btnwishlistOn.Enabled = true;
-
-                            btnMinusQty.Enabled = true;
-                            btnPlusQty.Enabled = true;
-                            txtboxQty.Enabled = true;
-                            lbBuyNow.Enabled = true; 
+                 
 
                             // checkwhether product is ald added in the wishlist
                             string wishlistQuery = "select W.id as [wishlist-id] from [Wishlist] W where W.user_id like @CustId and W.product_id like @ProdId";
@@ -121,19 +126,7 @@ namespace ArtMoments.Sites.general
                             }
                         }
                         // for non-buyer, diable all the access to buy & add art to wishlist
-                        else
-                        {
-                            btnwishlistOn.Visible = false;
-                            btnwishlistOff.Visible = true;
-                            btnwishlistOff.Enabled = false;
-                            btnwishlistOn.Enabled = false;
-
-                            btnMinusQty.Enabled = false;
-                            btnPlusQty.Enabled = false;
-                            txtboxQty.Enabled = false;
-                            lbBuyNow.Enabled = false;
-                            lbBuyNow.Text = "Login As Buyer To Buy";
-                        }
+                       
                     }
                 }
             }
@@ -181,6 +174,11 @@ namespace ArtMoments.Sites.general
                 custOrder--;
                 txtboxQty.Text = custOrder.ToString();
                 calculatePrice(custOrder);
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('Minimum value is 1.')", true);
+
             }
         }
 
@@ -301,6 +299,11 @@ namespace ArtMoments.Sites.general
                 txtboxQty.Text = custOrder.ToString();
                 calculatePrice(custOrder);
             }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('The maximum stock available is " + availableStock + " piece(s).')", true);
+            }
+
         }
 
     }

@@ -98,6 +98,10 @@ namespace ArtMoments.Sites.client
 
                 }
             }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('Minimum value is 1.')", true);
+            }
 
         }
 
@@ -132,6 +136,10 @@ namespace ArtMoments.Sites.client
                     Response.Redirect(Request.RawUrl);
 
                 }
+            }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('The maximum stock available is " + stockAvailable + " piece(s).')", true);
             }
 
         }

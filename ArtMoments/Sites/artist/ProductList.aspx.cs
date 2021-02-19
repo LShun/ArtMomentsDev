@@ -72,9 +72,15 @@ namespace ArtMoments.Sites.artist
                     DataTable dt = new DataTable();
                     sda.Fill(dt);
                     Session["searchView"] = dt;
+
                     productList.DataSource = dt;
                     productList.DataBind();
                 }
+            }
+
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
+            {
+                Session["SortedView"] = null;
             }
         }
 
@@ -127,6 +133,7 @@ namespace ArtMoments.Sites.artist
                 }
                 else
                 {
+                    Session["SortedView"] = null;
                     productList.DataSource = Session["searchView"];
                 }
                 productList.DataBind();
@@ -158,6 +165,7 @@ namespace ArtMoments.Sites.artist
                             }
                             else
                             {
+                                Session["SortedView"] = null;
                                 productList.DataSource = dt;
                             }
                             productList.DataBind();

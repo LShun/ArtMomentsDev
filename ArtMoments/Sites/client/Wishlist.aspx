@@ -19,7 +19,7 @@
                 <h1>Wishlist</h1>
             </div>
             <div class="row">
-                <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: "></asp:Label>
+                <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist (By Name): "></asp:Label>
                 <asp:TextBox ID="txtSearch" runat="server" Text=""></asp:TextBox>
                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn-primary" />
             </div>

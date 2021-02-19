@@ -178,6 +178,13 @@
         .col-lg-4.col-md-12.col-sm-12.orderHistoryRowDiv {
             width: 25%;
         }
+
+        .row.float-right.deliveryStatus {
+            text-align: right;
+            justify-content: right;
+            display: list-item;
+            list-style: none;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
