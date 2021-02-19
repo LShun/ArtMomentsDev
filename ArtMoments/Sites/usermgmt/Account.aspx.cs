@@ -35,9 +35,18 @@ namespace ArtMoments.Sites.usermgmt
             //if is buyer then display first two box
             if (Session["UserType"].ToString().Equals("1"))
             {
+                lblText3.Text = "My favourite";
+                lbWishList.Text = "View Collected Art";
                 lblText5.Text = "Grab an artwork!";
                 lbUpload.Visible = false;
                 lbUpload.Enabled = false;
+            }
+            else
+            {
+                lblText3.Text = "Every art work is unique";
+                lbWishList.Text = "";
+                lbWishList.Visible = false;
+                lbWishList.Enabled = false;
             }
         }
 
