@@ -18,7 +18,7 @@ namespace ArtMoments.Sites.usermgmt
         string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblErrorLoginMsg.Visible = false;
+            lblErrorLoginMsg.Visible = false;            
         }
 
         protected void txtUserName_TextChanged(object sender, EventArgs e)
