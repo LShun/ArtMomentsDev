@@ -84,15 +84,12 @@
             <br/>
             <asp:Label ID="lblRecordMsg" runat="server" Text=""></asp:Label>
             
-            <asp:DataList ID="dlProd" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="100%" Width="100%" OnItemCommand="dlProd_ItemCommand" 
-                BackColor="#CCCCCC"  CellPadding="2" ForeColor="Black" GridLines="Both" CssClass="auto-style3" >
-                <FooterStyle BackColor="#CCCCCC" />
-                <HeaderStyle BackColor="Black" Font-Bold="True" ForeColor="White" />
-                <ItemStyle BackColor="White" Font-Bold="False" Font-Italic="False" Font-Overline="False"
-                    Font-Strikeout="False" Font-Underline="False" HorizontalAlign="Center" VerticalAlign="Middle" />
+            <asp:DataList ID="dlProd" runat="server" RepeatColumns="3" RepeatDirection="Horizontal" Height="100%" Width="100%" OnItemCommand="dlProd_ItemCommand" CssClass="auto-style3" >
+                <FooterStyle />
+                <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 <ItemTemplate>
-                    <div class="hovereffect">
-                        <asp:Image CssClass="img-responsive" ID="imgProd_img" runat="server" Height="100%" Width="222px"
+                    <div class="hovereffect" style="width:222px">
+                        <asp:Image CssClass="img-responsive" ID="imgProd_img" runat="server" Height="100%" Width="100%"
                            ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>'/>
                                  
                         <div class="overlay">
@@ -105,7 +102,6 @@
                         </div>
                     </div>
                 </ItemTemplate>
-                <SelectedItemStyle BackColor="#000099" Font-Bold="True" ForeColor="White" />
             </asp:DataList>
 
             <%-- Paging Function --%>
