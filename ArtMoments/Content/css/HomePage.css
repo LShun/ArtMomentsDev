@@ -198,6 +198,10 @@ p {
     border-color: #dee2e6;
 }
 
+td {
+    padding: 0.5rem 0.5rem;
+}
+
 #ContentPlaceHolder1_dvLatestArt {
     width: 100%;
     height: 100%;
@@ -294,6 +298,32 @@ p {
     border-color: #0d6efd;
 }
 
+/* links */
+a {
+    color: #0d6efd;
+    text-decoration: underline;
+}
 
+a:hover {
+    color: #0a58ca;
+}
+
+a:not([href]):not([class]), a:not([href]):not([class]):hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* input group styles */
+
+input,
+button,
+select,
+optgroup,
+textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+}
 
 
