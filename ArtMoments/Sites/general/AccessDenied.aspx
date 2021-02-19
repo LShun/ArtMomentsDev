@@ -5,7 +5,12 @@
 </asp:Content>
 
 <asp:Content ID="cphBody" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>Access Denied</h1>
-    <p>You do not have permission to access this page. </p>
-    <asp:Button ID="btnRedirectHome" runat="server" Text="Return to Homepage" PostBackUrl="~/Sites/general/HomePage.aspx" />
+    <div style="margin: 5vh 5vh; padding: 5vh 5vh">
+        <h1>Access Denied</h1>
+        <p>You do not have permission to access this page. Please login as the correct user to continue. </p>
+        <p>You must login as a customer to browse art, and access customer-specific features</p>
+        <p>You must login as a seller to access seller-specific features</p>
+        <asp:Button ID="btnRedirectHome" runat="server" Text="Return to Homepage" PostBackUrl="~/Sites/general/HomePage.aspx" />
+    </div>
+    
 </asp:Content>
