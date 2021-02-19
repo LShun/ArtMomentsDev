@@ -4,10 +4,6 @@
 
 <html>
 <head runat="server">
-    <%--<script src="../Content/scripts/jquery-3.0.0.slim.min.js"></script>
-    <script src="../Content/scripts/bootstrap.bundle.min.js"></script>
-    <script src="https://kit.fontawesome.com/15509eb2b9.js" crossorigin="anonymous"></script>
-    <link href="../Content/css/bootstrap.min.css" rel="stylesheet" /> --%>
 
     <link rel="shortcut icon" href="~/Content/favicon.ico"/>
     <link href="../Content/css/Art_Moments/artMomentsFonts.css" rel="stylesheet" />
@@ -16,12 +12,12 @@
     <link href="../Content/css/backgroundMaster.css" rel="stylesheet" />
     <script>
         function showNav() {
-            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("tvSidenav").style.width = "300px";
         }
 
-        /* Set the width of the side navigation to 0 */
+        /* close side nav */
         function hideNav() {
-            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("tvSidenav").style.width = "0";
         }
     </script>
     <style>
@@ -35,7 +31,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div id="mySidenav" class="sidenav">
+        <div id="tvSidenav" class="sidenav">
           <a href="javascript:void(0)" class="btn-close" onclick="hideNav()">&times;</a>
           <asp:TreeView ID="tvSideBar" CssClass="tv-menu" runat="server" DataSourceID="smdsTreeView" ImageSet="Arrows">
               <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
