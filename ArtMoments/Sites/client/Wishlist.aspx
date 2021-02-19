@@ -17,7 +17,7 @@
             <div class="row">
                 <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: "></asp:Label>
                 <asp:TextBox ID="txtSearch" runat="server" OnLoad="txtSearch_Load"></asp:TextBox>
-                <asp:Button ID="btnSearch" runat="server" Text="Button" OnClick="btnSearch_Click" />
+                <asp:Button ID="btnSearch" runat="server" Text="Button" OnClick="btnSearch_Click" CssClass="btn-primary" />
             </div>
             <br/>
             <div class="row">
@@ -43,9 +43,9 @@
                 <asp:TemplateField HeaderText="Actions">
                     <ItemTemplate>
                         <asp:LinkButton ID="lbtnDelete" runat="server" CausesValidation="False"
-                            CommandName="Delete" Text="Delete" OnClientClick="return confirm('Confirm delete?');"></asp:LinkButton>
+                            CommandName="Delete" Text="Delete" CssClass="btn btn-danger" OnClientClick="return confirm('Confirm delete?');"></asp:LinkButton>
                         <asp:LinkButton ID="lbtnView" runat="server" CausesValidation="False"
-                            CommandName="View" Text="View"></asp:LinkButton>
+                            CommandName="View" CssClass="btn btn-primary" Text=" View "></asp:LinkButton>
                     </ItemTemplate>
 
                 </asp:TemplateField>
