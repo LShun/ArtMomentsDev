@@ -115,6 +115,7 @@
     <Content Include="Content\css\OrderHistoryCss.css" />
     <Content Include="Content\css\searchForm.css" />
     <Content Include="Content\css\SignUp.css" />
+    <Content Include="Content\favicon.ico" />
     <Content Include="Content\site-bg-grey.png" />
     <Content Include="Content\css\topnavbar.css" />
     <Content Include="Content\css\treeViewSideBar.css" />
