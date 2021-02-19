@@ -44,9 +44,7 @@
                     <span class="span-menu" onclick="showNav()">
                     <asp:Image ID="imgMenu" ImageUrl="~/Content/menu.svg" CssClass="img-menu" runat="server" /></span>
                 </td>
-                <td class="brand">
-                    <h1>ArtMoments</h1>
-                </td>
+                <td class="brand">ArtMoments</td>
                 <td class="menu">
                     <asp:Menu ID="ArtworkMenu" CssClass="artistMenu" runat="server" Orientation="Horizontal" OnMenuItemClick="ArtworkMenu_MenuItemClick">
 
