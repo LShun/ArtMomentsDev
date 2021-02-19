@@ -61,9 +61,9 @@
                                                         
                                                         <td class="auto-style6">
                                                             <asp:Panel ID="pblShowForBuyer2" runat="server">
-																<asp:Label ID="lblText3" runat="server" Text="">My favourite</asp:Label>
+																<asp:Label ID="lblText3" runat="server" Text=""></asp:Label>
 																<br/>
-                                                                <asp:LinkButton ID="lbWishList" runat="server" OnClick="lbWishList_Click">Viwe Collected Art</asp:LinkButton>
+                                                                <asp:LinkButton ID="lbWishList" runat="server" OnClick="lbWishList_Click"></asp:LinkButton>
 															</asp:Panel>
                                                         </td>
 
