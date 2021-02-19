@@ -361,9 +361,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-    <Content Include="Web.sitemap" />
-    <Content Include="Web1.sitemap" />
-    <Content Include="Web2.sitemap" />
+    <Content Include="Guest.sitemap" />
+    <Content Include="Customer.sitemap" />
+    <Content Include="Artist.sitemap" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
