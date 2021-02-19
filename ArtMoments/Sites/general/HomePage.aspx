@@ -1,43 +1,27 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="ArtMoments.Sites.general.HomePage2" %>
 
 <asp:Content ID="cphHead" ContentPlaceHolderID="head" runat="server">
-
+    <link href="../../Content/css/HomePage.css" rel="stylesheet" />
     <style>
-        /*benefits pictures */
-        .img-benefits  {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-        }
+        
+       
 
-        /* latest pictures settings (in the detailsview) */
-        .latest {
-            width: auto;
-            max-width: 30vh;
-            height: 15vh;
-        }
-
-        /* pagination, make blue when mouseover */
-        .paginate span {
-            color: Highlight;
-        }
     </style>
 
 </asp:Content>
 <asp:Content ID="cphBody" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
     <div class="container">
         <!-- Welcome -->
         <div class="table">
             <div class="row">
-                <div class="col-sm">
+                <div class="col-6">
                     <div class="jumbotron">
                         <h1 class="display-5">Welcome to ArtMoments Art Gallery</h1>
                         <p class="lead">We specialize in selling interesting artworks</p>
                         <hr />
                     </div>
                 </div>
-                <div class="col-sm">
+                <div class="col-6">
                     <div class="table">
                         <div class="row">
                             <h3 style="text-align: center;">Latest Arts</h3>
@@ -73,7 +57,7 @@
             <!-- Customer Benefits -->
             <h2>Customers</h2>
             <div class="row">
-                <div class="col-sm">
+                <div class="col-6">
                     <div class="card">
                         <div class="row">
                             <div class="col-4">
@@ -88,7 +72,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm">
+                <div class="col-6">
                     <div class="card">
                         <div class="row">
                             <div class="col-4">
@@ -106,7 +90,7 @@
             </div>
             <h3>Artists</h3>
             <div class="row">
-                <div class="col-sm">
+                <div class="col-6">
                     <div class="card">
                         <div class="row">
                             <div class="col-4">
@@ -121,7 +105,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm">
+                <div class="col-6">
                     <div class="card">
                         <div class="row">
                             <div class="col-4">
