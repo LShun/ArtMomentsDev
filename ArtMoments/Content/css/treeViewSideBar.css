@@ -2,16 +2,16 @@
 /* The side navigation menu */
 /* Author: LS */
 .sidenav {
-    height: 100%; /* 100% Full-height */
-    width: 0; /* 0 width - change this with JavaScript */
-    position: fixed; /* Stay in place */
-    z-index: 10; /* Stay on top */
-    top: 0; /* Stay at the top */
+    height: 100%;
+    width: 0; /* later change using JS */
+    position: fixed;
+    z-index: 10; /* make sure stay on top */
+    top: 0;
     left: 0;
     background-color: whitesmoke;
-    overflow-x: hidden; /* Disable horizontal scroll */
-    padding-top: 60px; /* Place content 60px from the top */
-    transition: 0.4s; /* 0.4 second transition effect to slide in the sidenav */
+    overflow-x: hidden; /* don't allow horizontal scrolling */
+    padding-top: 60px; /* offset 60px from top (for x button) */
+    transition: 0.3s; /* 0.3s slide in effect */
     
 }
 
@@ -22,19 +22,18 @@
         display: block;
         transition: 0.3s;
     }
-
-        /* When you mouse over the navigation links, change their color */
+    
         .sidenav a:hover {
             color: highlight;
         }
 
-    /* Position and style the close button (top right corner) */
+    /* Close button ('x' on the top right) */
     .sidenav .btn-close {
         position: absolute;
         top: 0;
-        right: 25px;
+        right: 30px;
         font-size: 36px;
-        margin-left: 50px;
+        margin-left: 40px;
     }
 
 /* Image on the sidebar icon */
@@ -42,9 +41,6 @@
     height: auto;
     width: 1.3rem;
     padding: 0rem 0.2rem;
-}
-
-.span-menu {
 }
 
 .span-menu :hover {
@@ -57,7 +53,7 @@
     word-wrap: break-word;
 }
 
-/* When height of screen < 400px, reduce font size & padding */
+/* When screen size < 400px, reduce font size & padding */
 @media screen and (max-height: 400px) {
     .sidenav {
         padding-top: 14px;
