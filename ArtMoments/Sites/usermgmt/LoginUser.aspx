@@ -47,15 +47,10 @@
                         </form>
                         <div>
                         <asp:Label ID="lblErrorLoginMsg" runat="server" CssClass="errorMsg">Wrong User Name or Password!</asp:Label>
-                        <br />
-                        <asp:HyperLink ID="hlNoAccMsg" runat="server" NavigateUrl="~/Sites/usermgmt/SignUp.aspx" style="text-align:center;">No account yet? Sign Up</asp:HyperLink>
-                        <br />
-                        <asp:HyperLink ID="hlForgetPassword" runat="server" style="text-align:center;">Forget you password?</asp:HyperLink>
-                        </div>
+                      </div>
                     </div>
                  </div>
             </div>
        </div>
     </div>
-</div>
 </asp:Content>
