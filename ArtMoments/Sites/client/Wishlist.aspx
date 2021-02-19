@@ -1,18 +1,34 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Client1.Master" AutoEventWireup="true" CodeBehind="Wishlist.aspx.cs" Inherits="ArtMoments.Sites.client.Wishlist" %>
+﻿<%@ Page Title="Wishlist" Language="C#" MasterPageFile="~/Masters/Client1.Master" AutoEventWireup="true" CodeBehind="Wishlist.aspx.cs" Inherits="ArtMoments.Sites.client.Wishlist" %>
 
 <asp:Content ID="cphHead" ContentPlaceHolderID="head" runat="server">
+    <link href="../../Content/css/HomePage.css" rel="stylesheet" />
+    <style>
+        .container {
+            display: flex;
+        }
+
+        .gv-wishlist td {
+            padding: 0.5rem 0.5rem;
+        }
+    </style>
 </asp:Content>
 <asp:Content ID="cphBody" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
-        <h1>Wishlist</h1>
-        <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: "></asp:Label>
-        <asp:TextBox ID="txtSearch" runat="server" OnLoad="txtSearch_Load"></asp:TextBox>
-        <asp:Button ID="btnSearch" runat="server" Text="Button" OnClick="btnSearch_Click" />
-
-        <br />
-        <asp:GridView CssClass="table" ID="gvWishlist" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id" OnRowDeleting="gvWishList_RowDeleting" OnRowCommand="gvWishlist_RowCommand">
+        <div class="table">
+            <div class="row">
+                <h1>Wishlist</h1>
+            </div>
+            <div class="row">
+                <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: "></asp:Label>
+                <asp:TextBox ID="txtSearch" runat="server" OnLoad="txtSearch_Load"></asp:TextBox>
+                <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn-primary" />
+            </div>
+            <div class="row">
+                <p>Click on the blue headers to sort by that column</p>
+            </div>
+            <div class="row">
+                <asp:GridView CssClass="table gv-wishlist" ID="gvWishlist" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id" OnRowDeleting="gvWishList_RowDeleting" OnRowCommand="gvWishlist_RowCommand">
             <Columns>
-
                 <asp:BoundField DataField="id" HeaderText="Wishlist ID" SortExpression="id" InsertVisible="False" ReadOnly="True" Visible="false"></asp:BoundField>
                 <asp:BoundField DataField="product_id" HeaderText="Product ID" SortExpression="product_id" />
                 <asp:BoundField DataField="prod_name" HeaderText="Name" SortExpression="prod_name" />
@@ -28,13 +44,19 @@
                             Height="200px" Width="200px"
                             ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>' />
                     </ItemTemplate>
+                    <ItemStyle HorizontalAlign="Center" VerticalAlign="Middle" />
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Actions">
+                <asp:TemplateField HeaderText="View">
+                    <ItemTemplate>
+                        <asp:LinkButton ID="lbtnView" runat="server" CausesValidation="False"
+                            CommandName="View" CssClass="btn btn-primary" Text="View"></asp:LinkButton>
+                    </ItemTemplate>
+
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Delete">
                     <ItemTemplate>
                         <asp:LinkButton ID="lbtnDelete" runat="server" CausesValidation="False"
-                            CommandName="Delete" Text="Delete" OnClientClick="return confirm('Confirm delete?');"></asp:LinkButton>
-                        <asp:LinkButton ID="lbtnView" runat="server" CausesValidation="False"
-                            CommandName="View" Text="View"></asp:LinkButton>
+                                        CommandName="Delete" Text="Delete" CssClass="btn btn-danger" OnClientClick="return confirm('Confirm delete?');"></asp:LinkButton>
                     </ItemTemplate>
 
                 </asp:TemplateField>
@@ -47,5 +69,10 @@
                 <asp:SessionParameter Name="user_name" SessionField="UserName" />
             </SelectParameters>
         </asp:SqlDataSource>
+            </div>
+        </div>
+        
+        
+        
     </div>
 </asp:Content>
