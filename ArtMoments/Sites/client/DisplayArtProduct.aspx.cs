@@ -378,6 +378,9 @@ namespace ArtMoments.Sites.client
                 else
                 {
                     lblRecordMsg.Text = "No Record is found";
+                    dlProd.DataSourceID = null;
+                    dlProd.DataSource = null;
+                    dlProd.DataBind();
                 }
             }
 
