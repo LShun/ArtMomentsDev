@@ -23,7 +23,7 @@ namespace ArtMoments.Sites.usermgmt
             //check if there is any user log in when load this page
             if (Session["UserName"] == null)
             {
-                Response.Redirect("PreLogin.aspx");
+                Response.Redirect("LoginUser.aspx");
             }
             if (Session["UserType"].ToString().Equals("2"))
             {
