@@ -78,6 +78,23 @@ namespace ArtMoments.Sites.general
                                         lblauthorInfoName.Text = prodInfo.Rows[0]["author"].ToString();
                                         lblauthorBibliography.Text = prodInfo.Rows[0]["bibliography"].ToString();
                                         Session["CurrentSales"] = prodInfo.Rows[0]["prod-sales"];
+
+                                        if(prodInfo.Rows[0]["prod-stock"].ToString().Equals("0"))
+                                        {
+                                            lbBuyNow.Enabled = false;
+                                            btnMinusQty.Enabled = false;
+                                            btnPlusQty.Enabled = false;
+                                            txtboxQty.Enabled = false;
+                                            lbBuyNow.Text = "OUT OF STOCK";
+                                        }
+                                        else
+                                        {
+                                            btnMinusQty.Enabled = true;
+                                            btnPlusQty.Enabled = true;
+                                            txtboxQty.Enabled = true;
+                                            lbBuyNow.Enabled = true;
+                                            lbBuyNow.Text = "BUY NOW";
+                                        }
                                     }
                                 }
                             }
@@ -88,13 +105,7 @@ namespace ArtMoments.Sites.general
                         if(Session["UserId"] != null && Session["UserType"].Equals("1"))
                         {
                             // Enable all the button and textbox for buyer accessibility to buy
-                            btnwishlistOff.Enabled = true;
-                            btnwishlistOn.Enabled = true;
-
-                            btnMinusQty.Enabled = true;
-                            btnPlusQty.Enabled = true;
-                            txtboxQty.Enabled = true;
-                            lbBuyNow.Enabled = true; 
+                 
 
                             // checkwhether product is ald added in the wishlist
                             string wishlistQuery = "select W.id as [wishlist-id] from [Wishlist] W where W.user_id like @CustId and W.product_id like @ProdId";
@@ -115,19 +126,7 @@ namespace ArtMoments.Sites.general
                             }
                         }
                         // for non-buyer, diable all the access to buy & add art to wishlist
-                        else
-                        {
-                            btnwishlistOn.Visible = false;
-                            btnwishlistOff.Visible = true;
-                            btnwishlistOff.Enabled = false;
-                            btnwishlistOn.Enabled = false;
-
-                            btnMinusQty.Enabled = false;
-                            btnPlusQty.Enabled = false;
-                            txtboxQty.Enabled = false;
-                            lbBuyNow.Enabled = false;
-                            lbBuyNow.Text = "Login As Buyer To Buy";
-                        }
+                       
                     }
                 }
             }
@@ -176,6 +175,11 @@ namespace ArtMoments.Sites.general
                 txtboxQty.Text = custOrder.ToString();
                 calculatePrice(custOrder);
             }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('Minimum value is 1.')", true);
+
+            }
         }
 
         // if the wishlist button is click from off to on, add the art to buyer wishlist
@@ -214,9 +218,9 @@ namespace ArtMoments.Sites.general
         }
 
         // if the current art is already added by buyer previously, increae the art quantity which previously in the cart
-        protected void updateCartItemss(int totalQty)
+        protected void updateCartItems(int totalQty)
         {
-            string updateCartItemssQuery = "update [CartItems] set [quantity_int] = @UpdateQty where user_id like @CustId and product_id like @ProdId";
+            string updateCartItemssQuery = "update [CartItems] set [quantity] = @UpdateQty where user_id like @CustId and product_id like @ProdId";
             using (SqlConnection conn = new SqlConnection(conString))
             {
                 conn.Open();
@@ -266,12 +270,13 @@ namespace ArtMoments.Sites.general
                 {
                     // update
                     int totalQty = Convert.ToInt32(txtboxQty.Text) + (Int32)cmd.ExecuteScalar();
-                    updateCartItemss(totalQty);
+                    updateCartItems(totalQty);
                 }
                 else
                 {
                     addNewIntoCart();
                 }
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('Added to cart successfully.')", true);
                 conn.Close();
 
             }
@@ -294,6 +299,11 @@ namespace ArtMoments.Sites.general
                 txtboxQty.Text = custOrder.ToString();
                 calculatePrice(custOrder);
             }
+            else
+            {
+                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('The maximum stock available is " + availableStock + " piece(s).')", true);
+            }
+
         }
 
     }

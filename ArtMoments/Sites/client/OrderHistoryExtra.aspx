@@ -1,6 +1,8 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Client1.Master" AutoEventWireup="true" CodeBehind="OrderHistoryExtra.aspx.cs" Inherits="ArtMoments.Sites.client.OrderHistoryExtra" %>
+﻿<%@ Page Title="Order History" Language="C#" MasterPageFile="~/Masters/Client1.Master" AutoEventWireup="true" CodeBehind="OrderHistoryExtra.aspx.cs" Inherits="ArtMoments.Sites.client.OrderHistoryExtra" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
+        @import url('./Art_Moments/artmoments-fonts.css');
+
         div.orderHistoryDetail {
             margin-top: 20px;
         }
@@ -83,7 +85,6 @@
 
         .col-lg-4, .col-md-12, .col-sm-12, .col-lg-8, .col {
             position: relative;
-            width: 100%;
             padding-right: 15px;
             padding-left: 15px;
         }
@@ -140,14 +141,49 @@
 
         .container.transactionHistoryContainer {
             border-bottom: groove;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .orderHistoryHeader {
             color: black;
         }
 
-        span#ContentPlaceHolder1_ListViewOrderHistory_defaultItem {
-            margin-left: 50px;
+        .col-lg-8.orderHistoryDetail {
+            width: 50%;
+        }
+
+        h1.orderHistoryHeader {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        div#sizeDivision, div#categoryDivision, div#authorDivision,div#lblsizeDivision,div#lblcategorryDivision,div#lblauthorDivision,div#qtyDivision,div#priceDivision, div#modeDetailsRow,div#lblqtyDivision, div#lblpriceDivision, div#btnBuyAgainDivision {
+            width: 23.33%;
+        }
+
+        span#ContentPlaceHolder1_ListViewOrderHistory_lblOrderStatus_0 {
+            margin-left: auto;
+        }
+
+        .container.align-content-sm-center.orderHistoryContainer {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
+
+        .col-lg-8.orderHistoryDetail {
+            width: 57%;
+        }
+
+        .col-lg-4.col-md-12.col-sm-12.orderHistoryRowDiv {
+            width: 25%;
+        }
+
+        .row.float-right.deliveryStatus {
+            text-align: right;
+            justify-content: right;
+            display: list-item;
+            list-style: none;
         }
     </style>
 </asp:Content>
@@ -166,7 +202,7 @@
                     <h2><asp:Label ID="lblTransacTxt" runat="server" Text='Transaction ID:'/></asp:Label><asp:Label ID="lblTransacId" runat="server" Text='<%# Eval("transaction_id") %>'/></asp:Label></h2>
                 </div>
               
-                <div class="container align-content-sm-center orderHistoryContainer">
+                <div class="align-content-sm-center orderHistoryContainer">
                     <div class="row">
                         <div class="col-lg-4 col-md-12 col-sm-12 orderHistoryRowDiv">
                             <!-- Ordernum N Artwork -->
@@ -258,7 +294,7 @@
         <div id="itemPlaceholderContainer" runat="server" style="">
             <span runat="server" id="itemPlaceholder" />
         </div>
-        <div style="">
+        <div style="text-align:center">
             <asp:DataPager ID="DataPagerOrderHistory" runat="server">
                 <Fields>
                     <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True" />

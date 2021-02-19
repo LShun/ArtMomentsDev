@@ -1,10 +1,10 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="OrderArt.aspx.cs" Inherits="ArtMoments.Sites.general.OrderArt" %>
+﻿<%@ Page Title="Order Art" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="OrderArt.aspx.cs" Inherits="ArtMoments.Sites.general.OrderArt" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Order Artwork</title>
     <link rel="stylesheet" type="text/css" href="../../Content/css/OrderArtCss.css" />
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
     <style>
+        @import url('./Art_Moments/artmoments-fonts.css');
         div#authorpicDivision {
             float: right;
         }
@@ -18,10 +18,6 @@
             max-height: 200px;
             object-fit: cover;
             border: 2px solid black;
-        }
-
-        div#artworkNameDivision {
-            margin-top: 20px;
         }
 
         .artwork-image-division img {
@@ -51,7 +47,7 @@
 
         .row.sizeCategoryAuthor, .row.descriptionDevision, .row.sizeCategoryAuthor {
             font-size: 13px;
-            color: darkgray;
+            color: cadetblue;
             padding-top: 8px;
         }
 
@@ -150,18 +146,15 @@
             border: 2px solid black;
         }
 
-        div#artworkNameDivision {
-            margin-top: 20px;
-        }
-
         .artwork-image-division img {
             max-width: 400px;
             max-height: 400px;
             object-fit: cover;
-            cursor: pointer;
+            display:block;
             border: 2px solid black;
             text-align: center;
             align-items: center;
+            margin-top: 20px;
         }
 
         div#wishlistOff,  div#wishlistOn{
@@ -181,15 +174,13 @@
 
         .row.sizeCategoryAuthor, .row.descriptionDevision, .row.qtynPriceDiv {
             font-size: 15px;
-            color: darkgray;
+            color: cadetblue;
             padding-top: 8px;
-            padding-bottom: 10px
         }
 
         .row.sizeCategoryAuthorDB, .row.lbldescriptionDivision, .lblStock, div#qtynPriceDiv {
            margin-top: -5px;
             font-size: 18px;
-            margin-bottom: 15px;
         }
 
         input#ContentPlaceHolder1_txtboxQty {
@@ -240,7 +231,7 @@
 
         span.lblStock, span.lblStockTxt {
             font-size: 12px;
-            color: darkgray;
+            color: cadetblue;
             font-style: italic;
         }
 
@@ -255,18 +246,7 @@
             color: black;
         }
 
-        .container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
- 
-
-        span#ContentPlaceHolder1_lblauthorInfoName {
-            font-weight: bold;
-        }
-
-        blockquote {
-            font-size: 15px;
-        }
-
-        .container{padding-right:15px;padding-left:15px;margin-right:auto;margin-left:auto}
+        .container{padding-right:10px;padding-left:10px;margin-right:auto;margin-left:auto}
 
         .justify-content-center.align-self-center.col-12 {
             max-width: 200px;
@@ -278,9 +258,6 @@
             height: 400px;
         }
 
-        .col {
-            width: 55%;
-        }
 
         div#sizeDivision, div#categoryDivision, div#authorDivision, div#orderQty, div#orderQty, 
         div#lblsizeDivision, div#lblcategorryDivision, div#lblauthorDivision , div#quantityDivision,
@@ -338,6 +315,7 @@
 
         div#wishlistBtnDivision {
             padding-left: 278px;
+            height: 0px;
         }
 
         div#wishlistOn {
@@ -350,6 +328,22 @@
             margin-left: auto;
             text-align: -webkit-match-parent;
         }
+
+        .colArtWork.artImgDiv {
+            display: contents;
+        }
+
+        .colArtDetail {
+            width: 55%;
+            display: grid;
+            padding-left: 190px;
+        }
+
+        div#authorDivision, div#lblauthorDivision,div#Delivery\ Channel, div#deliveryDivision  {
+            width: 33%;
+            float: left;
+            display: contents;
+        }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -357,7 +351,7 @@
     <header><h1 style="text-align:center;">Art Details</h1></header>
     <div class="container" id="artOrder">    
     <div class="row">
-            <div class="col artImgDiv">
+            <div class="colArtWork artImgDiv">
                <!-- ArtWork Image -->
                 <div class="justify-content-center align-self-center col-12">
                     <div class="artwork-image-division col-12">
@@ -366,7 +360,7 @@
                 </div>
             </div>
        
-            <div class="col">
+            <div class="colArtDetail">
 
                 <!-- Artwork Name-->
                 <div class="row artworkNameDivision" id="artworkNameDivision">

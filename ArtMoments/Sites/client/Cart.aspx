@@ -1,7 +1,9 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Client1.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="ArtMoments.Sites.client.Cart" UnobtrusiveValidationMode="None"%>
+﻿<%@ Page Title="Cart" Language="C#" MasterPageFile="~/Masters/Client1.Master" AutoEventWireup="true" CodeBehind="Cart.aspx.cs" Inherits="ArtMoments.Sites.client.Cart" UnobtrusiveValidationMode="None"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
+    @import url('./Art_Moments/artmoments-fonts.css');
+
     .heading {
             margin-top: 40px;
             margin-bottom: 30px;
@@ -29,7 +31,7 @@
         text-align: center;
     }
 
-    div {
+    .cartDiv {
         margin-left: 50px;
         margin-right: 50px;
     }
@@ -39,16 +41,16 @@
         text-align: center;
     }
 
-    td {
+    .rightCol {
         min-width: 300px;
     }
 
-    td.prodName {
+    #prodName {
         font-size: 23px;
         font-weight: bold;
     }
 
-    table {
+    .cartTable {
         margin-right: auto;
         margin-left: auto;
         border-bottom: groove;
@@ -61,7 +63,7 @@
 
     div#btnCheckout {
         float: right;
-        margin-right: -195px;
+        margin-right: -180px;
         margin-top: 50px;
     }
 
@@ -74,6 +76,7 @@
         padding-left: 10px;
         padding-right: 10px;
         font-size: 16px;
+        width:180px;
     }
 
     input.txtAvailable {
@@ -94,6 +97,9 @@
         color: orangered;
     }
 
+    div#totalPrice {
+        margin-right: 200px;
+    }
 </style>
 </asp:Content>
 
@@ -107,8 +113,8 @@
 
     <asp:Repeater ID="RepeaterCartInfo" runat="server">
             <ItemTemplate>
-                <div>
-                    <table>
+                <div class="cartDiv">
+                    <table class="cartTable">
                         <!-- Artwork Img -->
                         <td id="btnArtImg" rowspan="8" class="imgTr"><asp:ImageButton ID="BtnProdImg" runat="server" style="max-height:200px;max-width:200px" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_img")) %>' OnClick="viewProdDetailImg" /></td>
 
@@ -116,16 +122,15 @@
                         <tr><td class="rightCol">
                             <asp:Button ID="btnDelete" runat="server" Text="Delete" OnClick="deleteItem" CssClass="btnDelete"/></td></tr>
                         <!-- Artwork Name & Invisivible artwork id-->
-                        <tr><td id="prodName" class="prodName"><asp:LinkButton ID="lbtnProdName" runat="server" class="rightCol" OnClick="viewProdDetailName"><%#Eval("prod_name") %></asp:LinkButton><asp:TextBox ID="txtProdId" runat="server" Text='<%# Eval("prod_id").ToString()%>' Visible="false" Enabled="false" CssClass="txtProdId" ></asp:TextBox></td></tr>
+                        <tr><td id="prodName" class="rightCol"><asp:LinkButton ID="lbtnProdName" runat="server" class="rightCol" OnClick="viewProdDetailName"><%#Eval("prod_name") %></asp:LinkButton><asp:TextBox ID="txtProdId" runat="server" Text='<%# Eval("prod_id").ToString()%>' Visible="false" Enabled="false" CssClass="txtProdId" ></asp:TextBox></td></tr>
                         <!-- Artwork price per piece -->
-                        <tr><td id="prodPrice"  class="prodPrice">RM <asp:Label ID="lblPrice" runat="server"><%#DataBinder.Eval(Container.DataItem,"prod_price","{0:f}") %></asp:Label></td></tr>
+                        <tr><td id="prodPrice"  class="rightCol">RM <asp:Label ID="lblPrice" runat="server"><%#DataBinder.Eval(Container.DataItem,"prod_price","{0:f}") %></asp:Label></td></tr>
                         <!-- Artwork qty (plus, minus btn & txt box)-->
-                        <tr><td id="qty"  class="qty">Quantity: <asp:Button ID="btnMinusQty" runat="server" Text="-" OnClick="minusQty" />
-                            <asp:TextBox ID="txtQty" runat="server" Text='<%# Eval("quantity").ToString()%> ' onkeypress="numValid(event);" onfocusout="qtyValid();" CssClass="txtQty" AutoPostBack="true"  OnTextChanged="txtQtyChg"></asp:TextBox>
-                            <asp:Button ID="btnPlusQty" runat="server" Text="+" OnClick="plusQty" CssClass="btnPlusQty" /><asp:RangeValidator ID="rvQty" runat="server" ControlToValidate="txtQty" ErrorMessage="Minimum = 1, Maximum = available quantity" MaximumValue='<%# Eval("prod_stock") %>' MinimumValue="1" Type="Integer" SetFocusOnError="True">
-                            </asp:RangeValidator>                          
+                        <tr><td id="qty"  class="rightCol">Quantity: <asp:Button ID="btnMinusQty" runat="server" Text="-" OnClick="minusQty" />
+                            <asp:TextBox ID="txtQty" runat="server" Text='<%# Eval("quantity").ToString()%> ' onkeypress="numValid(event);" onfocusout="qtyValid();" CssClass="txtQty" OnTextChanged="txtQtyChg" Enabled="false"></asp:TextBox>
+                            <asp:Button ID="btnPlusQty" runat="server" Text="+" OnClick="plusQty" CssClass="btnPlusQty" />                          
                            <!-- Artwork delivery method (dropdownlist) & Range validator-->
-                            <tr><td  class="deliMethod">Delivery Method: <asp:DropDownList ID="ddlDeliveryMethod" CssClass="ddlDeliveryMethod" runat="server" DataSourceID="SqlDataSourceDeliver" DataTextField="deliver_type" DataValueField="id" SelectedValue='<%# Bind("deliver_id") %>' OnSelectedIndexChanged="ddlDeliverChg" AutoPostBack="True" ></asp:DropDownList></td></tr>
+                            <tr><td  class="rightCol">Delivery Method: <asp:DropDownList ID="ddlDeliveryMethod" CssClass="ddlDeliveryMethod" runat="server" DataSourceID="SqlDataSourceDeliver" DataTextField="deliver_type" DataValueField="id" SelectedValue='<%# Bind("deliver_id") %>' OnSelectedIndexChanged="ddlDeliverChg" AutoPostBack="True" ></asp:DropDownList></td></tr>
                             <asp:SqlDataSource ID="SqlDataSourceDeliver" runat="server" ConnectionString="Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security = True"
                         SelectCommand="Select id, deliver_type from delivery"></asp:SqlDataSource>
                             </td></tr>
