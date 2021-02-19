@@ -58,7 +58,7 @@
                                 <asp:MenuItem NavigateUrl="~/Sites/artist/AddProduct.aspx" Text="Add Product" Value="Add Product"></asp:MenuItem>
                             </asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Sites/artist/OrderList.aspx" Text="Order" Value="Order"></asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/Sites/usermgmt/PreLogin.aspx" Text="User Management" Value="User Management">
+                            <asp:MenuItem NavigateUrl="~/Sites/usermgmt/LoginUser.aspx" Text="User Management" Value="User Management">
                                 <asp:MenuItem NavigateUrl="~/Sites/usermgmt/Account.aspx" Text="My Account" Value="My Account"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Sites/usermgmt/AccountSetting.aspx" Text="Setting" Value="Setting"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Sites/usermgmt/AccountPresentation.aspx" Text="Presentation" Value="Presentation"></asp:MenuItem>
