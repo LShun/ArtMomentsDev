@@ -223,6 +223,7 @@ namespace ArtMoments.Sites.client
                 {
                     Session["TransacId"] = cmd.ExecuteScalar();
                 }
+                conn.Close();
             }
         }
 

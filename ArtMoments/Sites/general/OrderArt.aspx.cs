@@ -47,6 +47,7 @@ namespace ArtMoments.Sites.general
                         // Extract product information
                         using (SqlCommand cmd = new SqlCommand("select P.id as [prod-id], P.prod_name as [prod-name], P.prod_size [prod-size], P.prod_description as [prod-descrip], P.prod_image as [prod-image], P.prod_price as [prod-price] , P.prod_stock as [prod-stock], P.prod_sales as [prod-sales], C.category_name as [category-name], C.category_name as [category_name], U.user_name as [author], U.bibliography as [bibliography], U.profile_pic as [author_profilePic] from [Product] P left join [Product_Category] C on C.id = P.category_id left join [User] U on U.id = P.user_id where P.id like @ProdId"))
                         {
+                            con.Open();
                             cmd.Parameters.AddWithValue("@ProdId", (String)Session["ProdId"].ToString());
                             using (SqlDataAdapter sda = new SqlDataAdapter())
                             {
@@ -80,6 +81,7 @@ namespace ArtMoments.Sites.general
                                     }
                                 }
                             }
+                            con.Close();
                         }
                         // Only allow buyer to access to buy & add to wishlist for the artwork
                         // Buyer = 
@@ -98,6 +100,7 @@ namespace ArtMoments.Sites.general
                             string wishlistQuery = "select W.id as [wishlist-id] from [Wishlist] W where W.user_id like @CustId and W.product_id like @ProdId";
                             using (SqlConnection conn = new SqlConnection(conString))
                             {
+                                conn.Open();
                                 SqlCommand cmd = new SqlCommand(wishlistQuery, conn);
                                 cmd.Parameters.Add("@CustId", (String)Session["UserId"].ToString());
                                 cmd.Parameters.Add("@ProdId", (String)Session["ProdId"].ToString());
@@ -110,6 +113,7 @@ namespace ArtMoments.Sites.general
                                     btnwishlistOn.Visible = true;
                                     btnwishlistOff.Visible = false;
                                 }
+                                conn.Close();
                             }
                         }
                         // for non-buyer, diable all the access to buy & add art to wishlist
@@ -270,6 +274,7 @@ namespace ArtMoments.Sites.general
                 {
                     addNewIntoCart();
                 }
+                conn.Close();
 
             }
         }
