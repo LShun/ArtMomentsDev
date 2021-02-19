@@ -19,7 +19,9 @@
                 <asp:TextBox ID="txtSearch" runat="server" OnLoad="txtSearch_Load"></asp:TextBox>
                 <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn-primary" />
             </div>
-            <br/>
+            <div class="row">
+                <p>Click on the blue headers to sort by that column</p>
+            </div>
             <div class="row">
                 <asp:GridView CssClass="table" ID="gvWishlist" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id" OnRowDeleting="gvWishList_RowDeleting" OnRowCommand="gvWishlist_RowCommand">
             <Columns>
