@@ -1,6 +1,6 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="ChangePassword.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.ChangePassword" %>
+﻿<%@ Page Title="Change password" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="ChangePassword.aspx.cs" Inherits="ArtMoments.Sites.usermgmt.ChangePassword" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <title></title>
+    <title>Change password</title>
     <link href="../../Content/css/AccountCss.css" rel="stylesheet" />
     <link href="../../Content/css/SignUp.css" rel="stylesheet" />
     <style type="text/css">
