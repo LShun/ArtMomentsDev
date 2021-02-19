@@ -14,6 +14,7 @@
     </asp:ContentPlaceHolder>
     
     <link rel="shortcut icon" href="~/Content/favicon.ico"/>
+    <link href="../Content/css/Art_Moments/artMomentsFonts.css" rel="stylesheet" />
     <link href="../Content/css/topnavbar.css" rel="stylesheet" />
     <link href="../Content/css/treeViewSideBar.css" rel="stylesheet" />
     <link href="../Content/css/backgroundMaster.css" rel="stylesheet" />
