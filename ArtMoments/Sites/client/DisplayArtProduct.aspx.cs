@@ -21,18 +21,6 @@ namespace ArtMoments.Sites.client
         string currentTxtMaxPRange;
         string currentTxtProdName;
 
-        protected void Page_PreInit(object sender, EventArgs e)
-        {
-            if (Session["Username"] == null)
-            {
-                MasterPageFile = "~/Masters/General.Master";
-
-            }
-            else if (Session["UserType"].ToString().Equals("1"))
-            {
-                MasterPageFile = "~/Masters/Client.Master";
-            }
-        }
 
         protected void Page_Load(object sender, EventArgs e)
         {

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/General.Master" CodeBehind="DisplayArtProduct.aspx.cs" Inherits="ArtMoments.Sites.client.DisplayArtProduct" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" MasterPageFile="~/Masters/Client1.Master" CodeBehind="DisplayArtProduct.aspx.cs" Inherits="ArtMoments.Sites.client.DisplayArtProduct" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Display Artwork</title>
