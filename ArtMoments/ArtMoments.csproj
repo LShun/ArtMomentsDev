@@ -106,7 +106,6 @@
     <Content Include="Content\css\AccPresentation.css" />
     <Content Include="Content\css\backgroundMaster.css" />
     <Content Include="Content\css\blank.css" />
-    <Content Include="Content\css\bootstrap.min.css" />
     <Content Include="Content\css\BuyerAcc.css" />
     <Content Include="Content\css\DLProduct.css" />
     <Content Include="Content\css\HomePage.css" />
