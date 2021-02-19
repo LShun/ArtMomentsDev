@@ -105,8 +105,6 @@ namespace ArtMoments.Sites.general
                                 cmd.Parameters.Add("@CustId", (String)Session["UserId"].ToString());
                                 cmd.Parameters.Add("@ProdId", (String)Session["ProdId"].ToString());
 
-                                conn.Open();
-
                                 if (cmd.ExecuteScalar() != null)
                                 {
                                     // if in the wishlist, visible the on wishlist button, vice versa
