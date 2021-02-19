@@ -60,13 +60,13 @@
                     <asp:Menu ID="ArtworkMenu" runat="server" Orientation="Horizontal" >            
                         <Items>
                             <asp:MenuItem NavigateUrl="~/Sites/general/HomePage.aspx" Text="Home" Value="Home"></asp:MenuItem>
-                            <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArt.aspx" Text="Artwork" Value="Artwork">
+                            <%--<asp:MenuItem NavigateUrl="~/Sites/client/DisplayArt.aspx" Text="Artwork" Value="Artwork">
                                 <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArtProduct.aspx?id=1" Text="Painting" Value="Painting"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArtProduct.aspx?id=2" Text="Photography" Value="Photography"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArtProduct.aspx?id=3" Text="Digital Arts" Value="Digital Arts"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArtProduct.aspx?id=4" Text="Drawing" Value="Drawing"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArtProduct.aspx?id=5" Text="Prints" Value="Prints"></asp:MenuItem>
-                            </asp:MenuItem>
+                            </asp:MenuItem>--%>
                             <asp:MenuItem NavigateUrl="~/Sites/usermgmt/PreLogin.aspx" Text="Log In" Value="Log In"></asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Sites/usermgmt/SignUp.aspx" Text="Sign Up" Value="Sign Up"></asp:MenuItem>
                         </Items>
