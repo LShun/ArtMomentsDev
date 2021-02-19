@@ -57,7 +57,7 @@ namespace ArtMoments.Sites.usermgmt
                             //int tempID = GenerateAutoID();
 
                             int userType = 0;
-                            if (rblGender.SelectedValue.Equals("Buyer"))
+                            if (rblGender.SelectedValue.Equals("   Buyer"))
                             {
                                 //if register as buyer then userType is 1
                                 userType = 1;
