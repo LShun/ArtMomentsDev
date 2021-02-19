@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="EditProduct.aspx.cs" Inherits="ArtMoments.Sites.artist.EditProduct" %>
+﻿<%@ Page Title="Edit Product" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="EditProduct.aspx.cs" Inherits="ArtMoments.Sites.artist.EditProduct" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 <style type="text/css">
      .h1, h1 {
