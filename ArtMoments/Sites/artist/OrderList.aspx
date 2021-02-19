@@ -139,7 +139,7 @@
                         <ItemStyle Width="120" HorizontalAlign="Center" /> 
                         <HeaderStyle HorizontalAlign="Center" />
                     </asp:boundfield>
-
+              
                     <asp:BoundField DataField="DeliveryChannel" HeaderText="Delivery Channel" SortExpression="DeliveryChannel" HeaderStyle-ForeColor="White" >
                         <ItemStyle Width="130" HorizontalAlign="Center" /> 
                         <HeaderStyle HorizontalAlign="Center" />
