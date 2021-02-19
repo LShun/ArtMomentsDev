@@ -17,7 +17,7 @@
             <div class="row">
                 <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist: "></asp:Label>
                 <asp:TextBox ID="txtSearch" runat="server" OnLoad="txtSearch_Load"></asp:TextBox>
-                <asp:Button ID="btnSearch" runat="server" Text="Button" OnClick="btnSearch_Click" CssClass="btn-primary" />
+                <asp:Button ID="btnSearch" runat="server" Text="Search" OnClick="btnSearch_Click" CssClass="btn-primary" />
             </div>
             <br/>
             <div class="row">
