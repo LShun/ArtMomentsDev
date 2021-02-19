@@ -58,7 +58,7 @@
                                 <asp:RegularExpressionValidator ID="RegularExpressionValidator2" runat="server" 
                                 ControlToValidate="txtUserPassword"
                                 ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character"
-                                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
+                                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%_*#?&])[A-Za-z\d$@$!%_*#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
                             </div>
 
                             <div class="form-group">
@@ -69,7 +69,7 @@
                                 <asp:RegularExpressionValidator ID="rev1" runat="server" 
                                 ControlToValidate="txtConfirmedPassword"
                                 ErrorMessage="Minimum 8 characters atleast 1 Alphabet, 1 Number and 1 special character"
-                                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
+                                ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*_#?&])[A-Za-z\d$@$!%_*#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
                             </div>                            
 
                             <div class="form-group" id="textRemoveMargin">
