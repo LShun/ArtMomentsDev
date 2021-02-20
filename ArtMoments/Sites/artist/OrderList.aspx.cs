@@ -69,7 +69,7 @@ namespace ArtMoments.Sites.artist
 
                     }
                     orderList.DataSource = newOrderTable;
-                    Session["searchOrderView"] = newOrderTable;
+                    Session["SortedSearchOrderView"] = newOrderTable;
                     orderList.DataBind();
                     ViewState["hasSearch"] = true;
                     //hasSorted = true;
