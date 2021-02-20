@@ -2,64 +2,59 @@
 /* The side navigation menu */
 /* Author: LS */
 .sidenav {
-    height: 100%;
-    width: 0; /* later change using JS */
-    position: fixed;
-    z-index: 10; /* make sure stay on top */
-    top: 0;
-    left: 0;
     background-color: whitesmoke;
+    height: 100%;
+    left: 0;
     overflow-x: hidden; /* don't allow horizontal scrolling */
     padding-top: 60px; /* offset 60px from top (for x button) */
+    position: fixed;
+    top: 0;
     transition: 0.3s; /* 0.3s slide in effect */
-    
+    width: 0; /* later change using JS */
+    z-index: 10; /* make sure stay on top */    
 }
 
-    /* The navigation menu links */
-    .sidenav a {
-        text-decoration: none;
-        color: black;
-        display: block;
-        transition: 0.3s;
-    }
-    
-        .sidenav a:hover {
-            color: highlight;
-        }
+/* The navigation menu links */
 
-    /* Close button ('x' on the top right) */
-    .sidenav .btn-close {
-        position: absolute;
-        top: 0;
-        right: 30px;
-        font-size: 36px;
-        margin-left: 40px;
-    }
+.sidenav a {
+    color: black;
+    display: block;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.sidenav a:hover { color: highlight; }
+
+/* Close button ('x' on the top right) */
+
+.sidenav .btn-close {
+    font-size: 36px;
+    margin-left: 40px;
+    position: absolute;
+    right: 30px;
+    top: 0;
+}
 
 /* Image on the sidebar icon */
+
 .img-menu {
     height: auto;
-    width: 1.3rem;
     padding: 0rem 0.2rem;
+    width: 1.3rem;
 }
 
-.span-menu :hover {
-    background-color: darkgrey;
-}
+.span-menu :hover { background-color: darkgrey; }
 
 .tv-menu {
-    padding: 2vh 2vh;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    padding: 2vh 2vh;
     word-wrap: break-word;
 }
 
 /* When screen size < 400px, reduce font size & padding */
-@media screen and (max-height: 400px) {
-    .sidenav {
-        padding-top: 14px;
-    }
 
-        .sidenav a {
-            font-size: 16px;
-        }
+@media screen and (max-height: 400px) {
+    .sidenav { padding-top: 14px; }
+
+    .sidenav a { font-size: 16px; }
 }

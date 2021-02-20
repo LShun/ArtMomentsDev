@@ -3,40 +3,37 @@
 /* Author: ArtMoments (this assignment group) */
 /* Branding */
 .brand {
-    padding: 0 1rem;
     background-color: black;
     color: white;
+    padding: 0 1rem;
 }
 
 /** Top navbar **/
+
 .ParentMenu, .ParentMenu:hover {
-    width: 150px;
     background-color: #fff;
     color: #333;
-    text-align: center;
     height: 30px;
     line-height: 30px;
     margin-right: 5px;
+    text-align: center;
+    width: 150px;
 }
 
-    .ParentMenu:hover {
-        background-color: #ccc;
-    }
+.ParentMenu:hover { background-color: #ccc; }
 
 .ChildMenu, .ChildMenu:hover {
-    width: 150px;
     background-color: #e0e0e0;
+    border: 1px solid black;
     color: #333;
-    text-align: center;
     height: 30px;
     line-height: 30px;
     margin-top: 5px;
-    border: 1px solid black;
+    text-align: center;
+    width: 150px;
 }
 
-    .ChildMenu:hover {
-        background-color: #ccc;
-    }
+.ChildMenu:hover { background-color: #ccc; }
 
 .selected, .selected:hover {
     background-color: #007bff;

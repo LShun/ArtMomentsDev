@@ -1,48 +1,48 @@
 ﻿* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
 body {
-    margin: 0;
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans","Liberation Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    color: #212529;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     font-size: 1rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #212529;
+    margin: 0;
     text-align: left;
 }
 
 .container {
-    position: absolute;
-    max-width: 800px;
     height: 500px;
-    margin: auto;
-    top: 50%;
     left: 50%;
+    margin: auto;
+    max-width: 800px;
+    position: absolute;
+    top: 50%;
     transform: translate(-50%, -50%);
 }
 
 .myCard {
-    position: relative;
-    background: #fff;
-    height: 100%;
-    border-radius: 25px;
-    -webkit-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+    background: #fff;
+    border-radius: 25px;
     box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
-    height:600px;
+    height: 100%;
+    height: 600px;
+    position: relative;
 }
 
 .row {
+    -ms-flex-wrap: wrap;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-    margin-right: -15px;
     margin-left: -15px;
-    width:800px;
+    margin-right: -15px;
+    width: 800px;
 }
 
 @media (min-width: 768px) {
@@ -54,26 +54,26 @@ body {
 }
 
 .col, .col-1, .col-10, .col-11, .col-12, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-auto, .col-lg, .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-auto, .col-md, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-auto, .col-sm, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-auto, .col-xl, .col-xl-1, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-auto {
+    padding-left: 15px;
+    padding-right: 15px;
     position: relative;
     width: 100%;
-    padding-right: 15px;
-    padding-left: 15px;
 }
 
 
 .myLeftCtn {
-    position: relative;
     background: #fff;
     border-radius: 25px;
     padding: 25px;
     padding-left: 50px;
+    position: relative;
 }
 
 #loginDesc {
     background-image: url('../Black Deer2.png');
     height: 450px;
-    width: 280px;
     margin-top: 70px;
+    width: 280px;
 }
 
 .myLeftCtn header {
@@ -84,26 +84,24 @@ body {
 }
 
 .myLeftCtn .myInput {
-    width: 230px;
+    -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    border: none;
     border-radius: 25px;
+    box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
     padding: 10px;
     padding-left: 50px;
-    border: none;
-    -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
-    -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
-    box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    width: 230px;
 }
 
 button, input, optgroup, select, textarea {
-    margin: 0;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+    margin: 0;
 }
 
-button, input {
-    overflow: visible;
-}
+button, input { overflow: visible; }
 
 label {
     display: inline-block;
@@ -115,51 +113,41 @@ label {
     font-weight: 400;
 }
 
-#textRemoveMargin {
-    margin-bottom: 0.5rem;
-}
+#textRemoveMargin { margin-bottom: 0.5rem; }
 
-.form-group {
-    margin-bottom: 1rem;
-}
+.form-group { margin-bottom: 1rem; }
 
-[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
-    cursor: pointer;
-}
+[type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) { cursor: pointer; }
 
 .myLeftCtn .butt {
-    background: linear-gradient( 45deg, #bb36fd, #9b00e8);
-    color: #fff;
-    width: 230px;
+    -moz-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+    background: linear-gradient(45deg, #bb36fd, #9b00e8);
     border: none;
     border-radius: 25px;
-    padding: 10px;
-    -webkit-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
-    -moz-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
     box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    width: 230px;
 }
 
 .box {
-    position: relative;
     margin: 20px;
     margin-bottom: 100px;
+    position: relative;
 }
 
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
-    display: block;
-}
+article, aside, figcaption, figure, footer, header, hgroup, main, nav, section { display: block; }
 
 element.style {
     color: antiquewhite;
-    font-size: 25px;
     font-family: 'Book Antiqua';
+    font-size: 25px;
 }
 
 p {
-    margin-top: 0;
     margin-bottom: 1rem;
+    margin-top: 0;
 }
 
-.invalid-feedback {
-    font-size: 80%;
-}
+.invalid-feedback { font-size: 80%; }

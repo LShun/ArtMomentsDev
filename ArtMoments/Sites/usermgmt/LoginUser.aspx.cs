@@ -15,30 +15,30 @@ namespace ArtMoments.Sites.usermgmt
     public partial class LoginUser : System.Web.UI.Page
     {
         //string connectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=ArtMomentsDb;Integrated Security=True";
-        string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+        string connectionString =
+            ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            lblErrorLoginMsg.Visible = false;            
+            lblErrorLoginMsg.Visible = false;
         }
 
         protected void txtUserName_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         protected void txtUserPassword_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         //validate the username and password entered
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
             {
                 sqlCon.Open();
-                String query = "SELECT COUNT(1) FROM [User] WHERE user_name =@UserName AND user_password =@UserPassword";
+                String query =
+                    "SELECT COUNT(1) FROM [User] WHERE user_name =@UserName AND user_password =@UserPassword";
                 SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
 
                 sqlCmd.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
@@ -50,7 +50,7 @@ namespace ArtMoments.Sites.usermgmt
 
                 if (count == 1)
                 {
-                    Session["UserName"] = txtUserName.Text.Trim();  //session is created for each user
+                    Session["UserName"] = txtUserName.Text.Trim(); //session is created for each user
 
                     //get user_type
                     using (SqlConnection sqlConn = new SqlConnection(connectionString))
@@ -71,7 +71,8 @@ namespace ArtMoments.Sites.usermgmt
                                 userType = dr["user_type"].ToString();
                             }
                         }
-                        Session["UserType"] = userType;  //session is created for each user
+
+                        Session["UserType"] = userType; //session is created for each user
                         sqlConn.Close();
 
                         sqlConn.Open();
@@ -79,14 +80,15 @@ namespace ArtMoments.Sites.usermgmt
                         SqlCommand cmdGetId = new SqlCommand(getIdQuery, sqlConn);
 
                         cmdGetId.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
-                        
+
                         int userId = 0;
 
-                        if (cmdGetId.ExecuteScalar()!= null)
+                        if (cmdGetId.ExecuteScalar() != null)
                         {
                             userId = Convert.ToInt32(cmdGetId.ExecuteScalar());
                         }
-                        Session["UserId"] = userId;  //session is created for each user
+
+                        Session["UserId"] = userId; //session is created for each user
 
 
                         sqlConn.Close();
@@ -118,7 +120,6 @@ namespace ArtMoments.Sites.usermgmt
                 {
                     lblErrorLoginMsg.Visible = true;
                 }
-                
             }
         }
 
@@ -127,9 +128,12 @@ namespace ArtMoments.Sites.usermgmt
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("select id as [transac-id], user_id as [user-id], date_order as [order-date] from [Transaction]"))
+                using (SqlCommand cmd =
+                    new SqlCommand(
+                        "select id as [transac-id], user_id as [user-id], date_order as [order-date] from [Transaction]")
+                )
                 {
-                    cmd.Parameters.AddWithValue("@CustId", (String)Session["UserId"].ToString());
+                    cmd.Parameters.AddWithValue("@CustId", (String) Session["UserId"].ToString());
                     using (SqlDataAdapter sda = new SqlDataAdapter())
                     {
                         cmd.Connection = con;
@@ -150,7 +154,9 @@ namespace ArtMoments.Sites.usermgmt
         {
             using (SqlConnection con = new SqlConnection(connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("select id as [order-id], product_id as [prod-id], quantity as [order-qty], delivery_id as [order-deliverId], date_delivery as [order-deliverDate], order_status as [order-status], date_received as [order-dateReceive], O.transaction_id as [transac-id] from [Order] O where O.transaction_id like @TransacId"))
+                using (SqlCommand cmd = new SqlCommand(
+                    "select id as [order-id], product_id as [prod-id], quantity as [order-qty], delivery_id as [order-deliverId], date_delivery as [order-deliverDate], order_status as [order-status], date_received as [order-dateReceive], O.transaction_id as [transac-id] from [Order] O where O.transaction_id like @TransacId")
+                )
                 {
                     cmd.Parameters.AddWithValue("@TransacId", TransacId);
                     using (SqlDataAdapter sda = new SqlDataAdapter())
@@ -189,14 +195,17 @@ namespace ArtMoments.Sites.usermgmt
                     {
                         updateDeliveryInfo = 2; // 2 = chg to delivered
                     }
+
                     updateDeliveryStatus(orderTable, updateDeliveryInfo, dispatchDT, deliveredDT, TransacId);
                 }
+
                 rowCount++;
             }
         }
 
         // update delivery status & delivery date & date received
-        protected void updateDeliveryStatus(DataTable orderTable, int delivery2Update, DateTime dispatchDT, DateTime deliveredDT, int TransacId)
+        protected void updateDeliveryStatus(DataTable orderTable, int delivery2Update, DateTime dispatchDT,
+            DateTime deliveredDT, int TransacId)
         {
             int rowCount = 0;
             foreach (DataRow row in orderTable.Rows)
@@ -209,7 +218,8 @@ namespace ArtMoments.Sites.usermgmt
                 {
                     SqlConnection conn = new SqlConnection(connectionString);
                     conn.Open();
-                    string updateDeliverDTQuery = @"update [Order] set date_delivery = @DispatchDT, order_status = @OrderStatus where date_delivery IS NULL and @TransacId like transaction_id";
+                    string updateDeliverDTQuery =
+                        @"update [Order] set date_delivery = @DispatchDT, order_status = @OrderStatus where date_delivery IS NULL and @TransacId like transaction_id";
                     using (SqlCommand cmd = new SqlCommand(updateDeliverDTQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@TransacId", TransacId);
@@ -219,12 +229,14 @@ namespace ArtMoments.Sites.usermgmt
                         conn.Close();
                     }
                 }
+
                 // more or equal 8 days -> update delivery status to delivered & update delivered date
                 if (!dbdispatchDT.HasValue && delivery2Update == 2)
                 {
                     SqlConnection conn = new SqlConnection(connectionString);
                     conn.Open();
-                    string updateReceivedDTQuery = @"update [Order] set date_received = @deliveredDT, order_status = @OrderStatus where date_received IS NULL and @TransacId like transaction_id";
+                    string updateReceivedDTQuery =
+                        @"update [Order] set date_received = @deliveredDT, order_status = @OrderStatus where date_received IS NULL and @TransacId like transaction_id";
                     using (SqlCommand cmd = new SqlCommand(updateReceivedDTQuery, conn))
                     {
                         cmd.Parameters.AddWithValue("@TransacId", TransacId);
@@ -234,13 +246,14 @@ namespace ArtMoments.Sites.usermgmt
                         conn.Close();
                     }
                 }
+
                 if (dbdeliveredDT.HasValue && dbdispatchDT.HasValue)
                 {
                     break;
                 }
+
                 rowCount++;
             }
         }
-
     }
 }

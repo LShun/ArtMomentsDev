@@ -13,7 +13,8 @@ namespace ArtMoments.Sites.usermgmt
 {
     public partial class ChangePassword : System.Web.UI.Page
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+        string connectionString =
+            ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
 
         //check is user is artist or buyer (buyer = 1, artist = 2)
         protected void Page_PreInit(object sender, EventArgs e)
@@ -23,6 +24,7 @@ namespace ArtMoments.Sites.usermgmt
             {
                 Response.Redirect("LoginUser.aspx");
             }
+
             if (Session["UserType"].ToString().Equals("2"))
             {
                 MasterPageFile = "~/Masters/Artist1.Master";
@@ -39,26 +41,22 @@ namespace ArtMoments.Sites.usermgmt
 
             if (!IsPostBack)
             {
-                
             }
         }
 
         protected void TextBox1_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         protected void TextBox2_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         protected void TextBox3_TextChanged(object sender, EventArgs e)
         {
-
         }
 
-        
+
         protected void btnSave_Click(object sender, EventArgs e)
         {
             using (SqlConnection sqlCon = new SqlConnection(connectionString))
@@ -80,6 +78,7 @@ namespace ArtMoments.Sites.usermgmt
                         String tempPassword = dr.GetValue(3).ToString();
                     }
                 }
+
                 sqlCon.Close();
             }
 
@@ -87,8 +86,9 @@ namespace ArtMoments.Sites.usermgmt
             {
                 //update the user new password
                 sqlCon.Open();
-                 String tbUserName = Session["UserName"].ToString();
-                String query1 = "UPDATE [User] SET [user_password] = @NewPassword WHERE user_name = @UserName AND user_password = @Password";
+                String tbUserName = Session["UserName"].ToString();
+                String query1 =
+                    "UPDATE [User] SET [user_password] = @NewPassword WHERE user_name = @UserName AND user_password = @Password";
 
 
                 SqlCommand sqlCmd = new SqlCommand(query1, sqlCon);
@@ -114,7 +114,7 @@ namespace ArtMoments.Sites.usermgmt
         //direct user to Setting when click on "Setting" to edit the personal info
         protected void lbSetting_Click(object sender, EventArgs e)
         {
-            Response.Redirect("AccountSetting.aspx");            
+            Response.Redirect("AccountSetting.aspx");
         }
 
         //direct user to presentation page when click on the "Presentation"  to edit bibliography and profile pic

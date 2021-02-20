@@ -13,11 +13,12 @@ namespace ArtMoments.Sites.client
     public partial class OrderHistoryExtra : System.Web.UI.Page
     {
         string conString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }
 
-        
+
         // go to the order art page of particular item when usr click on the img
         protected void viewProdImg(object sender, EventArgs e)
         {
@@ -33,8 +34,5 @@ namespace ArtMoments.Sites.client
             string prodId = (clickBtnItem.FindControl("lblProdId") as Label).Text;
             Response.Redirect("~/Sites/general/OrderArt.aspx?id=" + prodId);
         }
-
     }
-
-
 }

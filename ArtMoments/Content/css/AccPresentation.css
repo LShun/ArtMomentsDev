@@ -1,18 +1,16 @@
 ﻿.txtBoxBio {
-    width: 80%;
     height: 60%;
+    width: 80%;
 }
 
-.form-group {
-    margin-bottom: 1rem;
-}
+.form-group { margin-bottom: 1rem; }
 
 .col-form-label {
-    padding-top: calc(.375rem + 1px);
-    padding-bottom: calc(.375rem + 1px);
-    margin-bottom: 0;
     font-size: inherit;
     line-height: 1.5;
+    margin-bottom: 0;
+    padding-bottom: calc(.375rem + 1px);
+    padding-top: calc(.375rem + 1px);
 }
 
 .col-4 {
@@ -27,20 +25,18 @@
     max-width: 66.666667%;
 }
 
-button, input {
-    overflow: visible;
-}
+button, input { overflow: visible; }
 
 button, input, optgroup, select, textarea {
-    margin: 0;
     font-family: inherit;
     font-size: inherit;
     line-height: inherit;
+    margin: 0;
 }
 
 .buttonEditStyle {
+    border-radius: 10px;
+    height: 30px;
     margin-left: 100%;
     width: 100px;
-    height: 30px;
-    border-radius: 10px;
 }

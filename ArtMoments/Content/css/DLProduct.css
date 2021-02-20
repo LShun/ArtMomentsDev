@@ -1,100 +1,100 @@
 ﻿.hovereffect {
-    width: 100%;
-    height: 100%;
+    background: -webkit-linear-gradient(45deg, #ff89e9 0%, #bddbfa 100%);
+    background: linear-gradient(45deg, #ff89e9 0%, #bddbfa 100%);
+    cursor: default;
     float: left;
+    height: 100%;
     overflow: hidden;
     position: relative;
     text-align: center;
-    cursor: default;
-    background: -webkit-linear-gradient(45deg, #ff89e9 0%, #bddbfa 100%);
-    background: linear-gradient(45deg, #ff89e9 0%,#bddbfa 100%);
+    width: 100%;
 }
 
 .hovereffect .overlay {
-    width: 100%;
     height: 100%;
-    position: absolute;
-    overflow: hidden;
-    top: 0;
     left: 0;
+    overflow: hidden;
     padding: 3em;
+    position: absolute;
     text-align: left;
+    top: 0;
+    width: 100%;
 }
 
 .hovereffect img {
-    display: block;
-    position: relative;
-    max-width: none;
-    width: calc(100% + 60px);
+    -webkit-transform: translate3d(-40px, 0, 0);
     -webkit-transition: opacity 0.35s, -webkit-transform 0.45s;
+    display: block;
+    max-width: none;
+    object-fit: cover;
+    position: relative;
+    transform: translate3d(-40px, 0, 0);
     transition: opacity 0.35s, transform 0.45s;
-    -webkit-transform: translate3d(-40px,0,0);
-    transform: translate3d(-40px,0,0);
-    object-fit:cover;
+    width: calc(100% + 60px);
 }
 
 .hovereffect h2 {
-    text-transform: uppercase;
-    color: #fff;
-    position: relative;
-    font-size: 17px;
     background-color: transparent;
+    color: #fff;
+    font-size: 17px;
     padding: 15% 0 10px 0;
+    position: relative;
     text-align: left;
+    text-transform: uppercase;
 }
 
 .hovereffect .overlay:before {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    bottom: 20px;
-    left: 20px;
-    border: 1px solid #fff;
-    content: '';
-    opacity: 0;
-    filter: alpha(opacity=0);
+    -webkit-transform: translate3d(-20px, 0, 0);
     -webkit-transition: opacity 0.35s, -webkit-transform 0.45s;
+    border: 1px solid #fff;
+    bottom: 20px;
+    content: '';
+    filter: alpha(opacity=0);
+    left: 20px;
+    opacity: 0;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    transform: translate3d(-20px, 0, 0);
     transition: opacity 0.35s, transform 0.45s;
-    -webkit-transform: translate3d(-20px,0,0);
-    transform: translate3d(-20px,0,0);
 }
 
 .hovereffect a, .hovereffect p {
-    color: #FFF;
-    opacity: 0;
-    filter: alpha(opacity=0);
+    -webkit-transform: translate3d(-10px, 0, 0);
     -webkit-transition: opacity 0.35s, -webkit-transform 0.45s;
+    color: #FFF;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    transform: translate3d(-10px, 0, 0);
     transition: opacity 0.35s, transform 0.45s;
-    -webkit-transform: translate3d(-10px,0,0);
-    transform: translate3d(-10px,0,0);
 }
 
 .hovereffect:hover img {
-    opacity: 0.6;
+    -webkit-transform: translate3d(0, 0, 0);
     filter: alpha(opacity=60);
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+    opacity: 0.6;
+    transform: translate3d(0, 0, 0);
 }
 
 .hovereffect:hover .overlay:before,
 .hovereffect:hover a, .hovereffect:hover p {
-    opacity: 1;
+    -webkit-transform: translate3d(0, 0, 0);
     filter: alpha(opacity=100);
-    -webkit-transform: translate3d(0,0,0);
-    transform: translate3d(0,0,0);
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
 }
 
- /*Button*/
+/*Button*/
 
 .btnNav {
-    box-shadow: inset 0px 1px 0px 0px #dcecfb;
     background: linear-gradient(to bottom, #bddbfa 5%, #80b5ea 100%);
     background-color: #bddbfa;
-    border-radius: 6px;
     border: 1px solid #84bbf3;
-    display: inline-block;
-    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: inset 0px 1px 0px 0px #dcecfb;
     color: #ffffff;
+    cursor: pointer;
+    display: inline-block;
     font-family: Arial;
     font-size: 15px;
     font-weight: bold;
@@ -114,19 +114,19 @@
 }
 
 .btnPaging {
-    box-shadow: 3px 4px 0px 0px #1564ad;
     background: linear-gradient(to bottom, #79bbff 5%, #378de5 100%);
     background-color: #79bbff;
-    border-radius: 5px;
     border: 1px solid #337bc4;
-    display: inline-block;
-    cursor: pointer;
+    border-radius: 5px;
+    box-shadow: 3px 4px 0px 0px #1564ad;
     color: #ffffff;
-    text-decoration: none;
+    cursor: pointer;
+    display: inline-block;
     font-family: 'Roboto', sans-serif;
-    font-weight: 900;
     font-size: 17px;
+    font-weight: 900;
     padding: 12px 44px;
+    text-decoration: none;
     text-shadow: 0px 1px 0px #528ecc;
 }
 

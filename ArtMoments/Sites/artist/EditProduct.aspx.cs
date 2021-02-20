@@ -14,24 +14,23 @@ namespace ArtMoments.Sites.artist
 {
     public partial class EditProduct : System.Web.UI.Page
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+        string connectionString =
+            ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
 
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
             {
-                
-                if (Application["prodID"] == null)                   
+                if (Application["prodID"] == null)
                     Response.Redirect("ProductList.aspx");
 
-               
 
                 using (SqlConnection con = new SqlConnection(connectionString))
                 {
                     using (SqlCommand cmd = new SqlCommand("SELECT * FROM product WHERE id = @ProdID"))
                     {
                         string productID = Application["prodID"].ToString();
-                
+
                         cmd.CommandType = CommandType.Text;
                         cmd.Connection = con;
                         con.Open();
@@ -45,28 +44,30 @@ namespace ArtMoments.Sites.artist
                             txtArtworkName.Text = sdr["prod_name"].ToString();
                             artSize = sdr["prod_size"].ToString();
                             string[] artSize1 = artSize.Split(spearator,
-           StringSplitOptions.RemoveEmptyEntries);
+                                StringSplitOptions.RemoveEmptyEntries);
                             txtArtworkHeight.Text = artSize1[0];
                             txtArtworkWidth.Text = artSize1[1];
                             txtArtworkDesc.Text = sdr["prod_description"].ToString();
                             string categoryId = sdr["category_id"].ToString();
-                            ddlArtworkCategory.SelectedValue = categoryId;           
+                            ddlArtworkCategory.SelectedValue = categoryId;
                             txtArtworkPrice.Text = sdr["prod_price"].ToString();
-                            txtArtworkStock.Text = sdr["prod_stock"].ToString();                    
+                            txtArtworkStock.Text = sdr["prod_stock"].ToString();
                         }
+
                         con.Close();
                     }
                 }
             }
-
         }
-        
+
         protected void saveProdBtn_Click(object sender, EventArgs e)
         {
             string pricePattern = @"^\d{0,8}(\.\d{1,2})?$";
 
             bool isPriceValid = Regex.IsMatch(txtArtworkPrice.Text, pricePattern);
-            if (txtArtworkName.Text.Length == 0 || txtArtworkHeight.Text.Length == 0 || txtArtworkWidth.Text.Length == 0 || txtArtworkDesc.Text.Length == 0 || txtArtworkPrice.Text.Length == 0 || txtArtworkStock.Text.Length == 0 || fuProdImage.HasFile == false)
+            if (txtArtworkName.Text.Length == 0 || txtArtworkHeight.Text.Length == 0 ||
+                txtArtworkWidth.Text.Length == 0 || txtArtworkDesc.Text.Length == 0 ||
+                txtArtworkPrice.Text.Length == 0 || txtArtworkStock.Text.Length == 0 || fuProdImage.HasFile == false)
             {
                 lblErrorMsg.Text = "The form is not completed!!!";
             }
@@ -92,7 +93,8 @@ namespace ArtMoments.Sites.artist
 
                 using (SqlConnection sqlcon = new SqlConnection(connectionString))
                 {
-                    string sql = "UPDATE product SET prod_name = @prodName, prod_size = @prodSize, prod_description = @prodDesc, category_id = @categoryId, prod_image = @prodImage, prod_price = @prodPrice, prod_stock = @prodStock WHERE id = @prodID";
+                    string sql =
+                        "UPDATE product SET prod_name = @prodName, prod_size = @prodSize, prod_description = @prodDesc, category_id = @categoryId, prod_image = @prodImage, prod_price = @prodPrice, prod_stock = @prodStock WHERE id = @prodID";
                     using (SqlCommand cmd = new SqlCommand(sql, sqlcon))
                     {
                         string productID = Application["prodID"].ToString();
@@ -110,6 +112,7 @@ namespace ArtMoments.Sites.artist
                         sqlcon.Close();
                     }
                 }
+
                 //Response.Redirect(Request.Url.AbsoluteUri);
                 Response.Redirect("ProductList.aspx");
             }
@@ -119,6 +122,5 @@ namespace ArtMoments.Sites.artist
         {
             Response.Redirect("ProductList.aspx");
         }
-
     }
 }

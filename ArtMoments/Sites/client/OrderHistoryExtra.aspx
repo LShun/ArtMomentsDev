@@ -3,11 +3,9 @@
     <style>
         @import url('./Art_Moments/artmoments-fonts.css');
 
-        div.orderHistoryDetail {
-            margin-top: 20px;
-        }
+        div.orderHistoryDetail { margin-top: 20px; }
 
-        div.orderHistoryContainer{
+        div.orderHistoryContainer {
             padding-bottom: 12px;
             border-radius: 7px;
         }
@@ -42,9 +40,7 @@
             font-size: 18px;
         }
 
-        div.orderHistoryDetail {
-            margin-top: 32px;
-        }
+        div.orderHistoryDetail { margin-top: 32px; }
 
         .row.float-right.deliveryStatus {
             border-radius: 10px;
@@ -67,15 +63,11 @@
             color: white;
         }
 
-        .container.transactionHistoryContainer {
-            margin-top: 60px;
-        }
+        .container.transactionHistoryContainer { margin-top: 60px; }
 
-        div {
-            display: block;
-        }
+        div { display: block; }
 
-        .container{
+        .container {
             width: 100%;
             padding-right: 15px;
             padding-left: 15px;
@@ -103,19 +95,17 @@
             max-height: 200px;
         }
 
-        #lbladorderStatus{
-            color:#fff;
-            background-color:#28a745;
-            border-color:#28a745;
+        #lbladorderStatus {
+            color: #fff;
+            background-color: #28a745;
+            border-color: #28a745;
             font-size: 13px;
             border-radius: 8px;
-            padding-left:5px;
-            padding-right:5px;
+            padding-left: 5px;
+            padding-right: 5px;
         }
-       
-        .lblTransacTotalPrice{
-            float:right;
-        }
+
+        .lblTransacTotalPrice { float: right; }
 
         .row.artNameRow {
             font-size: 25px;
@@ -135,9 +125,7 @@
             cursor: pointer
         }
 
-        h4 {
-            padding-left: 25px;
-        }
+        h4 { padding-left: 25px; }
 
         .container.transactionHistoryContainer {
             border-bottom: groove;
@@ -145,38 +133,24 @@
             margin-right: auto;
         }
 
-        .orderHistoryHeader {
-            color: black;
-        }
+        .orderHistoryHeader { color: black; }
 
-        .col-lg-8.orderHistoryDetail {
-            width: 50%;
-        }
+        .col-lg-8.orderHistoryDetail { width: 50%; }
 
-        h1.orderHistoryHeader {
-            padding-left: 17rem;
-        }
+        h1.orderHistoryHeader { padding-left: 17rem; }
 
-        div#sizeDivision, div#categoryDivision, div#authorDivision,div#lblsizeDivision,div#lblcategorryDivision,div#lblauthorDivision,div#qtyDivision,div#priceDivision, div#modeDetailsRow,div#lblqtyDivision, div#lblpriceDivision, div#btnBuyAgainDivision {
-            width: 23.33%;
-        }
+        div#sizeDivision, div#categoryDivision, div#authorDivision, div#lblsizeDivision, div#lblcategorryDivision, div#lblauthorDivision, div#qtyDivision, div#priceDivision, div#modeDetailsRow, div#lblqtyDivision, div#lblpriceDivision, div#btnBuyAgainDivision { width: 23.33%; }
 
-        span#ContentPlaceHolder1_ListViewOrderHistory_lblOrderStatus_0 {
-            margin-left: auto;
-        }
+        span#ContentPlaceHolder1_ListViewOrderHistory_lblOrderStatus_0 { margin-left: auto; }
 
         .container.align-content-sm-center.orderHistoryContainer {
             margin-left: 0px;
             margin-right: 0px;
         }
 
-        .col-lg-8.orderHistoryDetail {
-            width: 57%;
-        }
+        .col-lg-8.orderHistoryDetail { width: 57%; }
 
-        .col-lg-4.col-md-12.col-sm-12.orderHistoryRowDiv {
-            width: 25%;
-        }
+        .col-lg-4.col-md-12.col-sm-12.orderHistoryRowDiv { width: 25%; }
 
         .row.float-right.deliveryStatus {
             text-align: right;
@@ -185,9 +159,7 @@
             list-style: none;
         }
 
-        span#ContentPlaceHolder1_ListViewOrderHistory_defaultItem {
-            padding-left: 17rem;
-        }
+        span#ContentPlaceHolder1_ListViewOrderHistory_defaultItem { padding-left: 17rem; }
     </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -202,9 +174,13 @@
             <div class="container transactionHistoryContainer">
                 <div class="row">
                     <!-- Transaction id -->
-                    <h2><asp:Label ID="lblTransacTxt" runat="server" Text='Transaction ID:'/></asp:Label><asp:Label ID="lblTransacId" runat="server" Text='<%# Eval("transaction_id") %>'/></asp:Label></h2>
+                    <h2>
+                        <asp:Label ID="lblTransacTxt" runat="server" Text='Transaction ID:'/>
+                    </asp:Label><asp:Label ID="lblTransacId" runat="server" Text='<%# Eval("transaction_id") %>'/>
+                    </asp:Label>
+                    </h2>
                 </div>
-              
+
                 <div class="align-content-sm-center orderHistoryContainer">
                     <div class="row">
                         <div class="col-lg-4 col-md-12 col-sm-12 orderHistoryRowDiv">
@@ -212,105 +188,105 @@
                             <div class="col justify-content-center orderNumnArt">
                                 <!-- Ordernum -->
                                 <div class="row">
-                                    <asp:Label ID="lblOrderIdTxt" runat="server" Text="Order ID: " />
-                                    <asp:Label ID="lblOrderId" runat="server" Text='<%# Eval("order_id") %>' />
+                                    <asp:Label ID="lblOrderIdTxt" runat="server" Text="Order ID: "/>
+                                    <asp:Label ID="lblOrderId" runat="server" Text='<%# Eval("order_id") %>'/>
                                 </div>
                                 <!-- Artwork -->
-                                    <asp:ImageButton ID="BtnProdImg" runat="server" style="max-height:200px; max-width:200px"  OnClick="viewProdImg" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>' />
+                                <asp:ImageButton ID="BtnProdImg" runat="server" style="max-height: 200px; max-width: 200px" OnClick="viewProdImg" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[]) Eval("prod_image")) %>'/>
                             </div>
                         </div>
                         <!-- Orderhistory Details -->
                         <div class="col-lg-8 orderHistoryDetail">
-                        <!-- Delivery Status -->
-                        <div class="row  float-right deliveryStatus">
-                            <asp:Label ID="lblOrderStatus" runat="server" Text='<%# Eval("order_status") %>' />
-                        </div>
-                        <!-- Artname -->
-                        <div class="row artNameRow">
-                            <asp:Label ID="lblProdName" runat="server" Text='<%# Eval("prod_name") %>' /><asp:Label ID="lblProdId" style="font-size:0px" runat="server" Text='<%# Eval("prod_id") %>' />
-                        </div>
+                            <!-- Delivery Status -->
+                            <div class="row  float-right deliveryStatus">
+                                <asp:Label ID="lblOrderStatus" runat="server" Text='<%# Eval("order_status") %>'/>
+                            </div>
+                            <!-- Artname -->
+                            <div class="row artNameRow">
+                                <asp:Label ID="lblProdName" runat="server" Text='<%# Eval("prod_name") %>'/><asp:Label ID="lblProdId" style="font-size: 0px" runat="server" Text='<%# Eval("prod_id") %>'/>
+                            </div>
 
-                        <!-- Size, Category, Author label -->
-                        <div class="row sizeCategoryAuthor">
-                            <div class="col" id="sizeDivision">
-                                <label id="lblSizeTxt">Size</label>
+                            <!-- Size, Category, Author label -->
+                            <div class="row sizeCategoryAuthor">
+                                <div class="col" id="sizeDivision">
+                                    <label id="lblSizeTxt">Size</label>
+                                </div>
+                                <div class="col" id="categoryDivision">
+                                    <label id="lblCategoryTxt">Category</label>
+                                </div>
+                                <div class="col" id="authorDivision">
+                                    <label id="lblAuthorTxt">Author</label>
+                                </div>
                             </div>
-                            <div class="col" id="categoryDivision">
-                                <label id="lblCategoryTxt">Category</label>
+
+                            <!-- Size, Category, Author from db -->
+                            <div class="row sizeCategoryAuthorDB">
+                                <div class="col" id="lblsizeDivision">
+                                    <asp:Label ID="lblProdSize" runat="server" Text='<%# Eval("prod_size") %>'/>
+                                </div>
+                                <div class="col" id="lblcategorryDivision">
+                                    <asp:Label ID="lblCatName" runat="server" Text='<%# Eval("category_name") %>'/>
+                                </div>
+                                <div class="col" id="lblauthorDivision">
+                                    <asp:Label ID="lblAuthorName" runat="server" Text='<%# Eval("user_name") %>'/>
+                                </div>
                             </div>
-                            <div class="col" id="authorDivision">
-                                <label id="lblAuthorTxt">Author</label>
+
+                            <!-- Qty, Price, order date label -->
+                            <div class="row qtyPriceMore">
+                                <div class="col" id="qtyDivision">
+                                    <label id="lblQtyTxt">Quantity</label>
+                                </div>
+                                <div class="col" id="priceDivision">
+                                    <label id="lblPriceTxt">RM </label>
+                                </div>
+                                <div class="col" id="modeDetailsRow">
+                                    <asp:Label ID="lblOrderDateTxt" runat="server" Text='Order by: '/><asp:Label ID="lblOrderDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "order_date", "{0:dd/MM/yyyy}") %>'/>
+                                </div>
+                            </div>
+
+                            <!-- Qty, Price, view more details label from db-->
+                            <div class="row qtyPriceMoreDB">
+                                <div class="col" id="lblqtyDivision">
+                                    <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("quantity") %>'/>
+                                </div>
+                                <div class="col" id="lblpriceDivision">
+                                    <asp:Label ID="lblProdPrice" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "subtotal", "{0:f}") %>'/>
+                                </div>
+                                <div class="col" id="btnBuyAgainDivision">
+                                    <asp:Button ID="btnBuyAgain" runat="server" Text="BUY AGAIN" class="btn-primary rounded" OnClick="viewProdBtn"/>
+                                </div>
                             </div>
                         </div>
-
-                        <!-- Size, Category, Author from db -->
-                        <div class="row sizeCategoryAuthorDB">
-                            <div class="col" id="lblsizeDivision">
-                                <asp:Label ID="lblProdSize" runat="server" Text='<%# Eval("prod_size") %>' />
-                            </div>
-                            <div class="col" id="lblcategorryDivision">
-                                <asp:Label ID="lblCatName" runat="server" Text='<%# Eval("category_name") %>' />
-                            </div>
-                            <div class="col" id="lblauthorDivision">
-                                <asp:Label ID="lblAuthorName" runat="server" Text='<%# Eval("user_name") %>' />
-                            </div>
-                        </div>   
-
-                        <!-- Qty, Price, order date label -->
-                        <div class="row qtyPriceMore">
-                            <div class="col" id="qtyDivision">
-                                <label id="lblQtyTxt">Quantity</label>
-                            </div>
-                            <div class="col" id="priceDivision">
-                                <label id="lblPriceTxt">RM </label>
-                            </div>
-                            <div class="col" id="modeDetailsRow">
-                                <asp:Label ID="lblOrderDateTxt" runat="server" Text='Order by: ' /><asp:Label ID="lblOrderDate" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"order_date","{0:dd/MM/yyyy}") %>' />
-                            </div>
-                        </div>
-
-                        <!-- Qty, Price, view more details label from db-->
-                        <div class="row qtyPriceMoreDB">
-                            <div class="col" id="lblqtyDivision">
-                                <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("quantity") %>' />
-                            </div>
-                            <div class="col" id="lblpriceDivision">
-                                <asp:Label ID="lblProdPrice" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"subtotal","{0:f}") %>' />
-                            </div>
-                            <div class="col" id="btnBuyAgainDivision">
-                                <asp:Button ID="btnBuyAgain" runat="server" Text="BUY AGAIN" class="btn-primary rounded" OnClick="viewProdBtn"/>
-                            </div>
-                        </div>  
                     </div>
                 </div>
             </div>
-        </div>
-    </ItemTemplate>
-    
-    <EmptyDataTemplate>
-        <!-- display if there is no history for the buyer -->
-            <asp:Label ID="defaultItem" runat="server" 
-                Visible='<%# ListViewOrderHistory.Items.Count == 0 %>' Text="No items found" />
-    </EmptyDataTemplate>
-                
-    <LayoutTemplate>
-        <div id="itemPlaceholderContainer" runat="server" style="">
-            <span runat="server" id="itemPlaceholder" />
-        </div>
-        <div style="text-align:center">
-            <asp:DataPager ID="DataPagerOrderHistory" runat="server">
-                <Fields>
-                    <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True" />
-                </Fields>
-            </asp:DataPager>
-        </div>
-    </LayoutTemplate>
-               
-</asp:ListView>
+        </ItemTemplate>
+
+        <EmptyDataTemplate>
+            <!-- display if there is no history for the buyer -->
+            <asp:Label ID="defaultItem" runat="server"
+                       Visible='<%# ListViewOrderHistory.Items.Count == 0 %>' Text="No items found"/>
+        </EmptyDataTemplate>
+
+        <LayoutTemplate>
+            <div id="itemPlaceholderContainer" runat="server" style="">
+                <span runat="server" id="itemPlaceholder"/>
+            </div>
+            <div style="text-align: center">
+                <asp:DataPager ID="DataPagerOrderHistory" runat="server">
+                    <Fields>
+                        <asp:NextPreviousPagerField ButtonType="Button" ShowFirstPageButton="True" ShowLastPageButton="True"/>
+                    </Fields>
+                </asp:DataPager>
+            </div>
+        </LayoutTemplate>
+
+    </asp:ListView>
 
     <asp:SqlDataSource ID="SqlDataSourceOrderHistory" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT T.id as transaction_id, T.date_order as order_date, O.id AS order_id, P.id as prod_id , P.prod_name as prod_name, P.prod_size as prod_size, P.prod_image as prod_image, P.prod_price as prod_price, A.user_name as user_name, C.category_name as category_name,  O.quantity as quantity, O.order_status as order_status, (O.quantity*P.prod_price) as subtotal FROM [Transaction] AS T INNER JOIN [Order] AS O ON T.id = O.transaction_id INNER JOIN Product AS P ON P.id = O.product_id INNER JOIN [User] AS A ON A.id = P.user_id INNER JOIN Product_Category AS C ON C.id = P.category_id WHERE T.user_id = @UserId ORDER BY T.id DESC">
         <SelectParameters>
-            <asp:SessionParameter DefaultValue="4" Name="UserId" SessionField="UserId" />
+            <asp:SessionParameter DefaultValue="4" Name="UserId" SessionField="UserId"/>
         </SelectParameters>
     </asp:SqlDataSource>
 

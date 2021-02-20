@@ -12,24 +12,22 @@ namespace ArtMoments.Sites.client
 {
     public partial class DisplayArt : System.Web.UI.Page
     {
-
         string strCon = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
         int currentPage;
 
-        
+
         protected void Page_Load(object sender, EventArgs e)
+        {
+            if (!IsPostBack)
             {
-                if (!IsPostBack)
-                {
+                GeneralDisplay();
+                BindDDLprocCat();
+                BindDDLprocSize();
+                BindDDLartist();
+                ViewState["PageCount"] = 0;
+            }
 
-                    GeneralDisplay();
-                    BindDDLprocCat();
-                    BindDDLprocSize();
-                    BindDDLartist();
-                    ViewState["PageCount"] = 0;
-                }
-                currentPage = (int)ViewState["PageCount"];
-
+            currentPage = (int) ViewState["PageCount"];
         }
 
         //Used to normal display product category without condition
@@ -38,13 +36,14 @@ namespace ArtMoments.Sites.client
             SqlConnection conn = new SqlConnection(strCon);
             conn.Open();
 
-            string sqlCmd = "SELECT DISTINCT [id], [category_name], [category_image] FROM [Product_Category] ORDER BY [category_name]";
+            string sqlCmd =
+                "SELECT DISTINCT [id], [category_name], [category_image] FROM [Product_Category] ORDER BY [category_name]";
 
             using (SqlDataAdapter sda = new SqlDataAdapter(sqlCmd, conn))
             {
                 DataTable dt = new DataTable();
                 sda.Fill(dt);
-                    
+
                 //check whether the database got data or not
                 if ((dt.Rows.Count > 0) && (dt.Rows[0][0] != DBNull.Value))
                 {
@@ -55,11 +54,9 @@ namespace ArtMoments.Sites.client
                 {
                     lblRecordMsg.Text = "No Record is found";
                 }
-
-
             }
-            conn.Close();
 
+            conn.Close();
         }
 
         //Get the dropdown item for product category from database
@@ -79,11 +76,12 @@ namespace ArtMoments.Sites.client
                 {
                     while (dr.Read())
                     {
-                        ListItem li = new ListItem((string)dr["category_name"]);
+                        ListItem li = new ListItem((string) dr["category_name"]);
                         ddlProdCat.Items.Add(li);
                     }
                 }
             }
+
             conn.Close();
         }
 
@@ -104,11 +102,12 @@ namespace ArtMoments.Sites.client
                 {
                     while (dr.Read())
                     {
-                        ListItem li = new ListItem((string)dr["prod_size"]);
+                        ListItem li = new ListItem((string) dr["prod_size"]);
                         ddlProdSize.Items.Add(li);
                     }
                 }
             }
+
             conn.Close();
         }
 
@@ -130,11 +129,12 @@ namespace ArtMoments.Sites.client
                 {
                     while (dr.Read())
                     {
-                        ListItem li = new ListItem((string)dr["user_name"]);
+                        ListItem li = new ListItem((string) dr["user_name"]);
                         ddlArtist.Items.Add(li);
                     }
                 }
             }
+
             conn.Close();
         }
 
@@ -177,40 +177,38 @@ namespace ArtMoments.Sites.client
             dlProdCat.DataBind();
             ViewState["PagedDataSurce"] = dt;
         }
-            
+
         //go to first page
         protected void btnFirst_Click(object sender, EventArgs e)
         {
             currentPage = 0;
-            DataListPaging((DataTable)ViewState["PagedDataSurce"]);
+            DataListPaging((DataTable) ViewState["PagedDataSurce"]);
         }
 
         //go to previous page
         protected void btnPrevious_Click(object sender, EventArgs e)
         {
-            currentPage = (int)ViewState["PageCount"];
+            currentPage = (int) ViewState["PageCount"];
             currentPage -= 1;
             ViewState["PageCount"] = currentPage;
 
-            DataListPaging((DataTable)ViewState["PagedDataSurce"]);
+            DataListPaging((DataTable) ViewState["PagedDataSurce"]);
         }
 
         //go to the next page
         protected void btnNext_Click(object sender, EventArgs e)
         {
-            currentPage = (int)ViewState["PageCount"];
+            currentPage = (int) ViewState["PageCount"];
             currentPage += 1;
             ViewState["PageCount"] = currentPage;
-            DataListPaging((DataTable)ViewState["PagedDataSurce"]);
+            DataListPaging((DataTable) ViewState["PagedDataSurce"]);
         }
 
         //go to the last page
         protected void btnLast_Click(object sender, EventArgs e)
         {
-            currentPage = (int)ViewState["TotalCount"] - 1;
-            DataListPaging((DataTable)ViewState["PagedDataSurce"]);
+            currentPage = (int) ViewState["TotalCount"] - 1;
+            DataListPaging((DataTable) ViewState["PagedDataSurce"]);
         }
-
     }
-
 }

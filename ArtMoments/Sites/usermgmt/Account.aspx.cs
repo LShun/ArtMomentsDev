@@ -30,7 +30,7 @@ namespace ArtMoments.Sites.usermgmt
         protected void Page_Load(object sender, EventArgs e)
         {
             //check if there is any user log in when load this page
-            
+
 
             //if is buyer then display first two box
             if (Session["UserType"].ToString().Equals("1"))

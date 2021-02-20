@@ -14,8 +14,10 @@ namespace ArtMoments.Sites.artist
 {
     public partial class OrderList : System.Web.UI.Page
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
-        string sortExpression = null;   //which column is being clicked to sort
+        string connectionString =
+            ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+
+        string sortExpression = null; //which column is being clicked to sort
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,46 +30,48 @@ namespace ArtMoments.Sites.artist
 
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    using (SqlDataAdapter sda = new SqlDataAdapter("SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], D.deliver_type as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] FROM[ArtMomentsDb].[dbo].[Product] P, [ArtMomentsDb].[dbo].[Delivery] D, [ArtMomentsDb].[dbo].[Product_Category] C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T WHERE P.category_id = C.id AND O.product_id = P.id AND T.id = O.transaction_id AND O.delivery_id = D.id AND T.user_id = u.id AND A.id = P.user_id AND A.user_name = @name ", conn))
+                    using (SqlDataAdapter sda = new SqlDataAdapter(
+                        "SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], D.deliver_type as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] FROM[ArtMomentsDb].[dbo].[Product] P, [ArtMomentsDb].[dbo].[Delivery] D, [ArtMomentsDb].[dbo].[Product_Category] C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T WHERE P.category_id = C.id AND O.product_id = P.id AND T.id = O.transaction_id AND O.delivery_id = D.id AND T.user_id = u.id AND A.id = P.user_id AND A.user_name = @name ",
+                        conn))
                     {
                         sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
                         using (DataTable dt = new DataTable())
                         {
-                            sda.Fill(dt);                  
+                            sda.Fill(dt);
                             orderList.DataSource = dt;
                             orderList.DataBind();
                         }
                     }
                 }
-
             }
-
         }
 
-        private void SearchProduct()   //search product
+        private void SearchProduct() //search product
         {
             //check whether the table is sorted
-            if (Session["SortedOrderView"] != null)   //the table is sorted
+            if (Session["SortedOrderView"] != null) //the table is sorted
             {
                 //check whether the search input empty or not
-                if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))  //search input not empty
+                if (!string.IsNullOrEmpty(txtSearch.Text.Trim())) //search input not empty
                 {
                     orderList.DataSource = Session["SortedOrderView"];
                     DataTable orderTale = new DataTable();
-                    orderTale = (DataTable)orderList.DataSource;
+                    orderTale = (DataTable) orderList.DataSource;
 
                     DataTable newOrderTable = CreateNewTable();
 
                     string searchText = txtSearch.Text.ToString().ToLower(); //make the text in the search lower case
                     foreach (DataRow orderTableRow in orderTale.Rows)
                     {
-                        string prodName = orderTableRow.Field<string>("ProdName").ToLower();   //make the text in the orderTableRow lower case
+                        string prodName =
+                            orderTableRow.Field<string>("ProdName")
+                                .ToLower(); //make the text in the orderTableRow lower case
                         if (prodName.Contains(searchText))
                         {
                             newOrderTable.Rows.Add(orderTableRow.ItemArray);
                         }
-
                     }
+
                     orderList.DataSource = newOrderTable;
                     Session["SortedSearchOrderView"] = newOrderTable;
                     orderList.DataBind();
@@ -76,7 +80,6 @@ namespace ArtMoments.Sites.artist
                 }
                 else
                 {
-
                     orderList.DataSource = Session["SortedOrderView"];
                     orderList.DataBind();
                     ViewState["hasSearch"] = null;
@@ -86,13 +89,14 @@ namespace ArtMoments.Sites.artist
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    using (SqlDataAdapter sda = new SqlDataAdapter("SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], D.deliver_type as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] FROM[ArtMomentsDb].[dbo].[Product] P, [ArtMomentsDb].[dbo].[Delivery] D, [ArtMomentsDb].[dbo].[Product_Category] C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T WHERE P.category_id = C.id AND O.product_id = P.id AND T.id = O.transaction_id AND O.delivery_id = D.id AND T.user_id = u.id AND A.id = P.user_id AND A.user_name = @name AND P.prod_name like '%' + @productName + '%'", conn))
+                    using (SqlDataAdapter sda = new SqlDataAdapter(
+                        "SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], D.deliver_type as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] FROM[ArtMomentsDb].[dbo].[Product] P, [ArtMomentsDb].[dbo].[Delivery] D, [ArtMomentsDb].[dbo].[Product_Category] C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T WHERE P.category_id = C.id AND O.product_id = P.id AND T.id = O.transaction_id AND O.delivery_id = D.id AND T.user_id = u.id AND A.id = P.user_id AND A.user_name = @name AND P.prod_name like '%' + @productName + '%'",
+                        conn))
                     {
                         sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
                         string emptyValue = "";
-                        if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
+                        if (!string.IsNullOrEmpty(txtSearch.Text.Trim())) //check whether the search input empty or not
                         {
-
                             sda.SelectCommand.Parameters.AddWithValue("@productName", txtSearch.Text.Trim());
                         }
                         else
@@ -106,16 +110,18 @@ namespace ArtMoments.Sites.artist
                         ViewState["hasSearch"] = true;
                     }
                 }
+
                 /*when the table is not sorted and searched*/
-                if (string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
+                if (string.IsNullOrEmpty(txtSearch.Text.Trim())) //check whether the search input empty or not
                 {
                     Session["SortedOrderView"] = null;
                     //Session["searchOrderView"] = null;
-                   // Session["SortedSearchOrderView"] = null;
+                    // Session["SortedSearchOrderView"] = null;
                     ViewState["hasSearch"] = null;
                 }
             }
         }
+
         private DataTable CreateNewTable()
         {
             DataTable newOrderTable = new DataTable();
@@ -177,20 +183,21 @@ namespace ArtMoments.Sites.artist
 
             return newOrderTable;
         }
+
         protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e) //change to another page of table
         {
             orderList.PageIndex = e.NewPageIndex;
-            if ((ViewState["hasSorted"] != null) && (ViewState["hasSearch"] != null))  //table is sorted and search
+            if ((ViewState["hasSorted"] != null) && (ViewState["hasSearch"] != null)) //table is sorted and search
             {
                 orderList.DataSource = Session["SortedSearchOrderView"];
                 orderList.DataBind();
             }
-            else if (ViewState["hasSorted"] != null)  //table is sorted
+            else if (ViewState["hasSorted"] != null) //table is sorted
             {
                 orderList.DataSource = Session["SortedOrderView"];
                 orderList.DataBind();
             }
-            else if(ViewState["hasSearch"] != null)  //table is search
+            else if (ViewState["hasSearch"] != null) //table is search
             {
                 orderList.DataSource = Session["SearchOrderView"];
                 orderList.DataBind();
@@ -199,7 +206,9 @@ namespace ArtMoments.Sites.artist
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    using (SqlDataAdapter sda = new SqlDataAdapter("SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], D.deliver_type as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] FROM[ArtMomentsDb].[dbo].[Product] P, [ArtMomentsDb].[dbo].[Delivery] D, [ArtMomentsDb].[dbo].[Product_Category] C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T WHERE P.category_id = C.id AND O.product_id = P.id AND T.id = O.transaction_id AND O.delivery_id = D.id AND T.user_id = u.id AND A.id = P.user_id AND A.user_name = @name ", conn))
+                    using (SqlDataAdapter sda = new SqlDataAdapter(
+                        "SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], D.deliver_type as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] FROM[ArtMomentsDb].[dbo].[Product] P, [ArtMomentsDb].[dbo].[Delivery] D, [ArtMomentsDb].[dbo].[Product_Category] C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T WHERE P.category_id = C.id AND O.product_id = P.id AND T.id = O.transaction_id AND O.delivery_id = D.id AND T.user_id = u.id AND A.id = P.user_id AND A.user_name = @name ",
+                        conn))
                     {
                         sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
                         using (DataTable orderTable = new DataTable())
@@ -212,10 +221,11 @@ namespace ArtMoments.Sites.artist
                 }
             }
         }
-        protected void OnSorting(object sender, GridViewSortEventArgs e)  //sorting the table
+
+        protected void OnSorting(object sender, GridViewSortEventArgs e) //sorting the table
         {
             sortExpression = e.SortExpression;
-            if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
+            if (!string.IsNullOrEmpty(txtSearch.Text.Trim())) //check whether the search input empty or not
             {
                 if (sortExpression != null)
                 {
@@ -239,13 +249,16 @@ namespace ArtMoments.Sites.artist
                     orderList.DataSource = Session["searchOrderView"];
                     ViewState["hasSorted"] = null;
                 }
+
                 orderList.DataBind();
             }
             else // the search input empty
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    using (SqlDataAdapter sda = new SqlDataAdapter("SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], D.deliver_type as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] FROM[ArtMomentsDb].[dbo].[Product] P, [ArtMomentsDb].[dbo].[Delivery] D, [ArtMomentsDb].[dbo].[Product_Category] C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T WHERE P.category_id = C.id AND O.product_id = P.id AND T.id = O.transaction_id AND O.delivery_id = D.id AND T.user_id = u.id AND A.id = P.user_id AND A.user_name = @name ", conn))
+                    using (SqlDataAdapter sda = new SqlDataAdapter(
+                        "SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], D.deliver_type as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] FROM[ArtMomentsDb].[dbo].[Product] P, [ArtMomentsDb].[dbo].[Delivery] D, [ArtMomentsDb].[dbo].[Product_Category] C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T WHERE P.category_id = C.id AND O.product_id = P.id AND T.id = O.transaction_id AND O.delivery_id = D.id AND T.user_id = u.id AND A.id = P.user_id AND A.user_name = @name ",
+                        conn))
                     {
                         sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
                         using (DataTable orderTable = new DataTable())
@@ -272,23 +285,25 @@ namespace ArtMoments.Sites.artist
                                 orderList.DataSource = orderTable;
                                 ViewState["hasSorted"] = null;
                             }
+
                             orderList.DataBind();
                         }
                     }
                 }
             }
         }
+
         private string SortDirection
         {
             get { return ViewState["SortDirection"] != null ? ViewState["SortDirection"].ToString() : "ASC"; }
             set { ViewState["SortDirection"] = value; }
         }
+
         protected void OnRowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                DataRowView rowProdTable = (DataRowView)e.Row.DataItem;
-                
+                DataRowView rowProdTable = (DataRowView) e.Row.DataItem;
             }
         }
 
@@ -299,7 +314,6 @@ namespace ArtMoments.Sites.artist
 
         protected void OnSelectedIndexChanged(Object sender, EventArgs e)
         {
-          
         }
     }
 }

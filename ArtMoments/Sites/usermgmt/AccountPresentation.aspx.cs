@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
 using System.IO;
 using System.Data;
 using System.Configuration;
@@ -15,8 +14,9 @@ namespace ArtMoments.Sites.usermgmt
 {
     //check is user is artist or buyer (buyer = 1, artist = 2)
     public partial class BuyerPresentationEdit : System.Web.UI.Page
-    {        
-        string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+    {
+        string connectionString =
+            ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
 
         protected void Page_PreInit(object sender, EventArgs e)
         {
@@ -25,6 +25,7 @@ namespace ArtMoments.Sites.usermgmt
             {
                 Response.Redirect("LoginUser.aspx");
             }
+
             if (Session["UserType"].ToString().Equals("2"))
             {
                 MasterPageFile = "~/Masters/Artist1.Master";
@@ -40,7 +41,6 @@ namespace ArtMoments.Sites.usermgmt
             lblSuccessMsg.Text = "";
             if (!this.IsPostBack)
             {
-                
                 String tbUserName = Session["UserName"].ToString();
 
                 using (SqlConnection sqlCon = new SqlConnection(connectionString))
@@ -63,6 +63,7 @@ namespace ArtMoments.Sites.usermgmt
                             }
                         }
                     }
+
                     sqlCon.Close();
                 }
 
@@ -71,7 +72,8 @@ namespace ArtMoments.Sites.usermgmt
                 {
                     string UserName = Session["UserName"].ToString();
 
-                    using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM [User] WHERE user_name = @UserName", conn))
+                    using (SqlDataAdapter sda =
+                        new SqlDataAdapter("SELECT * FROM [User] WHERE user_name = @UserName", conn))
                     {
                         sda.SelectCommand.Parameters.AddWithValue("@UserName", UserName);
                         DataTable dt = new DataTable();
@@ -90,9 +92,9 @@ namespace ArtMoments.Sites.usermgmt
 
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                DataRowView dr = (DataRowView)e.Row.DataItem;
+                DataRowView dr = (DataRowView) e.Row.DataItem;
                 if (!DBNull.Value.Equals(dr["profile_pic"]))
-                    imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])dr["profile_pic"]);
+                    imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[]) dr["profile_pic"]);
                 else
                     imageUrl = String.Empty;
 
@@ -126,7 +128,7 @@ namespace ArtMoments.Sites.usermgmt
                         conn.Close();
                     }
                 }
-                
+
                 Response.Redirect(Request.Url.AbsoluteUri);
                 lblSuccessMsg.Text = "Profile picture successfully uploaded!";
             }
@@ -134,7 +136,6 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void tbBibliography_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         //update the user's bibliography into the users database.
@@ -153,6 +154,7 @@ namespace ArtMoments.Sites.usermgmt
                     conn.Close();
                 }
             }
+
             lblSuccessMsg.Text = "Your personal information has been successfully updated!";
         }
 

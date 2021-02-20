@@ -1,27 +1,25 @@
-﻿#artOrder{
-    margin-top:50px;
-}
+﻿#artOrder { margin-top: 50px; }
 
 .artwork-image-division img {
-    max-width: 400px;
+    align-items: center;
+    border: 2px solid black;
+    cursor: pointer;
     max-height: 400px;
+    max-width: 400px;
     object-fit: cover;
-    cursor: pointer;
-    border: 2px solid black;
     text-align: center;
-    align-items: center;
 }
 
-h2 #authorInfoHeading{
-    padding-top:50px;
-    text-align: center;
+h2 #authorInfoHeading {
     align-items: center;
+    padding-top: 50px;
+    text-align: center;
 }
+
 img#ContentPlaceHolder1_authorImage {
-    max-width: 200px;
-    max-height:200px;
-    object-fit: cover;
-    cursor: pointer;
     border: 2px solid black;
+    cursor: pointer;
+    max-height: 200px;
+    max-width: 200px;
+    object-fit: cover;
 }
-
