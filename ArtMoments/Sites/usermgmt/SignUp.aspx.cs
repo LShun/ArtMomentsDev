@@ -10,14 +10,14 @@ using System.Configuration;
 
 namespace ArtMoments.Sites.usermgmt
 {
-
     public partial class SignUp : System.Web.UI.Page
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+        string connectionString =
+            ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-        }          
+        }
 
         //insert the user data into user database
         protected void btnCreateAcc_Click(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace ArtMoments.Sites.usermgmt
                     sqlCmd.CommandText = query;
                     sqlCmd.Parameters.Clear();
                     sqlCmd.Parameters.AddWithValue("@username", txtUserName.Text);
-                    int numRecords = (int)sqlCmd.ExecuteScalar();
+                    int numRecords = (int) sqlCmd.ExecuteScalar();
                     conn.Close();
 
                     if (numRecords == 0)
@@ -70,7 +70,7 @@ namespace ArtMoments.Sites.usermgmt
 
 
                             String query1 = "INSERT INTO [User] (user_name, user_password, user_email, user_type)"
-                                + "VALUES (@UserName, @UserPassword, @UserEmail, @UserType)";
+                                            + "VALUES (@UserName, @UserPassword, @UserEmail, @UserType)";
 
                             SqlCommand sqlCmd2 = new SqlCommand(query1, sqlCon);
                             sqlCmd2.Parameters.AddWithValue("@UserName", txtUserName.Text.Trim());
@@ -88,11 +88,12 @@ namespace ArtMoments.Sites.usermgmt
                     {
                         lblMessage.Text = "This user name already exists";
                     }
+
                     conn.Close();
                 }
-
             }
         }
+
         //clear function
         void Clear()
         {
@@ -102,8 +103,6 @@ namespace ArtMoments.Sites.usermgmt
 
         protected void RadioButtonList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
     }
-    
 }

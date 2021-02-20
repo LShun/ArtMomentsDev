@@ -32,7 +32,6 @@ namespace ArtMoments.Sites.usermgmt
         //check if there is any user log in when load this page
         protected void Page_Load(object sender, EventArgs e)
         {
-            
             lblSuccessMsg.Text = "";
         }
 
