@@ -78,8 +78,8 @@ namespace ArtMoments.Sites.general
                                         lblauthorInfoName.Text = prodInfo.Rows[0]["author"].ToString();
                                         lblauthorBibliography.Text = prodInfo.Rows[0]["bibliography"].ToString();
                                         Session["CurrentSales"] = prodInfo.Rows[0]["prod-sales"];
-
-                                        if(prodInfo.Rows[0]["prod-stock"].ToString().Equals("0"))
+                                        Session["AvailableQty"] = prodInfo.Rows[0]["prod-stock"].ToString();
+                                        if (prodInfo.Rows[0]["prod-stock"].ToString().Equals("0"))
                                         {
                                             lbBuyNow.Enabled = false;
                                             btnMinusQty.Enabled = false;
@@ -268,15 +268,35 @@ namespace ArtMoments.Sites.general
 
                 if (cmd.ExecuteScalar() != null)
                 {
-                    // update
-                    int totalQty = Convert.ToInt32(txtboxQty.Text) + (Int32)cmd.ExecuteScalar();
-                    updateCartItems(totalQty);
+                    // if qty input = 0, display alert msg
+                    if(Convert.ToInt32(txtboxQty.Text)==0)
+                    {
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Item quantity order invalid", "alert('You quantity enter is 0. No art will be added to your cart.')", true);
+                    }
+                    else
+                    {
+                        int totalQty = Convert.ToInt32(txtboxQty.Text) + (Int32)cmd.ExecuteScalar();
+                        // if item add to cart + same item already in card, prompt alert msg on the maximum number can be order
+                        if (totalQty > Convert.ToInt32(Session["AvailableQty"]))
+                        {
+                            // item able to be buy (available - current in cart)
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Item quantity order invalid", "alert('Your cart is having this art. The maximum number of order you can buy is " + (Convert.ToInt32(Session["AvailableQty"]) - (Int32)cmd.ExecuteScalar()) + " piece(s)')", true);
+                            txtboxQty.Text = (Convert.ToInt32(Session["AvailableQty"]) - (Int32)cmd.ExecuteScalar()).ToString();
+                        }
+                        else
+                        {
+                            // update number of item order in the same item in the cart (ori in the cart + current qty order)
+                            updateCartItems(totalQty);
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('Added to cart successfully.')", true);
+                        }
+                    } 
                 }
                 else
                 {
+                    // no same item found in the cart, direct insert to the cart
                     addNewIntoCart();
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('Added to cart successfully.')", true);
                 }
-                ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('Added to cart successfully.')", true);
                 conn.Close();
 
             }
