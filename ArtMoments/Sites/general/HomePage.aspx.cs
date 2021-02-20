@@ -14,9 +14,8 @@ namespace ArtMoments.Sites.general
             if (Session["Username"] == null)
             {
                 MasterPageFile = "~/Masters/General.Master";
-
             }
-            else if(Session["UserType"].ToString().Equals("2"))
+            else if (Session["UserType"].ToString().Equals("2"))
             {
                 MasterPageFile = "~/Masters/Artist1.Master";
             }
@@ -28,17 +27,14 @@ namespace ArtMoments.Sites.general
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
         }
 
         protected void LinkButton1_Click(object sender, EventArgs e)
         {
-
         }
 
         protected void pnlInterested_Load(object sender, EventArgs e)
