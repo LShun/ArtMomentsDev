@@ -159,7 +159,6 @@
     <Content Include="Sites\client\Cart.aspx" />
     <Content Include="Sites\client\DisplayArt.aspx" />
     <Content Include="Sites\client\DisplayArtProduct.aspx" />
-    <Content Include="Sites\client\OrderHistory.aspx" />
     <Content Include="Sites\client\OrderHistoryExtra.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\general\AccessDenied.aspx" />
@@ -245,13 +244,6 @@
     </Compile>
     <Compile Include="Sites\client\DisplayArtProduct.aspx.designer.cs">
       <DependentUpon>DisplayArtProduct.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\client\OrderHistory.aspx.cs">
-      <DependentUpon>OrderHistory.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\client\OrderHistory.aspx.designer.cs">
-      <DependentUpon>OrderHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\client\OrderHistoryExtra.aspx.cs">
       <DependentUpon>OrderHistoryExtra.aspx</DependentUpon>
