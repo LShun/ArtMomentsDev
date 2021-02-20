@@ -16,9 +16,8 @@ namespace ArtMoments.Sites.client
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
         }
-        
+
         protected void gvWishList_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             dsWishlist.DeleteCommand = "DELETE FROM Wishlist Where id=@wishlist_id";
@@ -31,7 +30,7 @@ namespace ArtMoments.Sites.client
         {
             if (e.CommandName == "View")
             {
-                GridViewRow gvr = (GridViewRow)((Control)e.CommandSource).NamingContainer;
+                GridViewRow gvr = (GridViewRow) ((Control) e.CommandSource).NamingContainer;
                 int rowIndex = gvr.RowIndex;
                 Response.Redirect("~/Sites/general/OrderArt.aspx?id=" + gvr.Cells[1].Text);
             }
