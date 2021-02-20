@@ -1,62 +1,59 @@
 ﻿* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
 
-body {
-}
+body { }
 
 .container {
-    position: absolute;
-    max-width: 800px;
     height: 500px;
-    margin: auto;
-    top: 50%;
     left: 50%;
+    margin: auto;
+    max-width: 800px;
+    position: absolute;
+    top: 50%;
     transform: translate(-50%, -50%);
 }
 
 .myRightCtn {
-    position: relative;
+    align-items: center;
     background-image: linear-gradient(45deg, #f046ff, #9b00e8);
     border-radius: 25px;
-    height: 100%;
-    padding: 25px;
     color: rgb(192, 192, 192);
-    font-size: 12px;
     display: flex;
+    font-size: 12px;
+    height: 100%;
     justify-content: center;
-    align-items: center;
+    padding: 25px;
+    position: relative;
 }
 
 .myLeftCtn {
-    position: relative;
     background: #fff;
     border-radius: 25px;
     padding: 25px;
     padding-left: 50px;
+    position: relative;
 }
 
-    .myLeftCtn header {
-        color: blueviolet;
-        font-size: 24px;
-        font-weight: 700;
-        margin-bottom: 20px;
-    }
-
-.row {
-    height: 100%;
+.myLeftCtn header {
+    color: blueviolet;
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
 }
+
+.row { height: 100%; }
 
 .myCard {
-    position: relative;
-    background: #fff;
-    height: 100%;
-    border-radius: 25px;
-    -webkit-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+    background: #fff;
+    border-radius: 25px;
     box-shadow: 0px 10px 40px -10px rgba(0, 0, 0, 0.7);
+    height: 100%;
+    position: relative;
 }
 
 .myRightCtn header {
@@ -65,80 +62,70 @@ body {
 }
 
 .box {
-    position: relative;
     margin: 20px;
     margin-bottom: 100px;
+    position: relative;
 }
 
 .myLeftCtn .myInput {
-    width: 230px;
+    -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    border: none;
     border-radius: 25px;
+    box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
     padding: 10px;
     padding-left: 50px;
-    border: none;
-    -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
-    -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
-    box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    width: 230px;
 }
 
-    .myLeftCtn .myInput:focus {
-        outline: none;
-    }
+.myLeftCtn .myInput:focus { outline: none; }
 
 .myForm {
-    position: relative;
     margin-top: 50px;
+    position: relative;
 }
 
 .myLeftCtn .butt {
+    -moz-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
     background: linear-gradient(45deg, #bb36fd, #9b00e8);
-    color: #fff;
-    width: 230px;
     border: none;
     border-radius: 25px;
-    padding: 10px;
-    -webkit-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
-    -moz-box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
     box-shadow: 0px 10px 41px -11px rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    width: 230px;
 }
 
-    .myLeftCtn .butt:hover {
-        background: linear-gradient(45deg, #c85bff, #b726ff);
-    }
+.myLeftCtn .butt:hover { background: linear-gradient(45deg, #c85bff, #b726ff); }
 
-    .myLeftCtn .butt:focus {
-        outline: none;
-    }
+.myLeftCtn .butt:focus { outline: none; }
 
 .myLeftCtn .fas {
-    position: relative;
     color: #bb36fd;
     left: 36px;
+    position: relative;
 }
 
 .butt_out {
-    background: transparent;
-    color: #fff;
-    width: 120px;
-    border: 2px solid#fff;
-    border-radius: 25px;
-    padding: 10px;
-    -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    -webkit-box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    background: transparent;
+    border: 2px solid #fff;
+    border-radius: 25px;
     box-shadow: 0px 10px 49px -14px rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10px;
+    width: 120px;
 }
 
-    .butt_out:hover {
-        border: 2px solid#eecbff;
-    }
+.butt_out:hover { border: 2px solid #eecbff; }
 
-    .butt_out:focus {
-        outline: none;
-    }
+.butt_out:focus { outline: none; }
 
 #loginDesc {
     background-image: url('Image/Black Deer2.png');
     height: 440px;
-    width: 280px;
     margin-top: 30px;
+    width: 280px;
 }
