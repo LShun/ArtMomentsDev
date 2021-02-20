@@ -9,32 +9,35 @@ using System.IO;
 using System.Data;
 using System.Configuration;
 using System.Text.RegularExpressions;
+
 namespace ArtMoments.Sites.artist
 {
     public partial class AddProduct : System.Web.UI.Page
     {
-        string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+        string connectionString =
+            ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+
         string userId;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!this.IsPostBack)
             {
-
                 if (Session["UserName"] == null)
                 {
                     Response.Redirect("../usermgmt/PreLogin.aspx");
-                } 
-
+                }
             }
-            
         }
 
         protected void saveProdBtn_Click(object sender, EventArgs e)
         {
-             string pricePattern = @"^\d{0,8}(\.\d{1,2})?$";
+            string pricePattern = @"^\d{0,8}(\.\d{1,2})?$";
 
             bool isPriceValid = Regex.IsMatch(txtArtworkPrice.Text, pricePattern);
-            if (txtArtworkName.Text.Length == 0 || txtArtworkHeight.Text.Length == 0 || txtArtworkWidth.Text.Length == 0 || txtArtworkDesc.Text.Length == 0 || txtArtworkPrice.Text.Length == 0 || txtArtworkStock.Text.Length == 0 || fuProdImage.HasFile == false)
+            if (txtArtworkName.Text.Length == 0 || txtArtworkHeight.Text.Length == 0 ||
+                txtArtworkWidth.Text.Length == 0 || txtArtworkDesc.Text.Length == 0 ||
+                txtArtworkPrice.Text.Length == 0 || txtArtworkStock.Text.Length == 0 || fuProdImage.HasFile == false)
             {
                 lblErrorMsg.Text = "The form is not completed!!!";
             }
@@ -53,7 +56,6 @@ namespace ArtMoments.Sites.artist
 
                 using (SqlConnection sqlcon = new SqlConnection(connectionString))
                 {
-
                     string sql = "SELECT id FROM [User] WHERE user_name = @UserName";
 
                     using (SqlCommand cmd = new SqlCommand(sql, sqlcon))
@@ -65,6 +67,7 @@ namespace ArtMoments.Sites.artist
                         {
                             userId = reader[0].ToString();
                         }
+
                         reader.Close();
                         sqlcon.Close();
                     }
@@ -79,7 +82,8 @@ namespace ArtMoments.Sites.artist
 
                 using (SqlConnection sqlcon = new SqlConnection(connectionString))
                 {
-                    string sql = "insert into product (prod_name,prod_size,prod_description,category_id, prod_image, prod_price, prod_stock, prod_sales, user_id) values (@prodName, @prodSize, @prodDesc, @categoryId, @prodImage, @prodPrice, @prodStock, @prodSales, @userID)";
+                    string sql =
+                        "insert into product (prod_name,prod_size,prod_description,category_id, prod_image, prod_price, prod_stock, prod_sales, user_id) values (@prodName, @prodSize, @prodDesc, @categoryId, @prodImage, @prodPrice, @prodStock, @prodSales, @userID)";
                     using (SqlCommand cmd = new SqlCommand(sql, sqlcon))
                     {
                         cmd.Parameters.AddWithValue("@prodName", artworkName);
@@ -96,11 +100,12 @@ namespace ArtMoments.Sites.artist
                         sqlcon.Close();
                     }
                 }
+
                 //Response.Redirect(Request.Url.AbsoluteUri);
                 Response.Redirect("ProductList.aspx");
             }
         }
-        
+
         protected void resetProdBtn_Click(object sender, EventArgs e)
         {
             fuProdImage.Attributes.Clear();
@@ -111,8 +116,6 @@ namespace ArtMoments.Sites.artist
             txtArtworkPrice.Text = string.Empty;
             txtArtworkStock.Text = string.Empty;
             lblErrorMsg.Text = string.Empty;
-            
         }
-      
     }
 }
