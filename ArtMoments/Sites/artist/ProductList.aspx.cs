@@ -75,7 +75,7 @@ namespace ArtMoments.Sites.artist
 
                     }
                     productList.DataSource = newProdTable;
-                    Session["searchProductView"] = newProdTable;
+                    Session["SortedSearchProductView"] = newProdTable;
                     ViewState["hasSearchProd"] = true;
                     productList.DataBind();
                 }
