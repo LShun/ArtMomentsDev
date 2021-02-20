@@ -105,11 +105,10 @@
             <h1>Artwork Order</h1>
         </div>
         <%--search textbox--%>
-        <asp:TextBox ID="txtSearch" OnTextChanged="Search" AutoPostBack="true" autocomplete="off" placeholder="Search for Artwork names.." runat="server"></asp:TextBox>
-
+        <asp:TextBox ID="txtSearch" autocomplete="off" placeholder="Search for Artwork names.." runat="server"></asp:TextBox>
         <%--OrderList--%>
         <div class="orderListTable">
-            <asp:GridView ID="orderList" runat="server" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True" OnSorting="OnSorting" OnPageIndexChanging="OnPageIndexChanging" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="OnSelectedIndexChanged" PageSize="10">
+            <asp:GridView ID="orderList" runat="server" DataSourceID="dsOrderList" DataKeyNames="ID" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True">
                 <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" FirstPageText="First" LastPageText="Last"/>
                 <pagerstyle horizontalalign="Left" CssClass="pagination"/>
                 <Columns>
@@ -159,6 +158,13 @@
                     </asp:boundfield>
                 </Columns>
             </asp:GridView>
+
+            <asp:SqlDataSource ID="dsOrderList" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT O.id as [ID], P.prod_name as [ProdName], C.category_name as [Category], O.quantity as [Qty], U.user_name as [Customer], T.date_order as [DateOrder], D.deliver_type as [DeliveryChannel], O.date_delivery as [DateDelivery], O.order_status as [OrderStatus] FROM[ArtMomentsDb].[dbo].[Product] P, [ArtMomentsDb].[dbo].[Delivery] D, [ArtMomentsDb].[dbo].[Product_Category] C, [ArtMomentsDb].[dbo].[Order] O, [ArtMomentsDb].[dbo].[User] A, [ArtMomentsDb].[dbo].[User] U,[ArtMomentsDb].[dbo].[Transaction] T WHERE P.category_id = C.id AND O.product_id = P.id AND T.id = O.transaction_id AND O.delivery_id = D.id AND T.user_id = u.id AND A.id = P.user_id AND A.user_name = @user_name AND P.prod_name LIKE CONCAT('%', @ProdName, '%')" CancelSelectOnNullParameter="False">
+                <SelectParameters>
+                    <asp:SessionParameter Name="user_name" SessionField="UserName"/>
+                    <asp:ControlParameter ControlID="txtSearch" DefaultValue="" Name="ProdName" PropertyName="Text"/>
+                </SelectParameters>
+            </asp:SqlDataSource>
         </div>
     </div>
 
