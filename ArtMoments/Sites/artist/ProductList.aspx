@@ -150,6 +150,7 @@
             background-color: transparent;
         }
     </style>
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="container">
@@ -158,17 +159,22 @@
                 <h1>Artwork List</h1>
             </div>
             <div class="col-lg-2 col-md-3 col-sm-4">
-                <asp:Button ID="addNetworkBtn" class="button btn-artworkList" runat="server" Text="Add a New Artwork" Height="43px" OnClick="addProdBtn_Click"/>
+                <asp:Panel ID="panel" runat="server" DefaultButton="addNetworkBtn">
+                    <asp:Button ID="addNetworkBtn" class="button btn-artworkList" runat="server" Text="Add a New Artwork" Height="43px" OnClick="addProdBtn_Click" UseSubmitBehavior="false"/>
+                </asp:Panel>
                 
             </div>
          </div>          
          <%--search textbox--%>   
-        <asp:TextBox ID="txtSearch" class="auto-style28" OnTextChanged="Search" AutoPostBack="true" placeholder="Search for Product names.." autocomplete="off" runat="server"></asp:TextBox>
+
+        <asp:TextBox ID="txtSearch" placeholder="Search for Product names.." autocomplete="off" runat="server"></asp:TextBox>
+
+
        <%--Product List--%>
         <div class="productListTable"> 
-            <asp:GridView ID="productList" runat="server" AutoGenerateColumns="false" AllowPaging="true" AllowSorting="true" OnSorting="OnSorting" OnPageIndexChanging="OnPageIndexChanging" PageSize="5" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged = "OnSelectedIndexChanged">
+            <asp:GridView ID="productList" runat="server" AutoGenerateColumns="False" AllowPaging="True" AllowSorting="True"  PageSize="5" DataSourceID="dsProdList" OnRowCommand="productList_RowCommand">
             <PagerSettings Mode="NumericFirstLast" PageButtonCount="4" FirstPageText="First" LastPageText="Last"/>       
-        <pagerstyle horizontalalign="Left" CssClass="pagination"/>
+            <pagerstyle horizontalalign="Left" CssClass="pagination"/>
                 <Columns>
                 <asp:BoundField DataField="ID" HeaderText="Product ID" SortExpression="ID" HeaderStyle-ForeColor="White" >
                     <ItemStyle Width="80" HorizontalAlign="Center" /> 
@@ -179,7 +185,7 @@
                     <ItemStyle Width="550" />
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemTemplate>
-                        <asp:Image ID="prodImage" runat="server" width="200px" Height="200px"/>
+                        <asp:Image ID="prodImage" runat="server" width="200px" Height="200px" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[]) Eval("Image")) %>'/>
                         <br />
                         <asp:Label ID="prodName" runat="server" Text='<%# Eval("Name") %>' style="font-weight:bold"></asp:Label> 
                         <br />
@@ -213,11 +219,17 @@
                     <ItemStyle Width="70" HorizontalAlign="Center" />
                     <HeaderStyle HorizontalAlign="Center" />
                     <ItemTemplate>
-                        <asp:Button ID="editBtn1" class="button btn-artworkList" runat="server" Text="Edit" CommandName="Select" Width="67px"/>
+                        <asp:Button ID="editBtn1" class="button btn-artworkList" runat="server" Text="Edit" CausesValidation="False" CommandName="View" Width="67px" UseSubmitBehavior="false"/>
                     </ItemTemplate>
                 </asp:TemplateField> 
             </Columns>
             </asp:GridView>
+            <asp:SqlDataSource ID="dsProdList" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT P.id as [ID], P.prod_name as [Name], P.prod_size [Size], P.prod_description as [Description], C.category_name as [CategoryName], P.prod_image as [Image], P.prod_price as [Price] , P.prod_stock as [Stock], P.prod_sales as [Sales] from Product P , Product_Category C, [User] U WHERE U.id = P.user_id AND U.user_name = @user_name AND P.category_id = C.id AND P.prod_name LIKE CONCAT('%', @Name, '%')" CancelSelectOnNullParameter="False">
+                <SelectParameters>
+                    <asp:SessionParameter Name="user_name" SessionField="UserName"/>
+                    <asp:ControlParameter ControlID="txtSearch" Name="Name" PropertyName="Text" />
+                </SelectParameters>
+            </asp:SqlDataSource>
         </div>
             
     </div>
