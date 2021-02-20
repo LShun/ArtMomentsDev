@@ -16,14 +16,14 @@
             </div>
             <div class="row">
                 <asp:Label ID="lblSearch" runat="server" Text="Search Your Wishlist (By Name): "></asp:Label>
-                <asp:TextBox ID="txtSearch" runat="server" Text=""></asp:TextBox>
+                <asp:TextBox ID="txtSearch" runat="server" Text="" AutoComplete="off" MaxLength="50"></asp:TextBox>
                 <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btn-primary"/>
             </div>
             <div class="row">
                 <p>Click on the blue headers to sort by that column</p>
             </div>
             <div class="row">
-                <asp:GridView CssClass="table gv-wishlist" ID="gvWishlist" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id" OnRowDeleting="gvWishList_RowDeleting" OnRowCommand="gvWishlist_RowCommand">
+                <asp:GridView CssClass="table gv-wishlist" ID="gvWishlist" runat="server" AllowSorting="True" AutoGenerateColumns="False" DataSourceID="dsWishlist" AllowPaging="True" DataKeyNames="id" OnRowDeleting="gvWishList_RowDeleting" OnRowCommand="gvWishlist_RowCommand" ShowHeaderWhenEmpty="True">
                     <Columns>
                         <asp:BoundField DataField="id" HeaderText="Wishlist ID" SortExpression="id" InsertVisible="False" ReadOnly="True" Visible="false"></asp:BoundField>
                         <asp:BoundField DataField="product_id" HeaderText="Product ID" SortExpression="product_id"/>
@@ -60,6 +60,9 @@
                         </asp:TemplateField>
 
                     </Columns>
+                    <EmptyDataTemplate>
+                        <p>No records found.</p>
+                    </EmptyDataTemplate>
                 </asp:GridView>
                 <br/>
                 <asp:SqlDataSource ID="dsWishlist" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT DISTINCT Wishlist.id, Wishlist.product_id, Product.prod_name, Product.prod_price, Product.prod_stock, Product.prod_size, Product.prod_description, Product_Category.category_name, Product.prod_image FROM Wishlist, Product, Product_Category, [User] WHERE Wishlist.user_id = [User].id AND Wishlist.product_id = Product.id AND Product_Category.id = Product.category_id AND [User].user_name = @user_name AND Product.prod_name LIKE CONCAT('%', @prod_name, '%')" CancelSelectOnNullParameter="False">
