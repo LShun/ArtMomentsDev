@@ -15,6 +15,15 @@ namespace ArtMoments.Sites.artist
     {
 
         /// <summary>
+        /// panel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel panel;
+
+        /// <summary>
         /// addNetworkBtn control.
         /// </summary>
         /// <remarks>
@@ -40,5 +49,14 @@ namespace ArtMoments.Sites.artist
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView productList;
+
+        /// <summary>
+        /// dsProdList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.SqlDataSource dsProdList;
     }
 }
