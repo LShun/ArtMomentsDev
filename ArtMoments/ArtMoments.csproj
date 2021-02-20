@@ -108,12 +108,10 @@
     <Content Include="Content\css\Art_Moments\artMomentsGrid.css" />
     <Content Include="Content\css\searchForm.css" />
     <Content Include="Content\css\backgroundMaster.css" />
-    <Content Include="Content\css\blank.css" />
     <Content Include="Content\css\BuyerAcc.css" />
     <Content Include="Content\css\DLProduct.css" />
     <Content Include="Content\css\HomePage.css" />
     <Content Include="Content\css\LoginUser.css" />
-    <Content Include="Content\css\PreLogin.css" />
     <Content Include="Content\css\OrderArtCss.css" />
     <Content Include="Content\css\OrderHistoryCss.css" />
     <Content Include="Content\css\SignUp.css" />
@@ -131,10 +129,6 @@
     <Content Include="Content\menu.svg" />
     <Content Include="Content\nancy-tillman-my-elephant-friend_u-l-q1awkyfo1zln.jpg" />
     <Content Include="Content\pixel-castle-mountain.png" />
-    <Content Include="Content\scripts\app.js" />
-    <Content Include="Content\scripts\blank.js" />
-    <Content Include="Content\scripts\bootstrap.bundle.min.js" />
-    <Content Include="Content\scripts\jquery-3.0.0.slim.min.js" />
     <Content Include="Content\search--v2.png" />
     <Content Include="Content\Sky.jpg" />
     <Content Include="Content\tetons-and-the-snake-river-grand-teton-national-park-c-1942_u-l-f3p8uj0.jpg" />
@@ -145,21 +139,15 @@
     <Content Include="Sites\artist\EditProduct.aspx" />
     <Content Include="Sites\artist\OrderList.aspx" />
     <Content Include="Sites\artist\ProductList.aspx" />
-    <Content Include="Content\love-wishlist-red.png" />
-    <Content Include="Content\love-wishlist-white.png" />
     <Content Include="Content\monalisa.jpg" />
     <Content Include="Content\panda.jpg" />
-    <Content Include="Content\scripts\blank.js" />
-    <Content Include="Content\scripts\PreLogin.js" />
     <Content Include="Content\sea.jpg" />
-    <Content Include="Content\soldOut.png" />
     <Content Include="Content\swing.jpg" />
     <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Sites\client\Cart.aspx" />
     <Content Include="Sites\client\DisplayArt.aspx" />
     <Content Include="Sites\client\DisplayArtProduct.aspx" />
-    <Content Include="Sites\client\OrderHistory.aspx" />
     <Content Include="Sites\client\OrderHistoryExtra.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\general\AccessDenied.aspx" />
@@ -245,13 +233,6 @@
     </Compile>
     <Compile Include="Sites\client\DisplayArtProduct.aspx.designer.cs">
       <DependentUpon>DisplayArtProduct.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\client\OrderHistory.aspx.cs">
-      <DependentUpon>OrderHistory.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\client\OrderHistory.aspx.designer.cs">
-      <DependentUpon>OrderHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\client\OrderHistoryExtra.aspx.cs">
       <DependentUpon>OrderHistoryExtra.aspx</DependentUpon>
@@ -342,8 +323,6 @@
     <Content Include="Fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Masters\General.Master" />
-    <Content Include="Content\css\bootstrap.min.css.map" />
-    <Content Include="Content\scripts\bootstrap.bundle.min.js.map" />
     <Content Include="App_Data\ArtMomentsDb.mdf-RENAME" />
     <Content Include="Masters\Artist1.Master" />
     <Content Include="Masters\Client1.Master" />
