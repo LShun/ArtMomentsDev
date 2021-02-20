@@ -275,7 +275,7 @@
                                 <asp:Label ID="lblQuantity" runat="server" Text='<%# Eval("quantity") %>' />
                             </div>
                             <div class="col" id="lblpriceDivision">
-                                <asp:Label ID="lblProdPrice" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"subtotal","{0:f}") %>' />
+                                <asp:Label ID="lblProdPrice" runat="server" Text='<%#DataBinder.Eval(Container.DataItem,"Total","{0:f}") %>' />
                             </div>
                             <div class="col" id="btnBuyAgainDivision">
                                 <asp:Button ID="btnBuyAgain" runat="server" Text="BUY AGAIN" class="btn-primary rounded" OnClick="viewProdBtn"/>
