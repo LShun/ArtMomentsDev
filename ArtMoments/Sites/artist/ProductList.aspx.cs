@@ -46,27 +46,28 @@ namespace ArtMoments.Sites.artist
                         }
                     }
                 }
-                //Session["SortedProductView"] = null;
-                //Session["SearchProductView"] = null;
-                //Session["SortedSearchProductView"] = null;
+               
             }
         }
 
 
         private void SearchProduct()
         {
-            if (Session["SortedProductView"] != null)
+            //check whether the table is sorted
+            if (Session["SortedProductView"] != null)  // the table is sorted
             {
-                if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
+                //check whether the search input empty or not
+                if (!string.IsNullOrEmpty(txtSearch.Text.Trim()))  //the search is not empty
                 {
                     productList.DataSource = Session["SortedProductView"];
-                    DataTable dt = new DataTable();
-                    dt = (DataTable)productList.DataSource;
+                    DataTable prodTable = new DataTable();
+                    prodTable = (DataTable)productList.DataSource;
                     DataTable newProdTable = CreateNewTable();
-                    string searchText = txtSearch.Text.ToString().ToLower();
-                    foreach (DataRow productTableRow in dt.Rows)
+
+                    string searchText = txtSearch.Text.ToString().ToLower(); //make the text in the search lower case
+                    foreach (DataRow productTableRow in prodTable.Rows)
                     {
-                        string prodName = productTableRow.Field<string>("Name").ToLower();
+                        string prodName = productTableRow.Field<string>("Name").ToLower();  //make the text in the orderTableRow lower case
                         if (prodName.Contains(searchText))
                         {
                             newProdTable.Rows.Add(productTableRow.ItemArray);
@@ -75,6 +76,7 @@ namespace ArtMoments.Sites.artist
                     }
                     productList.DataSource = newProdTable;
                     Session["searchProductView"] = newProdTable;
+                    ViewState["hasSearchProd"] = true;
                     productList.DataBind();
                 }
                 else
@@ -82,9 +84,10 @@ namespace ArtMoments.Sites.artist
 
                     productList.DataSource = Session["SortedProductView"];
                     productList.DataBind();
+                    ViewState["hasSearchProd"] = null;
                 }
             }
-            else
+            else  //the table is not sorted
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
@@ -101,16 +104,19 @@ namespace ArtMoments.Sites.artist
                         else
                             sda.SelectCommand.Parameters.AddWithValue("@productName", emptyValue);
 
-                        DataTable dt = new DataTable();
-                        sda.Fill(dt);
-                        Session["searchProductView"] = dt;
-                        productList.DataSource = dt;
+                        DataTable prodTable = new DataTable();
+                        sda.Fill(prodTable);
+                        Session["searchProductView"] = prodTable;
+                        productList.DataSource = prodTable;
                         productList.DataBind();
+                        ViewState["hasSearchProd"] = true;
                     }
                 }
+                /*when the table is not sorted and searched*/
                 if (string.IsNullOrEmpty(txtSearch.Text.Trim()))  //check whether the search input empty or not
                 {
                     Session["SortedProductView"] = null;
+                    ViewState["hasSearchProd"] = null;
                 }
             }
  
@@ -126,7 +132,7 @@ namespace ArtMoments.Sites.artist
             column.ColumnName = "ID";
             newProductTable.Columns.Add(column);
 
-            // Create second column.
+            // Create first column.
             column = new DataColumn();
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Name";
@@ -138,39 +144,39 @@ namespace ArtMoments.Sites.artist
             column.ColumnName = "Size";
             newProductTable.Columns.Add(column);
 
-            // Create second column.
+            // Create third column.
             column = new DataColumn();
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "Description";
             newProductTable.Columns.Add(column);
 
-            // Create second column.
+            // Create fourth column.
             column = new DataColumn();
             column.DataType = Type.GetType("System.String");
             column.ColumnName = "CategoryName";
             newProductTable.Columns.Add(column);
 
-            // Create second column.
+            // Create fifth column.
             column = new DataColumn();
             column.DataType = Type.GetType("System.Byte[]");
             column.ColumnName = "Image";
             newProductTable.Columns.Add(column);
 
-            // Create second column.
+            // Create sixth column.
             column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
+            column.DataType = Type.GetType("System.Single");
             column.ColumnName = "Price";
             newProductTable.Columns.Add(column);
 
-            // Create second column.
+            // Create seventh column.
             column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
+            column.DataType = Type.GetType("System.Int32");
             column.ColumnName = "Stock";
             newProductTable.Columns.Add(column);
 
-            // Create second column.
+            // Create eighth column.
             column = new DataColumn();
-            column.DataType = Type.GetType("System.String");
+            column.DataType = Type.GetType("System.Int32");
             column.ColumnName = "Sales";
             newProductTable.Columns.Add(column);
 
@@ -179,22 +185,22 @@ namespace ArtMoments.Sites.artist
         protected void OnPageIndexChanging(object sender, GridViewPageEventArgs e) //change to another page of table
         {
             productList.PageIndex = e.NewPageIndex;
-            if (Session["SortedProductView"] != null)
-            {
-                productList.DataSource = Session["SortedProductView"];
-                productList.DataBind();
-            }
-            else if (Session["SearchProductView"] != null)
-            {
-                productList.DataSource = Session["SearchProductView"];
-                productList.DataBind();
-            }
-            else if (Session["SortedSearchProductView"] != null)
+            if ((ViewState["hasSortedProd"] != null) && (ViewState["hasSearchProd"] != null))       //table is sorted and search
             {
                 productList.DataSource = Session["SortedSearchProductView"];
                 productList.DataBind();
             }
-            else
+            else if (ViewState["hasSortedProd"] != null)           //table is sorted
+            { 
+                productList.DataSource = Session["SortedProductView"];
+                productList.DataBind();
+            }
+            else if (ViewState["hasSearchProd"] != null)     //table is search
+            {
+                productList.DataSource = Session["SearchProductView"];
+                productList.DataBind();
+            }
+            else          //table is not sorted and search
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
@@ -202,10 +208,10 @@ namespace ArtMoments.Sites.artist
                         ", P.prod_stock as [Stock], P.prod_sales as [Sales] from Product P , Product_Category C, [User] U WHERE U.id = P.user_id AND U.user_name = @name AND P.category_id = C.id", conn))
                     {
                         sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
-                        using (DataTable dt = new DataTable())
+                        using (DataTable prodTable = new DataTable())
                         {
-                            sda.Fill(dt);
-                            productList.DataSource = dt;
+                            sda.Fill(prodTable);
+                            productList.DataSource = prodTable;
                             productList.DataBind();
                         }
                     }
@@ -220,8 +226,8 @@ namespace ArtMoments.Sites.artist
                 if (sortExpression != null)
                 {
                     productList.DataSource = Session["searchProductView"];
-                    DataTable dt = productList.DataSource as DataTable;
-                    DataView dataview = dt.AsDataView();
+                    DataTable prodTable = productList.DataSource as DataTable;
+                    DataView dataview = prodTable.AsDataView();
                     if (this.SortDirection == "ASC")
                     {
                         this.SortDirection = "DESC";
@@ -232,15 +238,17 @@ namespace ArtMoments.Sites.artist
                     dataview.Sort = sortExpression + " " + this.SortDirection;
                     Session["SortedSearchProductView"] = dataview.ToTable();
                     productList.DataSource = dataview;
+                    ViewState["hasSortedProd"] = true;
                 }
                 else
                 {
                     
                     productList.DataSource = Session["searchProductView"];
+                    ViewState["hasSortedProd"] = null;
                 }
                 productList.DataBind();
             }
-            else
+            else  // the search input empty
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
@@ -248,12 +256,12 @@ namespace ArtMoments.Sites.artist
                         ", P.prod_stock as [Stock], P.prod_sales as [Sales] from Product P , Product_Category C, [User] U WHERE U.id = P.user_id AND U.user_name = @name AND P.category_id = C.id", conn))
                     {
                         sda.SelectCommand.Parameters.AddWithValue("@name", Session["UserName"]);
-                        using (DataTable dt = new DataTable())
+                        using (DataTable prodTable = new DataTable())
                         {
-                            sda.Fill(dt);
+                            sda.Fill(prodTable);
                             if (sortExpression != null)
                             {
-                                DataView dataview = dt.AsDataView();
+                                DataView dataview = prodTable.AsDataView();
                                 if (this.SortDirection == "ASC")
                                 {
                                     this.SortDirection = "DESC";
@@ -264,11 +272,13 @@ namespace ArtMoments.Sites.artist
                                 dataview.Sort = sortExpression + " " + this.SortDirection;
                                 Session["SortedProductView"] = dataview.ToTable();
                                 productList.DataSource = dataview;
+                                ViewState["hasSortedProd"] = true;
                             }
                             else
                             {
                                 Session["SortedProductView"] = null;
-                                productList.DataSource = dt;
+                                productList.DataSource = prodTable;
+                                ViewState["hasSortedProd"] = null;
                             }
                             productList.DataBind();
                         }
@@ -284,8 +294,8 @@ namespace ArtMoments.Sites.artist
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
             {
-                DataRowView dr = (DataRowView)e.Row.DataItem;
-                string imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])dr["Image"]);
+                DataRowView rowProdTable = (DataRowView)e.Row.DataItem;
+                string imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])rowProdTable["Image"]);
                 (e.Row.FindControl("prodImage") as Image).ImageUrl = imageUrl;
             }
         }
