@@ -323,7 +323,6 @@
     <Content Include="Fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Masters\General.Master" />
-    <Content Include="App_Data\ArtMomentsDb.mdf-RENAME" />
     <Content Include="Masters\Artist1.Master" />
     <Content Include="Masters\Client1.Master" />
     <None Include="packages.config" />
@@ -339,6 +338,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Code\" />
+    <Folder Include="App_Data\" />
     <Folder Include="App_Themes\Theme1\" />
   </ItemGroup>
   <PropertyGroup>
