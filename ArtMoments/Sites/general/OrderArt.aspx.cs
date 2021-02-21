@@ -73,10 +73,21 @@ namespace ArtMoments.Sites.general
                                         Session["ProdPrice"] = prodInfo.Rows[0].Field<System.Double>("prod-price");
                                         lblStock.Text = prodInfo.Rows[0]["prod-stock"].ToString();
                                         checkStock();
-                                        byte[] imgBinUrlAuthor = (byte[])prodInfo.Rows[0]["author_profilePic"];
-                                        imgAuthorProfile.Src = string.Format("data:image/png;base64,{0}", Convert.ToBase64String(imgBinUrlAuthor));
+                                        if (!(string.IsNullOrEmpty((prodInfo.Rows[0]["author_profilePic"]).ToString())))
+                                        {
+                                             byte[] imgBinUrlAuthor = (byte[])prodInfo.Rows[0]["author_profilePic"];
+                                            imgAuthorProfile.Src = string.Format("data:image/png;base64,{0}", Convert.ToBase64String(imgBinUrlAuthor));
+                                            
+                                        }
+                                        else
+                                        {
+                                            imgAuthorProfile.Visible = false;
+                                        }
                                         lblauthorInfoName.Text = prodInfo.Rows[0]["author"].ToString();
-                                        lblauthorBibliography.Text = prodInfo.Rows[0]["bibliography"].ToString();
+                                        if (!(string.IsNullOrEmpty(prodInfo.Rows[0]["bibliography"].ToString())))
+                                        {
+                                            lblauthorBibliography.Text = prodInfo.Rows[0]["bibliography"].ToString();
+                                        }
                                         Session["CurrentSales"] = prodInfo.Rows[0]["prod-sales"];
                                         Session["AvailableQty"] = prodInfo.Rows[0]["prod-stock"].ToString();
                                         if (prodInfo.Rows[0]["prod-stock"].ToString().Equals("0"))

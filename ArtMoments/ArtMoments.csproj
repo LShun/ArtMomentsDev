@@ -110,6 +110,7 @@
     <Content Include="Content\css\AccPresentation.css" />
     <Content Include="Content\css\Art_Moments\artMomentsFonts.css" />
     <Content Include="Content\css\Art_Moments\artMomentsGrid.css" />
+    <Content Include="Content\css\blank-profile-picture-973460_640.png" />
     <Content Include="Content\css\searchForm.css" />
     <Content Include="Content\css\backgroundMaster.css" />
     <Content Include="Content\css\BuyerAcc.css" />
