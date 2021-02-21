@@ -75,9 +75,9 @@ namespace ArtMoments.Sites.general
                                         checkStock();
                                         if (!(string.IsNullOrEmpty((prodInfo.Rows[0]["author_profilePic"]).ToString())))
                                         {
-                                             byte[] imgBinUrlAuthor = (byte[])prodInfo.Rows[0]["author_profilePic"];
+                                            byte[] imgBinUrlAuthor = (byte[])prodInfo.Rows[0]["author_profilePic"];
                                             imgAuthorProfile.Src = string.Format("data:image/png;base64,{0}", Convert.ToBase64String(imgBinUrlAuthor));
-                                            
+
                                         }
                                         else
                                         {
@@ -113,10 +113,10 @@ namespace ArtMoments.Sites.general
                         }
                         // Only allow buyer to access to buy & add to wishlist for the artwork
                         // Buyer = 
-                        if(Session["UserId"] != null && Session["UserType"].Equals("1"))
+                        if (Session["UserId"] != null && Session["UserType"].Equals("1"))
                         {
                             // Enable all the button and textbox for buyer accessibility to buy
-                 
+
 
                             // checkwhether product is ald added in the wishlist
                             string wishlistQuery = "select W.id as [wishlist-id] from [Wishlist] W where W.user_id like @CustId and W.product_id like @ProdId";
@@ -137,7 +137,7 @@ namespace ArtMoments.Sites.general
                             }
                         }
                         // for non-buyer, diable all the access to buy & add art to wishlist
-                       
+
                     }
                 }
             }
@@ -163,14 +163,18 @@ namespace ArtMoments.Sites.general
             Double artPrice = Convert.ToInt32(artworkPriceSplit[0]);
             if (artworkPriceSplit[0] != null)
             {
-                if (artworkPriceSplit[1].Length == 1)
+                if (!(string.IsNullOrEmpty(artworkPriceSplit[1])))
                 {
-                    artPrice += (Convert.ToDouble(artworkPriceSplit[1]) / 10);
+                    if (artworkPriceSplit[1].Length == 1)
+                    {
+                        artPrice += (Convert.ToDouble(artworkPriceSplit[1]) / 10);
+                    }
+                    else
+                    {
+                        artPrice += (Convert.ToDouble(artworkPriceSplit[1]) / 100);
+                    }
                 }
-                else
-                {
-                    artPrice += (Convert.ToDouble(artworkPriceSplit[1]) / 100);
-                }
+
             }
             Double subtotal = (qty * artPrice);
             lblartworkPrice.Text = subtotal.ToString("0.00");
@@ -198,7 +202,7 @@ namespace ArtMoments.Sites.general
         {
             btnwishlistOn.Visible = true;
             btnwishlistOff.Visible = false;
-          
+
             SqlConnection con = new SqlConnection(conString);
 
             string addWishlistQuery = "insert into [Wishlist] (product_id, user_id) VALUES (@ProdId, @CustId)";
@@ -248,7 +252,7 @@ namespace ArtMoments.Sites.general
         // add the art to the cart (previously not in the cart)
         void addNewIntoCart()
         {
-           
+
             SqlConnection conn = new SqlConnection(conString);
             string addCartQuery = "insert into [CartItems] (product_id,quantity,delivery_id, user_id) VALUES (@ProdId, @Qty, @DeliveryId, @CustId)";
             //string addOrderQuery = "insert into [Order] (product_id,transaction_id) VALUES (@ProdId, @TransacId)";
@@ -280,7 +284,7 @@ namespace ArtMoments.Sites.general
                 if (cmd.ExecuteScalar() != null)
                 {
                     // if qty input = 0, display alert msg
-                    if(Convert.ToInt32(txtboxQty.Text)==0)
+                    if (Convert.ToInt32(txtboxQty.Text) == 0)
                     {
                         ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Item quantity order invalid", "alert('You quantity enter is 0. No art will be added to your cart.')", true);
                     }
@@ -293,6 +297,7 @@ namespace ArtMoments.Sites.general
                             // item able to be buy (available - current in cart)
                             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Item quantity order invalid", "alert('Your cart is having this art. The maximum number of order you can buy is " + (Convert.ToInt32(Session["AvailableQty"]) - (Int32)cmd.ExecuteScalar()) + " piece(s)')", true);
                             txtboxQty.Text = (Convert.ToInt32(Session["AvailableQty"]) - (Int32)cmd.ExecuteScalar()).ToString();
+                            calculatePrice((Convert.ToInt32(Session["AvailableQty"]) - (Int32)cmd.ExecuteScalar()));
                         }
                         else
                         {
@@ -300,7 +305,7 @@ namespace ArtMoments.Sites.general
                             updateCartItems(totalQty);
                             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('Added to cart successfully.')", true);
                         }
-                    } 
+                    }
                 }
                 else
                 {

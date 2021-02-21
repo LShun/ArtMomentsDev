@@ -500,61 +500,61 @@
     <!-- invisible artwork price per piece -->
     <asp:Label ID="artworkPricePerPiece" runat="server" Text="" CssClass="artworkPricePerPiece" Visible="true" Style="font-size:0px"></asp:Label>
 
-        <script type="text/javascript">
-            // prevent user from entering non-numeric number 
-            function numValid(evt) {
-                var ch = String.fromCharCode(evt.which);
-                if (!(/[0-9]/.test(ch))) {
-                    evt.preventDefault();
-                }
+    <script type="text/javascript">
+        // prevent user from entering non-numeric number 
+        function numValid(evt) {
+            var ch = String.fromCharCode(evt.which);
+            if (!(/[0-9]/.test(ch))) {
+                evt.preventDefault();
             }
+        }
 
-            // validate qty enter by the buyer
-            function qtyValid() {
-                var qtyElement = document.getElementsByClassName("txtboxQtyClass")[0];
-                var qtyInput = parseInt(qtyElement.value);
-                var qtyAvailable = document.getElementsByClassName("lblStock")[0];
-                var maxQty = parseInt(qtyAvailable.textContent);
+        // validate qty enter by the buyer
+        function qtyValid() {
+            var qtyElement = document.getElementsByClassName("txtboxQtyClass")[0];
+            var qtyInput = parseInt(qtyElement.value);
+            var qtyAvailable = document.getElementsByClassName("lblStock")[0];
+            var maxQty = parseInt(qtyAvailable.textContent);
 
-                // check whether qty input is more than 1
-                if (qtyInput > 1) {
-                    // check whether the qty input is within the current available stock
-                    if (qtyInput > maxQty) {
-                        qtyInput = maxQty;
-                        qtyElement.value = qtyInput.toString();
-                        calcMax(maxQty);
-                        alert("The maximum stock available is " + maxQty + " piece(s).");
-                    }
-                }
-                else {
-                    qtyInput = 1;
+            // check whether qty input is more than 1
+            if (qtyInput > 1) {
+                // check whether the qty input is within the current available stock
+                if (qtyInput > maxQty) {
+                    qtyInput = maxQty;
                     qtyElement.value = qtyInput.toString();
-                    calcMin();
-                    alert("Minimum value is 1.");
+                    calcMax(maxQty);
+                    alert("The maximum stock available is " + maxQty + " piece(s).");
                 }
-                var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
-                var artPiecePrice = parseFloat(onePiecePrice.textContent);
-                // calculate and display the prices according to the qty enter by buyer
-                var subtotal = artPiecePrice * qtyInput;
-                document.getElementsByClassName("lblartworkPrice")[0].textContent = (parseFloat(subtotal).toFixed(2)).toString();
             }
-
-            // calculate the price of one piece of artwork (for invalid minimum number input)
-            function calcMin() {
-                var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
-                var artPiecePrice = parseFloat(onePiecePrice.textContent);
-                var subtotal = artPiecePrice * 1;
-                document.getElementsByClassName("lblartworkPrice")[0].textContent = (parseFloat(subtotal).toFixed(2)).toString();
+            else if (qtyInput < 1) {
+                qtyInput = 1;
+                qtyElement.value = qtyInput.toString();
+                calcMin();
+                alert("Minimum value is 1.");
             }
+            var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
+            var artPiecePrice = parseFloat(onePiecePrice.textContent);
+            // calculate and display the prices according to the qty enter by buyer
+            var subtotal = artPiecePrice * qtyInput;
+            document.getElementsByClassName("lblartworkPrice")[0].textContent = (parseFloat(subtotal).toFixed(2)).toString();
+        }
 
-             // calculate the price of MAX piece of artwork (for invalid maximum number input)
-            function calcMax(maxQty) {
-                var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
-                var artPiecePrice = parseFloat(onePiecePrice.textContent);
-                var subtotal = artPiecePrice * maxQty;
-                document.getElementsByClassName("lblartworkPrice")[0].textContent = (parseFloat(subtotal).toFixed(2)).toString();
-            }
+        // calculate the price of one piece of artwork (for invalid minimum number input)
+        function calcMin() {
+            var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
+            var artPiecePrice = parseFloat(onePiecePrice.textContent);
+            var subtotal = artPiecePrice * 1;
+            document.getElementsByClassName("lblartworkPrice")[0].textContent = (parseFloat(subtotal).toFixed(2)).toString();
+        }
 
-        </script>
+        // calculate the price of MAX piece of artwork (for invalid maximum number input)
+        function calcMax(maxQty) {
+            var onePiecePrice = document.getElementsByClassName("artworkPricePerPiece")[0];
+            var artPiecePrice = parseFloat(onePiecePrice.textContent);
+            var subtotal = artPiecePrice * maxQty;
+            document.getElementsByClassName("lblartworkPrice")[0].textContent = (parseFloat(subtotal).toFixed(2)).toString();
+        }
+
+    </script>
     
 </asp:Content>
