@@ -15,6 +15,9 @@
             margin-right: -15px;
             margin-left: 15px;
         }
+        .buttonEditStyle {
+        margin-left: 70%;
+        }
     </style>
 </asp:Content>
 
