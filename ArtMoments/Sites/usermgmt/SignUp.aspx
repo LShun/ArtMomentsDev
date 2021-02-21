@@ -25,8 +25,8 @@
 
                             <div class="form-group">
                                 <asp:RadioButtonList ID="rblGender" runat="server" RepeatDirection="Horizontal" AutoPostBack="True" CellPadding="0" OnSelectedIndexChanged="RadioButtonList1_SelectedIndexChanged" Width="212px">
-                                    <asp:ListItem> Buyer</asp:ListItem>
-                                    <asp:ListItem> Seller</asp:ListItem>
+                                    <asp:ListItem>Buyer</asp:ListItem>
+                                    <asp:ListItem>Seller</asp:ListItem>
                                 </asp:RadioButtonList>
                             </div>
 
