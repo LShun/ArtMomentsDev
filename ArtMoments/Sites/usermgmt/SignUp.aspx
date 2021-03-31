@@ -5,7 +5,7 @@
     <link href="../../Content/css/SignUp.css" rel="stylesheet"/>
     <link href="../../Content/css/LoginUser.css" rel="stylesheet"/>
     <link href="../../Content/css/UserMgmtSignUp.css" rel="stylesheet"/>
-
+    
     <style>
         .radioButtonStyle { padding: 2em; }
 
