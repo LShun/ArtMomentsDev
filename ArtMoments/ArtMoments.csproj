@@ -154,6 +154,7 @@
     <Content Include="Sites\client\DisplayArt.aspx" />
     <Content Include="Sites\client\DisplayArtProduct.aspx" />
     <Content Include="Sites\client\OrderHistoryExtra.aspx" />
+    <Content Include="Sites\client\PaymentTemp.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\general\AccessDenied.aspx" />
     <Content Include="Sites\general\HomePage.aspx" />
@@ -245,6 +246,13 @@
     </Compile>
     <Compile Include="Sites\client\OrderHistoryExtra.aspx.designer.cs">
       <DependentUpon>OrderHistoryExtra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\client\PaymentTemp.aspx.cs">
+      <DependentUpon>PaymentTemp.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\client\PaymentTemp.aspx.designer.cs">
+      <DependentUpon>PaymentTemp.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\client\WebImage.cs" />
     <Compile Include="Sites\client\Wishlist.aspx.cs">
