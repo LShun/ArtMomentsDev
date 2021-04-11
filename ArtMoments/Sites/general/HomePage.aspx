@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="ArtMoments.Sites.general.HomePage2" %>
+<%@ Register TagPrefix="AdRectangle" TagName="AdRect" Src="~/Content/user-controls/AdRectangle.ascx"%>
 
 <asp:Content ID="cphHead" ContentPlaceHolderID="head" runat="server">
     <link href="../../Content/css/HomePage.css" rel="stylesheet" />
@@ -58,67 +59,19 @@
             <h2>Customers</h2>
             <div class="row">
                 <div class="col-6">
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-4">
-                                <img class="img-benefits" src="../../Content/hp-wishlist-stars.jpg" />
-                            </div>
-                            <div class="col-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Wish-list System</h5>
-                                    <p class="card-text">Allow bookmarking of favorite arts</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <AdRectangle:AdRect ID="adRectCustomer1" runat="server" />
                 </div>
                 <div class="col-6">
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-4">
-                                <img class="img-benefits" src="../../Content/hp-buy-art.jpg" />
-                            </div>
-                            <div class="col-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Buy Art</h5>
-                                    <p class="card-text">Purchase art from the creators.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <AdRectangle:AdRect ID="adRectCustomer2" runat="server" />
                 </div>
             </div>
             <h2>Artists</h2>
             <div class="row">
                 <div class="col-6">
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-4">
-                                <img class="img-benefits" src="../../Content/hp-additional-income.jpg" />
-                            </div>
-                            <div class="col-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Additional Income</h5>
-                                    <p class="card-text">Sell your Art here with low fees.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <AdRectangle:AdRect ID="adRectArtist1" runat="server" />
                 </div>
                 <div class="col-6">
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-4">
-                                <img class="img-benefits" src="../../Content/hp-visibility.jpg" />
-                            </div>
-                            <div class="col-8">
-                                <div class="card-body">
-                                    <h5 class="card-title">Increased Visibility</h5>
-                                    <p class="card-text">Improve discovery & popularity.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <AdRectangle:AdRect ID="adRectArtist2" runat="server" />
                 </div>
             </div>
         </div>

@@ -33,6 +33,42 @@ namespace ArtMoments.Sites.general
         protected global::System.Web.UI.WebControls.SqlDataSource dsLatestArt;
 
         /// <summary>
+        /// adRectCustomer1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ArtMoments.Content.user_controls.AdRectangles adRectCustomer1;
+
+        /// <summary>
+        /// adRectCustomer2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ArtMoments.Content.user_controls.AdRectangles adRectCustomer2;
+
+        /// <summary>
+        /// adRectArtist1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ArtMoments.Content.user_controls.AdRectangles adRectArtist1;
+
+        /// <summary>
+        /// adRectArtist2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ArtMoments.Content.user_controls.AdRectangles adRectArtist2;
+
+        /// <summary>
         /// pnlInterested control.
         /// </summary>
         /// <remarks>

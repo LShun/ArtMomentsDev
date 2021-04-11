@@ -27,6 +27,10 @@ namespace ArtMoments.Sites.general
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            adRectCustomer1.setAdRect("Buy Art", "Purchase art from the creators.", "../../Content/hp-buy-art.jpg");
+            adRectCustomer2.setAdRect("Wish-list System", "Allow bookmarking of favorite arts", "../../Content/hp-wishlist-stars.jpg");
+            adRectArtist1.setAdRect("Additional Income", "Sell your Art here with low fees.", "../../Content/hp-additional-income.jpg");
+            adRectArtist2.setAdRect("Increased Visibility", "Improve discovery & popularity.", "../../Content/hp-visibility.jpg");
         }
 
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)

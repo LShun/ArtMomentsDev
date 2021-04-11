@@ -24,21 +24,21 @@ namespace ArtMoments.Content.user_controls
         protected global::System.Web.UI.WebControls.Image imgAdvert;
 
         /// <summary>
-        /// hCardTitle control.
+        /// lblTitle control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl hCardTitle;
+        protected global::System.Web.UI.WebControls.Label lblTitle;
 
         /// <summary>
-        /// lblCardText control.
+        /// lblDesc control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCardText;
+        protected global::System.Web.UI.WebControls.Label lblDesc;
     }
 }
