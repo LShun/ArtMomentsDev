@@ -138,6 +138,7 @@
     <Content Include="Content\Sky.jpg" />
     <Content Include="Content\tetons-and-the-snake-river-grand-teton-national-park-c-1942_u-l-f3p8uj0.jpg" />
     <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
+    <Content Include="Content\user-controls\Labels.ascx" />
     <Content Include="Content\waterfall-blue-petal.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Sites\artist\AddProduct.aspx" />
@@ -169,6 +170,13 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Content\user-controls\Labels.ascx.cs">
+      <DependentUpon>Labels.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\user-controls\Labels.ascx.designer.cs">
+      <DependentUpon>Labels.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Masters\Client1.Master.cs">
       <DependentUpon>Client1.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
