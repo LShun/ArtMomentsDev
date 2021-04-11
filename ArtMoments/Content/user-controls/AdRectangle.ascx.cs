@@ -13,7 +13,7 @@ namespace ArtMoments.Content.user_controls
         public string description { get; set; } = "";
         public string imageUrl { get; set; } = "";
 
-        public bool setAdRect(string title, string description, string imageUrl)
+        public bool setValues(string title, string description, string imageUrl)
         {
             this.title = title;
             this.description = description;

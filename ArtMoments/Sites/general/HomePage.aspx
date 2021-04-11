@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Home" Language="C#" MasterPageFile="~/Masters/General.Master" AutoEventWireup="true" CodeBehind="HomePage.aspx.cs" Inherits="ArtMoments.Sites.general.HomePage2" %>
 <%@ Register TagPrefix="AdRectangle" TagName="AdRect" Src="~/Content/user-controls/AdRectangle.ascx"%>
-
+<%@ Register TagPrefix="ArtworkHistory" TagName="ArtHistory" Src="~/Content/user-controls/ArtworkHistory.ascx"%>
 <asp:Content ID="cphHead" ContentPlaceHolderID="head" runat="server">
     <link href="../../Content/css/HomePage.css" rel="stylesheet" />
     <style>
@@ -23,32 +23,7 @@
                     </div>
                 </div>
                 <div class="col-6">
-                    <div class="table">
-                        <div class="row">
-                            <h3 style="text-align: center;">Latest Arts</h3>
-                        </div>
-                        <asp:DetailsView ID="dvLatestArt" runat="server" AllowPaging="True" AutoGenerateRows="False" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" DataSourceID="dsLatestArt" ForeColor="Black" GridLines="Horizontal">
-                            <EditRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
-                            <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
-                            <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
-                            <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Center" Font-Bold="true" CssClass="paginate" />
-                            <PagerSettings Mode="NumericFirstLast"/>
-                            <Fields>
-                                <%-- Name + link to the products --%>
-                                <asp:BoundField
-                                    DataField="prod_name"
-                                    HeaderText="Name" />
-                                <%-- Image of the product --%>
-                                <asp:TemplateField HeaderText="Image">
-                                    <ItemTemplate>
-                                        <asp:Image ID="imgLatestProduct" runat="server" CssClass="latest"
-                                            ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[])Eval("prod_image")) %>' />
-                                    </ItemTemplate>
-                                </asp:TemplateField>
-                            </Fields>
-                        </asp:DetailsView>
-                        <asp:SqlDataSource ID="dsLatestArt" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT TOP 50 [id], SUBSTRING([prod_name], 0, 35) AS prod_name, [prod_image] FROM [Product] ORDER BY [id] DESC"></asp:SqlDataSource>
-                    </div>
+                    <ArtworkHistory:ArtHistory ID="ahLatestArt" runat="server"/>
                 </div>
             </div>
 

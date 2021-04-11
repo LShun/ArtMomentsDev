@@ -15,22 +15,13 @@ namespace ArtMoments.Sites.general
     {
 
         /// <summary>
-        /// dvLatestArt control.
+        /// ahLatestArt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DetailsView dvLatestArt;
-
-        /// <summary>
-        /// dsLatestArt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsLatestArt;
+        protected global::ArtMoments.Content.user_controls.ArtworkHistory ahLatestArt;
 
         /// <summary>
         /// adRectCustomer1 control.

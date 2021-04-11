@@ -139,6 +139,7 @@
     <Content Include="Content\tetons-and-the-snake-river-grand-teton-national-park-c-1942_u-l-f3p8uj0.jpg" />
     <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
     <Content Include="Content\user-controls\AdRectangle.ascx" />
+    <Content Include="Content\user-controls\ArtworkHistory.ascx" />
     <Content Include="Content\user-controls\UserStatus.ascx" />
     <Content Include="Content\waterfall-blue-petal.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
@@ -177,6 +178,13 @@
     </Compile>
     <Compile Include="Content\user-controls\AdRectangle.ascx.designer.cs">
       <DependentUpon>AdRectangle.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Content\user-controls\ArtworkHistory.ascx.cs">
+      <DependentUpon>ArtworkHistory.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Content\user-controls\ArtworkHistory.ascx.designer.cs">
+      <DependentUpon>ArtworkHistory.ascx</DependentUpon>
     </Compile>
     <Compile Include="Content\user-controls\UserStatus.ascx.cs">
       <DependentUpon>UserStatus.ascx</DependentUpon>
