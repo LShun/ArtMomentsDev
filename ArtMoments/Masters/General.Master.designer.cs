@@ -78,6 +78,15 @@ namespace ArtMoments.Masters
         protected global::System.Web.UI.WebControls.SiteMapPath smpArtMoments;
 
         /// <summary>
+        /// ctlUserStatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::ArtMoments.Content.user_controls.Labels ctlUserStatus;
+
+        /// <summary>
         /// ContentPlaceHolder1 control.
         /// </summary>
         /// <remarks>

@@ -1,4 +1,4 @@
-﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="LoginStatus.ascx.cs" Inherits="ArtMoments.Content.user_controls.Labels" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="UserStatus.ascx.cs" Inherits="ArtMoments.Content.user_controls.Labels" %>
 
 <table style="width: 100%;">
     <tr>

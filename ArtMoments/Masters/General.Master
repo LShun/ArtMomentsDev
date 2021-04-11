@@ -1,5 +1,5 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="General.master.cs" Inherits="ArtMoments.Masters.General" %>
-
+<%@ Register TagPrefix="UserStatus" TagName="Status" Src="~/Content/user-controls/UserStatus.ascx" %>
 <!DOCTYPE html>
 
 <html>
@@ -75,6 +75,10 @@
         <div id="sitemap" style="word-wrap: break-word;">
             &wedbar; <asp:SiteMapPath ID="smpArtMoments" runat="server" SiteMapProvider="XmlSiteMapProvider">
         </asp:SiteMapPath>
+        </div>
+
+        <div id="loginStatus"> 
+            <UserStatus:Status ID="ctlUserStatus" runat="server" />
         </div>
         
 

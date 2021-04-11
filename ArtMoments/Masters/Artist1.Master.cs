@@ -30,6 +30,8 @@ namespace ArtMoments.Masters
 
             string[] role = { "Artist" };
             HttpContext.Current.User = new GenericPrincipal(HttpContext.Current.User.Identity, role);
+            ctlUserStatus.Username = Session["UserName"].ToString();
+            ctlUserStatus.UserType = Session["UserType"].ToString();
         }
 
         protected void ArtworkMenu_MenuItemClick(object sender, MenuEventArgs e)
