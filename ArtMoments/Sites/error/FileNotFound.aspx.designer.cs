@@ -11,7 +11,7 @@ namespace ArtMoments.Sites.error
 {
 
 
-    public partial class WebForm1
+    public partial class GeneralError
     {
 
         /// <summary>

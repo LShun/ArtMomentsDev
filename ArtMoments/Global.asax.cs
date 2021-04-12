@@ -32,15 +32,6 @@ namespace ArtMoments
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            Exception ex = Server.GetLastError();
-            //the error itself
-            Application["exception"] = ex;
-            //location of file causing error
-            Application["location"] = Request.Url.ToString();
-            //clear error
-            Server.ClearError();
-            //send user to GeneralError page
-            Response.Redirect("Sites/error/GeneralError.aspx");
         }
 
         protected void Session_End(object sender, EventArgs e)

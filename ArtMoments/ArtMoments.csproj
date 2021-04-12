@@ -160,6 +160,7 @@
     <Content Include="Sites\client\OrderHistoryExtra.aspx" />
     <Content Include="Sites\client\PaymentTemp.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
+    <Content Include="Sites\error\FileNotFound.aspx" />
     <Content Include="Sites\error\GeneralError.aspx" />
     <Content Include="Sites\general\AccessDenied.aspx" />
     <Content Include="Sites\general\HomePage.aspx" />
@@ -290,6 +291,13 @@
     </Compile>
     <Compile Include="Sites\client\Wishlist.aspx.designer.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\error\FileNotFound.aspx.cs">
+      <DependentUpon>FileNotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\error\FileNotFound.aspx.designer.cs">
+      <DependentUpon>FileNotFound.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\error\GeneralError.aspx.cs">
       <DependentUpon>GeneralError.aspx</DependentUpon>
