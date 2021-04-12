@@ -1,4 +1,7 @@
 ﻿<%@ Page Title="Product List" Language="C#" MasterPageFile="~/Masters/Artist1.Master" AutoEventWireup="true" CodeBehind="ProductList.aspx.cs" Inherits="ArtMoments.Sites.artist.ProductList" %>
+
+<%@ Register TagPrefix="ArtworkHistory" TagName="ArtHistory" Src="~/Content/user-controls/ArtworkHistory.ascx"%>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style type="text/css">
         th {
@@ -164,7 +167,8 @@
                 </asp:Panel>
                 
             </div>
-         </div>          
+         </div>    
+
          <%--search textbox--%>   
 
         <asp:TextBox ID="txtSearch" placeholder="Search for Product names.." autocomplete="off" runat="server"></asp:TextBox>
@@ -231,7 +235,10 @@
                 </SelectParameters>
             </asp:SqlDataSource>
         </div>
-            
+        <%-- Inspiration products --%>
+        <div class="col"
+        <ArtworkHistory:ArtHistory ID="ahSellerLatestArt" runat="server"/>
+            </div>
     </div>
    
 </asp:Content>

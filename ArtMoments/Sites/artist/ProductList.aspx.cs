@@ -25,6 +25,8 @@ namespace ArtMoments.Sites.artist
                 }
 
             }
+
+            ahSellerLatestArt.SetValues("Competitor's inspiration", "SELECT TOP 50 [id], SUBSTRING([prod_name], 0, 35) AS prod_name, [prod_image] FROM [Product] WHERE [user_id] <>" + Session["UserId"].ToString() + "ORDER BY [id] DESC ");
         }
 
         protected void addProdBtn_Click(Object sender, EventArgs e) //add button is clicked
