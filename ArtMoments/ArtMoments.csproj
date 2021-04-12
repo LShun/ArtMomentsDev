@@ -154,6 +154,7 @@
     <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Sites\client\Cart.aspx" />
+    <Content Include="Sites\client\clientReceipt.aspx" />
     <Content Include="Sites\client\DisplayArt.aspx" />
     <Content Include="Sites\client\DisplayArtProduct.aspx" />
     <Content Include="Sites\client\OrderHistoryExtra.aspx" />
@@ -249,6 +250,13 @@
     </Compile>
     <Compile Include="Sites\client\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\client\clientReceipt.aspx.cs">
+      <DependentUpon>clientReceipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\client\clientReceipt.aspx.designer.cs">
+      <DependentUpon>clientReceipt.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\client\DisplayArt.aspx.cs">
       <DependentUpon>DisplayArt.aspx</DependentUpon>
