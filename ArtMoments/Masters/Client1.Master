@@ -69,6 +69,7 @@
                                 <asp:MenuItem NavigateUrl="~/Sites/client/DisplayArtProduct.aspx?id=5" Text="Prints" Value="Prints"></asp:MenuItem>
                             </asp:MenuItem>
                             <asp:MenuItem NavigateUrl="~/Sites/client/Wishlist.aspx" Text="Wishlist" Value="Wishlist"></asp:MenuItem>
+                            <asp:MenuItem NavigateUrl="~/Sites/client/Payment.aspx" Text="Payment" Value="Payment"></asp:MenuItem>
                             <asp:MenuItem Text="Order" Value="Order">
                                 <asp:MenuItem NavigateUrl="~/Sites/client/Cart.aspx" Text="Cart" Value="Cart"></asp:MenuItem>
                                 <asp:MenuItem NavigateUrl="~/Sites/client/OrderHistoryExtra.aspx" Text="Order History" Value="Order History"></asp:MenuItem>
