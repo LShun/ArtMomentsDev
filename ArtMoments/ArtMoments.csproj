@@ -145,6 +145,7 @@
     <Content Include="Content\user-controls\UserStatus.ascx" />
     <Content Include="Content\waterfall-blue-petal.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
     <Content Include="Sites\artist\AddProduct.aspx" />
     <Content Include="Sites\artist\EditProduct.aspx" />
     <Content Include="Sites\artist\OrderList.aspx" />
@@ -156,12 +157,15 @@
     <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Sites\client\Cart.aspx" />
+    <Content Include="Sites\client\clientReceipt.aspx" />
     <Content Include="Sites\client\DisplayArt.aspx" />
     <Content Include="Sites\client\DisplayArtProduct.aspx" />
     <Content Include="Sites\client\OrderHistoryExtra.aspx" />
     <Content Include="Sites\client\Payment.aspx" />
     <Content Include="Sites\client\PaymentTemp.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
+    <Content Include="Sites\error\FileNotFound.aspx" />
+    <Content Include="Sites\error\GeneralError.aspx" />
     <Content Include="Sites\general\AccessDenied.aspx" />
     <Content Include="Sites\general\HomePage.aspx" />
     <Content Include="Sites\usermgmt\Account.aspx" />
@@ -195,6 +199,9 @@
     </Compile>
     <Compile Include="Content\user-controls\UserStatus.ascx.designer.cs">
       <DependentUpon>UserStatus.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Masters\Client1.Master.cs">
       <DependentUpon>Client1.Master</DependentUpon>
@@ -253,6 +260,13 @@
     <Compile Include="Sites\client\Cart.aspx.designer.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Sites\client\clientReceipt.aspx.cs">
+      <DependentUpon>clientReceipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\client\clientReceipt.aspx.designer.cs">
+      <DependentUpon>clientReceipt.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Sites\client\DisplayArt.aspx.cs">
       <DependentUpon>DisplayArt.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -295,6 +309,20 @@
     </Compile>
     <Compile Include="Sites\client\Wishlist.aspx.designer.cs">
       <DependentUpon>Wishlist.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\error\FileNotFound.aspx.cs">
+      <DependentUpon>FileNotFound.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\error\FileNotFound.aspx.designer.cs">
+      <DependentUpon>FileNotFound.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\error\GeneralError.aspx.cs">
+      <DependentUpon>GeneralError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\error\GeneralError.aspx.designer.cs">
+      <DependentUpon>GeneralError.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\general\AccessDenied.aspx.cs">
       <DependentUpon>AccessDenied.aspx</DependentUpon>
