@@ -76,10 +76,16 @@
                                             <asp:TextBox ID="tbNewConPassword" runat="server" OnTextChanged="TextBox3_TextChanged" TextMode="Password"></asp:TextBox>
                                             <asp:Label Text="*" runat="server" ForeColor="Red"/>
                                             <br/>
-                                            <asp:RegularExpressionValidator ID="revConPassword" runat="server"
+                                            <asp:CompareValidator ID="cvConPassword" runat="server" 
+                                                ControlToCompare="tbNewPassword" ControlToValidate="tbNewConPassword" 
+                                                ErrorMessage="Password not same !!"></asp:CompareValidator>
+
+                                            <%--<asp:RegularExpressionValidator ID="revConPassword" runat="server"
                                                                             ControlToValidate="tbNewConPassword"
                                                                             ErrorMessage="Minimum 8 characters at least 1 Alphabet, 1 Number and 1 special character"
                                                                             ValidationExpression="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%_*#?&])[A-Za-z\d$@$!%_*#?&]{8,}$" Font-Size="Small" Display="Dynamic"/>
+                                        --%>
+
                                         </div>
                                     </div>
 

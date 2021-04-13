@@ -26,8 +26,6 @@ namespace ArtMoments.Masters
                 item.Selected = item.NavigateUrl.Equals(path, StringComparison.InvariantCultureIgnoreCase);
             }
 
-            
-
             string[] role = { "Artist" };
             HttpContext.Current.User = new GenericPrincipal(HttpContext.Current.User.Identity, role);
             ctlUserStatus.Username = Session["UserName"].ToString();

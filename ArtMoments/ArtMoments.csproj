@@ -157,12 +157,12 @@
     <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Sites\client\Cart.aspx" />
+    <Content Include="Sites\client\ReceiptTemp.html" />
     <Content Include="Sites\client\summaryReceipt.aspx" />
     <Content Include="Sites\client\DisplayArt.aspx" />
     <Content Include="Sites\client\DisplayArtProduct.aspx" />
     <Content Include="Sites\client\OrderHistoryExtra.aspx" />
     <Content Include="Sites\client\Payment.aspx" />
-    <Content Include="Sites\client\PaymentTemp.aspx" />
     <Content Include="Sites\client\Receipt.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\error\FileNotFound.aspx" />
@@ -295,13 +295,6 @@
     </Compile>
     <Compile Include="Sites\client\Payment.aspx.designer.cs">
       <DependentUpon>Payment.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Sites\client\PaymentTemp.aspx.cs">
-      <DependentUpon>PaymentTemp.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Sites\client\PaymentTemp.aspx.designer.cs">
-      <DependentUpon>PaymentTemp.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\client\Receipt.aspx.cs">
       <DependentUpon>Receipt.aspx</DependentUpon>

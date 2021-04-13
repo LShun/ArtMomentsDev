@@ -7,6 +7,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Net;
+using System.Net.Mail;
+
+using System.IO;
 
 namespace ArtMoments.Sites.client
 {
@@ -57,7 +61,7 @@ namespace ArtMoments.Sites.client
                             if(ddlDeliveryMethod.SelectedItem.Value.Equals((string)dr["deliver_type"]))
                             {
                                 lblDeliveryFee.Text =  dr["deliver_fees"].ToString();
-                                delivery_fees = Double.Parse(lblDeliveryFee.Text);
+                                //delivery_fees = Double.Parse(lblDeliveryFee.Text);
                             }
                         }
                     }
@@ -177,7 +181,118 @@ namespace ArtMoments.Sites.client
             if (Page.IsValid)
             {
                 if(chkPolicy.Checked)
-                { 
+                {
+                    //confirm email
+                    string connectionString =
+                    ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+
+                    string username = Session["UserName"].ToString();
+                    try
+                    {
+                        using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                        {
+                            sqlCon.Open();
+                            String query =
+                                "SELECT user_email FROM [User] WHERE user_name =@UserName";
+
+                            SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+
+                            sqlCmd.Parameters.AddWithValue("@UserName", username);
+                            sqlCon.Close();
+                        }
+                        //Fetching Settings from WEB.CONFIG file.  
+                        string emailSender = ConfigurationManager.AppSettings["emailsender"].ToString();
+                        string emailSenderPassword = ConfigurationManager.AppSettings["password"].ToString();
+                        string emailSenderHost = ConfigurationManager.AppSettings["smtp"].ToString();
+                        int emailSenderPort = Convert.ToInt16(ConfigurationManager.AppSettings["portnumber"]);
+                        Boolean emailIsSSL = Convert.ToBoolean(ConfigurationManager.AppSettings["IsSSL"]);
+
+
+                        //Fetching Email Body Text from EmailTemplate File.  
+                        //string FilePath = "C:\\Users\\Jin_Ern\\Desktop\\ArtMomentLatest31.1\\ArtMoments\\Sites\\client\\Receipt.aspx";
+                        string FilePath = "C:\\Users\\Jin_Ern\\Desktop\\ArtMomentLatest31.1\\ArtMoments\\Sites\\client\\ReceiptTemp.html";
+                        StreamReader str = new StreamReader(FilePath);
+                        string MailText = str.ReadToEnd();
+                        str.Close();
+
+
+                        String orderDate, recvName, address, transactionId;
+                        using (SqlConnection con3 = new SqlConnection(connectionString))
+                        {
+                            using (SqlCommand cmd3 = new SqlCommand("SELECT top 1 id, date_order, delivery_fees, recv_name, recv_address FROM [Transaction] WHERE user_id = " + Session["UserId"].ToString() + "order by id desc"))
+                            //using (SqlCommand cmd = new SqlCommand("SELECT top 1 id, date_order, delivery_fees, recv_name, recv_address FROM [Transaction] WHERE user_id = 3 order by id desc"))
+                            {
+                                cmd3.CommandType = CommandType.Text;
+                                cmd3.Connection = con3;
+                                con3.Open();
+                                using (SqlDataReader sdr = cmd3.ExecuteReader())
+                                {
+
+                                    sdr.Read();
+                                    orderDate = sdr["date_order"].ToString();
+                                    recvName = sdr["recv_name"].ToString();
+                                    address = sdr["recv_address"].ToString();
+                                    transactionId = sdr["id"].ToString();
+                                }
+
+                                con3.Close();
+                            }
+                        }
+
+                        //Repalce [newusername] = signup user name 
+                        MailText = MailText.Replace("[deliveryAddress]", address);
+                        MailText = MailText.Replace("[orderID]", transactionId);
+                        MailText = MailText.Replace("[orderDate]", orderDate);
+                        MailText = MailText.Replace("[orderTotal]", "XXXX");
+                        MailText = MailText.Replace("[newusername]", Session["Username"].ToString());
+
+                        string subject = "Welcome to CSharpCorner.Com";
+
+                        //Base class for sending email  
+                        MailMessage _mailmsg = new MailMessage();
+
+                        //Make TRUE because our body text is html  
+                        _mailmsg.IsBodyHtml = true;
+
+                        //Set From Email ID  
+                        _mailmsg.From = new MailAddress(emailSender);
+
+                        //Set To Email ID  
+                        _mailmsg.To.Add("foojiaern1@gmail.com");
+
+                        //Set Subject  
+                        _mailmsg.Subject = subject;
+
+                        //Set Body Text of Email   
+                        _mailmsg.Body = MailText;
+
+
+                        //Now set your SMTP   
+                        SmtpClient _smtp = new SmtpClient();
+
+                        //Set HOST server SMTP detail  
+                        _smtp.Host = emailSenderHost;
+
+                        //Set PORT number of SMTP  
+                        _smtp.Port = emailSenderPort;
+
+                        //Set SSL --> True / False  
+                        _smtp.EnableSsl = emailIsSSL;
+
+                        //Set Sender UserEmailID, Password  
+                        NetworkCredential _network = new NetworkCredential(emailSender, emailSenderPassword);
+                        _smtp.Credentials = _network;
+
+                        //Send Method will send your MailMessage create above.  
+                        _smtp.Send(_mailmsg);
+                    }
+                    catch (SmtpException ex)
+                    {
+                        //lblMsg.Text = "Email failed to send!";
+                        Console.WriteLine(ex.ToString());
+                    }
+
+
                     //create new transaction before storing the order
                     SqlConnection con = new SqlConnection(conString);
 
@@ -255,17 +370,15 @@ namespace ArtMoments.Sites.client
 
                     //remove all from cart & minus the stock
                     clearCart();
-                    Response.Redirect("~/Sites/client/summaryReceipt.aspx");
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Pay Successfully.')", true);
-                    }
+                    //Response.Redirect("~/Sites/client/summaryReceipt.aspx");
+                    //ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Pay Successfully.')", true);
+                }
                 else
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please confirm you read the privacy and policy before proceed.')", true);
                 }
-            }
-
-            
-
+                
+        }            
         }
 
         // retrieve the transaction id of newly added transaction
