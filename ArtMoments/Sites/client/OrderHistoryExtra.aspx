@@ -286,7 +286,7 @@
 
     <asp:SqlDataSource ID="SqlDataSourceOrderHistory" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT T.id as transaction_id, T.date_order as order_date, O.id AS order_id, P.id as prod_id , P.prod_name as prod_name, P.prod_size as prod_size, P.prod_image as prod_image, P.prod_price as prod_price, A.user_name as user_name, C.category_name as category_name,  O.quantity as quantity, O.order_status as order_status, (O.quantity*P.prod_price) as subtotal FROM [Transaction] AS T INNER JOIN [Order] AS O ON T.id = O.transaction_id INNER JOIN Product AS P ON P.id = O.product_id INNER JOIN [User] AS A ON A.id = P.user_id INNER JOIN Product_Category AS C ON C.id = P.category_id WHERE T.user_id = @UserId ORDER BY T.id DESC">
         <SelectParameters>
-            <asp:SessionParameter DefaultValue="4" Name="UserId" SessionField="UserId"/>
+            <asp:SessionParameter DefaultValue="3" Name="UserId" SessionField="UserId"/>
         </SelectParameters>
     </asp:SqlDataSource>
 

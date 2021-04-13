@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" MasterPageFile="~/Masters/Client1.Master" AutoEventWireup="true" CodeBehind="DisplayArt.aspx.cs" Inherits="ArtMoments.Sites.client.DisplayArt" %>
+﻿    <%@ Page Language="C#" MasterPageFile="~/Masters/Client1.Master" AutoEventWireup="true" CodeBehind="DisplayArt.aspx.cs" Inherits="ArtMoments.Sites.client.DisplayArt" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <title>Display Artwork</title>
@@ -80,6 +80,8 @@
                     <asp:Button ID="btnSearch" runat="server" Text="Search" CssClass="btnPaging" PostBackUrl="~/Sites/client/DisplayArtProduct.aspx?id=1"/>
                     <asp:ValidationSummary ID="revSummary" runat="server" ShowMessageBox="true" ShowSummary="false" ForeColor="Red"/>
                 </div>
+            <asp:Label ID="lblLastVisit" runat="server" Text="You last visited website is:"></asp:Label>
+&nbsp;<asp:HyperLink ID="hyperlinkLastVisit" runat="server" NavigateUrl="~/Sites/general/HomePage.aspx">Click Here</asp:HyperLink>
             </div>
         </div>
 

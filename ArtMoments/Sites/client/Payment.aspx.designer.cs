@@ -57,6 +57,7 @@ namespace ArtMoments.Sites.client
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
+
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revName;
 
         /// <summary>
@@ -320,6 +321,9 @@ namespace ArtMoments.Sites.client
         /// </remarks>
         protected global::System.Web.UI.WebControls.RangeValidator rvExpMth;
 
+        protected global::System.Web.UI.WebControls.CustomValidator cvCardExp;
+
+
         /// <summary>
         /// lblSecurityCode control.
         /// </summary>
@@ -391,5 +395,6 @@ namespace ArtMoments.Sites.client
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
+
     }
 }
