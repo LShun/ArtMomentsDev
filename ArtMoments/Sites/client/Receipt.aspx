@@ -165,7 +165,7 @@
         }
 
         #lblTotal {
-            margin-left: 213px;
+            margin-left: 173px;
             margin-block-start: 120px;
         }
 
@@ -296,8 +296,8 @@
                 <asp:DetailsView ID="delieryFeeDetailView" runat="server" AutoGenerateRows="False" BackColor="White" BorderStyle="None" BorderWidth="0px" CellPadding="4" DataSourceID="dsDelivery" ForeColor="Black" GridLines="Horizontal" EnableTheming="False">
                     <EditRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" HorizontalAlign="Right" />
                     <Fields>
-                        <asp:TemplateField HeaderText="Delivery Fees: ">
-                            <HeaderStyle Width="200px" />
+                        <asp:TemplateField HeaderText="Delivery Fees (RM): ">
+                            <HeaderStyle Width="220px" />
                             <ItemStyle Height="50px" Width="310px" HorizontalAlign="Right" />
                             <ItemTemplate>
                                 <asp:Label ID="delivery_fees" runat="server" Style="padding-right: 25px" Text='<%#DataBinder.Eval(Container.DataItem, "delivery_fees", "{0:f}") %>'></asp:Label>
@@ -311,7 +311,7 @@
                 </asp:DetailsView>
                 <br />
 
-                <asp:Label ID="lblTxtTotal" runat="server" Text="Total: "></asp:Label>
+                <asp:Label ID="lblTxtTotal" runat="server" Text="Total (RM): "></asp:Label>
 
                 <asp:Label ID="lblTotal" runat="server"></asp:Label>
                 <asp:SqlDataSource ID="dsDelivery" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [delivery_fees] FROM [Transaction] WHERE ([id] = @id)">
