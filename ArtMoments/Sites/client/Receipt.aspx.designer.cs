@@ -105,48 +105,12 @@ namespace ArtMoments.Sites.client
         protected global::System.Web.UI.WebControls.GridView itemList;
 
         /// <summary>
-        /// prodImage control.
+        /// dsOrderList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image prodImage;
-
-        /// <summary>
-        /// prodName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label prodName;
-
-        /// <summary>
-        /// prodDesc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label prodDesc;
-
-        /// <summary>
-        /// prodSize control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label prodSize;
-
-        /// <summary>
-        /// dsProdList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.SqlDataSource dsProdList;
+        protected global::System.Web.UI.WebControls.SqlDataSource dsOrderList;
     }
 }
