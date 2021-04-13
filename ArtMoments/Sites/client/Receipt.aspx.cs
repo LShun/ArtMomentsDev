@@ -16,38 +16,43 @@ namespace ArtMoments.Sites.client
         string connectionString = ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
         protected void Page_Load(object sender, EventArgs e)
         {
-            //using (SqlConnection con = new SqlConnection(connectionString))
-            //{
-            //    using (SqlCommand cmd = new SqlCommand("SELECT * FROM product WHERE id = @ProdID"))
-            //    {
-            //        string productID = Application["prodID"].ToString();
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("SELECT top 1 id, date_order, delivery_fees, recv_name, recv_address FROM [Transaction] WHERE user_id" + Session["UserId"].ToString() + "order by id desc"))
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = con;
+                    con.Open();
+                    using (SqlDataReader sdr = cmd.ExecuteReader())
+                    {
+                       
+                        sdr.Read();
+                        lblOrderDate.Text = sdr["date_order"].ToString();
+                        lblName.Text = sdr["recv_name"].ToString();
+                        lblShippingAddr.Text = sdr["recv_address"].ToString();
+                        string transactionId = sdr["id"].ToString();
+                        lblOrderID.Text = transactionId;
+                    }
 
-            //        cmd.CommandType = CommandType.Text;
-            //        cmd.Connection = con;
-            //        con.Open();
-            //        cmd.Parameters.AddWithValue("@ProdID", productID);
-            //        using (SqlDataReader sdr = cmd.ExecuteReader())
-            //        {
-            //            string artSize = "";
-            //            string[] spearator = { "cm", "X", "cm", " " };
+                    con.Close();
+                }
 
-            //            sdr.Read();
-            //            txtArtworkName.Text = sdr["prod_name"].ToString();
-            //            artSize = sdr["prod_size"].ToString();
-            //            string[] artSize1 = artSize.Split(spearator,
-            //                StringSplitOptions.RemoveEmptyEntries);
-            //            txtArtworkHeight.Text = artSize1[0];
-            //            txtArtworkWidth.Text = artSize1[1];
-            //            txtArtworkDesc.Text = sdr["prod_description"].ToString();
-            //            string categoryId = sdr["category_id"].ToString();
-            //            ddlArtworkCategory.SelectedValue = categoryId;
-            //            txtArtworkPrice.Text = sdr["prod_price"].ToString();
-            //            txtArtworkStock.Text = sdr["prod_stock"].ToString();
-            //        }
+                //using (SqlCommand cmd = new SqlCommand("SELECT top 1 id, date_order, delivery_fees FROM [Transaction] WHERE user_id" + Session["UserId"].ToString() + "order by id desc"))
+                //{
+                //    cmd.CommandType = CommandType.Text;
+                //    cmd.Connection = con;
+                //    con.Open();
+                //    using (SqlDataReader sdr = cmd.ExecuteReader())
+                //    {
 
-            //        con.Close();
-            //    }
-            //}
+                //        sdr.Read();
+                //        lblOrderDate.Text = sdr["date_order"].ToString();
+                //        string transactionId = sdr["id"].ToString();
+                //    }
+
+                //    con.Close();
+                //}
+            }
         }
     }
 }
