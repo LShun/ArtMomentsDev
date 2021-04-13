@@ -34,9 +34,8 @@
                 <EditRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                 <Fields>
                     <asp:TemplateField HeaderText="Transaction ID">
-                        <ItemStyle Width="200" />
                             <ItemTemplate>
-                                <asp:Label ID="jelly" runat="server" Text='<%# Eval("id") %>'></asp:Label> 
+                                <asp:Label ID="id" runat="server" Text='<%# Eval("id") %>'></asp:Label> 
                             </ItemTemplate>
                         </asp:TemplateField>
                     <asp:BoundField DataField="date_order" HeaderText="date_order" SortExpression="date_order" />
@@ -114,7 +113,7 @@
 
                 <asp:Label ID="lblTotal" runat="server"></asp:Label>
 
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" OnSelecting="SqlDataSource1_Selecting" SelectCommand="SELECT TOP 1 id, date_order, payment_method, user_id FROM [Transaction] as t WHERE user_id = @UserId ORDER BY id DESC">
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT TOP 1 id, date_order, payment_method, user_id FROM [Transaction] as t WHERE user_id = @UserId ORDER BY id DESC">
                     <SelectParameters>
                         <asp:SessionParameter Name="UserId" SessionField="UserId"/>
                     </SelectParameters>
@@ -122,13 +121,13 @@
             
                 <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT O.quantity as quantity, P.prod_name as name, P.prod_image as image, (P.prod_price * O.quantity) as subtotal FROM [Order] AS O INNER JOIN Product AS P ON O.product_id = P.id WHERE (O.transaction_id = @id)">
                     <SelectParameters>
-                        <asp:Parameter Name="id" Type="string" Direction="Input" />
+
                     </SelectParameters>
                 </asp:SqlDataSource>
             
             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [delivery_fees] FROM [Transaction] WHERE ([id] = @id)">
                 <SelectParameters>
-                   <asp:Parameter Name="id" Type="string" Direction="Input" />
+
                 </SelectParameters>
             </asp:SqlDataSource>
             
