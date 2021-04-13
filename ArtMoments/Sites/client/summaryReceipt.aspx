@@ -73,7 +73,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:TemplateField HeaderText="Subtotal">
+                        <asp:TemplateField HeaderText="Subtotal (RM)">
                         <ItemStyle Width="200" />
                             <HeaderStyle HorizontalAlign="Center" />
                             <ItemTemplate>
