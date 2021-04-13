@@ -255,7 +255,7 @@ namespace ArtMoments.Sites.client
 
                     //remove all from cart & minus the stock
                     clearCart();
-                    Response.Redirect("~/Sites/general/HomePage.aspx");
+                    Response.Redirect("~/Sites/client/summaryReceipt.aspx");
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Pay Successfully.')", true);
                     }
                 else
