@@ -236,7 +236,7 @@
             </asp:SqlDataSource>
         </div>
         <%-- Inspiration products --%>
-        <div class="col"
+        <div class="col">
         <ArtworkHistory:ArtHistory ID="ahSellerLatestArt" runat="server"/>
             </div>
     </div>

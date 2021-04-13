@@ -163,6 +163,7 @@
     <Content Include="Sites\client\OrderHistoryExtra.aspx" />
     <Content Include="Sites\client\Payment.aspx" />
     <Content Include="Sites\client\PaymentTemp.aspx" />
+    <Content Include="Sites\client\Receipt.aspx" />
     <Content Include="Sites\client\Wishlist.aspx" />
     <Content Include="Sites\error\FileNotFound.aspx" />
     <Content Include="Sites\error\GeneralError.aspx" />
@@ -301,6 +302,13 @@
     </Compile>
     <Compile Include="Sites\client\PaymentTemp.aspx.designer.cs">
       <DependentUpon>PaymentTemp.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Sites\client\Receipt.aspx.cs">
+      <DependentUpon>Receipt.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Sites\client\Receipt.aspx.designer.cs">
+      <DependentUpon>Receipt.aspx</DependentUpon>
     </Compile>
     <Compile Include="Sites\client\WebImage.cs" />
     <Compile Include="Sites\client\Wishlist.aspx.cs">
