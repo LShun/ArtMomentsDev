@@ -29,12 +29,18 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <header>
         <div class="row justify-content-center heading">
-            <h1 class="clientReceiptHeader">Receipt Summary</h1>
+            <h1 class="clientReceiptHeader">Purchase Summary</h1>
             <asp:DetailsView ID="TransactionIDDetailView" runat="server" AutoGenerateRows="False" DataKeyNames="id" DataSourceID="SqlDataSource1" Height="50px" Width="565px" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
                 <EditRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
                 <Fields>
-                    <asp:BoundField DataField="id" HeaderText="Transaction ID" InsertVisible="False" ReadOnly="True" SortExpression="id" />
-                    <asp:BoundField DataField="date_order" HeaderText="Payment Date" ShowHeader="False" SortExpression="date_order" />
+                    <asp:TemplateField HeaderText="Transaction ID">
+                        <ItemStyle Width="200" />
+                            <ItemTemplate>
+                                <asp:Label ID="jelly" runat="server" Text='<%# Eval("id") %>'></asp:Label> 
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    <asp:BoundField DataField="date_order" HeaderText="date_order" SortExpression="date_order" />
+                    <asp:BoundField DataField="payment_method" HeaderText="payment_method" SortExpression="payment_method" />
                 </Fields>
                 <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                 <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
@@ -108,21 +114,21 @@
 
                 <asp:Label ID="lblTotal" runat="server"></asp:Label>
 
-                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" OnSelecting="SqlDataSource1_Selecting" SelectCommand="SELECT [id], [date_order] FROM [Transaction] WHERE ([user_id] = @user_id)">
+                <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" OnSelecting="SqlDataSource1_Selecting" SelectCommand="SELECT TOP 1 id, date_order, payment_method, user_id FROM [Transaction] as t WHERE user_id = @UserId ORDER BY id DESC">
                     <SelectParameters>
-                        <asp:SessionParameter DefaultValue="3" Name="user_id" SessionField="UserId" Type="Int32" />
+                        <asp:SessionParameter Name="UserId" SessionField="UserId"/>
                     </SelectParameters>
                 </asp:SqlDataSource>
             
-                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT O.quantity as quantity, P.prod_name as name, P.prod_image as image, (P.prod_price * O.quantity) as subtotal FROM [Order] AS O INNER JOIN Product AS P ON O.product_id = P.id WHERE (O.transaction_id = @transaction_id)">
+                <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT O.quantity as quantity, P.prod_name as name, P.prod_image as image, (P.prod_price * O.quantity) as subtotal FROM [Order] AS O INNER JOIN Product AS P ON O.product_id = P.id WHERE (O.transaction_id = @id)">
                     <SelectParameters>
-                        <asp:ControlParameter ControlID="TransactionIDDetailView" Name="transaction_id" PropertyName="SelectedValue" Type="Int32" DefaultValue="34" />
+                        <asp:Parameter Name="id" Type="string" Direction="Input" />
                     </SelectParameters>
                 </asp:SqlDataSource>
             
             <asp:SqlDataSource ID="SqlDataSource3" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [delivery_fees] FROM [Transaction] WHERE ([id] = @id)">
                 <SelectParameters>
-                    <asp:ControlParameter ControlID="TransactionIDDetailView" Name="id" PropertyName="SelectedValue" Type="Int32" DefaultValue="34" />
+                   <asp:Parameter Name="id" Type="string" Direction="Input" />
                 </SelectParameters>
             </asp:SqlDataSource>
             

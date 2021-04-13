@@ -11,11 +11,25 @@ namespace ArtMoments.Sites.client
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!this.IsPostBack)
+            {
+                if (Session["UserName"] == null)
+                {
+                    Response.Redirect("../usermgmt/PreLogin.aspx");
+                }
 
+            }
+
+            //SqlDataSource2.SelectParameters[0].DefaultValue = transacId.Text.ToString();
+
+            //SqlDataSource3.SelectParameters[0].DefaultValue = transacId.Text.ToString();
         }
 
         protected void SqlDataSource1_Selecting(object sender, SqlDataSourceSelectingEventArgs e)
         {
+            Label transacId = (Label)TransactionIDDetailView.FindControl("jelly");
+            SqlDataSource2.SelectParameters.Add("@id", transacId.Text.ToString());
+            SqlDataSource3.SelectParameters.Add("@id", transacId.Text.ToString());
             calcTotal();
         }
 
@@ -29,7 +43,7 @@ namespace ArtMoments.Sites.client
                 total += Convert.ToDouble(subtotal.Text.ToString());
             }
 
-            Label deliveryFeefromDB = (Label)delieryFeeDetailView.FindControl("delivery_fees");
+            Label deliveryFeefromDB = (Label)delieryFeeDetailView.FindControl("");
             deliveryFee = Convert.ToDouble(deliveryFeefromDB.Text.ToString());
             total += deliveryFee;
             lblTotal.Text = total.ToString("F");
