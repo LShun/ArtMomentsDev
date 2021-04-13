@@ -51,6 +51,15 @@ namespace ArtMoments.Sites.client
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvName;
 
         /// <summary>
+        /// revName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revName;
+
+        /// <summary>
         /// lblContactNum control.
         /// </summary>
         /// <remarks>
@@ -267,6 +276,15 @@ namespace ArtMoments.Sites.client
         protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvExpYr;
 
         /// <summary>
+        /// revExpYr control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator revExpYr;
+
+        /// <summary>
         /// lblCardExpMth control.
         /// </summary>
         /// <remarks>
@@ -301,15 +319,6 @@ namespace ArtMoments.Sites.client
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RangeValidator rvExpMth;
-
-        /// <summary>
-        /// cvCardExp control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator cvCardExp;
 
         /// <summary>
         /// lblSecurityCode control.
@@ -348,13 +357,13 @@ namespace ArtMoments.Sites.client
         protected global::System.Web.UI.WebControls.RegularExpressionValidator revSecurityCode;
 
         /// <summary>
-        /// CheckBox1 control.
+        /// chkPolicy control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox CheckBox1;
+        protected global::System.Web.UI.WebControls.CheckBox chkPolicy;
 
         /// <summary>
         /// btnCancel control.
@@ -382,7 +391,5 @@ namespace ArtMoments.Sites.client
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.ValidationSummary ValidationSummary1;
-
-     
     }
 }
