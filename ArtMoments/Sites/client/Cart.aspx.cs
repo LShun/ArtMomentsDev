@@ -216,12 +216,11 @@ namespace ArtMoments.Sites.client
 
                 ////remove all from cart & minus the stock
                 //clearCart();
-                Response.Redirect("~/Sites/client/PaymentTemp.aspx");
+                Response.Redirect("~/Sites/client/Payment.aspx");
             }
             else
             {
                 // do not allow user to checkout if the qty of item entered is invalid
-
                 btnCheckout.Enabled = false;
             }
         }
