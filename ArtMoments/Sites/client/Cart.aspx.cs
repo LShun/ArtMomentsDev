@@ -148,79 +148,79 @@ namespace ArtMoments.Sites.client
         {
             if (Page.IsValid)
             {
-                btnCheckout.Enabled = true;
-                //create new transaction before storing the order
-                SqlConnection con = new SqlConnection(conString);
+                //btnCheckout.Enabled = true;
+                ////create new transaction before storing the order
+                //SqlConnection con = new SqlConnection(conString);
 
-                string createTransacQuery =
-                    "insert into [Transaction] (user_id, date_order) VALUES (@CustId, @DateOrder)";
-                SqlCommand cmd = new SqlCommand(createTransacQuery, con);
-                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserId"]));
-                cmd.Parameters.AddWithValue("@DateOrder", DateTime.Now);
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
+                //string createTransacQuery =
+                //    "insert into [Transaction] (user_id, date_order) VALUES (@CustId, @DateOrder)";
+                //SqlCommand cmd = new SqlCommand(createTransacQuery, con);
+                //cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserId"]));
+                //cmd.Parameters.AddWithValue("@DateOrder", DateTime.Now);
+                //con.Open();
+                //cmd.ExecuteNonQuery();
+                //con.Close();
 
-                //insert orders into transaction
+                ////insert orders into transaction
 
-                //read data from cart
-                con = new SqlConnection(conString);
-                string getCartItemsQuery =
-                    "SELECT C.product_id as prod_id, C.quantity as cart_quantity, C.delivery_id as delivery_id, P.prod_stock as available_stock, P.prod_sales as prod_sales FROM CartItems AS C JOIN Product P on C.product_id = P.id where C.user_id = @CustId";
-                SqlDataAdapter sda = new SqlDataAdapter(getCartItemsQuery, con);
-                sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["UserId"]);
-                DataTable cartItem = new DataTable();
-                sda.Fill(cartItem);
+                ////read data from cart
+                //con = new SqlConnection(conString);
+                //string getCartItemsQuery =
+                //    "SELECT C.product_id as prod_id, C.quantity as cart_quantity, C.delivery_id as delivery_id, P.prod_stock as available_stock, P.prod_sales as prod_sales FROM CartItems AS C JOIN Product P on C.product_id = P.id where C.user_id = @CustId";
+                //SqlDataAdapter sda = new SqlDataAdapter(getCartItemsQuery, con);
+                //sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["UserId"]);
+                //DataTable cartItem = new DataTable();
+                //sda.Fill(cartItem);
 
-                // retrieve particular newly added transaction id 
-                getTransacID();
+                //// retrieve particular newly added transaction id 
+                //getTransacID();
 
-                // for each of the item recorded in the cart insert as orders
-                foreach (DataRow row in cartItem.Rows)
-                {
-                    con.Open();
-                    string insertOrdersQuery =
-                        "insert into [Order] (product_id,quantity,delivery_id,order_status,transaction_id) VALUES (@ProdId, @Qty,@DeliverId,@OrderStatus,@TransacId)";
-                    cmd = new SqlCommand(insertOrdersQuery, con);
-                    cmd.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
-                    cmd.Parameters.AddWithValue("@Qty", row.Field<Int32>("cart_quantity"));
-                    cmd.Parameters.AddWithValue("@DeliverId", row.Field<Int32>("delivery_id"));
-                    cmd.Parameters.AddWithValue("@OrderStatus", "Pending");
-                    cmd.Parameters.AddWithValue("@TransacId", Convert.ToInt32(Session["TransacId"]));
+                //// for each of the item recorded in the cart insert as orders
+                //foreach (DataRow row in cartItem.Rows)
+                //{
+                //    con.Open();
+                //    string insertOrdersQuery =
+                //        "insert into [Order] (product_id,quantity,delivery_id,order_status,transaction_id) VALUES (@ProdId, @Qty,@DeliverId,@OrderStatus,@TransacId)";
+                //    cmd = new SqlCommand(insertOrdersQuery, con);
+                //    cmd.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
+                //    cmd.Parameters.AddWithValue("@Qty", row.Field<Int32>("cart_quantity"));
+                //    cmd.Parameters.AddWithValue("@DeliverId", row.Field<Int32>("delivery_id"));
+                //    cmd.Parameters.AddWithValue("@OrderStatus", "Pending");
+                //    cmd.Parameters.AddWithValue("@TransacId", Convert.ToInt32(Session["TransacId"]));
 
-                    cmd.ExecuteNonQuery();
-                    con.Close();
+                //    cmd.ExecuteNonQuery();
+                //    con.Close();
 
-                    //deduct stock qty
-                    con.Open();
-                    string updateProdStockQuery =
-                        "update [Product] set prod_stock = @UpdatedAvailableQty, prod_sales = @UpdatedSales where id like @ProdId";
-                    using (SqlCommand cmdSales = new SqlCommand(updateProdStockQuery, con))
-                    {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                            "alert('success update product info')", true);
-                        int cartQty = row.Field<Int32>("cart_quantity");
-                        int availableQty = row.Field<Int32>("available_stock");
-                        int updateQty = availableQty - cartQty;
+                //    //deduct stock qty
+                //    con.Open();
+                //    string updateProdStockQuery =
+                //        "update [Product] set prod_stock = @UpdatedAvailableQty, prod_sales = @UpdatedSales where id like @ProdId";
+                //    using (SqlCommand cmdSales = new SqlCommand(updateProdStockQuery, con))
+                //    {
+                //        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                //            "alert('success update product info')", true);
+                //        int cartQty = row.Field<Int32>("cart_quantity");
+                //        int availableQty = row.Field<Int32>("available_stock");
+                //        int updateQty = availableQty - cartQty;
 
-                        int currentSalesQty = row.Field<Int32>("prod_sales");
-                        int updateSales = currentSalesQty + cartQty;
-                        int prodId = row.Field<Int32>("prod_id");
-                        cmdSales.Parameters.AddWithValue("@UpdatedAvailableQty", updateQty);
-                        cmdSales.Parameters.AddWithValue("@UpdatedSales", updateSales);
-                        cmdSales.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
-                        cmdSales.ExecuteNonQuery();
-                        con.Close();
-                    }
-                }
+                //        int currentSalesQty = row.Field<Int32>("prod_sales");
+                //        int updateSales = currentSalesQty + cartQty;
+                //        int prodId = row.Field<Int32>("prod_id");
+                //        cmdSales.Parameters.AddWithValue("@UpdatedAvailableQty", updateQty);
+                //        cmdSales.Parameters.AddWithValue("@UpdatedSales", updateSales);
+                //        cmdSales.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
+                //        cmdSales.ExecuteNonQuery();
+                //        con.Close();
+                //    }
+                //}
 
-                //remove all from cart & minus the stock
-                clearCart();
+                ////remove all from cart & minus the stock
+                //clearCart();
+                Response.Redirect("~/Sites/client/Payment.aspx");
             }
             else
             {
                 // do not allow user to checkout if the qty of item entered is invalid
-
                 btnCheckout.Enabled = false;
             }
         }
@@ -262,18 +262,18 @@ namespace ArtMoments.Sites.client
         }
 
         // clear all the item from the cart as the user checkout
-        protected void clearCart()
-        {
-            SqlConnection con = new SqlConnection(conString);
+        //protected void clearCart()
+        //{
+        //    SqlConnection con = new SqlConnection(conString);
 
-            string clearCartQuery = "Delete from [CartItems] where user_id like @CustId";
-            SqlCommand cmd = new SqlCommand(clearCartQuery, con);
-            cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserId"]));
-            con.Open();
-            cmd.ExecuteNonQuery();
-            con.Close();
-            Response.Redirect(Request.RawUrl);
-        }
+        //    string clearCartQuery = "Delete from [CartItems] where user_id like @CustId";
+        //    SqlCommand cmd = new SqlCommand(clearCartQuery, con);
+        //    cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserId"]));
+        //    con.Open();
+        //    cmd.ExecuteNonQuery();
+        //    con.Close();
+        //    Response.Redirect(Request.RawUrl);
+        //}
 
         // action on updating the database as buyer change the delivery method for particular art item
         protected void ddlDeliverChg(object sender, EventArgs e)

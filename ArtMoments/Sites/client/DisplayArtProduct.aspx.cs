@@ -71,6 +71,20 @@ namespace ArtMoments.Sites.client
         //Display product according to the selected category
         protected void GeneralDisplay()
         {
+            // display cookie
+            if(Request.Cookies["LastVisitArt"] != null)
+            {
+                hyperlinkLastVisit.NavigateUrl = Request.Cookies["LastVisitArt"].Value;
+                lblLastVisit.Visible = true;
+                hyperlinkLastVisit.Visible = true;
+            }
+            else
+            { 
+                lblLastVisit.Visible = false;
+                hyperlinkLastVisit.Visible = false;
+            }
+
+
             SqlConnection conn = new SqlConnection(strCon);
             conn.Open();
 
@@ -193,6 +207,14 @@ namespace ArtMoments.Sites.client
         //navigate to order product page
         protected void dlProd_ItemCommand(object source, DataListCommandEventArgs e)
         {
+            //Cookie
+            HttpCookie lastVisit = new HttpCookie("LastVisitArt");
+            lastVisit.Value = "~/Sites/general/OrderArt.aspx?id=" + e.CommandArgument.ToString();
+            lastVisit.Expires = DateTime.Now.AddSeconds(15);
+            
+
+            Response.Cookies.Add(lastVisit);
+
             if (e.CommandName == "orderProd")
             {
                 Response.Redirect("~/Sites/general/OrderArt.aspx?id=" + e.CommandArgument.ToString());
