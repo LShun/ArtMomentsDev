@@ -38,8 +38,8 @@
                                 <asp:Label ID="id" runat="server" Text='<%# Eval("id") %>'></asp:Label> 
                             </ItemTemplate>
                         </asp:TemplateField>
-                    <asp:BoundField DataField="date_order" HeaderText="date_order" SortExpression="date_order" />
-                    <asp:BoundField DataField="payment_method" HeaderText="payment_method" SortExpression="payment_method" />
+                    <asp:BoundField DataField="date_order" HeaderText="Payment Date" SortExpression="date_order" />
+                    <asp:BoundField DataField="payment_method" HeaderText="Payment Method" SortExpression="payment_method" />
                 </Fields>
                 <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
                 <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
