@@ -91,18 +91,23 @@
                     <asp:Label ID="lblName" runat="server" Text="Receiver Name :" ></asp:Label>
                     
                 </td>
-                <td>
+                <td style="text-align:left; padding:0.5em">
                     <asp:TextBox ID="txtName" runat="server" Width="90%" placeholder="Name"></asp:TextBox>
                      <asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Receiver Name is required" 
                          ControlToValidate="txtName" ForeColor="Red" Font-Size="Small">*</asp:RequiredFieldValidator>
-                </td>
+                     
+                     <asp:RegularExpressionValidator ID="revName" runat="server"
+                                                    ErrorMessage="Name only accept alphabet"
+                                                    ValidationExpression="^[a-zA-Z ]*$" ControlToValidate="txtName" ForeColor="Red" Font-Size="Small">*
+                 </asp:RegularExpressionValidator>
+                 </td>
             </tr>
             <tr class="TableData">
                 <td style="text-align:left; padding:0.5em" class="auto-style1">
                     <asp:Label ID="lblContactNum" runat="server" Text="Contact Number : "></asp:Label>
                       
                 </td>
-                <td>
+                <td style="text-align:left; padding:0.5em">
                     <asp:TextBox ID="txtContactNum" runat="server" Width="90%" placeholder="Eg: 0123456789"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvContactNum" runat="server" ErrorMessage="Contact Number is required"
                         ControlToValidate="txtContactNum" ForeColor="Red" Font-Size="Small">*</asp:RequiredFieldValidator>
@@ -119,7 +124,7 @@
                     <asp:Label ID="lblAddress" runat="server" Text="Address :"></asp:Label>
                     
                 </td>
-                <td>
+                <td style="text-align:left; padding:0.5em">
                     <asp:TextBox ID="txtAddress" runat="server" Width="90%" placeholder="Address"></asp:TextBox>
                <asp:RequiredFieldValidator ID="rfvAddress" runat="server" ErrorMessage="Address is required" 
                    ControlToValidate="txtAddress" ForeColor="Red" Font-Size="Small" >*</asp:RequiredFieldValidator>
@@ -131,8 +136,8 @@
                 <td style="text-align:left; padding:0.5em" class="auto-style1">
                    <asp:Label ID="lblDeliveryArea" runat="server" Text="Delivery Area :"></asp:Label>     
                 </td>
-                <td>
-                    <asp:DropDownList runat="server" ID="ddlDeliveryMethod" DataSourceID="SqlDataSource2"  Width="90%" DataTextField="deliver_type" DataValueField="deliver_type" AutoPostBack="true" OnSelectedIndexChanged="ddlDeliveryMethod_SelectedIndexChanged" ></asp:DropDownList>
+                <td style="text-align:left; padding:0.5em">
+                    <asp:DropDownList runat="server" ID="ddlDeliveryMethod" DataSourceID="SqlDataSource2"  Width="90%" DataTextField="deliver_type" DataValueField="id" AutoPostBack="true" OnSelectedIndexChanged="ddlDeliveryMethod_SelectedIndexChanged" ></asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [deliver_type], [id] FROM [Delivery]"></asp:SqlDataSource>
                 </td>
             </tr>
@@ -167,7 +172,7 @@
              <td class="auto-style2" style="text-align:left; padding:0.5em">
                   <asp:Label ID="lblCarType" runat="server" Text="Card Type :" ></asp:Label> 
              </td>
-             <td>
+             <td style="text-align:left; padding:0.5em">
                  <asp:RadioButtonList ID="rblCardType" runat="server" CssClass="auto-style3" Width="499px" RepeatDirection="Horizontal">
                      <asp:ListItem Selected="True">Master Card</asp:ListItem> 
                      <asp:ListItem>Visa Card</asp:ListItem>
@@ -178,7 +183,7 @@
              <td class="auto-style2" style="text-align:left; padding:0.5em">
                   <asp:Label ID="lblCardNum" runat="server" Text="Card Number :" ></asp:Label> 
              </td>
-             <td>
+             <td style="text-align:left; padding:0.5em">
                  <asp:TextBox ID="txtCardNum" runat="server" Width="90%" MaxLength="16" placeholder="Card Number"></asp:TextBox>
              <asp:RequiredFieldValidator ID="rfvCardNum" runat="server" ErrorMessage="Card Number is required" 
                  ControlToValidate="txtCardNum" ForeColor="Red" Font-Size="Small">*</asp:RequiredFieldValidator>
@@ -193,16 +198,21 @@
              <td class="auto-style2" style="text-align:left; padding:0.5em">
                   <asp:Label ID="lblCardExpYr" runat="server" Text="Card Expiration Year :" ></asp:Label> 
              </td>
-             <td>
+             <td style="text-align:left; padding:0.5em">
                 <asp:TextBox ID="txtExpYr" runat="server" Width="90%" placeholder="Year" MaxLength="4"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvExpYr" runat="server" ErrorMessage="Expiration Year is required" 
                 ControlToValidate="txtExpYr" ForeColor="Red" Font-Size="Small">*</asp:RequiredFieldValidator>
-            </td>
+                 
+                 <asp:RegularExpressionValidator ID="revExpYr" runat="server"
+                                                    ErrorMessage="Expiration Year only accept integer value"
+                                                    ValidationExpression="^[1-9]\d*(\.\d+)?$" ControlToValidate="txtSecurityCode" ForeColor="Red" Font-Size="Small">*
+                 </asp:RegularExpressionValidator>
+             </td>
           <tr class="TableData">
                <td class="auto-style2" style="text-align:left; padding:0.5em">
                   <asp:Label ID="lblCardExpMth" runat="server" Text="Card Expiration Month :" ></asp:Label> 
              </td>
-             <td>
+             <td style="text-align:left; padding:0.5em">
                  <asp:TextBox ID="txtExpMth" runat="server" placeholder="Month" MaxLength="2" Width="90%"></asp:TextBox>
                  
                  <asp:RequiredFieldValidator ID="rfvExpMth" runat="server" ErrorMessage="Expiration Month is required" 
@@ -211,8 +221,10 @@
                  <asp:RangeValidator ID="rvExpMth" runat="server" ErrorMessage="Expiration Month should within 1-12" 
                      MinimumValue="1" MaximumValue="12" ControlToValidate="txtExpMth" ForeColor="Red" Font-Size="Small">*</asp:RangeValidator>
                 
-                 <asp:CustomValidator ID="cvCardExp" runat="server" ErrorMessage="Card Expiration should be greater than today or onward"
+                 <%--<asp:CustomValidator ID="cvCardExp" runat="server" ErrorMessage="Card Expiration should be greater than today or onward"
                      onservervalidate="checkCardExpiration" ForeColor="Red" ControlToValidate="txtExpYr" Font-Size="Small">*</asp:CustomValidator>
+            --%> 
+
              </td>
 
          </tr>
@@ -221,7 +233,7 @@
                  <asp:Label ID="lblSecurityCode" runat="server" Text="Security Code :" ></asp:Label> 
              
              </td>
-             <td>
+             <td style="text-align:left; padding:0.5em">
                  <asp:TextBox ID="txtSecurityCode" runat="server" Width="90%" placeholder="Eg: 1234" MaxLength="4"></asp:TextBox>
                  <asp:RequiredFieldValidator ID="rfvSecurityCode" runat="server" ErrorMessage="Security Code is required"
                      ControlToValidate="txtSecurityCode" ForeColor="Red" Font-Size="Small" >*</asp:RequiredFieldValidator>
@@ -234,12 +246,12 @@
          </tr>
      </table>
         <br />
-        <asp:CheckBox ID="CheckBox1" runat="server" Text="I have read and understand the privacy and policy" />
+        <asp:CheckBox ID="CheckBox1" runat="server" Text=" I have read and understand the privacy and policy" />
         <br />
         <br />
-        <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation="false" />
+        <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation="false" OnClick="btnCancel_Click" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnConfirm" runat="server" Text="Confirm Purchase" CausesValidation="true"/>
+        <asp:Button ID="btnConfirm" runat="server" Text="Confirm Purchase" CausesValidation="true" OnClick="btnConfirm_Click"/>
 
         <br />
 
@@ -248,7 +260,7 @@
     </div>
 </asp:Content>
 
-<!--<!DOCTYPE html>
+<%--<!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -343,7 +355,7 @@
                     <asp:Label ID="lblName" runat="server" Text="Receiver Name :" ></asp:Label>
                     
                 </td>
-                <td>
+                <td style="text-align:left; padding:0.5em" >
                     <asp:TextBox ID="txtName" runat="server" Width="90%" placeholder="Name"></asp:TextBox>
                      <asp:RequiredFieldValidator ID="rfvName" runat="server" ErrorMessage="Receiver Name is required" 
                          ControlToValidate="txtName" ForeColor="Red" Font-Size="Small">*</asp:RequiredFieldValidator>
@@ -354,8 +366,8 @@
                     <asp:Label ID="lblContactNum" runat="server" Text="Contact Number : "></asp:Label>
                       
                 </td>
-                <td>
-                    <asp:TextBox ID="txtContactNum" runat="server" Width="90%" placeholder="Eg: 0123456789"></asp:TextBox>
+                <td style="text-align:left; padding:0.5em" >
+                    <asp:TextBox ID="txtContactNum" runat="server" Width="90%" placeholder="Eg: 0123456789" MaxLength="10"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvContactNum" runat="server" ErrorMessage="Contact Number is required"
                         ControlToValidate="txtContactNum" ForeColor="Red" Font-Size="Small">*</asp:RequiredFieldValidator>
                     
@@ -371,7 +383,7 @@
                     <asp:Label ID="lblAddress" runat="server" Text="Address :"></asp:Label>
                     
                 </td>
-                <td>
+                <td style="text-align:left; padding:0.5em" >
                     <asp:TextBox ID="txtAddress" runat="server" Width="90%" placeholder="Address"></asp:TextBox>
                <asp:RequiredFieldValidator ID="rfvAddress" runat="server" ErrorMessage="Address is required" 
                    ControlToValidate="txtAddress" ForeColor="Red" Font-Size="Small" >*</asp:RequiredFieldValidator>
@@ -383,7 +395,7 @@
                 <td style="text-align:left; padding:0.5em" class="auto-style1">
                    <asp:Label ID="lblDeliveryArea" runat="server" Text="Delivery Area :"></asp:Label>     
                 </td>
-                <td>
+                <td style="text-align:left; padding:0.5em" >
                     <asp:DropDownList runat="server" ID="ddlDeliveryMethod" DataSourceID="SqlDataSource2"  Width="90%" DataTextField="deliver_type" DataValueField="deliver_type" AutoPostBack="true" OnSelectedIndexChanged="ddlDeliveryMethod_SelectedIndexChanged" ></asp:DropDownList>
                     <asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [deliver_type], [id] FROM [Delivery]"></asp:SqlDataSource>
                 </td>
@@ -419,7 +431,7 @@
              <td class="auto-style2" style="text-align:left; padding:0.5em">
                   <asp:Label ID="lblCarType" runat="server" Text="Card Type :" ></asp:Label> 
              </td>
-             <td>
+             <td style="text-align:left; padding:0.5em" >
                  <asp:RadioButtonList ID="rblCardType" runat="server" CssClass="auto-style3" Width="499px" RepeatDirection="Horizontal">
                      <asp:ListItem Selected="True">Master Card</asp:ListItem> 
                      <asp:ListItem>Visa Card</asp:ListItem>
@@ -430,7 +442,7 @@
              <td class="auto-style2" style="text-align:left; padding:0.5em">
                   <asp:Label ID="lblCardNum" runat="server" Text="Card Number :" ></asp:Label> 
              </td>
-             <td>
+             <td style="text-align:left; padding:0.5em">  
                  <asp:TextBox ID="txtCardNum" runat="server" Width="90%" MaxLength="16" placeholder="Card Number"></asp:TextBox>
              <asp:RequiredFieldValidator ID="rfvCardNum" runat="server" ErrorMessage="Card Number is required" 
                  ControlToValidate="txtCardNum" ForeColor="Red" Font-Size="Small">*</asp:RequiredFieldValidator>
@@ -445,16 +457,21 @@
              <td class="auto-style2" style="text-align:left; padding:0.5em">
                   <asp:Label ID="lblCardExpYr" runat="server" Text="Card Expiration Year :" ></asp:Label> 
              </td>
-             <td>
+             <td style="text-align:left; padding:0.5em" >
                 <asp:TextBox ID="txtExpYr" runat="server" Width="90%" placeholder="Year" MaxLength="4"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvExpYr" runat="server" ErrorMessage="Expiration Year is required" 
                 ControlToValidate="txtExpYr" ForeColor="Red" Font-Size="Small">*</asp:RequiredFieldValidator>
+
+                 <asp:RegularExpressionValidator ID="revExpYr" runat="server"
+                                                    ErrorMessage="Expiration Year only accept integer value"
+                                                    ValidationExpression="^[1-9]\d*(\.\d+)?$" ControlToValidate="txtSecurityCode" ForeColor="Red" Font-Size="Small">*
+                 </asp:RegularExpressionValidator>
             </td>
           <tr class="TableData">
                <td class="auto-style2" style="text-align:left; padding:0.5em">
                   <asp:Label ID="lblCardExpMth" runat="server" Text="Card Expiration Month :" ></asp:Label> 
              </td>
-             <td>
+             <td style="text-align:left; padding:0.5em" >
                  <asp:TextBox ID="txtExpMth" runat="server" placeholder="Month" MaxLength="2" Width="90%"></asp:TextBox>
                  
                  <asp:RequiredFieldValidator ID="rfvExpMth" runat="server" ErrorMessage="Expiration Month is required" 
@@ -473,7 +490,7 @@
                  <asp:Label ID="lblSecurityCode" runat="server" Text="Security Code :" ></asp:Label> 
              
              </td>
-             <td>
+             <td style="text-align:left; padding:0.5em" >
                  <asp:TextBox ID="txtSecurityCode" runat="server" Width="90%" placeholder="Eg: 1234" MaxLength="4"></asp:TextBox>
                  <asp:RequiredFieldValidator ID="rfvSecurityCode" runat="server" ErrorMessage="Security Code is required"
                      ControlToValidate="txtSecurityCode" ForeColor="Red" Font-Size="Small" >*</asp:RequiredFieldValidator>
@@ -500,4 +517,4 @@
     </div>
         </form>
 </body>
-</html>-->
+</html>--%>
