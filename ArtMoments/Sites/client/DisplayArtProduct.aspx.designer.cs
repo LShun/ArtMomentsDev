@@ -123,6 +123,24 @@ namespace ArtMoments.Sites.client
         protected global::System.Web.UI.WebControls.ValidationSummary revSummary;
 
         /// <summary>
+        /// lblLastVisit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblLastVisit;
+
+        /// <summary>
+        /// hyperlinkLastVisit control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink hyperlinkLastVisit;
+
+        /// <summary>
         /// lblRecordMsg control.
         /// </summary>
         /// <remarks>

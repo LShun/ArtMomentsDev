@@ -79,6 +79,8 @@
                     <asp:ValidationSummary ID="revSummary" runat="server" ShowMessageBox="true" ShowSummary="false" ForeColor="Red"/>
                 </div>
             </div>
+            <asp:Label ID="lblLastVisit" runat="server" Text="You last visited website is:"></asp:Label>
+&nbsp;<asp:HyperLink ID="hyperlinkLastVisit" runat="server" NavigateUrl="~/Sites/general/HomePage.aspx">Click Here</asp:HyperLink>
         </div>
 
         <%-- Datalist to display product category data from database --%>

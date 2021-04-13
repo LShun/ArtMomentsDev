@@ -33,6 +33,20 @@ namespace ArtMoments.Sites.client
         //Used to normal display product category without condition
         protected void GeneralDisplay()
         {
+
+            // display cookie
+            if (Request.Cookies["LastVisitArt"] != null)
+            {
+                hyperlinkLastVisit.NavigateUrl = Request.Cookies["LastVisitArt"].Value;
+                lblLastVisit.Visible = true;
+                hyperlinkLastVisit.Visible = true;
+            }
+            else
+            {
+                lblLastVisit.Visible = false;
+                hyperlinkLastVisit.Visible = false;
+            }
+
             SqlConnection conn = new SqlConnection(strCon);
             conn.Open();
 
