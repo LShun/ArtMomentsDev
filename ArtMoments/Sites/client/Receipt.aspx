@@ -150,6 +150,18 @@
             text-align: center;
             justify-content: space-between !important;
         }
+
+        .itemTable {
+            margin-bottom: 10px;
+            border: 1px solid #dee2e6;
+            display: block;
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .itemTable tr:nth-of-type(odd) {
+            background-color: rgba(0,0,0,.05)
+        }
     </style>
 </head>
 <body>
@@ -184,7 +196,7 @@
                                 <asp:Label ID="lblOrderIDTxt" runat="server" Text="Label">Order ID:</asp:Label>
                             </div>
                             <div class="col-6">
-                                <asp:Label ID="lblOrderID" runat="server" Text='<%# Eval("orderID") %>'/>
+                                <asp:Label ID="lblOrderID" runat="server" Text='<%# Eval("orderID") %>' />
                             </div>
                         </div>
                         <div class="row">
@@ -192,7 +204,7 @@
                                 <asp:Label ID="lblOrderDateTxt" runat="server" Text="Label">Order Date:</asp:Label>
                             </div>
                             <div class="col-6">
-                                <asp:Label ID="lblOrderDate" runat="server" Text='<%#DataBinder.Eval("order_date", "{0:dd/MM/yyyy}") %>'/>
+                                <asp:Label ID="lblOrderDate" runat="server" Text='<%#DataBinder.Eval("order_date", "{0:dd/MM/yyyy}") %>' />
                             </div>
                         </div>
                     </div>
@@ -203,19 +215,66 @@
                         </strong>
                         <div class="row">
                             <div class="col-6">
-                                <asp:Label ID="lblName" runat="server" Text='<%# Eval("receiveName") %>'/>
+                                <asp:Label ID="lblName" runat="server" Text='<%# Eval("receiveName") %>' />
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
-                                <asp:Label ID="lblShippingAddr" runat="server" Text='<%# Eval("shippingAddress") %>'/>
+                                <asp:Label ID="lblShippingAddr" runat="server" Text='<%# Eval("shippingAddress") %>' />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <%--item List--%>
+            <div class="itemTable">
+                <asp:GridView ID="itemList" runat="server" AutoGenerateColumns="False" DataSourceID="dsOrderList" OnRowCommand="itemList_RowCommand">
+                    <Columns>
+                        <asp:TemplateField HeaderText="Product Name">
+                            <ItemStyle Width="150" />
+                            <HeaderStyle HorizontalAlign="Center" />
+                            <ItemTemplate>
+                                <asp:Image ID="prodImage" runat="server" Width="97px" Height="97px" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[]) Eval("Image")) %>' />
+                                <br />
+                            </ItemTemplate>
+                        </asp:TemplateField>
 
+                        <asp:TemplateField HeaderText="">
+                            <ItemStyle Width="550" />
+                            <HeaderStyle HorizontalAlign="Center" />
+                            <ItemTemplate> 
+                                <asp:Label ID="prodName" runat="server" Text='<%# Eval("Name") %>' Style="font-weight: bold"></asp:Label>
+                                <br />
+                                <asp:Label ID="prodDesc" runat="server" Text='<%# Eval("Category") %>'></asp:Label>
+                                <br />
+                                <asp:Label ID="prodSize" runat="server" Text='<%# Eval("Size") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" HeaderStyle-ForeColor="White">
+                            <ItemStyle Width="150" HorizontalAlign="Center" />
+                            <HeaderStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
+
+                        <asp:BoundField DataField="Price" HeaderText="Price (RM)" DataFormatString="{0:n}">
+                            <ItemStyle Width="140" HorizontalAlign="Center" />
+                            <HeaderStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
+
+                        <asp:BoundField DataField="subtotal" HeaderText="Total" DataFormatString="{0:n}">
+                            <ItemStyle Width="100" HorizontalAlign="Center" />
+                            <HeaderStyle HorizontalAlign="Center" />
+                        </asp:BoundField>
+
+                    </Columns>
+                </asp:GridView>
+                <asp:SqlDataSource ID="dsOrderList" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT O.quantity as [Quantity], P.prod_name as [ProdName], P.prod_size as [Size], P.prod_price as [Price], P.prod_image as [Image], (O.quantity*P.prod_price) as [subtotal], C.category_name as [Category] FROM Product P , Product_Category C, [Order] O WHERE O.transaction_id = @transactionId AND P.category_id = C.id AND p.id = o.product_id" CancelSelectOnNullParameter="False">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="lblOrderID" Name="transactionId" PropertyName="Text" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+            </div>
         </div>
     </form>
 </body>
