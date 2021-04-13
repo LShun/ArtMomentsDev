@@ -33,6 +33,12 @@ namespace ArtMoments.Sites.client
                     total += row.Field<Double>("subtotal");
                     
                 }
+                if(total == 0)
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('There is no product for you to purchase..')", true);
+                    Response.Redirect("~/Sites/general/HomePage.aspx");
+
+                }
                 ddlDeliveryMethod.Items.Clear();
                 SqlConnection conn = new SqlConnection(conString);
                 conn.Open();
@@ -48,7 +54,7 @@ namespace ArtMoments.Sites.client
                         {
                             ListItem li = new ListItem((string)dr["deliver_type"]);
                             ddlDeliveryMethod.Items.Add(li);
-                            if(ddlDeliveryMethod.SelectedItem.Equals((string)dr["deliver_type"]))
+                            if(ddlDeliveryMethod.SelectedItem.Value.Equals((string)dr["deliver_type"]))
                             {
                                 lblDeliveryFee.Text =  dr["deliver_fees"].ToString();
                                 delivery_fees = Double.Parse(lblDeliveryFee.Text);
@@ -63,25 +69,36 @@ namespace ArtMoments.Sites.client
             }
             else
             {
-                if (rblCardType.SelectedValue == "Visa Card")
+                if (rblCardType.SelectedItem.Value.Equals("Visa Card"))
                 {
                     revCardNum.ValidationExpression = "^([4]\\d{3}-)(\\d{4}-){2}\\d{4}$|^([4]\\d{3} )(\\d{4} ){2}\\d{4}$|^[4]\\d{15}$";
                 }
-                else if (rblCardType.SelectedValue == "Master Card")
+                else
                 {
                     revCardNum.ValidationExpression = "^([5]\\d{3}-)(\\d{4}-){2}\\d{4}$|^([5]\\d{3} )(\\d{4} ){2}\\d{4}$|^[5]\\d{15}$";
                 }
 
-                if (txtExpYr.Text.Equals(DateTime.Now.Year.ToString()))
+                if (!txtExpYr.Text.Equals("") && !txtExpMth.Text.Equals(""))
                 {
-                    if (int.Parse(txtExpYr.Text) >= DateTime.Now.Month)
+                    if(int.Parse(txtExpYr.Text) == DateTime.Now.Year)
+                    {
+                        if (int.Parse(txtExpYr.Text) >= DateTime.Now.Month)
+                        {
+                            txtExpYr.Text = "";
+                            txtExpMth.Text = "";
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Card Expiration Date should be greater than today or onward ')", true);
+                        }
+                    }
+                    else if(int.Parse(txtExpYr.Text) < DateTime.Now.Year)
                     {
                         txtExpYr.Text = "";
                         txtExpMth.Text = "";
+                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Card Expiration Date should be greater than today or onward ')", true);
                     }
+
+
+                    
                 }
-
-
             }
         }
 
@@ -94,8 +111,8 @@ namespace ArtMoments.Sites.client
                 {
                     using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
                     {
-                        //sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["UserId"]);
-                        sda.SelectCommand.Parameters.AddWithValue("@CustId", "1");
+                        sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["UserId"]);
+                        //sda.SelectCommand.Parameters.AddWithValue("@CustId", "1");
                         DataTable dt = new DataTable();
                         sda.Fill(dt);
                         return dt;
@@ -124,7 +141,7 @@ namespace ArtMoments.Sites.client
             SqlConnection conn = new SqlConnection(conString);
             conn.Open();
 
-            string sqlCmd = "SELECT DISTINCT [deliver_type], [deliver_fees] FROM [Delivery] ORDER BY [deliver_type]";
+            string sqlCmd = "SELECT DISTINCT [id], [deliver_type], [deliver_fees] FROM [Delivery] ORDER BY [deliver_type]";
 
             using (SqlCommand cmd = new SqlCommand(sqlCmd, conn))
             {
@@ -133,7 +150,7 @@ namespace ArtMoments.Sites.client
                 {
                     while (dr.Read())
                     {
-                        if (ddlDeliveryMethod.SelectedItem.Equals((string)dr["deliver_type"]))
+                        if (ddlDeliveryMethod.SelectedItem.Value == dr["id"].ToString())
                         {
                             lblDeliveryFee.Text = dr["deliver_fees"].ToString();
                             delivery_fees = Double.Parse(lblDeliveryFee.Text);
@@ -149,99 +166,106 @@ namespace ArtMoments.Sites.client
 
         protected void btnCancel_Click(object sender, EventArgs e)
         {
-            Response.Redirect("HomePage.aspx");
+            Response.Redirect("~/Sites/general/HomePage.aspx");
 
         }
 
         protected void btnConfirm_Click(object sender, EventArgs e)
         {
+           
+           
             if (Page.IsValid)
             {
-                btnConfirm.Enabled = true;
-                //create new transaction before storing the order
-                SqlConnection con = new SqlConnection(conString);
+                if(chkPolicy.Checked)
+                { 
+                    //create new transaction before storing the order
+                    SqlConnection con = new SqlConnection(conString);
 
-                string createTransacQuery =
-                    "insert into [Transaction] (user_id, date_order, delivery_id, delivery_fees, card_num, payment_method, payment_amount, recv_name,recv,contact_num,recv_address)" +
-                    " VALUES (@CustId, @DateOrder, @DeliveryID, @DeliveryFees, @CardNum, @PayMethod, @PayAmount, @Name, @ContactNum, @Address)";
-                SqlCommand cmd = new SqlCommand(createTransacQuery, con);
-                cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserId"]));
-                cmd.Parameters.AddWithValue("@DateOrder", DateTime.Now);
-                cmd.Parameters.AddWithValue("@DeliveryID", ddlDeliveryMethod.SelectedItem.Value);
-                cmd.Parameters.AddWithValue("@DeliveryFees", lblDeliveryFee.Text);
-                cmd.Parameters.AddWithValue("@CardNum", txtCardNum.Text);
-                cmd.Parameters.AddWithValue("@PayMethod", rblCardType.SelectedItem.Value);
-                cmd.Parameters.AddWithValue("@PayAmount", lblTotalPrice.Text);
-                cmd.Parameters.AddWithValue("@Name", txtName.Text);
-                cmd.Parameters.AddWithValue("@ContactNum", txtContactNum.Text);
-                cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
+                    string createTransacQuery =
+                        "insert into [Transaction] (user_id, date_order, delivery_id, delivery_fees, card_num, payment_method, payment_amount, recv_name, recv_contactnum,recv_address)" +
+                        " VALUES (@CustId, @DateOrder, @DeliveryID, @DeliveryFees, @CardNum, @PayMethod, @PayAmount, @Name, @ContactNum, @Address)";
+                    SqlCommand cmd = new SqlCommand(createTransacQuery, con);
+                    cmd.Parameters.AddWithValue("@CustId", Convert.ToInt32(Session["UserId"]));
+                    cmd.Parameters.AddWithValue("@DateOrder", DateTime.Now);
+                    cmd.Parameters.AddWithValue("@DeliveryID", ddlDeliveryMethod.SelectedItem.Value);
+                    cmd.Parameters.AddWithValue("@DeliveryFees", lblDeliveryFee.Text);
+                    cmd.Parameters.AddWithValue("@CardNum", txtCardNum.Text);
+                    cmd.Parameters.AddWithValue("@PayMethod", rblCardType.SelectedItem.Value);
+                    cmd.Parameters.AddWithValue("@PayAmount", lblTotalPrice.Text);
+                    cmd.Parameters.AddWithValue("@Name", txtName.Text);
+                    cmd.Parameters.AddWithValue("@ContactNum", txtContactNum.Text);
+                    cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
 
-                con.Open();
-                cmd.ExecuteNonQuery();
-                con.Close();
-
-                //insert orders into transaction
-
-                //read data from cart
-                con = new SqlConnection(conString);
-                string getCartItemsQuery =
-                    "SELECT C.product_id as prod_id, C.quantity as cart_quantity, C.delivery_id as delivery_id, P.prod_stock as available_stock, P.prod_sales as prod_sales FROM CartItems AS C JOIN Product P on C.product_id = P.id where C.user_id = @CustId";
-                SqlDataAdapter sda = new SqlDataAdapter(getCartItemsQuery, con);
-                sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["UserId"]);
-                DataTable cartItem = new DataTable();
-                sda.Fill(cartItem);
-
-                // retrieve particular newly added transaction id 
-                getTransacID();
-
-                // for each of the item recorded in the cart insert as orders
-                foreach (DataRow row in cartItem.Rows)
-                {
                     con.Open();
-                    string insertOrdersQuery =
-                        "insert into [Order] (product_id,quantity,delivery_id,order_status,transaction_id) VALUES (@ProdId, @Qty,@DeliverId,@OrderStatus,@TransacId)";
-                    cmd = new SqlCommand(insertOrdersQuery, con);
-                    cmd.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
-                    cmd.Parameters.AddWithValue("@Qty", row.Field<Int32>("cart_quantity"));
-                    cmd.Parameters.AddWithValue("@DeliverId", row.Field<Int32>("delivery_id"));
-                    cmd.Parameters.AddWithValue("@OrderStatus", "Pending");
-                    cmd.Parameters.AddWithValue("@TransacId", Convert.ToInt32(Session["TransacId"]));
-
                     cmd.ExecuteNonQuery();
                     con.Close();
 
-                    //deduct stock qty
-                    con.Open();
-                    string updateProdStockQuery =
-                        "update [Product] set prod_stock = @UpdatedAvailableQty, prod_sales = @UpdatedSales where id like @ProdId";
-                    using (SqlCommand cmdSales = new SqlCommand(updateProdStockQuery, con))
+                    //insert orders into transaction
+
+                    //read data from cart
+                    con = new SqlConnection(conString);
+                    string getCartItemsQuery =
+                        "SELECT C.product_id as prod_id, C.quantity as cart_quantity, C.delivery_id as delivery_id, P.prod_stock as available_stock, P.prod_sales as prod_sales FROM CartItems AS C JOIN Product P on C.product_id = P.id where C.user_id = @CustId";
+                    SqlDataAdapter sda = new SqlDataAdapter(getCartItemsQuery, con);
+                    sda.SelectCommand.Parameters.AddWithValue("@CustId", Session["UserId"]);
+                    DataTable cartItem = new DataTable();
+                    sda.Fill(cartItem);
+
+                    // retrieve particular newly added transaction id 
+                    getTransacID();
+
+                    // for each of the item recorded in the cart insert as orders
+                    foreach (DataRow row in cartItem.Rows)
                     {
-                        ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
-                            "alert('success update product info')", true);
-                        int cartQty = row.Field<Int32>("cart_quantity");
-                        int availableQty = row.Field<Int32>("available_stock");
-                        int updateQty = availableQty - cartQty;
+                        con.Open();
+                        string insertOrdersQuery =
+                            "insert into [Order] (product_id,quantity,delivery_id,order_status,transaction_id) VALUES (@ProdId, @Qty,@DeliverId,@OrderStatus,@TransacId)";
+                        cmd = new SqlCommand(insertOrdersQuery, con);
+                        cmd.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
+                        cmd.Parameters.AddWithValue("@Qty", row.Field<Int32>("cart_quantity"));
+                        cmd.Parameters.AddWithValue("@DeliverId", row.Field<Int32>("delivery_id"));
+                        cmd.Parameters.AddWithValue("@OrderStatus", "Pending");
+                        cmd.Parameters.AddWithValue("@TransacId", Convert.ToInt32(Session["TransacId"]));
 
-                        int currentSalesQty = row.Field<Int32>("prod_sales");
-                        int updateSales = currentSalesQty + cartQty;
-                        int prodId = row.Field<Int32>("prod_id");
-                        cmdSales.Parameters.AddWithValue("@UpdatedAvailableQty", updateQty);
-                        cmdSales.Parameters.AddWithValue("@UpdatedSales", updateSales);
-                        cmdSales.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
-                        cmdSales.ExecuteNonQuery();
+                        cmd.ExecuteNonQuery();
                         con.Close();
+
+                        //deduct stock qty
+                        con.Open();
+                        string updateProdStockQuery =
+                            "update [Product] set prod_stock = @UpdatedAvailableQty, prod_sales = @UpdatedSales where id like @ProdId";
+                        using (SqlCommand cmdSales = new SqlCommand(updateProdStockQuery, con))
+                        {
+                            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage",
+                                "alert('success update product info')", true);
+                            int cartQty = row.Field<Int32>("cart_quantity");
+                            int availableQty = row.Field<Int32>("available_stock");
+                            int updateQty = availableQty - cartQty;
+
+                            int currentSalesQty = row.Field<Int32>("prod_sales");
+                            int updateSales = currentSalesQty + cartQty;
+                            int prodId = row.Field<Int32>("prod_id");
+                            cmdSales.Parameters.AddWithValue("@UpdatedAvailableQty", updateQty);
+                            cmdSales.Parameters.AddWithValue("@UpdatedSales", updateSales);
+                            cmdSales.Parameters.AddWithValue("@ProdId", row.Field<Int32>("prod_id"));
+                            cmdSales.ExecuteNonQuery();
+                            con.Close();
+                        }
                     }
+
+                    //remove all from cart & minus the stock
+                    clearCart();
+                    Response.Redirect("~/Sites/general/HomePage.aspx");
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Pay Successfully.')", true);
+                    }
+                else
+                {
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('Please confirm you read the privacy and policy before proceed.')", true);
                 }
-
-                //remove all from cart & minus the stock
-                clearCart();
             }
-            else
-            {
-                // do not allow user to checkout if the qty of item entered is invalid
 
-                btnConfirm.Enabled = false;
-            }
+            
+
         }
 
         // retrieve the transaction id of newly added transaction

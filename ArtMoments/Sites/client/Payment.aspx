@@ -108,7 +108,7 @@
                       
                 </td>
                 <td style="text-align:left; padding:0.5em">
-                    <asp:TextBox ID="txtContactNum" runat="server" Width="90%" placeholder="Eg: 0123456789"></asp:TextBox>
+                    <asp:TextBox ID="txtContactNum" runat="server" Width="90%" placeholder="Eg: 0123456789" MaxLength="10"></asp:TextBox>
                     <asp:RequiredFieldValidator ID="rfvContactNum" runat="server" ErrorMessage="Contact Number is required"
                         ControlToValidate="txtContactNum" ForeColor="Red" Font-Size="Small">*</asp:RequiredFieldValidator>
                     
@@ -184,7 +184,7 @@
                   <asp:Label ID="lblCardNum" runat="server" Text="Card Number :" ></asp:Label> 
              </td>
              <td style="text-align:left; padding:0.5em">
-                 <asp:TextBox ID="txtCardNum" runat="server" Width="90%" MaxLength="16" placeholder="Card Number"></asp:TextBox>
+                 <asp:TextBox ID="txtCardNum" runat="server" Width="90%" MaxLength="16" placeholder="Card Number" AutoPostBack="true"></asp:TextBox>
              <asp:RequiredFieldValidator ID="rfvCardNum" runat="server" ErrorMessage="Card Number is required" 
                  ControlToValidate="txtCardNum" ForeColor="Red" Font-Size="Small">*</asp:RequiredFieldValidator>
                
@@ -199,13 +199,13 @@
                   <asp:Label ID="lblCardExpYr" runat="server" Text="Card Expiration Year :" ></asp:Label> 
              </td>
              <td style="text-align:left; padding:0.5em">
-                <asp:TextBox ID="txtExpYr" runat="server" Width="90%" placeholder="Year" MaxLength="4"></asp:TextBox>
+                <asp:TextBox ID="txtExpYr" runat="server" Width="90%" placeholder="Year" MaxLength="4" AutoPostBack="true"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="rfvExpYr" runat="server" ErrorMessage="Expiration Year is required" 
                 ControlToValidate="txtExpYr" ForeColor="Red" Font-Size="Small">*</asp:RequiredFieldValidator>
                  
                  <asp:RegularExpressionValidator ID="revExpYr" runat="server"
                                                     ErrorMessage="Expiration Year only accept integer value"
-                                                    ValidationExpression="^[1-9]\d*(\.\d+)?$" ControlToValidate="txtSecurityCode" ForeColor="Red" Font-Size="Small">*
+                                                    ValidationExpression="^[1-9]\d*(\.\d+)?$" ControlToValidate="txtExpYr" ForeColor="Red" Font-Size="Small">*
                  </asp:RegularExpressionValidator>
              </td>
           <tr class="TableData">
@@ -213,13 +213,13 @@
                   <asp:Label ID="lblCardExpMth" runat="server" Text="Card Expiration Month :" ></asp:Label> 
              </td>
              <td style="text-align:left; padding:0.5em">
-                 <asp:TextBox ID="txtExpMth" runat="server" placeholder="Month" MaxLength="2" Width="90%"></asp:TextBox>
+                 <asp:TextBox ID="txtExpMth" runat="server" placeholder="Month" MaxLength="2" Width="90%" AutoPostBack="true"></asp:TextBox>
                  
                  <asp:RequiredFieldValidator ID="rfvExpMth" runat="server" ErrorMessage="Expiration Month is required" 
                      ControlToValidate="txtExpMth" ForeColor="Red" Font-Size="Small">*</asp:RequiredFieldValidator>
                  
                  <asp:RangeValidator ID="rvExpMth" runat="server" ErrorMessage="Expiration Month should within 1-12" 
-                     MinimumValue="1" MaximumValue="12" ControlToValidate="txtExpMth" ForeColor="Red" Font-Size="Small">*</asp:RangeValidator>
+                     MinimumValue="1" MaximumValue="12" Type="Integer" ControlToValidate="txtExpMth" ForeColor="Red" Font-Size="Small">*</asp:RangeValidator>
                 
                  <%--<asp:CustomValidator ID="cvCardExp" runat="server" ErrorMessage="Card Expiration should be greater than today or onward"
                      onservervalidate="checkCardExpiration" ForeColor="Red" ControlToValidate="txtExpYr" Font-Size="Small">*</asp:CustomValidator>
@@ -246,12 +246,12 @@
          </tr>
      </table>
         <br />
-        <asp:CheckBox ID="CheckBox1" runat="server" Text=" I have read and understand the privacy and policy" />
+        <asp:CheckBox ID="chkPolicy" runat="server" Text=" I have read and understand the privacy and policy" Checked="true" />
         <br />
         <br />
         <asp:Button ID="btnCancel" runat="server" Text="Cancel" CausesValidation="false" OnClick="btnCancel_Click" />
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <asp:Button ID="btnConfirm" runat="server" Text="Confirm Purchase" CausesValidation="true" OnClick="btnConfirm_Click"/>
+        <asp:Button ID="btnConfirm" runat="server" Text="Confirm Purchase" CausesValidation="true" OnClick="btnConfirm_Click" />
 
         <br />
 
