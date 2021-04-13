@@ -35,7 +35,7 @@
         }
 
         .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
-            width: 50%;
+            width: 45%;
             padding-right: 15px;
             padding-left: 15px;
             margin-right: auto;
@@ -51,32 +51,6 @@
 
         *, ::after, ::before {
             box-sizing: border-box;
-        }
-
-        .button:not(:disabled):not(.disabled) {
-            cursor: pointer;
-        }
-
-        .button:hover {
-            color: #212529;
-        }
-
-        .btn-artworkList {
-            color: #fff;
-            background-color: #007bff;
-            border-color: #007bff;
-            display: inline-block;
-            font-weight: 400;
-            text-align: center;
-            vertical-align: middle;
-            user-select: none;
-            border: 1px solid transparent;
-            padding: .375rem .75rem;
-            font-size: 1rem;
-            line-height: 1.5;
-            border-radius: .25rem;
-            transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
-            float: right;
         }
 
         @media (min-width: 992px) {
@@ -115,6 +89,25 @@
             -ms-flex: 0 0 50%;
             flex: 0 0 50%;
             max-width: 50%;
+        }
+
+        .col-5, .col-7 {
+            position: relative;
+            width: 100%;
+        }
+
+        .col-5 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 41.666667%;
+            flex: 0 0 41.666667%;
+            max-width: 41.666667%;
+        }
+
+        .col-7 {
+            -webkit-box-flex: 0;
+            -ms-flex: 0 0 58.333333%;
+            flex: 0 0 58.333333%;
+            max-width: 58.333333%;
         }
 
         a {
@@ -159,8 +152,28 @@
             overflow-x: auto;
         }
 
-        .itemTable tr:nth-of-type(odd) {
-            background-color: rgba(0,0,0,.05)
+            .itemTable tr:nth-of-type(odd) {
+                background-color: rgba(0,0,0,.05)
+            }
+
+        #delieryFeeDetailView {
+            margin-left: 318px;
+        }
+
+        #lblTxtTotal {
+            margin-left: 320px;
+        }
+
+        #lblTotal {
+            margin-left: 213px;
+            margin-block-start: 120px;
+        }
+
+        .deliveryTable {
+            margin-bottom: 10px;
+            display: block;
+            width: 100%;
+            overflow-x: auto;
         }
     </style>
 </head>
@@ -192,18 +205,18 @@
                             <asp:Label ID="lblSummary" runat="server" Text="Label">SUMMARY</asp:Label>
                         </strong>
                         <div class="row">
-                            <div class="col-6">
-                                <asp:Label ID="lblOrderIDTxt" runat="server" Text="Label">Order ID:</asp:Label>
+                            <div class="col-5">
+                                <asp:Label ID="lblOrderIDTxt" runat="server" Text="Label">Transaction ID:</asp:Label>
                             </div>
-                            <div class="col-6">
-                                <asp:Label ID="lblOrderID" runat="server" Text='<%# Eval("orderID") %>' />
+                            <div class="col-7">
+                                <asp:Label ID="lblOrderID" runat="server" Text='<%# Eval("id") %>' />
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-5">
                                 <asp:Label ID="lblOrderDateTxt" runat="server" Text="Label">Order Date:</asp:Label>
                             </div>
-                            <div class="col-6">
+                            <div class="col-7">
                                 <asp:Label ID="lblOrderDate" runat="server" Text='<%#DataBinder.Eval("order_date", "{0:dd/MM/yyyy}") %>' />
                             </div>
                         </div>
@@ -214,14 +227,10 @@
                             <asp:Label ID="lblAddress" runat="server" Text="Label">Shipping Address</asp:Label>
                         </strong>
                         <div class="row">
-                            <div class="col-6">
-                                <asp:Label ID="lblName" runat="server" Text='<%# Eval("receiveName") %>' />
-                            </div>
+                            <asp:Label ID="lblName" runat="server" Text="" />
                         </div>
                         <div class="row">
-                            <div class="col-6">
-                                <asp:Label ID="lblShippingAddr" runat="server" Text='<%# Eval("shippingAddress") %>' />
-                            </div>
+                            <asp:Label ID="lblShippingAddr" runat="server" Text="" />
                         </div>
                     </div>
                 </div>
@@ -232,23 +241,23 @@
                 <asp:GridView ID="itemList" runat="server" AutoGenerateColumns="False" DataSourceID="dsOrderList" OnRowCommand="itemList_RowCommand">
                     <Columns>
                         <asp:TemplateField HeaderText="Product Name">
-                            <ItemStyle Width="150" />
+                            <ItemStyle Width="130" />
                             <HeaderStyle HorizontalAlign="Center" />
                             <ItemTemplate>
-                                <asp:Image ID="prodImage" runat="server" Width="97px" Height="97px" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[]) Eval("Image")) %>' />
+                                <asp:Image ID="prodImage" runat="server" Width="97px" Height="97px" Style="padding-left: 10px" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[]) Eval("Image")) %>' />
                                 <br />
                             </ItemTemplate>
                         </asp:TemplateField>
 
                         <asp:TemplateField HeaderText="">
-                            <ItemStyle Width="550" />
+                            <ItemStyle Width="500" />
                             <HeaderStyle HorizontalAlign="Center" />
-                            <ItemTemplate> 
-                                <asp:Label ID="prodName" runat="server" Text='<%# Eval("Name") %>' Style="font-weight: bold"></asp:Label>
+                            <ItemTemplate>
+                                <asp:Label ID="prodName" runat="server" Text='<%# Eval("ProdName") %>' Style="font-weight: bold; padding-left: 10px"></asp:Label>
                                 <br />
-                                <asp:Label ID="prodDesc" runat="server" Text='<%# Eval("Category") %>'></asp:Label>
+                                <asp:Label ID="prodDesc" runat="server" Text='<%# Eval("Category") %>' Style="padding-left: 10px"></asp:Label>
                                 <br />
-                                <asp:Label ID="prodSize" runat="server" Text='<%# Eval("Size") %>'></asp:Label>
+                                <asp:Label ID="prodSize" runat="server" Text='<%# Eval("Size") %>' Style="padding-left: 10px"></asp:Label>
                             </ItemTemplate>
                         </asp:TemplateField>
 
@@ -262,16 +271,52 @@
                             <HeaderStyle HorizontalAlign="Center" />
                         </asp:BoundField>
 
-                        <asp:BoundField DataField="subtotal" HeaderText="Total" DataFormatString="{0:n}">
-                            <ItemStyle Width="100" HorizontalAlign="Center" />
+                        <asp:TemplateField HeaderText="Subtotal (RM)">
+                            <ItemStyle Width="200" HorizontalAlign="Center" />
                             <HeaderStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
+                            <ItemTemplate>
+                                <asp:Label ID="subtotal" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "subtotal", "{0:f}") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
 
                     </Columns>
                 </asp:GridView>
-                <asp:SqlDataSource ID="dsOrderList" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT O.quantity as [Quantity], P.prod_name as [ProdName], P.prod_size as [Size], P.prod_price as [Price], P.prod_image as [Image], (O.quantity*P.prod_price) as [subtotal], C.category_name as [Category] FROM Product P , Product_Category C, [Order] O WHERE O.transaction_id = @transactionId AND P.category_id = C.id AND p.id = o.product_id" CancelSelectOnNullParameter="False">
+
+                <asp:SqlDataSource ID="dsOrderList" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT O.transaction_id as [id], O.quantity as [Quantity], P.prod_name as [ProdName], P.prod_size as [Size], P.prod_price as [Price], P.prod_image as [Image], (O.quantity*P.prod_price) as [subtotal], C.category_name as [Category] FROM Product P , Product_Category C, [Order] O WHERE O.transaction_id = @transactionId AND P.category_id = C.id AND p.id = o.product_id" CancelSelectOnNullParameter="False">
                     <SelectParameters>
                         <asp:ControlParameter ControlID="lblOrderID" Name="transactionId" PropertyName="Text" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
+
+
+
+            </div>
+            <%--delivery List--%>
+            <div class="deliveryTable">
+                <asp:DetailsView ID="delieryFeeDetailView" runat="server" AutoGenerateRows="False" BackColor="White" BorderStyle="None" BorderWidth="0px" CellPadding="4" DataSourceID="dsDelivery" ForeColor="Black" GridLines="Horizontal" EnableTheming="False">
+                    <EditRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" HorizontalAlign="Right" />
+                    <Fields>
+                        <asp:TemplateField HeaderText="Delivery Fees: ">
+                            <HeaderStyle Width="200px" />
+                            <ItemStyle Height="50px" Width="310px" HorizontalAlign="Right" />
+                            <ItemTemplate>
+                                <asp:Label ID="delivery_fees" runat="server" Style="padding-right: 25px" Text='<%#DataBinder.Eval(Container.DataItem, "delivery_fees", "{0:f}") %>'></asp:Label>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+
+                    </Fields>
+                    <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                    <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                    <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+                </asp:DetailsView>
+                <br />
+
+                <asp:Label ID="lblTxtTotal" runat="server" Text="Total: "></asp:Label>
+
+                <asp:Label ID="lblTotal" runat="server"></asp:Label>
+                <asp:SqlDataSource ID="dsDelivery" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [delivery_fees] FROM [Transaction] WHERE ([id] = @id)">
+                    <SelectParameters>
+                        <asp:ControlParameter ControlID="lblOrderID" Name="id" PropertyName="Text" Type="String" />
                     </SelectParameters>
                 </asp:SqlDataSource>
             </div>
