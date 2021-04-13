@@ -143,7 +143,7 @@
                 <div class="col-10">
 
                     <asp:TextBox ID="txtArtworkName" MaxLength="50" runat="server" autocomplete="off"></asp:TextBox>
-                </div>
+                 </div>
             </div>
             <div class="row">
                 <div class="col-2">
@@ -151,7 +151,7 @@
                 </div>
                 <div class="col-4">
                     <asp:TextBox ID="txtArtworkHeight" MaxLength="4" onkeypress="return onlyNumberKey(event)" runat="server" autocomplete="off"></asp:TextBox>
-                </div>
+               </div>
                 <div class="col-2">
                     <label for="artworkWidth" class="artworkWidth">Artwork Width (cm)*:</label>
                 </div>
@@ -208,7 +208,6 @@
             </div>
             <div class="row">
                 <asp:Label ID="lblErrorMsg" runat="server" Text="" ForeColor="Red"></asp:Label>
-
             </div>
             <div class="row">
                 <asp:Button ID="submitAddProdBtn" class="button btn-artwork" runat="server" Text="Save & Create" OnClick="saveProdBtn_Click"/>
