@@ -11,6 +11,7 @@ namespace ArtMoments.Sites.general
     {
         protected void Page_PreInit(object sender, EventArgs e)
         {
+
             if (Session["Username"] == null)
             {
                 MasterPageFile = "~/Masters/General.Master";
