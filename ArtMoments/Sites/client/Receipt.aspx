@@ -192,13 +192,31 @@
                         <p style="font-size: 14px; line-height: 140%; text-align: center;">
                             <span style="font-family: Cabin, sans-serif; font-size: 34px; line-height: 47.6px; color: #444444;">
                                 <strong><span style="line-height: 47.6px; font-size: 34px;">Thanks for your order</span></strong>
+                                </br><span style="line-height: 47.6px; font-size: 34px;">The receipt has sent to your email.</span>
                             </span>
                         </p>
                     </div>
                 </div>
             </div>
             <!--Show Summary-->
-            <div class="summaryTable">
+            <asp:DetailsView ID="TransactionIDDetailView" runat="server" AutoGenerateRows="False" DataKeyNames="id" DataSourceID="dsSummary" Height="50px" Width="565px" BackColor="White" BorderColor="#CCCCCC" BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" GridLines="Horizontal">
+                <EditRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" />
+                <Fields>
+                    <asp:TemplateField HeaderText="Transaction ID">
+                            <ItemTemplate>
+                                <asp:Label ID="id" runat="server" Text='<%# Eval("id") %>'></asp:Label> 
+                            </ItemTemplate>
+                    </asp:TemplateField>
+                    <asp:BoundField DataField="date_order" HeaderText="Payment Date" SortExpression="date_order" />
+                    <asp:BoundField DataField="payment_method" HeaderText="Payment Method" SortExpression="delivery_fees" />
+                    <asp:BoundField DataField="recv_name" HeaderText="Receiver" SortExpression="recv_name" />
+                    <asp:BoundField DataField="recv_address" HeaderText="Receiving Address" SortExpression="recv_address" />
+                </Fields>
+                <FooterStyle BackColor="#CCCC99" ForeColor="Black" />
+                <HeaderStyle BackColor="#333333" Font-Bold="True" ForeColor="White" />
+                <PagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" />
+            </asp:DetailsView>
+            <%--<div class="summaryTable">
                 <div class="row">
                     <div class="col-6" style="border: 1px solid #dee2e6; padding-top: 10px; padding-bottom: 10px;">
                         <strong>
@@ -234,22 +252,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>--%>
 
             <%--item List--%>
             <div class="itemTable">
                 <asp:GridView ID="itemList" runat="server" AutoGenerateColumns="False" DataSourceID="dsOrderList" OnRowCommand="itemList_RowCommand">
                     <Columns>
                         <asp:TemplateField HeaderText="Product Name">
-                            <ItemStyle Width="130" />
-                            <HeaderStyle HorizontalAlign="Center" />
-                            <ItemTemplate>
-                                <asp:Image ID="prodImage" runat="server" Width="97px" Height="97px" Style="padding-left: 10px" ImageUrl='<%#"data:image/jpg;base64," + Convert.ToBase64String((byte[]) Eval("Image")) %>' />
-                                <br />
-                            </ItemTemplate>
-                        </asp:TemplateField>
-
-                        <asp:TemplateField HeaderText="">
                             <ItemStyle Width="500" />
                             <HeaderStyle HorizontalAlign="Center" />
                             <ItemTemplate>
@@ -261,7 +270,7 @@
                             </ItemTemplate>
                         </asp:TemplateField>
 
-                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" HeaderStyle-ForeColor="White">
+                        <asp:BoundField DataField="Quantity" HeaderText="Quantity" >
                             <ItemStyle Width="150" HorizontalAlign="Center" />
                             <HeaderStyle HorizontalAlign="Center" />
                         </asp:BoundField>
@@ -282,13 +291,17 @@
                     </Columns>
                 </asp:GridView>
 
-                <asp:SqlDataSource ID="dsOrderList" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT O.transaction_id as [id], O.quantity as [Quantity], P.prod_name as [ProdName], P.prod_size as [Size], P.prod_price as [Price], P.prod_image as [Image], (O.quantity*P.prod_price) as [subtotal], C.category_name as [Category] FROM Product P , Product_Category C, [Order] O WHERE O.transaction_id = @transactionId AND P.category_id = C.id AND p.id = o.product_id" CancelSelectOnNullParameter="False">
-                    <SelectParameters>
-                        <asp:ControlParameter ControlID="lblOrderID" Name="transactionId" PropertyName="Text" />
+                <asp:SqlDataSource ID="dsOrderList" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT O.quantity as [Quantity], P.prod_name as [ProdName], P.prod_size as [Size], P.prod_price as [Price], P.prod_image as [Image], (O.quantity*P.prod_price) as [subtotal], C.category_name as [Category] FROM Product P , Product_Category C, [Order] O WHERE O.transaction_id = @id AND P.category_id = C.id AND p.id = o.product_id" CancelSelectOnNullParameter="False">
+                <SelectParameters>
+                       
                     </SelectParameters>
                 </asp:SqlDataSource>
 
-
+                <asp:SqlDataSource ID="dsSummary" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT top 1 id, date_order, delivery_fees, payment_method, recv_name, recv_address FROM [Transaction] WHERE user_id = @UserId order by id desc"  CancelSelectOnNullParameter="False">
+                    <SelectParameters>
+                        <asp:SessionParameter Name="UserId" SessionField="UserId" />
+                    </SelectParameters>
+                </asp:SqlDataSource>
 
             </div>
             <%--delivery List--%>
@@ -314,9 +327,12 @@
                 <asp:Label ID="lblTxtTotal" runat="server" Text="Total (RM): "></asp:Label>
 
                 <asp:Label ID="lblTotal" runat="server"></asp:Label>
+                <br/>
+                <br/>
+                <asp:Button ID="btnHomepage" class="button btn-artwork" runat="server" Text="Back To Homepage" OnClick="btnHomepage_Click"/>
                 <asp:SqlDataSource ID="dsDelivery" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>" SelectCommand="SELECT [delivery_fees] FROM [Transaction] WHERE ([id] = @id)">
-                    <SelectParameters>
-                        <asp:ControlParameter ControlID="lblOrderID" Name="id" PropertyName="Text" Type="String" />
+                <SelectParameters>
+                       
                     </SelectParameters>
                 </asp:SqlDataSource>
             </div>
