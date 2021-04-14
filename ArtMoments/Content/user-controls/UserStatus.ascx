@@ -5,7 +5,7 @@
         <td>
             <asp:Label ID="lblUsername" runat="server"></asp:Label>
         </td>
-        <td>
+        <td style="text-align: right">
             <asp:Label ID="lblUserType" runat="server"></asp:Label>
         </td>
     </tr>
