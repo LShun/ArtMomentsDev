@@ -49,7 +49,7 @@ namespace ArtMoments.Sites.client
                     string emailSenderHost = ConfigurationManager.AppSettings["smtp"].ToString();
                     int emailSenderPort = Convert.ToInt16(ConfigurationManager.AppSettings["portnumber"]);
                     Boolean emailIsSSL = Convert.ToBoolean(ConfigurationManager.AppSettings["IsSSL"]);
-                    string MailText = "	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp;ArtMoment <br />  <br />" +
+                    string MailText = "	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp;ArtMoments <br />  <br />" +
                         "&nbsp; 	&nbsp; 	&nbsp;Thanks For Your Order <br />  <br /> ";
 
                     string totalText = "\nTotal: " + lblTotal.Text.ToString();
