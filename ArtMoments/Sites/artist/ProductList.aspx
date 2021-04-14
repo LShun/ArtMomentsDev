@@ -152,6 +152,19 @@
             text-decoration: none;
             background-color: transparent;
         }
+        
+        /* latest pictures settings (in the detailsview) */
+        .latest {
+            height: 14rem;
+            margin: 0 0;
+            max-width: 18rem;
+            width: auto
+        }
+
+        .dvArtwork {
+            display:flex;
+            justify-content:center;
+        }
     </style>
 
 </asp:Content>
@@ -236,9 +249,11 @@
             </asp:SqlDataSource>
         </div>
         <%-- Inspiration products --%>
-        <div class="col">
-        <ArtworkHistory:ArtHistory ID="ahSellerLatestArt" runat="server"/>
-            </div>
+        <div class="dvArtwork">
+            <ArtworkHistory:ArtHistory ID="ahSellerLatestArt" runat="server"/>
+        </div>
+        
+        
     </div>
    
 </asp:Content>
