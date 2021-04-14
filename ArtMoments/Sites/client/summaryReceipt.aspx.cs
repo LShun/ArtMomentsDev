@@ -42,13 +42,14 @@ namespace ArtMoments.Sites.client
 
                     //    TransactionIDDetailView.DataBind();
                     //}
+
+
+                //SqlDataSource2.SelectParameters[0].DefaultValue = transacId.Text.ToString();
+
+                //SqlDataSource3.SelectParameters[0].DefaultValue = transacId.Text.ToString();
                 }
 
             }
-
-            //SqlDataSource2.SelectParameters[0].DefaultValue = transacId.Text.ToString();
-
-            //SqlDataSource3.SelectParameters[0].DefaultValue = transacId.Text.ToString();
         }
         protected void calcTotal()
         {
