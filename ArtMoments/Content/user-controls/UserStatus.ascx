@@ -8,9 +8,6 @@
         <td>
             <asp:Label ID="lblUserType" runat="server"></asp:Label>
         </td>
-        <td>
-            <asp:Label ID="lblLoginTime" runat="server"></asp:Label>
-        </td>
     </tr>
 </table>
 
