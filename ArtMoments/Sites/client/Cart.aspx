@@ -183,7 +183,6 @@
                 evt.preventDefault();
             }
         }
-
     </script>
 
     <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ArtMomentsDbConnectionString %>"

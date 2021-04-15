@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Client1.Master" AutoEventWireup="true" CodeBehind="summaryReceipt.aspx.cs" Inherits="ArtMoments.Sites.client.clientReceipt" %>
+﻿ <%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Client1.Master" AutoEventWireup="true" CodeBehind="summaryReceipt.aspx.cs" Inherits="ArtMoments.Sites.client.clientReceipt" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
         .heading {
