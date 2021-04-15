@@ -42,6 +42,34 @@ namespace ArtMoments.Sites.client
                 total += deliveryFee;
                 lblTotal.Text = total.ToString("F");
 
+
+                string connectionString =
+                ConfigurationManager.ConnectionStrings["ArtMomentsDbConnectionString"].ConnectionString;
+
+                string username = Session["UserName"].ToString();
+                String userEmail = "";
+                using (SqlConnection sqlCon = new SqlConnection(connectionString))
+                {
+                    sqlCon.Open();
+                    String query =
+                        "SELECT user_email FROM [User] WHERE user_name =@UserName";
+
+                    SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
+                    sqlCmd.Parameters.AddWithValue("@UserName", username);
+
+                    SqlDataReader dr = sqlCmd.ExecuteReader();                    
+
+                    if (dr.HasRows)
+                    {
+                        while (dr.Read())
+                        {
+                            userEmail = dr["user_email"].ToString();
+                        }
+                    }                    
+                    sqlCon.Close();
+                }
+
+
                 try
                 {
                     string emailSender = ConfigurationManager.AppSettings["emailsender"].ToString();
@@ -65,7 +93,7 @@ namespace ArtMoments.Sites.client
                     _mailmsg.From = new MailAddress(emailSender);
 
                     //Set To Email ID  
-                    _mailmsg.To.Add("tanhueypeng2000@gmail.com");
+                    _mailmsg.To.Add(userEmail);   
 
                     //Set Subject  
                     _mailmsg.Subject = subject;
@@ -135,7 +163,7 @@ namespace ArtMoments.Sites.client
         }
         protected void btnHomepage_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/general/HomePage.aspx");
+            Response.Redirect("../general/HomePage.aspx");
         }
     }
 }

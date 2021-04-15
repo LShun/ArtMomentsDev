@@ -175,6 +175,28 @@
             width: 100%;
             overflow-x: auto;
         }
+        .button:not(:disabled):not(.disabled) { cursor: pointer; }
+
+        .button:hover {
+            color: #212529; /*Blue Charcoal*/
+        }
+
+        .btn-artwork {
+            color: #fff;
+            background-color: #007bff; /*blue*/
+            border-color: #007bff; /*blue*/
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            vertical-align: middle;
+            user-select: none;
+            border: 1px solid transparent; /*border transparent*/
+            padding: .375rem .75rem;
+            font-size: 1rem;
+            line-height: 1.5;
+            border-radius: .25rem;
+            transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+        }
     </style>
 </head>
 <body>

@@ -114,6 +114,9 @@ namespace ArtMoments.Sites.usermgmt
                     }
 
                     //direct to user account if successfully login
+                    HttpCookie myCookie = new HttpCookie("username", txtUserName.Text.Trim());
+                    Response.Cookies.Add(myCookie);
+                    myCookie.Expires = DateTime.Now.AddDays(7);
                     Response.Redirect("Account.aspx");
                 }
                 else
