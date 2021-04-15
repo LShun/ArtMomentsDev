@@ -25,6 +25,7 @@ namespace ArtMoments.Sites.client
             Double total = 0;
             if (!IsPostBack)
             {
+                btnConfirm.Enabled = true;
                 DataTable paymentInfo = this.GetData(
                   "SELECT C.id, C.product_id, C.quantity as quantity, C.user_id, P.id AS prod_id, P.prod_name as prod_name, P.prod_image as prod_image, P.prod_price as prod_price, U.user_name, U.id AS user_id, (P.prod_price*C.quantity) as subtotal FROM CartItems AS C INNER JOIN Product AS P ON P.id = C.product_id INNER JOIN [User] AS U ON U.id = C.user_id WHERE(C.user_id like @CustId)");
                 lvPaymentItem.DataSourceID = null;
@@ -40,9 +41,10 @@ namespace ArtMoments.Sites.client
                 if(total == 0)
                 {
                     ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('There is no product for you to purchase.')", true);
-                    Response.Redirect("~/Sites/general/HomePage.aspx");
+                    btnConfirm.Enabled = false;
 
                 }
+                
                 ddlDeliveryMethod.Items.Clear();
                 SqlConnection conn = new SqlConnection(conString);
                 conn.Open();
