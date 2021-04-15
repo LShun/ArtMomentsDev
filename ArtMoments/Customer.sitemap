@@ -15,7 +15,6 @@
       <siteMapNode url="~/Sites/client/OrderHistoryExtra.aspx" title="Order History"  description="" roles="Client"/>
       <siteMapNode url="~/Sites/client/Wishlist.aspx" title="Wishlist"  description="" roles="Client"  />
 		  <siteMapNode url="~/Sites/client/Payment.aspx" title="Payment"  description="" roles="Client"  />
-      <siteMapNode url="~/Sites/client/summaryReceipt.aspx" title="Receipt"  description="" roles="Client"  />
     </siteMapNode>
 	  <siteMapNode url="" title="Account"  description="">
 		  <siteMapNode url="~/Sites/usermgmt/Account.aspx" title="Account Management"  description="" roles="Guest"/>
