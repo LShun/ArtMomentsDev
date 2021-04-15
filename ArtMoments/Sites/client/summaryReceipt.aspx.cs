@@ -74,5 +74,10 @@ namespace ArtMoments.Sites.client
                 }
             }
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Sites/client/Receipt.aspx");
+        }
     }
 }

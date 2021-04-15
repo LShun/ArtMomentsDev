@@ -157,7 +157,6 @@
     <Content Include="Content\StarryNightVanGogh-58c2d2705f9b58af5cafbd53.jpg" />
     <Content Include="Fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Sites\client\Cart.aspx" />
-    <Content Include="Sites\client\ReceiptTemp.html" />
     <Content Include="Sites\client\summaryReceipt.aspx" />
     <Content Include="Sites\client\DisplayArt.aspx" />
     <Content Include="Sites\client\DisplayArtProduct.aspx" />
