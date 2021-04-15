@@ -39,7 +39,7 @@ namespace ArtMoments.Sites.client
                 }
                 if(total == 0)
                 {
-                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('There is no product for you to purchase..')", true);
+                    ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "alertMessage", "alert('There is no product for you to purchase.')", true);
                     Response.Redirect("~/Sites/general/HomePage.aspx");
 
                 }
@@ -61,7 +61,7 @@ namespace ArtMoments.Sites.client
                             if(ddlDeliveryMethod.SelectedItem.Value.Equals((string)dr["deliver_type"]))
                             {
                                 lblDeliveryFee.Text =  dr["deliver_fees"].ToString();
-                                //delivery_fees = Double.Parse(lblDeliveryFee.Text);
+                                delivery_fees = Double.Parse(lblDeliveryFee.Text);
                             }
                         }
                     }
@@ -86,7 +86,7 @@ namespace ArtMoments.Sites.client
                 {
                     if(int.Parse(txtExpYr.Text) == DateTime.Now.Year)
                     {
-                        if (int.Parse(txtExpYr.Text) >= DateTime.Now.Month)
+                        if (int.Parse(txtExpYr.Text) <= DateTime.Now.Month)
                         {
                             txtExpYr.Text = "";
                             txtExpMth.Text = "";
@@ -303,6 +303,7 @@ namespace ArtMoments.Sites.client
             con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('Pay successfully.')", true);
             Response.Redirect("Receipt.aspx");
             //Response.Redirect(Request.RawUrl);
         }
