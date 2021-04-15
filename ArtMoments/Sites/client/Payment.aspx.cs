@@ -304,7 +304,7 @@ namespace ArtMoments.Sites.client
             cmd.ExecuteNonQuery();
             con.Close();
             ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "Successful Message", "alert('Pay successfully.')", true);
-            Response.Redirect("Receipt.aspx");
+            Response.Redirect("~/Sites/client/summaryReceipt.aspx");
             //Response.Redirect(Request.RawUrl);
         }
     }

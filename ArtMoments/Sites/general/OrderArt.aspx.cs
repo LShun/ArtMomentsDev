@@ -158,7 +158,8 @@ namespace ArtMoments.Sites.general
         // to calculate the total price with different quantity
         public void calculatePrice(int qty)
         {
-            string artworkPrice = Session["ProdPrice"].ToString();
+            Double price = Convert.ToDouble(Session["ProdPrice"].ToString());
+            string artworkPrice = price.ToString("F");
             string[] artworkPriceSplit = artworkPrice.Split('.');
             Double artPrice = Convert.ToInt32(artworkPriceSplit[0]);
             if (artworkPriceSplit[0] != null)

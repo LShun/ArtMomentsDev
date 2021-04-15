@@ -229,7 +229,11 @@
                                 <asp:Label ID="id" runat="server" Text='<%# Eval("id") %>'></asp:Label> 
                             </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:BoundField DataField="date_order" HeaderText="Payment Date" SortExpression="date_order" />
+                    <asp:TemplateField HeaderText="Payment Date">
+                            <ItemTemplate>
+                                <asp:Label ID="date_order" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "date_order", "{0:dd/MM/yyyy}") %>'></asp:Label> 
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     <asp:BoundField DataField="payment_method" HeaderText="Payment Method" SortExpression="delivery_fees" />
                     <asp:BoundField DataField="recv_name" HeaderText="Receiver" SortExpression="recv_name" />
                     <asp:BoundField DataField="recv_address" HeaderText="Receiving Address" SortExpression="recv_address" />
