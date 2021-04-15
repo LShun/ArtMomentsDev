@@ -52,7 +52,7 @@ namespace ArtMoments.Sites.client
                     string MailText = "	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp;ArtMoments <br />  <br />" +
                         "&nbsp; 	&nbsp; 	&nbsp;Thanks For Your Order <br />  <br /> ";
 
-                    string totalText = "\nTotal: " + lblTotal.Text.ToString();
+                    string totalText = "<br /> Total (RM) : " + lblTotal.Text.ToString();
                     string subject = "ArtMoments Receipt";
 
                     //Base class for sending email  
