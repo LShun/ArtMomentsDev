@@ -4,6 +4,8 @@ A sales gallery website that allows buyers to purchase artworks, and allow artis
 
 This website is built on top of ASP WebForms framework, using C# on Visual Studio 2019. 
 
+![ArtMoments Main Screen](artmoments-main-screen.png)
+
 ## Table of Contents
 
 - [Background](#background)
