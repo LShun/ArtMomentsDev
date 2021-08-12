@@ -19,17 +19,17 @@ namespace ArtMoments.Sites.client
             {
 
 
-                    for (int i = 0; i < TransactionIDDetailView.Rows.Count; i++)
+                for (int i = 0; i < TransactionIDDetailView.Rows.Count; i++)
+                {
+                    if ((Label)TransactionIDDetailView.Rows[i].FindControl("id") != null)
                     {
-                        if ((Label)TransactionIDDetailView.Rows[i].FindControl("id") != null)
-                        {
-                            Label transacId = (Label)TransactionIDDetailView.Rows[i].FindControl("id");
+                        Label transacId = (Label)TransactionIDDetailView.Rows[i].FindControl("id");
                         dsOrderList.SelectParameters.Add("id", transacId.Text.ToString());
                         dsDelivery.SelectParameters.Add("id", transacId.Text.ToString());
-                            break;
-                        }
+                        break;
                     }
-                    Double total = 0;
+                }
+                Double total = 0;
                 Double deliveryFee = 0;
                 foreach (GridViewRow row in itemList.Rows)
                 {
@@ -57,7 +57,7 @@ namespace ArtMoments.Sites.client
                     SqlCommand sqlCmd = new SqlCommand(query, sqlCon);
                     sqlCmd.Parameters.AddWithValue("@UserName", username);
 
-                    SqlDataReader dr = sqlCmd.ExecuteReader();                    
+                    SqlDataReader dr = sqlCmd.ExecuteReader();
 
                     if (dr.HasRows)
                     {
@@ -65,66 +65,67 @@ namespace ArtMoments.Sites.client
                         {
                             userEmail = dr["user_email"].ToString();
                         }
-                    }                    
+                    }
                     sqlCon.Close();
                 }
 
 
-                try
-                {
-                    string emailSender = ConfigurationManager.AppSettings["emailsender"].ToString();
-                    string emailSenderPassword = ConfigurationManager.AppSettings["password"].ToString();
-                    string emailSenderHost = ConfigurationManager.AppSettings["smtp"].ToString();
-                    int emailSenderPort = Convert.ToInt16(ConfigurationManager.AppSettings["portnumber"]);
-                    Boolean emailIsSSL = Convert.ToBoolean(ConfigurationManager.AppSettings["IsSSL"]);
-                    string MailText = "	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp;ArtMoments <br />  <br />" +
-                        "&nbsp; 	&nbsp; 	&nbsp;Thanks For Your Order <br />  <br /> ";
+                //    try
+                //    {
+                //        string emailSender = ConfigurationManager.AppSettings["emailsender"].ToString();
+                //        string emailSenderPassword = ConfigurationManager.AppSettings["password"].ToString();
+                //        string emailSenderHost = ConfigurationManager.AppSettings["smtp"].ToString();
+                //        int emailSenderPort = Convert.ToInt16(ConfigurationManager.AppSettings["portnumber"]);
+                //        Boolean emailIsSSL = Convert.ToBoolean(ConfigurationManager.AppSettings["IsSSL"]);
+                //        string MailText = "	&nbsp; 	&nbsp; 	&nbsp; 	&nbsp;ArtMoments <br />  <br />" +
+                //            "&nbsp; 	&nbsp; 	&nbsp;Thanks For Your Order <br />  <br /> ";
 
-                    string totalText = "<br /> Total (RM) : " + lblTotal.Text.ToString();
-                    string subject = "ArtMoments Receipt";
+                //        string totalText = "<br /> Total (RM) : " + lblTotal.Text.ToString();
+                //        string subject = "ArtMoments Receipt";
 
-                    //Base class for sending email  
-                    MailMessage _mailmsg = new MailMessage();
+                //        //Base class for sending email  
+                //        MailMessage _mailmsg = new MailMessage();
 
-                    //Make TRUE because our body text is html  
-                    _mailmsg.IsBodyHtml = true;
+                //        //Make TRUE because our body text is html  
+                //        _mailmsg.IsBodyHtml = true;
 
-                    //Set From Email ID  
-                    _mailmsg.From = new MailAddress(emailSender);
+                //        //Set From Email ID  
+                //        _mailmsg.From = new MailAddress(emailSender);
 
-                    //Set To Email ID  
-                    _mailmsg.To.Add(userEmail);   
+                //        //Set To Email ID  
+                //        _mailmsg.To.Add(userEmail);   
 
-                    //Set Subject  
-                    _mailmsg.Subject = subject;
+                //        //Set Subject  
+                //        _mailmsg.Subject = subject;
 
-                    //Set Body Text of Email   
-                    _mailmsg.Body = MailText + DetailsViewToHtml(TransactionIDDetailView) + "<br /><br />" + GridViewToHtml(itemList) + "<br /> <br />"+DetailsViewToHtml1(delieryFeeDetailView) + "<br /><br />" + totalText;
+                //        //Set Body Text of Email   
+                //        _mailmsg.Body = MailText + DetailsViewToHtml(TransactionIDDetailView) + "<br /><br />" + GridViewToHtml(itemList) + "<br /> <br />"+DetailsViewToHtml1(delieryFeeDetailView) + "<br /><br />" + totalText;
 
-                    //Now set your SMTP   
-                    SmtpClient _smtp = new SmtpClient();
+                //        //Now set your SMTP   
+                //        SmtpClient _smtp = new SmtpClient();
 
-                    //Set HOST server SMTP detail  
-                    _smtp.Host = emailSenderHost;
+                //        //Set HOST server SMTP detail  
+                //        _smtp.Host = emailSenderHost;
 
-                    //Set PORT number of SMTP  
-                    _smtp.Port = emailSenderPort;
+                //        //Set PORT number of SMTP  
+                //        _smtp.Port = emailSenderPort;
 
-                    //Set SSL --> True / False  
-                    _smtp.EnableSsl = emailIsSSL;
+                //        //Set SSL --> True / False  
+                //        _smtp.EnableSsl = emailIsSSL;
 
-                    //Set Sender UserEmailID, Password  
-                    NetworkCredential _network = new NetworkCredential(emailSender, emailSenderPassword);
-                    _smtp.Credentials = _network;
+                //        //Set Sender UserEmailID, Password  
+                //        NetworkCredential _network = new NetworkCredential(emailSender, emailSenderPassword);
+                //        _smtp.Credentials = _network;
 
-                    //Send Method will send your MailMessage create above.  
-                    _smtp.Send(_mailmsg);
-                }
-                catch (SmtpException ex)
-                {
-                    //lblMsg.Text = "Email failed to send!";
-                    Console.WriteLine(ex.ToString());
-                }
+                //        //Send Method will send your MailMessage create above.  
+                //        _smtp.Send(_mailmsg);
+                //    }
+                //    catch (SmtpException ex)
+                //    {
+                //        //lblMsg.Text = "Email failed to send!";
+                //        Console.WriteLine(ex.ToString());
+                //    }
+                //}
             }
         }
 

@@ -169,7 +169,8 @@
             <h1 class="orderHistoryHeader">Order History</h1>
         </div>
     </header>
-    <asp:ListView ID="ListViewOrderHistory" runat="server" DataSourceID="SqlDataSourceOrderHistory">
+    <asp:ListView ID="ListViewOrderHistory" runat="server" DataSourceID="SqlDataSourceOrderHistory"
+        onitemdatabound="HistoryListView_ItemDataBound">
         <ItemTemplate>
             <div class="container transactionHistoryContainer">
                 <div class="row">
@@ -254,7 +255,7 @@
                                     <asp:Label ID="lblProdPrice" runat="server" Text='<%#DataBinder.Eval(Container.DataItem, "subtotal", "{0:f}") %>'/>
                                 </div>
                                 <div class="col" id="btnBuyAgainDivision">
-                                    <asp:Button ID="btnBuyAgain" runat="server" Text="BUY AGAIN" class="btn-primary rounded" OnClick="viewProdBtn"/>
+                                    <asp:Button ID="btnBuyAgain" runat="server" Text="" class="btn-primary rounded" OnClick="viewProdBtn"/>
                                 </div>
                             </div>
                         </div>
